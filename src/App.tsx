@@ -8,11 +8,16 @@ import {
 import Home from './pages/Home'
 import Screen from './pages/Screen'
 
+// components
+import Navbar from './components/Navbar'
+
 import './App.css'
 
 function App() {
   return (
     <>
+      <Navbar />
+      
       <BrowserRouter>
         <Routes>
           <Route path='/' Component={Home}></Route>

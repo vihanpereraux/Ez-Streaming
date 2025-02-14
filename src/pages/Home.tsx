@@ -15,11 +15,14 @@ import { MoviesProps } from "../interfaces/props";
 // local arrays
 const trendingMoviesLocalArr: MoviesProps[] = [];
 const topRatedMoviesLocalArr: MoviesProps[] = [];
+const upcommingMoviesLocalArr: MoviesProps[] = [];
 
+const carouselSpacing: number = 8;
 
 const Home: React.FC = () => {
     const [trendingMovies, setTrendingMovies] = useState<MoviesProps[]>(trendingMoviesLocalArr);
     const [topRatedMovies, setTopRatedMovies] = useState<MoviesProps[]>(topRatedMoviesLocalArr);
+    const [upcommingMovies, setUpcommingMovies] = useState<MoviesProps[]>(upcommingMoviesLocalArr);
 
     const getTrendingMovies = async () => {
         try {
@@ -47,6 +50,19 @@ const Home: React.FC = () => {
         }
     }
 
+    const getUpcommingMovies = async () => {
+        try {
+            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+            const resposne = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`);
+            const data = await resposne.json();
+
+            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), upcommingMoviesLocalArr);
+            setUpcommingMovies([...cleanedArr]);
+        } catch (error) {
+            alert(`Error - Top Rated Movies - ${error}`)
+        }
+    }
+
     const cleanMovieDetails = (data: any[], arr: MoviesProps[],) => {
         data.map((item: any) => {
             arr.push({
@@ -68,22 +84,32 @@ const Home: React.FC = () => {
     useEffect(() => {
         getTrendingMovies();
         getTopRatedMovies();
+        getUpcommingMovies();
     }, [])
 
     return (
         <>
-            {/* carosuel - trnding movies */}
-            <Box sx={{ mt: 3 }}>
-                <MovieCarousel
-                    title="Trending Movies"
-                    trendingMovies={trendingMovies} />
-            </Box>
+            <Box sx={{ pl: 6, pr: 6 }}>
+                {/* carosuel - trending movies */}
+                <Box sx={{ mt: carouselSpacing }}>
+                    <MovieCarousel
+                        title="Trending Movies"
+                        trendingMovies={trendingMovies} />
+                </Box>
 
-            {/* carosuel - trnding movies */}
-            <Box sx={{ mt: 3 }}>
-                <MovieCarousel
-                    title="Top Rated Movies"
-                    trendingMovies={topRatedMovies} />
+                {/* carosuel - now playing movies */}
+                <Box sx={{ mt: carouselSpacing }}>
+                    <MovieCarousel
+                        title="Now Playing Movies"
+                        trendingMovies={upcommingMovies} />
+                </Box>
+
+                {/* carosuel - top rated movies  */}
+                <Box sx={{ mt: carouselSpacing }}>
+                    <MovieCarousel
+                        title="Top Rated Movies"
+                        trendingMovies={topRatedMovies} />
+                </Box>
             </Box>
         </>
     )

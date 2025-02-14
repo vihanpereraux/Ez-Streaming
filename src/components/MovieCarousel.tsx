@@ -12,11 +12,11 @@ const responsive = {
     superLargeDesktop: {
         // the naming can be any, depends on you.
         breakpoint: { max: 4000, min: 3000 },
-        items: 5
+        items: 6
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 6
+        items: 5
     },
     tablet: {
         breakpoint: { max: 1024, min: 464 },
@@ -49,7 +49,7 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ trendingMovies, title }) 
                 }}>
                 {title}</Typography>
 
-            <Box sx={{ mt: 2 }}>
+            <Box sx={{ mt: 2.5 }}>
                 <Carousel responsive={responsive}>
                     {trendingMovies.map((item, index) => (
                         <div key={index}>
@@ -60,9 +60,12 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ trendingMovies, title }) 
                                     <Typography
                                         sx={{
                                             color: 'white',
-                                            fontSize: 20,
+                                            fontSize: 22,
                                             fontWeight: 400,
-                                            fontFamily: 'Rubik'
+                                            fontFamily: 'Rubik',
+                                            whiteSpace: 'nowrap',
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis'
                                         }}>
                                         {item.title}</Typography>
                                 </Box>
