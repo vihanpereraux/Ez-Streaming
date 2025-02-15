@@ -45,7 +45,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8
-                        }}>{(release_date).slice(0, 4)}</span>
+                        }}>{release_date ? (release_date).slice(0, 4) : null}</span>
 
                         <span style={{
                             color: 'white',

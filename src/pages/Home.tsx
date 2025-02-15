@@ -13,25 +13,40 @@ import MovieCarousel from "../components/MovieCarousel";
 import { MoviesProps } from "../interfaces/props";
 
 // local arrays
+// banner content
+const bannerContentLocalArr: MoviesProps[] = []
 const trendingMoviesLocalArr: MoviesProps[] = [];
 const upcommingMoviesLocalArr: MoviesProps[] = [];
 // genres
 const crimeMoviesLocalArr: MoviesProps[] = [];
 const documentaryMoviesLocalArr: MoviesProps[] = [];
 const thrillerMoviesLocalArr: MoviesProps[] = [];
-
 const topRatedMoviesLocalArr: MoviesProps[] = [];
 
 
 const carouselSpacing: number = 8;
 
 const Home: React.FC = () => {
+    const [bannerContent, setBannerContent] = useState<MoviesProps[]>(bannerContentLocalArr);
     const [trendingMovies, setTrendingMovies] = useState<MoviesProps[]>(trendingMoviesLocalArr);
     const [topRatedMovies, setTopRatedMovies] = useState<MoviesProps[]>(topRatedMoviesLocalArr);
     const [upcommingMovies, setUpcommingMovies] = useState<MoviesProps[]>(upcommingMoviesLocalArr);
     const [crimeMovies, setcrimeMovies] = useState<MoviesProps[]>(crimeMoviesLocalArr);
     const [documentaryMovies, setDocumentaryMovies] = useState<MoviesProps[]>(documentaryMoviesLocalArr);
     const [thrillerMovies, setThrillerMovies] = useState<MoviesProps[]>(thrillerMoviesLocalArr);
+
+    const getBannerContent = async () => {
+        try {
+            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+            const resposne = await fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${API_KEY}`);
+            const data = await resposne.json();
+
+            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), bannerContentLocalArr);
+            setBannerContent([...cleanedArr]);
+        } catch (error) {
+            alert(`Error - Trending Movies - ${error}`)
+        }
+    }
 
     const getTrendingMovies = async () => {
         try {
@@ -130,6 +145,7 @@ const Home: React.FC = () => {
     }
 
     useEffect(() => {
+        getBannerContent();
         getTrendingMovies();
         getTopRatedMovies();
         getUpcommingMovies();
@@ -141,9 +157,17 @@ const Home: React.FC = () => {
     return (
         <>
             <Box sx={{ pl: 6, pr: 6 }}>
+                {/* banner area */}
+                <Box sx={{ mt: carouselSpacing }}>
+                    <MovieCarousel
+                        type="banner"
+                        trendingMovies={bannerContent} />
+                </Box>
+
                 {/* carosuel - trending movies */}
                 <Box sx={{ mt: carouselSpacing }}>
                     <MovieCarousel
+                        type="movie"
                         title="Newest Trending Movies"
                         trendingMovies={trendingMovies} />
                 </Box>
@@ -151,6 +175,7 @@ const Home: React.FC = () => {
                 {/* carosuel - now streaming movies */}
                 <Box sx={{ mt: carouselSpacing }}>
                     <MovieCarousel
+                        type="movie"
                         title="Now Streaming Movies"
                         trendingMovies={upcommingMovies} />
                 </Box>
@@ -158,6 +183,7 @@ const Home: React.FC = () => {
                 {/* carosuel - top rated movies  */}
                 <Box sx={{ mt: carouselSpacing }}>
                     <MovieCarousel
+                        type="movie"
                         title="Crime & Action Movies"
                         trendingMovies={crimeMovies} />
                 </Box>
@@ -165,6 +191,7 @@ const Home: React.FC = () => {
                 {/* carosuel - top rated movies  */}
                 <Box sx={{ mt: carouselSpacing }}>
                     <MovieCarousel
+                        type="movie"
                         title="Thriller Movies"
                         trendingMovies={thrillerMovies} />
                 </Box>
@@ -172,6 +199,7 @@ const Home: React.FC = () => {
                 {/* carosuel - documentery movies  */}
                 <Box sx={{ mt: carouselSpacing }}>
                     <MovieCarousel
+                        type="movie"
                         title="Documentery Movies"
                         trendingMovies={documentaryMovies} />
                 </Box>
@@ -179,6 +207,7 @@ const Home: React.FC = () => {
                 {/* carosuel - top rated movies  */}
                 <Box sx={{ mt: carouselSpacing }}>
                     <MovieCarousel
+                        type="movie"
                         title="Top Rated Movies"
                         trendingMovies={topRatedMovies} />
                 </Box>
