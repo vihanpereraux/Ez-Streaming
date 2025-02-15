@@ -6,6 +6,10 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
+
+// props
+import { NavItemProps } from '../interfaces/props';
+
 const navButtonStylings = {
     textTransform: 'capitalize',
     fontSize: 20,
@@ -13,6 +17,25 @@ const navButtonStylings = {
     fontWeight: 450,
     mr: 1
 }
+
+const navItems: NavItemProps[] = [
+    {
+        navItem: "All",
+        path: "/"
+    },
+    {
+        navItem: "Movies",
+        path: "/movies"
+    },
+    {
+        navItem: "TV Series",
+        path: "/tv"
+    },
+    {
+        navItem: "Serach",
+        path: "/search"
+    }
+]
 
 const Navbar: React.FC = () => {
     return (
@@ -45,17 +68,13 @@ const Navbar: React.FC = () => {
                         Ez Streaming
                     </Typography>
 
-                    <Button
-                        sx={navButtonStylings}
-                        color="inherit">Movies</Button>
-
-                    <Button
-                        sx={navButtonStylings}
-                        color="inherit">TV Series</Button>
-
-                    <Button
-                        sx={navButtonStylings}
-                        color="inherit">Search</Button>
+                    {navItems.map((item, index) => (
+                        <div key={index}>
+                            <Button
+                                sx={navButtonStylings}
+                                color="inherit">{item.navItem}</Button>
+                        </div>
+                    ))}
                 </Toolbar>
             </AppBar>
         </Box>

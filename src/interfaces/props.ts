@@ -1,3 +1,8 @@
+export interface NavItemProps {
+    navItem: string,
+    path: string
+}
+
 export interface MoviesProps {
     title: string,
     backdrop_path: string,
