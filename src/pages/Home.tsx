@@ -14,8 +14,14 @@ import { MoviesProps } from "../interfaces/props";
 
 // local arrays
 const trendingMoviesLocalArr: MoviesProps[] = [];
-const topRatedMoviesLocalArr: MoviesProps[] = [];
 const upcommingMoviesLocalArr: MoviesProps[] = [];
+// genres
+const crimeMoviesLocalArr: MoviesProps[] = [];
+const documentaryMoviesLocalArr: MoviesProps[] = [];
+const thrillerMoviesLocalArr: MoviesProps[] = [];
+
+const topRatedMoviesLocalArr: MoviesProps[] = [];
+
 
 const carouselSpacing: number = 8;
 
@@ -23,11 +29,14 @@ const Home: React.FC = () => {
     const [trendingMovies, setTrendingMovies] = useState<MoviesProps[]>(trendingMoviesLocalArr);
     const [topRatedMovies, setTopRatedMovies] = useState<MoviesProps[]>(topRatedMoviesLocalArr);
     const [upcommingMovies, setUpcommingMovies] = useState<MoviesProps[]>(upcommingMoviesLocalArr);
+    const [crimeMovies, setcrimeMovies] = useState<MoviesProps[]>(crimeMoviesLocalArr);
+    const [documentaryMovies, setDocumentaryMovies] = useState<MoviesProps[]>(documentaryMoviesLocalArr);
+    const [thrillerMovies, setThrillerMovies] = useState<MoviesProps[]>(thrillerMoviesLocalArr);
 
     const getTrendingMovies = async () => {
         try {
             const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-            const resposne = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
+            const resposne = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`);
             const data = await resposne.json();
 
             const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), trendingMoviesLocalArr);
@@ -63,6 +72,45 @@ const Home: React.FC = () => {
         }
     }
 
+    const getCrimeMovies = async () => {
+        try {
+            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+            const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=80`);
+            const data = await resposne.json();
+
+            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), crimeMoviesLocalArr);
+            setcrimeMovies([...cleanedArr]);
+        } catch (error) {
+            alert(`Error - Top Rated Movies - ${error}`)
+        }
+    }
+
+    const getDocumenteryMovies = async () => {
+        try {
+            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+            const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=99`);
+            const data = await resposne.json();
+
+            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), documentaryMoviesLocalArr);
+            setDocumentaryMovies([...cleanedArr]);
+        } catch (error) {
+            alert(`Error - Top Rated Movies - ${error}`)
+        }
+    }
+
+    const getThrillerMovies = async () => {
+        try {
+            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+            const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=53`);
+            const data = await resposne.json();
+
+            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), thrillerMoviesLocalArr);
+            setThrillerMovies([...cleanedArr]);
+        } catch (error) {
+            alert(`Error - Top Rated Movies - ${error}`)
+        }
+    }
+
     const cleanMovieDetails = (data: any[], arr: MoviesProps[],) => {
         data.map((item: any) => {
             arr.push({
@@ -85,6 +133,9 @@ const Home: React.FC = () => {
         getTrendingMovies();
         getTopRatedMovies();
         getUpcommingMovies();
+        getCrimeMovies();
+        getDocumenteryMovies();
+        getThrillerMovies();
     }, [])
 
     return (
@@ -93,14 +144,14 @@ const Home: React.FC = () => {
                 {/* carosuel - trending movies */}
                 <Box sx={{ mt: carouselSpacing }}>
                     <MovieCarousel
-                        title="Trending Movies"
+                        title="Newest Trending Movies"
                         trendingMovies={trendingMovies} />
                 </Box>
 
-                {/* carosuel - now playing movies */}
+                {/* carosuel - now streaming movies */}
                 <Box sx={{ mt: carouselSpacing }}>
                     <MovieCarousel
-                        title="Now Playing Movies"
+                        title="Now Streaming Movies"
                         trendingMovies={upcommingMovies} />
                 </Box>
 
@@ -109,6 +160,27 @@ const Home: React.FC = () => {
                     <MovieCarousel
                         title="Top Rated Movies"
                         trendingMovies={topRatedMovies} />
+                </Box>
+
+                {/* carosuel - top rated movies  */}
+                <Box sx={{ mt: carouselSpacing }}>
+                    <MovieCarousel
+                        title="Crime Movies"
+                        trendingMovies={crimeMovies} />
+                </Box>
+
+                {/* carosuel - top rated movies  */}
+                <Box sx={{ mt: carouselSpacing }}>
+                    <MovieCarousel
+                        title="Thriller Movies"
+                        trendingMovies={thrillerMovies} />
+                </Box>
+
+                {/* carosuel - documentery movies  */}
+                <Box sx={{ mt: carouselSpacing }}>
+                    <MovieCarousel
+                        title="Documentery Movies"
+                        trendingMovies={documentaryMovies} />
                 </Box>
             </Box>
         </>

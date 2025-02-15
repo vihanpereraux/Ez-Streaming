@@ -17,6 +17,7 @@
     "pure-react-carousel": "^1.32.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0",
     "react-multi-carousel": "^2.8.5",
     "react-router-dom": "^7.1.5"
   },

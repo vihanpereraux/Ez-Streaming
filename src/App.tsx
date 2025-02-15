@@ -7,6 +7,7 @@ import {
 // pages
 import Home from './pages/Home'
 import Screen from './pages/Screen'
+import Search from './pages/Search'
 
 // components
 import Navbar from './components/Navbar'
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path='/' Component={Home}></Route>
           <Route path='/screen' Component={Screen}></Route>
+          <Route path='/search' Component={Search}></Route>
         </Routes>
       </BrowserRouter>
     </>

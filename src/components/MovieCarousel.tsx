@@ -1,5 +1,6 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
+import { FaStar } from "react-icons/fa6";
 
 // MUI
 import { Typography, Box } from "@mui/material";
@@ -54,9 +55,17 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ trendingMovies, title }) 
                     {trendingMovies.map((item, index) => (
                         <div key={index}>
                             <Box sx={{ background: 'none', pl: .5, pr: .5 }}>
-                                <img style={{ width: '100%', borderRadius: 10 }} src={item.poster_path} alt="" />
+                                <img
+                                    style={{
+                                        width: '100%',
+                                        borderRadius: 10,
+                                        aspectRatio: '9/16',
+                                        objectFit: 'cover',
+                                        height: '500px'
+                                    }}
+                                    src={item.poster_path} alt="" />
                                 {/* movie title */}
-                                <Box sx={{ mt: 1 }}>
+                                <Box sx={{ mt: 1.5 }}>
                                     <Typography
                                         sx={{
                                             color: 'white',
@@ -65,9 +74,28 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ trendingMovies, title }) 
                                             fontFamily: 'Rubik',
                                             whiteSpace: 'nowrap',
                                             overflow: 'hidden',
-                                            textOverflow: 'ellipsis'
+                                            textOverflow: 'ellipsis',
+                                            mb: .66
                                         }}>
                                         {item.title}</Typography>
+
+                                    <span style={{
+                                        color: 'white',
+                                        fontSize: 18,
+                                        fontWeight: 400,
+                                        fontFamily: 'Rubik',
+                                        opacity: .8
+                                    }}>{(item.release_date).slice(0, 4)}</span>
+
+                                    <span style={{
+                                        color: 'white',
+                                        fontSize: 18,
+                                        fontWeight: 400,
+                                        fontFamily: 'Rubik',
+                                        opacity: .8,
+                                        marginLeft: 20
+                                    }}>
+                                        <FaStar style={{ color: 'orange' }} />  {Math.round(item.vote_average * 10) / 10}</span>
                                 </Box>
                             </Box>
                         </div>
