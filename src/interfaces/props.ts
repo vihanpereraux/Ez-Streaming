@@ -7,5 +7,12 @@ export interface MoviesProps {
     poster_path: string,
     overview: string,
     release_date: string,
-    vote_average : number
+    vote_average: number
+}
+
+export interface CarosuelCardProps {
+    poster_path: string,
+    title: string,
+    release_date: string,
+    vote_average: number
 }

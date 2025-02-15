@@ -5,6 +5,9 @@ import { FaStar } from "react-icons/fa6";
 // MUI
 import { Typography, Box } from "@mui/material";
 
+// components
+import CarosuelCard from "./CarouselCard";
+
 // stylesheet
 import "react-multi-carousel/lib/styles.css";
 
@@ -54,50 +57,11 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ trendingMovies, title }) 
                 <Carousel responsive={responsive}>
                     {trendingMovies.map((item, index) => (
                         <div key={index}>
-                            <Box sx={{ background: 'none', pl: .5, pr: .5 }}>
-                                <img
-                                    style={{
-                                        width: '100%',
-                                        borderRadius: 10,
-                                        aspectRatio: '9/16',
-                                        objectFit: 'cover',
-                                        height: '500px'
-                                    }}
-                                    src={item.poster_path} alt="" />
-                                {/* movie title */}
-                                <Box sx={{ mt: 1.5 }}>
-                                    <Typography
-                                        sx={{
-                                            color: 'white',
-                                            fontSize: 22,
-                                            fontWeight: 400,
-                                            fontFamily: 'Rubik',
-                                            whiteSpace: 'nowrap',
-                                            overflow: 'hidden',
-                                            textOverflow: 'ellipsis',
-                                            mb: .66
-                                        }}>
-                                        {item.title}</Typography>
-
-                                    <span style={{
-                                        color: 'white',
-                                        fontSize: 18,
-                                        fontWeight: 400,
-                                        fontFamily: 'Rubik',
-                                        opacity: .8
-                                    }}>{(item.release_date).slice(0, 4)}</span>
-
-                                    <span style={{
-                                        color: 'white',
-                                        fontSize: 18,
-                                        fontWeight: 400,
-                                        fontFamily: 'Rubik',
-                                        opacity: .8,
-                                        marginLeft: 20
-                                    }}>
-                                        <FaStar style={{ color: 'orange' }} />  {Math.round(item.vote_average * 10) / 10}</span>
-                                </Box>
-                            </Box>
+                            <CarosuelCard
+                                poster_path={item.poster_path}
+                                title={item.title}
+                                release_date={item.release_date}
+                                vote_average={item.vote_average} />
                         </div>
                     ))}
                 </Carousel>

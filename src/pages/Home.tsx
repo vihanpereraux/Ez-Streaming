@@ -158,14 +158,7 @@ const Home: React.FC = () => {
                 {/* carosuel - top rated movies  */}
                 <Box sx={{ mt: carouselSpacing }}>
                     <MovieCarousel
-                        title="Top Rated Movies"
-                        trendingMovies={topRatedMovies} />
-                </Box>
-
-                {/* carosuel - top rated movies  */}
-                <Box sx={{ mt: carouselSpacing }}>
-                    <MovieCarousel
-                        title="Crime Movies"
+                        title="Crime & Action Movies"
                         trendingMovies={crimeMovies} />
                 </Box>
 
@@ -181,6 +174,13 @@ const Home: React.FC = () => {
                     <MovieCarousel
                         title="Documentery Movies"
                         trendingMovies={documentaryMovies} />
+                </Box>
+
+                {/* carosuel - top rated movies  */}
+                <Box sx={{ mt: carouselSpacing }}>
+                    <MovieCarousel
+                        title="Top Rated Movies"
+                        trendingMovies={topRatedMovies} />
                 </Box>
             </Box>
         </>
