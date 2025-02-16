@@ -51,7 +51,12 @@ const MovieCarousel: React.FC<MovieCarouselProps>
                         {trendingMovies.map((item, index) => (
                             <div key={index}>
                                 <CarosuelCard
-                                    poster_path={item.poster_path}
+                                    poster_path={
+                                        type === "banner"
+                                            ?
+                                            item.backdrop_path
+                                            :
+                                            item.poster_path}
                                     title={item.title}
                                     release_date={item.release_date}
                                     vote_average={item.vote_average} />

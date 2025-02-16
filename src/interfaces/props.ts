@@ -13,11 +13,24 @@ export interface MoviesProps {
     overview: string,
     release_date: string,
     vote_average: number
+    original_name: string,
+    first_air_date: string
 }
 
 export interface CarosuelCardProps {
     poster_path: string,
     title: string,
     release_date: string,
-    vote_average: number
+    vote_average: number,
+    type: string
 }
+
+export interface BannerCardProps {
+    poster_path: string,
+    original_name: string,
+    first_air_date: string,
+    vote_average: number,
+    type: string,
+    overview: string
+}
+

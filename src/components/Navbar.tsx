@@ -13,8 +13,9 @@ const navButtonStylings = {
     textTransform: 'capitalize',
     fontSize: 20,
     fontFamily: 'Rubik',
-    fontWeight: 450,
-    mr: 1
+    fontWeight: 400,
+    mr: 1,
+    background: 'none'
 }
 
 const navItems: NavItemProps[] = [

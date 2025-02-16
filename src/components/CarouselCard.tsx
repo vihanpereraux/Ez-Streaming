@@ -11,19 +11,20 @@ import {
 import { CarosuelCardProps } from "../interfaces/props";
 
 const CarosuelCard: React.FC<CarosuelCardProps>
-    = ({ poster_path, title, release_date, vote_average  }) => {
+    = ({ poster_path, title, release_date, vote_average, type }) => {
         return (
             <>
                 <Box sx={{ background: 'none', pl: .5, pr: .5 }}>
+                    {/* poster */}
                     <img
                         style={{
                             width: '100%',
                             borderRadius: 10,
-                            aspectRatio: '9/16',
                             objectFit: 'cover',
-                            height: '500px'
+                            height: type === "banner" ? '800px' : '500px'
                         }}
                         src={poster_path} alt="" />
+                    
                     {/* movie title */}
                     <Box sx={{ mt: 1.5 }}>
                         <Typography

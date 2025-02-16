@@ -7,6 +7,7 @@ import React, {
 import { Box } from "@mui/material";
 
 // components
+import BannerCarosuel from "../components/BannerCarousel";
 import MovieCarousel from "../components/MovieCarousel";
 
 // props
@@ -130,14 +131,16 @@ const Home: React.FC = () => {
         data.map((item: any) => {
             arr.push({
                 title: item.original_title,
-                backdrop_path: item.backdrop_path,
+                backdrop_path: 'https://image.tmdb.org/t/p/original/' + item.backdrop_path,
                 id: item.id,
                 original_language: item.original_language,
                 popularity: item.popularity,
                 poster_path: 'https://image.tmdb.org/t/p/w500/' + item.poster_path,
                 overview: item.overview,
                 release_date: item.release_date,
-                vote_average: item.vote_average
+                vote_average: item.vote_average,
+                original_name: item.original_name ? item.original_name : null,
+                first_air_date: item.first_air_date ?  item.first_air_date : null 
             })
         });
 
@@ -159,9 +162,9 @@ const Home: React.FC = () => {
             <Box sx={{ pl: 6, pr: 6 }}>
                 {/* banner area */}
                 <Box sx={{ mt: carouselSpacing }}>
-                    <MovieCarousel
+                    <BannerCarosuel
                         type="banner"
-                        trendingMovies={bannerContent} />
+                        content={bannerContent} />
                 </Box>
 
                 {/* carosuel - trending movies */}
