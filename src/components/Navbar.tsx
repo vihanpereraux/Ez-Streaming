@@ -32,7 +32,7 @@ const navItems: NavItemProps[] = [
         path: "/tv"
     },
     {
-        navItem: "Serach",
+        navItem: "Search",
         path: "/search"
     }
 ]
