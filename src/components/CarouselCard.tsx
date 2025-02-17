@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
 
 // MUI
@@ -11,20 +12,39 @@ import {
 import { CarosuelCardProps } from "../interfaces/props";
 
 const CarosuelCard: React.FC<CarosuelCardProps>
-    = ({ poster_path, title, release_date, vote_average, type }) => {
+    = ({ id, poster_path, title, release_date, vote_average, overview }) => {
+        const navigate = useNavigate();
+
+        const navigateToScreen = () => {
+            const data = {
+                id: id,
+                title: title,
+                overview: overview,
+                release_date: release_date,
+                vote_average: vote_average,
+            };
+            navigate('/screen', { state: { data } });
+        }
+
         return (
             <>
-                <Box sx={{ background: 'none', pl: .5, pr: .5 }}>
+                <Box
+                    sx={{
+                        background: 'none',
+                        pl: .5,
+                        pr: .5
+                    }}>
                     {/* poster */}
                     <img
+                        onClick={navigateToScreen}
                         style={{
                             width: '100%',
                             borderRadius: 10,
                             objectFit: 'cover',
-                            height: type === "banner" ? '800px' : '500px'
+                            height: '500px'
                         }}
                         src={poster_path} alt="" />
-                    
+
                     {/* movie title */}
                     <Box sx={{ mt: 1.5 }}>
                         <Typography

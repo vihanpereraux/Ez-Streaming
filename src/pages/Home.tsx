@@ -28,7 +28,7 @@ const topRatedMoviesLocalArr: MoviesProps[] = [];
 const carouselSpacing: number = 8;
 
 const Home: React.FC = () => {
-    const [bannerContent, setBannerContent] = useState<MoviesProps[]>(bannerContentLocalArr);
+    const [bannerContent, setBannerContent] = useState<MoviesProps[]>();
     const [trendingMovies, setTrendingMovies] = useState<MoviesProps[]>(trendingMoviesLocalArr);
     const [topRatedMovies, setTopRatedMovies] = useState<MoviesProps[]>(topRatedMoviesLocalArr);
     const [upcommingMovies, setUpcommingMovies] = useState<MoviesProps[]>(upcommingMoviesLocalArr);
@@ -140,7 +140,7 @@ const Home: React.FC = () => {
                 release_date: item.release_date,
                 vote_average: item.vote_average,
                 original_name: item.original_name ? item.original_name : null,
-                first_air_date: item.first_air_date ?  item.first_air_date : null 
+                first_air_date: item.first_air_date ? item.first_air_date : null
             })
         });
 
@@ -159,13 +159,16 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <Box sx={{ pl: 6, pr: 6 }}>
-                {/* banner area */}
-                <Box sx={{ mt: carouselSpacing }}>
-                    <BannerCarosuel
-                        type="banner"
-                        content={bannerContent} />
-                </Box>
+            <Box sx={{ pl: 6, pr: 6, pt: 5 }}>
+                {bannerContent ? (
+                    < Box sx={{ mt: carouselSpacing }}>
+                        <BannerCarosuel
+                            type="banner"
+                            content={bannerContent} />
+                    </Box>
+                ) : (
+                    <div><p style={{ color: 'white' }}>Loading !</p></div>
+                )}
 
                 {/* carosuel - trending movies */}
                 <Box sx={{ mt: carouselSpacing }}>
@@ -214,7 +217,7 @@ const Home: React.FC = () => {
                         title="Top Rated Movies"
                         trendingMovies={topRatedMovies} />
                 </Box>
-            </Box>
+            </Box >
         </>
     )
 }

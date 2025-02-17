@@ -22,7 +22,9 @@ export interface CarosuelCardProps {
     title: string,
     release_date: string,
     vote_average: number,
-    type: string
+    type: string,
+    overview: string,
+    id: number
 }
 
 export interface BannerCardProps {
@@ -32,5 +34,13 @@ export interface BannerCardProps {
     vote_average: number,
     type: string,
     overview: string
+}
+
+export interface ScreenNavigationProps {
+    title: string,
+    release_date: string,
+    vote_average: number,
+    overview: string,
+    id: number
 }
 
