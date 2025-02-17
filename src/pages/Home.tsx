@@ -10,151 +10,66 @@ import { Box } from "@mui/material";
 import BannerCarosuel from "../components/BannerCarousel";
 import MovieCarousel from "../components/MovieCarousel";
 
+// services
+import {
+    getBannerContent,
+    getTrendingMovies,
+    getTopRatedMovies,
+    getUpcommingMovies,
+    getMoviesByGenre
+} from "../services/Api";
+
 // props
 import { MoviesProps } from "../interfaces/props";
 
-// local arrays
 // banner content
 const bannerContentLocalArr: MoviesProps[] = []
+// other movies
 const trendingMoviesLocalArr: MoviesProps[] = [];
 const upcommingMoviesLocalArr: MoviesProps[] = [];
-// genres
+const topRatedMoviesLocalArr: MoviesProps[] = [];
+// movies by genres
 const crimeMoviesLocalArr: MoviesProps[] = [];
 const documentaryMoviesLocalArr: MoviesProps[] = [];
 const thrillerMoviesLocalArr: MoviesProps[] = [];
-const topRatedMoviesLocalArr: MoviesProps[] = [];
 
 
 const carouselSpacing: number = 8;
 
 const Home: React.FC = () => {
     const [bannerContent, setBannerContent] = useState<MoviesProps[]>();
-    const [trendingMovies, setTrendingMovies] = useState<MoviesProps[]>(trendingMoviesLocalArr);
-    const [topRatedMovies, setTopRatedMovies] = useState<MoviesProps[]>(topRatedMoviesLocalArr);
-    const [upcommingMovies, setUpcommingMovies] = useState<MoviesProps[]>(upcommingMoviesLocalArr);
-    const [crimeMovies, setcrimeMovies] = useState<MoviesProps[]>(crimeMoviesLocalArr);
-    const [documentaryMovies, setDocumentaryMovies] = useState<MoviesProps[]>(documentaryMoviesLocalArr);
-    const [thrillerMovies, setThrillerMovies] = useState<MoviesProps[]>(thrillerMoviesLocalArr);
+    const [trendingMovies, setTrendingMovies] = useState<MoviesProps[]>();
+    const [topRatedMovies, setTopRatedMovies] = useState<MoviesProps[]>();
+    const [upcommingMovies, setUpcommingMovies] = useState<MoviesProps[]>();
+    const [crimeMovies, setCrimeMovies] = useState<MoviesProps[]>();
+    const [documentaryMovies, setDocumentaryMovies] = useState<MoviesProps[]>();
+    const [thrillerMovies, setThrillerMovies] = useState<MoviesProps[]>();
 
-    const getBannerContent = async () => {
-        try {
-            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-            const resposne = await fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${API_KEY}`);
-            const data = await resposne.json();
+    const getData = async () => {
+        const lol = await getBannerContent(bannerContentLocalArr);
+        if (lol) { setBannerContent([...lol]); }
 
-            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), bannerContentLocalArr);
-            setBannerContent([...cleanedArr]);
-        } catch (error) {
-            alert(`Error - Trending Movies - ${error}`)
-        }
-    }
+        const lol2 = await getTrendingMovies(trendingMoviesLocalArr);
+        if (lol2) { setTrendingMovies([...lol2]); }
 
-    const getTrendingMovies = async () => {
-        try {
-            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-            const resposne = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`);
-            const data = await resposne.json();
+        const lol3 = await getTopRatedMovies(topRatedMoviesLocalArr);
+        if (lol3) { setTopRatedMovies([...lol3]); }
 
-            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), trendingMoviesLocalArr);
-            setTrendingMovies([...cleanedArr]);
-        } catch (error) {
-            alert(`Error - Trending Movies - ${error}`)
-        }
-    }
+        const lol4 = await getUpcommingMovies(upcommingMoviesLocalArr);
+        if (lol4) { setUpcommingMovies([...lol4]); }
 
-    const getTopRatedMovies = async () => {
-        try {
-            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-            const resposne = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`);
-            const data = await resposne.json();
+        const lol5 = await getMoviesByGenre(crimeMoviesLocalArr, "80");
+        if (lol5) { setCrimeMovies([...lol5]); }
 
-            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), topRatedMoviesLocalArr);
-            setTopRatedMovies([...cleanedArr]);
-        } catch (error) {
-            alert(`Error - Top Rated Movies - ${error}`)
-        }
-    }
+        const lol6 = await getMoviesByGenre(documentaryMoviesLocalArr, "99");
+        if (lol6) { setDocumentaryMovies([...lol6]); }
 
-    const getUpcommingMovies = async () => {
-        try {
-            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-            const resposne = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`);
-            const data = await resposne.json();
-
-            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), upcommingMoviesLocalArr);
-            setUpcommingMovies([...cleanedArr]);
-        } catch (error) {
-            alert(`Error - Top Rated Movies - ${error}`)
-        }
-    }
-
-    const getCrimeMovies = async () => {
-        try {
-            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-            const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=80`);
-            const data = await resposne.json();
-
-            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), crimeMoviesLocalArr);
-            setcrimeMovies([...cleanedArr]);
-        } catch (error) {
-            alert(`Error - Top Rated Movies - ${error}`)
-        }
-    }
-
-    const getDocumenteryMovies = async () => {
-        try {
-            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-            const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=99`);
-            const data = await resposne.json();
-
-            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), documentaryMoviesLocalArr);
-            setDocumentaryMovies([...cleanedArr]);
-        } catch (error) {
-            alert(`Error - Top Rated Movies - ${error}`)
-        }
-    }
-
-    const getThrillerMovies = async () => {
-        try {
-            const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-            const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=53`);
-            const data = await resposne.json();
-
-            const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), thrillerMoviesLocalArr);
-            setThrillerMovies([...cleanedArr]);
-        } catch (error) {
-            alert(`Error - Top Rated Movies - ${error}`)
-        }
-    }
-
-    const cleanMovieDetails = (data: any[], arr: MoviesProps[],) => {
-        data.map((item: any) => {
-            arr.push({
-                title: item.original_title,
-                backdrop_path: 'https://image.tmdb.org/t/p/original/' + item.backdrop_path,
-                id: item.id,
-                original_language: item.original_language,
-                popularity: item.popularity,
-                poster_path: 'https://image.tmdb.org/t/p/w500/' + item.poster_path,
-                overview: item.overview,
-                release_date: item.release_date,
-                vote_average: item.vote_average,
-                original_name: item.original_name ? item.original_name : null,
-                first_air_date: item.first_air_date ? item.first_air_date : null
-            })
-        });
-
-        return arr;
+        const lol7 = await getMoviesByGenre(thrillerMoviesLocalArr, "53");
+        if (lol7) { setThrillerMovies([...lol7]); }
     }
 
     useEffect(() => {
-        getBannerContent();
-        getTrendingMovies();
-        getTopRatedMovies();
-        getUpcommingMovies();
-        getCrimeMovies();
-        getDocumenteryMovies();
-        getThrillerMovies();
+        getData();
     }, [])
 
     return (
@@ -172,50 +87,64 @@ const Home: React.FC = () => {
 
                 {/* carosuel - trending movies */}
                 <Box sx={{ mt: carouselSpacing }}>
-                    <MovieCarousel
-                        type="movie"
-                        title="Newest Trending Movies"
-                        trendingMovies={trendingMovies} />
+                    {trendingMovies ? (
+                        <MovieCarousel
+                            type="movie"
+                            title="Newest Trending Movies"
+                            trendingMovies={trendingMovies} />
+                    ) : (<div><p style={{ color: 'white' }}>Loading !</p></div>)}
                 </Box>
 
                 {/* carosuel - now streaming movies */}
                 <Box sx={{ mt: carouselSpacing }}>
-                    <MovieCarousel
-                        type="movie"
-                        title="Now Streaming Movies"
-                        trendingMovies={upcommingMovies} />
+                    {upcommingMovies ? (
+                        <MovieCarousel
+                            type="movie"
+                            title="Now Streaming Movies"
+                            trendingMovies={upcommingMovies} />
+                    ) : (<div><p style={{ color: 'white' }}>Loading !</p></div>)}
+
                 </Box>
 
                 {/* carosuel - top rated movies  */}
                 <Box sx={{ mt: carouselSpacing }}>
-                    <MovieCarousel
-                        type="movie"
-                        title="Crime & Action Movies"
-                        trendingMovies={crimeMovies} />
+                    {crimeMovies ? (
+                        <MovieCarousel
+                            type="movie"
+                            title="Crime & Action Movies"
+                            trendingMovies={crimeMovies} />
+                    ) : (<div><p style={{ color: 'white' }}>Loading !</p></div>)}
+
                 </Box>
 
-                {/* carosuel - top rated movies  */}
                 <Box sx={{ mt: carouselSpacing }}>
-                    <MovieCarousel
-                        type="movie"
-                        title="Thriller Movies"
-                        trendingMovies={thrillerMovies} />
+                    {thrillerMovies ? (
+                        <MovieCarousel
+                            type="movie"
+                            title="Thriller Movies"
+                            trendingMovies={thrillerMovies} />
+                    ) : (<div><p style={{ color: 'white' }}>Loading !</p></div>)}
+
                 </Box>
 
-                {/* carosuel - documentery movies  */}
                 <Box sx={{ mt: carouselSpacing }}>
-                    <MovieCarousel
-                        type="movie"
-                        title="Documentery Movies"
-                        trendingMovies={documentaryMovies} />
+                    {documentaryMovies ? (
+                        <MovieCarousel
+                            type="movie"
+                            title="Documentery Movies"
+                            trendingMovies={documentaryMovies} />
+                    ) : (<div><p style={{ color: 'white' }}>Loading !</p></div>)}
+
                 </Box>
 
-                {/* carosuel - top rated movies  */}
                 <Box sx={{ mt: carouselSpacing }}>
-                    <MovieCarousel
-                        type="movie"
-                        title="Top Rated Movies"
-                        trendingMovies={topRatedMovies} />
+                    {topRatedMovies ? (
+                        <MovieCarousel
+                            type="movie"
+                            title="Top Rated Movies"
+                            trendingMovies={topRatedMovies} />
+                    ) : (<div><p style={{ color: 'white' }}>Loading !</p></div>)}
+
                 </Box>
             </Box >
         </>
