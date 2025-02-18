@@ -15,7 +15,6 @@ const BannerCard: React.FC<BannerCardProps>
         poster_path,
         original_name,
         first_air_date,
-        overview,
         vote_average,
         type
     }) => {
