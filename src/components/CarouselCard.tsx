@@ -41,7 +41,8 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             width: '100%',
                             borderRadius: 10,
                             objectFit: 'cover',
-                            height: '500px'
+                            height: '500px',
+                            cursor: 'pointer'
                         }}
                         src={poster_path} alt="" />
 

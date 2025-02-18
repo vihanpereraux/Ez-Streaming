@@ -17,9 +17,9 @@ import './App.css'
 function App() {
   return (
     <>
-      <Navbar />
-      
       <BrowserRouter>
+        <Navbar />
+
         <Routes>
           <Route path='/' Component={Home}></Route>
           <Route path='/screen' Component={Screen}></Route>

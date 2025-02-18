@@ -1,4 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// MUI
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -38,6 +41,12 @@ const navItems: NavItemProps[] = [
 ]
 
 const Navbar: React.FC = () => {
+    const navigate = useNavigate();
+
+    const navigateToPages = (path: string) => {
+        navigate(path);
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar sx={{
@@ -59,11 +68,13 @@ const Navbar: React.FC = () => {
                     </IconButton>
 
                     <Typography
+                        onClick={() => { navigate('/') }}
                         variant="h6"
                         component="div"
                         sx={{
                             flexGrow: 1,
-                            fontFamily: 'Rubik'
+                            fontFamily: 'Rubik',
+                            cursor: 'pointer'
                         }}>
                         Ez Streaming
                     </Typography>
@@ -71,6 +82,7 @@ const Navbar: React.FC = () => {
                     {navItems.map((item, index) => (
                         <div key={index}>
                             <Button
+                                onClick={() => { navigateToPages(item.path) }}
                                 sx={navButtonStylings}
                                 color="inherit">{item.navItem}</Button>
                         </div>

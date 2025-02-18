@@ -50,9 +50,9 @@ const BannerCard: React.FC<BannerCardProps>
                                 fontFamily: 'Rubik',
                                 mt: 1,
                             }}>
-                            TV Series &nbsp;⋅ 
-                            &nbsp;{first_air_date.slice(0, 4)} &nbsp;⋅ 
-                            &nbsp;<FaStar style={{ color: 'orange' }} /> 
+                            TV Series &nbsp;⋅
+                            &nbsp;{first_air_date.slice(0, 4)} &nbsp;⋅
+                            &nbsp;<FaStar style={{ color: 'orange' }} />
                             &nbsp;&nbsp;{Math.round(vote_average * 10) / 10}</Typography>
                     </Box>
 

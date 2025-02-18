@@ -53,14 +53,14 @@ const Screen: React.FC = () => {
                         color: 'white',
                         fontSize: 18,
                     }}>
-                        {(props.release_date).slice(0, 4)} &nbsp;
-                        <FaStar style={{ color: 'orange' }} /> {Math.round(props.vote_average * 10) / 10}</span>
+                        {(props.release_date).slice(0, 4)} &nbsp;&nbsp;
+                        <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(props.vote_average * 10) / 10}</span>
 
                     <Typography
                         sx={{
                             fontFamily: 'Rubik',
                             fontSize: 20,
-                            lineHeight: 1.4,
+                            lineHeight: 1.5,
                             fontWeight: 400,
                             mt: 3.5
                         }}>{props.overview}</Typography>
