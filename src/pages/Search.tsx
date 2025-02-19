@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // MUI
 import {
@@ -11,6 +11,13 @@ import {
 import Radio from "@mui/material/Radio";
 
 const Search: React.FC = () => {
+    const [value, setValue] = useState<string>();
+
+    const handleUserInput
+        = (event: React.ChangeEvent<HTMLInputElement>) => {
+            setValue(event.target.value);
+        }
+
     return (
         <>
             <Box sx={{ pt: 15 }}>
@@ -34,16 +41,18 @@ const Search: React.FC = () => {
                         justifyContent: 'center',
                         mt: 5
                     }}>
-                        <input style={{
-                            width: '40%',
-                            height: 55,
-                            fontFamily: 'Rubik',
-                            borderRadius: 8,
-                            border: 'none',
-                            backgroundColor: 'rgb(20, 20, 20)',
-                            color: 'white',
-                            fontSize: 16
-                        }} placeholder="Type something ..." type="text" />
+                        <input
+                            onChange={handleUserInput}
+                            style={{
+                                width: '40%',
+                                height: 55,
+                                fontFamily: 'Rubik',
+                                borderRadius: 8,
+                                border: 'none',
+                                backgroundColor: 'rgb(20, 20, 20)',
+                                color: 'white',
+                                fontSize: 16
+                            }} placeholder="Type something ..." type="text" />
 
                         <Button sx={{
                             height: 57,
