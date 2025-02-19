@@ -16,45 +16,50 @@ const BannerCard: React.FC<BannerCardProps>
         original_name,
         first_air_date,
         vote_average,
-        type
     }) => {
         return (
             <>
                 <Box sx={{
                     background: 'none',
                     position: 'relative',
-                    height: '800px'
+                    height: '50vw',
+                    width: '100%'
                 }}>
                     {/* details */}
-                    <Box sx={{
-                        position: 'absolute',
-                        bottom: '6%',
-                        left: '3%',
-                        // background: 'darkblue',
-                        width: '50%',
-                        height: 'auto'
-                    }}>
+                    <div
+                        className="_banner_details_wrapper"
+                        style={{
+                            position: 'absolute',
+                            bottom: '8%',
+                            left: '50%',
+                            height: 'auto',
+                            transform: 'translateX(-50%)',
+                            zIndex: 2,
+                            width: '100%'
+                        }}>
                         <Typography
-                            sx={{
+                        sx={{
                                 color: 'white',
-                                fontSize: 50,
+                                fontSize: 35,
                                 fontFamily: 'Rubik',
                                 textTransform: 'capitalize',
-                                fontWeight: 500
+                                fontWeight: 500,
+                                textAlign: 'center'
                             }}>{original_name}</Typography>
 
                         <Typography
                             sx={{
                                 color: 'white',
-                                fontSize: 22,
+                                fontSize: 17,
                                 fontFamily: 'Rubik',
                                 mt: 1,
+                                textAlign: 'center'
                             }}>
                             TV Series &nbsp;⋅
                             &nbsp;{first_air_date.slice(0, 4)} &nbsp;⋅
                             &nbsp;<FaStar style={{ color: 'orange' }} />
                             &nbsp;&nbsp;{Math.round(vote_average * 10) / 10}</Typography>
-                    </Box>
+                    </div>
 
                     {/* poster */}
                     <img
@@ -62,9 +67,20 @@ const BannerCard: React.FC<BannerCardProps>
                             width: '100%',
                             borderRadius: 16,
                             objectFit: 'cover',
-                            height: type === "banner" ? '800px' : '500px'
+                            height: '100%'
                         }}
                         src={poster_path} alt="" />
+
+                    {/* shader */}
+                    <Box sx={{
+                        position: 'absolute',
+                        bottom: 0,
+                        background: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);',
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 1,
+                        borderRadius: 4
+                    }}  ></Box>
                 </Box>
             </>
         )

@@ -19,10 +19,7 @@ const Screen: React.FC = () => {
                 pt: 15, pl: 6, pr: 6,
                 display: "flex",
             }}>
-                <Box sx={{
-                    width: '60%',
-                    // border: '1px solid red'
-                }}>
+                <Box sx={{ width: '60%' }}>
                     <iframe
                         allowFullScreen={true}
                         style={{
@@ -34,24 +31,21 @@ const Screen: React.FC = () => {
                         src={`https://vidsrc.xyz/embed/movie/${props.id}`}></iframe>
                 </Box>
                 {/* details */}
-                <Box sx={{
-                    width: '40%',
-                    // border: '1px solid yellow',
-                    pl: 3.5
-                }}>
+                <Box sx={{ width: '40%', pl: 3.5 }}>
                     <Typography
                         sx={{
                             color: 'white',
                             textAlign: 'left',
-                            fontSize: 32,
+                            fontSize: 25,
                             fontFamily: 'Rubik',
                             fontWeight: 450,
                             mb: 1
                         }}>{props.title}</Typography>
 
+                    {/* other details */}
                     <span style={{
                         color: 'white',
-                        fontSize: 18,
+                        fontSize: 16,
                     }}>
                         {(props.release_date).slice(0, 4)} &nbsp;&nbsp;
                         <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(props.vote_average * 10) / 10}</span>
@@ -59,10 +53,10 @@ const Screen: React.FC = () => {
                     <Typography
                         sx={{
                             fontFamily: 'Rubik',
-                            fontSize: 20,
-                            lineHeight: 1.5,
+                            fontSize: 16,
+                            lineHeight: 1.6,
                             fontWeight: 400,
-                            mt: 3.5
+                            mt: 3
                         }}>{props.overview}</Typography>
                 </Box>
             </Box>

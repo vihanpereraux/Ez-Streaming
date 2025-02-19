@@ -8,5 +8,30 @@ body {
   font-family: 'Rubik';
   margin: 0;
   min-height: 100vh;
-  background-color: rgb(6, 0, 25);
+  /* background-color: rgb(6, 0, 25); */
+  background-color: black !important;
 }
+
+._movie_poster_portrait {
+  transition: all .15s ease-in-out;
+}
+
+._movie_poster_container:hover ._movie_poster_portrait{
+  transform: scale(1.15) !important;
+  transform-origin: 50% 50%;
+}
+
+._carousel_card:hover ._movie_title {
+  padding-left: 6px;
+  transition: padding-left 0.15s ease-in;
+}
+
+._search_checkbox span{
+  font-size: 15px !important;
+}
+._search_checkbox .MuiSvgIcon-root {
+  color: white !important;
+  width: 18px;
+}
+
+

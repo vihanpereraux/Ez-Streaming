@@ -16,12 +16,12 @@ const Search: React.FC = () => {
             <Box sx={{ pt: 15 }}>
                 <Box sx={{
                     background: 'none',
-                    mt: 5
+                    mt: 2
                 }}>
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: 26,
+                            fontSize: 22,
                             fontWeight: 450,
                             fontFamily: 'Rubik',
                             textAlign: 'center'
@@ -40,9 +40,9 @@ const Search: React.FC = () => {
                             fontFamily: 'Rubik',
                             borderRadius: 8,
                             border: 'none',
-                            backgroundColor: 'rgb(18, 0, 76)',
+                            backgroundColor: 'rgb(20, 20, 20)',
                             color: 'white',
-                            fontSize: 18
+                            fontSize: 16
                         }} placeholder="Type something ..." type="text" />
 
                         <Button sx={{
@@ -50,12 +50,13 @@ const Search: React.FC = () => {
                             borderRadius: 2,
                             fontFamily: 'Rubik',
                             textTransform: 'capitalize',
-                            fontWeight: 400,
-                            fontSize: 18,
+                            fontWeight: 500,
+                            fontSize: 16,
                             pl: 4,
                             pr: 4,
                             ml: 1.5,
-                            background: 'rgb(43, 0, 124)',
+                            background: 'rgb(255, 255, 255)',
+                            color: "black"
                         }} variant="contained">Search</Button>
                     </Box>
 
@@ -63,12 +64,28 @@ const Search: React.FC = () => {
                     <Box sx={{
                         display: 'flex',
                         justifyContent: 'center',
-                        mt: 2
+                        mt: 2,
+                        color: 'white',
+                        fontSize: 16
                     }}>
-                        <RadioGroup sx={{}} row>
-                            <FormControlLabel value="all" control={<Radio />} label="All" /> &nbsp;
-                            <FormControlLabel value="movies" control={<Radio />} label="Movies" /> &nbsp;
-                            <FormControlLabel value="tv" control={<Radio />} label="TV Shows" />
+                        <RadioGroup row>
+                            <FormControlLabel
+                                className="_search_checkbox"
+                                value="all"
+                                control={<Radio />}
+                                label="All" /> &nbsp;&nbsp;
+
+                            <FormControlLabel
+                                className="_search_checkbox"
+                                value="movies"
+                                control={<Radio />}
+                                label="Movies" /> &nbsp;&nbsp;
+
+                            <FormControlLabel
+                                className="_search_checkbox"
+                                value="tv"
+                                control={<Radio />}
+                                label="TV Shows" />
                         </RadioGroup>
                     </Box>
                 </Box>

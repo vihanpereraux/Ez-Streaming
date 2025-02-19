@@ -28,42 +28,48 @@ const CarosuelCard: React.FC<CarosuelCardProps>
 
         return (
             <>
-                <Box
-                    sx={{
-                        background: 'none',
-                        pl: .5,
-                        pr: .5
-                    }}>
+                <Box sx={{
+                    background: 'none',
+                    pl: .6,
+                    pr: .6
+                }}>
                     {/* poster */}
-                    <img
-                        onClick={navigateToScreen}
-                        style={{
-                            width: '100%',
-                            borderRadius: 10,
-                            objectFit: 'cover',
-                            height: '500px',
-                            cursor: 'pointer'
-                        }}
-                        src={poster_path} alt="" />
+                    <div className="_movie_poster_container"
+                        style={{ overflow: 'hidden', borderRadius: 15 }}>
+                        <img
+                            loading="lazy"
+                            className="_movie_poster_portrait"
+                            onClick={navigateToScreen}
+                            style={{
+                                width: '100%',
+                                borderRadius: 15,
+                                objectFit: 'cover',
+                                height: '20vw',
+                                cursor: 'pointer'
+                            }}
+                            src={poster_path} alt="" />
+                    </div>
 
                     {/* movie title */}
                     <Box sx={{ mt: 1.5 }}>
                         <Typography
+                            className="_movie_title"
                             sx={{
                                 color: 'white',
-                                fontSize: 22,
-                                fontWeight: 400,
+                                fontSize: 16,
+                                fontWeight: 450,
                                 fontFamily: 'Rubik',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
-                                mb: .66
+                                mb: .7,
+                                maxWidth: '90%'
                             }}>
                             {title}</Typography>
 
                         <span style={{
                             color: 'white',
-                            fontSize: 18,
+                            fontSize: 14,
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8
@@ -71,7 +77,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
 
                         <span style={{
                             color: 'white',
-                            fontSize: 18,
+                            fontSize: 14,
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8,

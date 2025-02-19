@@ -14,7 +14,7 @@ import { NavItemProps } from '../interfaces/props';
 
 const navButtonStylings = {
     textTransform: 'capitalize',
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: 'Rubik',
     fontWeight: 400,
     mr: 1,
@@ -50,11 +50,12 @@ const Navbar: React.FC = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar sx={{
-                background: 'rgba(8, 0, 35, 0.9)',
+                background: 'rgba(6, 6, 6, 0.9)',
                 height: 80,
                 display: 'flex',
                 justifyContent: 'center',
-                backdropFilter: 'blur(10px)'
+                backdropFilter: 'blur(10px)',
+                // boxShadow: 'none'
             }} position="fixed">
                 <Toolbar>
                     <IconButton
@@ -74,7 +75,8 @@ const Navbar: React.FC = () => {
                         sx={{
                             flexGrow: 1,
                             fontFamily: 'Rubik',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            fontSize: 18
                         }}>
                         Ez Streaming
                     </Typography>
