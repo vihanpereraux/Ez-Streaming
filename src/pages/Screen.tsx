@@ -56,7 +56,8 @@ const Screen: React.FC = () => {
                             fontSize: 16,
                             lineHeight: 1.6,
                             fontWeight: 400,
-                            mt: 3
+                            mt: 3,
+                            color: 'white'
                         }}>{props.overview}</Typography>
                 </Box>
             </Box>

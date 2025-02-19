@@ -43,6 +43,7 @@ const Search: React.FC = () => {
                     }}>
                         <input
                             onChange={handleUserInput}
+                            value={value}
                             style={{
                                 width: '40%',
                                 height: 55,
