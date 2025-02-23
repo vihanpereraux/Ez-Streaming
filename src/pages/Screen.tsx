@@ -16,23 +16,20 @@ import {
     ScreenNavigationProps
 } from "../interfaces/props";
 
-
-const relatedMoviesLocalArr: MoviesProps[] = []
-
 const Screen: React.FC = () => {
-    const [relatedContent, setRelatedContent] = useState<MoviesProps[]>(relatedMoviesLocalArr)
-    const location = useLocation();
+    const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
 
     // movie props (nav)
+    const location = useLocation();
     const props: ScreenNavigationProps = location.state?.data || {};
-
+    
+    const relatedMoviesLocalArr: MoviesProps[] = []
     const getRelatedContent = async () => {
         const content = await getRelatedMovies(relatedMoviesLocalArr, props.id);
         if (content) { setRelatedContent([...content]); }
     }
 
     useEffect(() => {
-        console.log(`${props.id} recived`);
         getRelatedContent();
     }, [props.id])
 
@@ -85,7 +82,10 @@ const Screen: React.FC = () => {
 
                 {/* related content */}
                 <Box sx={{ mt: 8 }}>
-                    <MovieCarousel type="movies" title="Related Movies" trendingMovies={relatedContent} />
+                    <MovieCarousel
+                        type="movies"
+                        title="Related Movies"
+                        content={relatedContent} />
                 </Box>
             </Box>
         </>

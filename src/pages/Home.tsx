@@ -23,18 +23,6 @@ import {
 // props
 import { MoviesProps } from "../interfaces/props";
 
-// banner content
-const bannerContentLocalArr: MoviesProps[] = []
-// other movies
-const trendingMoviesLocalArr: MoviesProps[] = [];
-const upcommingMoviesLocalArr: MoviesProps[] = [];
-const topRatedMoviesLocalArr: MoviesProps[] = [];
-// movies by genres
-const crimeMoviesLocalArr: MoviesProps[] = [];
-const documentaryMoviesLocalArr: MoviesProps[] = [];
-const thrillerMoviesLocalArr: MoviesProps[] = [];
-
-
 const carouselSpacing: number = 8;
 
 const Home: React.FC = () => {
@@ -47,24 +35,31 @@ const Home: React.FC = () => {
     const [thrillerMovies, setThrillerMovies] = useState<MoviesProps[]>();
 
     const getData = async () => {
+        const bannerContentLocalArr: MoviesProps[] = []
         const bannerContent = await getBannerContent(bannerContentLocalArr);
         if (bannerContent) { setBannerContent([...bannerContent]); }
 
+        const trendingMoviesLocalArr: MoviesProps[] = [];
         const trendingMovies = await getTrendingMovies(trendingMoviesLocalArr);
         if (trendingMovies) { setTrendingMovies([...trendingMovies]); }
 
+        const topRatedMoviesLocalArr: MoviesProps[] = [];
         const topRatedMovies = await getTopRatedMovies(topRatedMoviesLocalArr);
         if (topRatedMovies) { setTopRatedMovies([...topRatedMovies]); }
 
+        const upcommingMoviesLocalArr: MoviesProps[] = [];
         const upcommingMovies = await getUpcommingMovies(upcommingMoviesLocalArr);
         if (upcommingMovies) { setUpcommingMovies([...upcommingMovies]); }
 
+        const crimeMoviesLocalArr: MoviesProps[] = [];
         const crimeMovies = await getMoviesByGenre(crimeMoviesLocalArr, "80");
         if (crimeMovies) { setCrimeMovies([...crimeMovies]); }
 
+        const documentaryMoviesLocalArr: MoviesProps[] = [];
         const docMovies = await getMoviesByGenre(documentaryMoviesLocalArr, "99");
         if (docMovies) { setDocumentaryMovies([...docMovies]); }
 
+        const thrillerMoviesLocalArr: MoviesProps[] = [];
         const thrillerMovies = await getMoviesByGenre(thrillerMoviesLocalArr, "53");
         if (thrillerMovies) { setThrillerMovies([...thrillerMovies]); }
     }
@@ -90,7 +85,7 @@ const Home: React.FC = () => {
                         <MovieCarousel
                             type="movie"
                             title="Newest Trending Movies"
-                            trendingMovies={trendingMovies} />
+                            content={trendingMovies} />
                     ) : (<LoadingPreview />)}
                 </Box>
 
@@ -100,7 +95,7 @@ const Home: React.FC = () => {
                         <MovieCarousel
                             type="movie"
                             title="Now Streaming Movies"
-                            trendingMovies={upcommingMovies} />
+                            content={upcommingMovies} />
                     ) : (<LoadingPreview />)}
 
                 </Box>
@@ -111,7 +106,7 @@ const Home: React.FC = () => {
                         <MovieCarousel
                             type="movie"
                             title="Crime & Action Movies"
-                            trendingMovies={crimeMovies} />
+                            content={crimeMovies} />
                     ) : (<LoadingPreview />)}
 
                 </Box>
@@ -121,7 +116,7 @@ const Home: React.FC = () => {
                         <MovieCarousel
                             type="movie"
                             title="Thriller Movies"
-                            trendingMovies={thrillerMovies} />
+                            content={thrillerMovies} />
                     ) : (<LoadingPreview />)}
 
                 </Box>
@@ -131,7 +126,7 @@ const Home: React.FC = () => {
                         <MovieCarousel
                             type="movie"
                             title="Documentery Movies"
-                            trendingMovies={documentaryMovies} />
+                            content={documentaryMovies} />
                     ) : (<LoadingPreview />)}
 
                 </Box>
@@ -141,7 +136,7 @@ const Home: React.FC = () => {
                         <MovieCarousel
                             type="movie"
                             title="Top Rated Movies"
-                            trendingMovies={topRatedMovies} />
+                            content={topRatedMovies} />
                     ) : (<LoadingPreview />)}
 
                 </Box>

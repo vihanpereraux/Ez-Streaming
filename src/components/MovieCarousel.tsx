@@ -18,11 +18,11 @@ import { MoviesProps } from "../interfaces/props";
 
 interface MovieCarouselProps {
     title?: string
-    trendingMovies: MoviesProps[],
+    content: MoviesProps[],
     type: string
 }
 
-const MovieCarousel: React.FC<MovieCarouselProps> = ({ trendingMovies, title }) => {
+const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title }) => {
     return (
         <>
             {/* main title */}
@@ -37,7 +37,7 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ trendingMovies, title }) 
 
             <Box sx={{ mt: 2.5 }}>
                 <Carousel responsive={multiCarouselConfig}>
-                    {trendingMovies.map((item, index) => (
+                    {content.map((item, index) => (
                         <div key={index}>
                             <div className="_carousel_card">
                                 <CarosuelCard
