@@ -36,6 +36,16 @@ export interface BannerCardProps {
     overview: string
 }
 
+export interface SearchCardProps {
+    poster_path: string,
+    title: string,
+    release_date: string,
+    vote_average: number,
+    type: string,
+    overview: string,
+    id: number
+}
+
 export interface ScreenNavigationProps {
     title: string,
     release_date: string,

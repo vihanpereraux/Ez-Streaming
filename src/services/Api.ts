@@ -70,6 +70,7 @@ export const getMoviesByGenre = async (arr: MoviesProps[], genreId: string) => {
     }
 }
 
+// related movies
 export const getRelatedMovies = async (arr: MoviesProps[], movieId: number) => {
     try {
         const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -80,6 +81,20 @@ export const getRelatedMovies = async (arr: MoviesProps[], movieId: number) => {
         return cleanedArr;
     } catch (error) {
         console.log(`Error - Related Movies - ${error}`)
+    }
+}
+
+// search movies
+export const getSearchResults = async (query: string, arr: MoviesProps[]) => {
+    try {
+        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+        const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`)
+        const data = await response.json();
+
+        const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr)
+        return cleanedArr;
+    } catch (error) {
+        console.log(`Error - Search Reaults Movies - ${error}`)
     }
 }
 

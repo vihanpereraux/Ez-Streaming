@@ -6,21 +6,38 @@ import {
     Typography,
     Button,
     RadioGroup,
-    FormControlLabel
+    FormControlLabel,
 } from "@mui/material";
 import Radio from "@mui/material/Radio";
 
-const Search: React.FC = () => {
-    const [value, setValue] = useState<string>();
+// components
+import SearchCard from "../components/SearchCard";
 
-    const handleUserInput
-        = (event: React.ChangeEvent<HTMLInputElement>) => {
-            setValue(event.target.value);
-        }
+// services
+import { getSearchResults } from "../services/Api";
+
+// interfaces
+import { MoviesProps } from "../interfaces/props";
+
+let searchResultsLocalArr: MoviesProps[] = []
+const Search: React.FC = () => {
+    const [value, setValue] = useState<string>("");
+    const [results, setResults] = useState<MoviesProps[]>(searchResultsLocalArr)
+
+    const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(event.target.value);
+    }
+
+    const getResults = async () => {
+        searchResultsLocalArr = [];
+        const content = await getSearchResults(value, searchResultsLocalArr);
+        if (content) { setResults([...content]); console.log(content) }
+    }
+
 
     return (
         <>
-            <Box sx={{ pt: 15 }}>
+            <Box sx={{ pt: 15, pl: 6 }}>
                 <Box sx={{
                     background: 'none',
                     mt: 2
@@ -67,10 +84,12 @@ const Search: React.FC = () => {
                             ml: 1.5,
                             background: 'rgb(255, 255, 255)',
                             color: "black"
-                        }} variant="contained">Search</Button>
+                        }}
+                            variant="contained"
+                            onClick={getResults}>Search</Button>
                     </Box>
 
-                    {/* tv movie selection */}
+                    {/* tv / movie selection */}
                     <Box sx={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -86,6 +105,7 @@ const Search: React.FC = () => {
                                 label="All" /> &nbsp;&nbsp;
 
                             <FormControlLabel
+                                // checked={true}
                                 className="_search_checkbox"
                                 value="movies"
                                 control={<Radio />}
@@ -98,6 +118,30 @@ const Search: React.FC = () => {
                                 label="TV Shows" />
                         </RadioGroup>
                     </Box>
+                </Box>
+
+                {/* search results */}
+                <Box sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    width: '100%',
+                    gap: 0
+                }}>
+                    {results.map((item, index) => (
+                        <div style={{
+                            width: 'calc(20% - 10px)',
+                            marginTop: '40px',
+                        }} key={index}>
+                            <SearchCard
+                                id={item.id}
+                                overview={item.overview}
+                                type="movie"
+                                vote_average={item.vote_average}
+                                release_date={item.release_date}
+                                poster_path={item.poster_path}
+                                title={item.title} />
+                        </div>
+                    ))}
                 </Box>
             </Box>
         </>

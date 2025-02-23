@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 
 // props
-import { CarosuelCardProps } from "../interfaces/props";
+import { SearchCardProps } from "../interfaces/props";
 
-const CarosuelCard: React.FC<CarosuelCardProps>
+const SearchCard: React.FC<SearchCardProps>
     = ({ id, poster_path, title, release_date, vote_average, overview }) => {
         const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                                 width: '100%',
                                 borderRadius: 15,
                                 objectFit: 'cover',
-                                height: '25vw',
+                                height: '24vw',
                                 cursor: 'pointer'
                             }}
                             src={poster_path} alt="" />
@@ -90,4 +90,4 @@ const CarosuelCard: React.FC<CarosuelCardProps>
         )
     }
 
-export default CarosuelCard;
+export default SearchCard;
