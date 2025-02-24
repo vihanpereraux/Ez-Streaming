@@ -26,11 +26,12 @@ const BannerCarosuel: React.FC<BannerCarouselProps>
                         responsive={bannerCarouselConfig}>
 
                         {content.map((item, index) => (
-                            <div key={index}>
+                            <div key={index} style={{ cursor: 'pointer' }}>
                                 <BannerCard
+                                    id={item.id}
                                     overview={item.overview}
                                     type={type}
-                                    poster_path={type === "banner" ? item.backdrop_path : item.poster_path}
+                                    poster_path={type === "tv" ? item.backdrop_path : item.poster_path}
                                     original_name={item.original_name}
                                     first_air_date={item.first_air_date}
                                     vote_average={item.vote_average} />

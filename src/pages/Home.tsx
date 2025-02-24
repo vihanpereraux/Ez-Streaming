@@ -74,7 +74,7 @@ const Home: React.FC = () => {
                 {bannerContent ? (
                     < Box sx={{ mt: carouselSpacing }}>
                         <BannerCarosuel
-                            type="banner"
+                            type="tv"
                             content={bannerContent} />
                     </Box>
                 ) : (<LoadingPreview />)}

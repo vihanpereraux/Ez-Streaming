@@ -12,6 +12,7 @@ import {
 
 // components
 import SearchCard from "../components/SearchCard";
+import ValidationMessage from "../components/ValidationMessage";
 
 // services
 import { getSearchResults } from "../services/Api";
@@ -24,6 +25,7 @@ const Search: React.FC = () => {
     const [value, setValue] = useState<string>("");
     const [results, setResults] = useState<MoviesProps[]>(searchResultsLocalArr)
     const [searchType, setSearchType] = useState<string>("movie")
+    const [searched, setSearched] = useState<boolean>(false);
 
     const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
@@ -31,8 +33,15 @@ const Search: React.FC = () => {
 
     const getResults = async () => {
         searchResultsLocalArr = [];
-        const content = await getSearchResults(value, searchType, searchResultsLocalArr);
-        if (content) { setResults([...content]); console.log(content) }
+        const content: MoviesProps[] = await getSearchResults(value, searchType, searchResultsLocalArr) as MoviesProps [];
+        if (content) { setResults([...content]); }
+
+        if (content.length == 0) {
+            setSearched(true);
+        }
+        else { 
+            setSearched(false);
+        }
     }
 
     const handleSearchTypeChange = (e: SelectChangeEvent) => {
@@ -54,8 +63,7 @@ const Search: React.FC = () => {
                             fontWeight: 450,
                             fontFamily: 'Rubik',
                             textAlign: 'center'
-                        }}>
-                        Search your favourite Movies & TV Shows
+                        }}> Search your favourite Movies & TV Shows
                     </Typography>
 
                     <div
@@ -119,12 +127,13 @@ const Search: React.FC = () => {
 
                 {/* search results */}
                 <Box sx={{
+                    position: 'relative',
                     display: 'flex',
                     flexWrap: 'wrap',
                     width: '100%',
-                    gap: 0
+                    gap: 0,
                 }}>
-                    {results.map((item, index) => (
+                    {results.length > 0 ? results.map((item, index) => (
                         <div style={{
                             width: 'calc(20% - 10px)',
                             marginTop: '40px',
@@ -138,8 +147,11 @@ const Search: React.FC = () => {
                                 poster_path={item.poster_path}
                                 title={searchType === 'movie' ? item.title : item.original_name}
                                 first_air_date={item.first_air_date} />
-                        </div>
-                    ))}
+                        </div>))
+                        :
+                        (<div>
+                            {searched ? <ValidationMessage /> : null}
+                        </div>)}
                 </Box>
             </Box>
         </>

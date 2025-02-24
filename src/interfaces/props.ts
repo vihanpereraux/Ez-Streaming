@@ -35,7 +35,8 @@ export interface BannerCardProps {
     first_air_date: string,
     vote_average: number,
     type: string,
-    overview: string
+    overview: string,
+    id: number,
 }
 
 export interface SearchCardProps {
