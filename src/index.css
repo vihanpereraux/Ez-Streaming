@@ -3,20 +3,19 @@
 
 
 body {
-  /* padding-top: 60px; */
   padding-bottom: 60px;
   font-family: 'Rubik';
   margin: 0;
   min-height: 100vh;
-  /* background-color: rgb(6, 0, 25); */
   background-color: black !important;
 }
 
+/* carousel stylings */
 ._movie_poster_portrait {
   transition: all .15s ease-in-out;
 }
 
-._movie_poster_container:hover ._movie_poster_portrait{
+._movie_poster_container:hover ._movie_poster_portrait {
   transform: scale(1.15) !important;
   transform-origin: 50% 50%;
 }
@@ -26,12 +25,26 @@ body {
   transition: padding-left 0.15s ease-in;
 }
 
-._search_checkbox span{
-  font-size: 15px !important;
-}
-._search_checkbox .MuiSvgIcon-root {
+/* movie / tv search selection stylings */
+.MuiSvgIcon-root {
   color: white !important;
-  width: 18px;
 }
 
+#search-type-select:focus {
+  outline: none !important;
+  border: none !important
+}
 
+.MuiPopover-root .MuiPaper-root {
+  color: white;
+  background: rgb(20, 20, 20) !important;
+}
+
+.MuiPopover-root .MuiList-root li {
+  font-size: 16px !important;
+  font-family: 'Rubik' !important;
+}
+
+.MuiPopover-root .MuiList-root li:hover {
+  background: rgb(40, 40, 40) !important;
+}

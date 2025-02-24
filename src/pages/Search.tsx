@@ -5,10 +5,10 @@ import {
     Box,
     Typography,
     Button,
-    RadioGroup,
-    FormControlLabel,
+    Select,
+    MenuItem,
+    SelectChangeEvent
 } from "@mui/material";
-import Radio from "@mui/material/Radio";
 
 // components
 import SearchCard from "../components/SearchCard";
@@ -23,6 +23,7 @@ let searchResultsLocalArr: MoviesProps[] = []
 const Search: React.FC = () => {
     const [value, setValue] = useState<string>("");
     const [results, setResults] = useState<MoviesProps[]>(searchResultsLocalArr)
+    const [searchType, setSearchType] = useState<string>("movie")
 
     const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);
@@ -30,8 +31,12 @@ const Search: React.FC = () => {
 
     const getResults = async () => {
         searchResultsLocalArr = [];
-        const content = await getSearchResults(value, searchResultsLocalArr);
+        const content = await getSearchResults(value, searchType, searchResultsLocalArr);
         if (content) { setResults([...content]); console.log(content) }
+    }
+
+    const handleSearchTypeChange = (e: SelectChangeEvent) => {
+        setSearchType(e.target.value);
     }
 
 
@@ -53,16 +58,18 @@ const Search: React.FC = () => {
                         Search your favourite Movies & TV Shows
                     </Typography>
 
-                    <Box sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        mt: 5
-                    }}>
+                    <div
+                        className="_search_field_wrapper"
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginTop: 25,
+                        }}>
                         <input
                             onChange={handleUserInput}
                             value={value}
                             style={{
-                                width: '40%',
+                                width: '35%',
                                 height: 55,
                                 fontFamily: 'Rubik',
                                 borderRadius: 8,
@@ -70,7 +77,27 @@ const Search: React.FC = () => {
                                 backgroundColor: 'rgb(20, 20, 20)',
                                 color: 'white',
                                 fontSize: 16
-                            }} placeholder="Type something ..." type="text" />
+                            }} placeholder="Type a name ..." type="text" />
+
+                        {/* movies / tv selection */}
+                        <Select
+                            sx={{
+                                color: 'white',
+                                backgroundColor: 'rgb(20, 20, 20)',
+                                width: '8%',
+                                fontSize: 16,
+                                fontFamily: 'Rubik',
+                                ml: 1
+                            }}
+                            labelId="demo-simple-select-label"
+                            id="search-type-select"
+                            value={searchType}
+                            onChange={handleSearchTypeChange}
+                        >
+                            <MenuItem value={"movie"}>Movies</MenuItem>
+                            <MenuItem value={"tv"}>TV</MenuItem>
+                            <MenuItem value={"all"}>All</MenuItem>
+                        </Select>
 
                         <Button sx={{
                             height: 57,
@@ -79,45 +106,15 @@ const Search: React.FC = () => {
                             textTransform: 'capitalize',
                             fontWeight: 500,
                             fontSize: 16,
-                            pl: 4,
-                            pr: 4,
+                            pl: 3,
+                            pr: 3,
                             ml: 1.5,
                             background: 'rgb(255, 255, 255)',
                             color: "black"
                         }}
                             variant="contained"
                             onClick={getResults}>Search</Button>
-                    </Box>
-
-                    {/* tv / movie selection */}
-                    <Box sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        mt: 2,
-                        color: 'white',
-                        fontSize: 16
-                    }}>
-                        <RadioGroup row>
-                            <FormControlLabel
-                                className="_search_checkbox"
-                                value="all"
-                                control={<Radio />}
-                                label="All" /> &nbsp;&nbsp;
-
-                            <FormControlLabel
-                                // checked={true}
-                                className="_search_checkbox"
-                                value="movies"
-                                control={<Radio />}
-                                label="Movies" /> &nbsp;&nbsp;
-
-                            <FormControlLabel
-                                className="_search_checkbox"
-                                value="tv"
-                                control={<Radio />}
-                                label="TV Shows" />
-                        </RadioGroup>
-                    </Box>
+                    </div>
                 </Box>
 
                 {/* search results */}
