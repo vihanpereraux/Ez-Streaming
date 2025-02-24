@@ -8,7 +8,7 @@ import { Box, Typography } from "@mui/material";
 import MovieCarousel from "../components/MovieCarousel";
 
 // services
-import { getRelatedMovies } from "../services/Api";
+import { getRelatedTVShows } from "../services/Api";
 
 // props
 import {
@@ -16,16 +16,16 @@ import {
     ScreenNavigationProps
 } from "../interfaces/props";
 
-const MovieScreen: React.FC = () => {
+const TvScreen: React.FC = () => {
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
 
     // movie props (nav)
     const location = useLocation();
     const props: ScreenNavigationProps = location.state?.data || {};
-    
-    const relatedMoviesLocalArr: MoviesProps[] = []
+
+    const relatedTVLocalArr: MoviesProps[] = []
     const getRelatedContent = async () => {
-        const content = await getRelatedMovies(relatedMoviesLocalArr, props.id);
+        const content = await getRelatedTVShows(relatedTVLocalArr, props.id);
         if (content) { setRelatedContent([...content]); }
     }
 
@@ -46,7 +46,7 @@ const MovieScreen: React.FC = () => {
                                 border: 'none',
                                 borderRadius: 12,
                             }}
-                            src={`https://vidsrc.xyz/embed/movie/${props.id}`}></iframe>
+                            src={`https://vidsrc.xyz/embed/tv/${props.id}`}></iframe>
                     </Box>
                     {/* details */}
                     <Box sx={{ width: '40%', pl: 3.5 }}>
@@ -83,8 +83,8 @@ const MovieScreen: React.FC = () => {
                 {/* related content */}
                 <Box sx={{ mt: 8 }}>
                     <MovieCarousel
-                        type="movies"
-                        title="Related Movies"
+                        type="tv"
+                        title="Related TV Shows"
                         content={relatedContent} />
                 </Box>
             </Box>
@@ -92,4 +92,4 @@ const MovieScreen: React.FC = () => {
     )
 }
 
-export default MovieScreen;
+export default TvScreen;

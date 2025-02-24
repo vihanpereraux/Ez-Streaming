@@ -84,6 +84,19 @@ export const getRelatedMovies = async (arr: MoviesProps[], movieId: number) => {
     }
 }
 
+export const getRelatedTVShows = async (arr: MoviesProps[], tvId: number) => {
+    try {
+        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+        const response = await fetch(`https://api.themoviedb.org/3/tv/${tvId}/similar?api_key=${API_KEY}`)
+        const data = await response.json();
+
+        const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
+        return cleanedArr;
+    } catch (error) {
+        console.log(`Error - Related Movies - ${error}`)
+    }
+}
+
 // search movies
 export const getSearchResults = async (query: string, type: string, arr: MoviesProps[]) => {
     try {

@@ -12,18 +12,30 @@ import {
 import { SearchCardProps } from "../interfaces/props";
 
 const SearchCard: React.FC<SearchCardProps>
-    = ({ id, poster_path, title, release_date, vote_average, overview }) => {
+    = ({ id, poster_path, title, release_date, first_air_date, vote_average, overview, type }) => {
         const navigate = useNavigate();
 
         const navigateToScreen = () => {
-            const data = {
-                id: id,
-                title: title,
-                overview: overview,
-                release_date: release_date,
-                vote_average: vote_average,
-            };
-            navigate('/screen', { state: { data } });
+            if (type === "movie") {
+                const data = {
+                    id: id,
+                    title: title,
+                    overview: overview,
+                    release_date: release_date,
+                    vote_average: vote_average,
+                };
+                navigate('/screen/movie', { state: { data } });
+            }
+            else {
+                const data = {
+                    id: id,
+                    title: title,
+                    overview: overview,
+                    first_air_date: first_air_date,
+                    vote_average: vote_average,
+                };
+                navigate('/screen/tv', { state: { data } });
+            }
         }
 
         return (

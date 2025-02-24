@@ -43,7 +43,8 @@ export interface SearchCardProps {
     vote_average: number,
     type: string,
     overview: string,
-    id: number
+    id: number,
+    first_air_date: string
 }
 
 export interface ScreenNavigationProps {
@@ -51,6 +52,7 @@ export interface ScreenNavigationProps {
     release_date: string,
     vote_average: number,
     overview: string,
-    id: number
+    id: number,
+    first_air_date: string
 }
 
