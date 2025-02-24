@@ -1,9 +1,11 @@
 // props
 import { MoviesProps } from "../interfaces/props";
 
+// API key
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
 export const getBannerContent = async (arr: MoviesProps[]) => {
     try {
-        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const resposne = await fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${API_KEY}`);
         const data = await resposne.json();
 
@@ -17,7 +19,6 @@ export const getBannerContent = async (arr: MoviesProps[]) => {
 // trending movies
 export const getTrendingMovies = async (arr: MoviesProps[]) => {
     try {
-        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const resposne = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`);
         const data = await resposne.json();
 
@@ -31,7 +32,6 @@ export const getTrendingMovies = async (arr: MoviesProps[]) => {
 // top rated movies
 export const getTopRatedMovies = async (arr: MoviesProps[]) => {
     try {
-        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const resposne = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`);
         const data = await resposne.json();
 
@@ -45,7 +45,6 @@ export const getTopRatedMovies = async (arr: MoviesProps[]) => {
 // upcomming movies
 export const getUpcommingMovies = async (arr: MoviesProps[]) => {
     try {
-        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const resposne = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`);
         const data = await resposne.json();
 
@@ -59,7 +58,6 @@ export const getUpcommingMovies = async (arr: MoviesProps[]) => {
 // discover movies by genre
 export const getMoviesByGenre = async (arr: MoviesProps[], genreId: string) => {
     try {
-        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`);
         const data = await resposne.json();
 
@@ -73,7 +71,6 @@ export const getMoviesByGenre = async (arr: MoviesProps[], genreId: string) => {
 // related movies
 export const getRelatedMovies = async (arr: MoviesProps[], movieId: number) => {
     try {
-        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}`)
         const data = await response.json();
 
@@ -86,7 +83,6 @@ export const getRelatedMovies = async (arr: MoviesProps[], movieId: number) => {
 
 export const getRelatedTVShows = async (arr: MoviesProps[], tvId: number) => {
     try {
-        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const response = await fetch(`https://api.themoviedb.org/3/tv/${tvId}/similar?api_key=${API_KEY}`)
         const data = await response.json();
 
@@ -100,7 +96,6 @@ export const getRelatedTVShows = async (arr: MoviesProps[], tvId: number) => {
 // search movies
 export const getSearchResults = async (query: string, type: string, arr: MoviesProps[]) => {
     try {
-        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const response = await fetch(`https://api.themoviedb.org/3/search/${type}?query=${query}&api_key=${API_KEY}`)
         const data = await response.json();
 
