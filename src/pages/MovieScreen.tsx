@@ -65,7 +65,7 @@ const MovieScreen: React.FC = () => {
                             color: 'white',
                             fontSize: 16,
                         }}>
-                            {(props.first_air_date).slice(0, 4)} &nbsp;&nbsp;
+                            {(props.release_date).slice(0, 4)} &nbsp;&nbsp;
                             <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(props.vote_average * 10) / 10}</span>
 
                         <Typography
@@ -83,7 +83,7 @@ const MovieScreen: React.FC = () => {
                 {/* related content */}
                 <Box sx={{ mt: 8 }}>
                     <MovieCarousel
-                        type="movies"
+                        type="movie"
                         title="Related Movies"
                         content={relatedContent} />
                 </Box>

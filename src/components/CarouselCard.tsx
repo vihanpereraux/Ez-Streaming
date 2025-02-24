@@ -12,18 +12,30 @@ import {
 import { CarosuelCardProps } from "../interfaces/props";
 
 const CarosuelCard: React.FC<CarosuelCardProps>
-    = ({ id, poster_path, title, release_date, vote_average, overview }) => {
+    = ({ id, poster_path, title, first_air_date, release_date, vote_average, overview, type, original_name }) => {
         const navigate = useNavigate();
 
         const navigateToScreen = () => {
-            const data = {
-                id: id,
-                title: title,
-                overview: overview,
-                release_date: release_date,
-                vote_average: vote_average,
-            };
-            navigate('/screen/movie', { state: { data } });
+            if (type === "movie") {
+                const data = {
+                    id: id,
+                    title: title,
+                    overview: overview,
+                    release_date: release_date,
+                    vote_average: vote_average,
+                };
+                navigate('/screen/movie', { state: { data } });
+            }
+            else {
+                const data = {
+                    id: id,
+                    title: title,
+                    overview: overview,
+                    first_air_date: first_air_date,
+                    vote_average: vote_average,
+                };
+                navigate('/screen/tv', { state: { data } });
+            }
         }
 
         return (
@@ -64,8 +76,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                                 textOverflow: 'ellipsis',
                                 mb: .7,
                                 maxWidth: '90%'
-                            }}>
-                            {title}</Typography>
+                            }}>{type === "movie" ? title : original_name}</Typography>
 
                         <span style={{
                             color: 'white',
@@ -73,7 +84,10 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8
-                        }}>{release_date ? (release_date).slice(0, 4) : null}</span>
+                        }}>{type === "movie" ?
+                            String(release_date).slice(0, 4)
+                            :
+                            String(first_air_date).slice(0, 4)}</span>
 
                         <span style={{
                             color: 'white',

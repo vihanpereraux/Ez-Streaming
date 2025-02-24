@@ -12,7 +12,14 @@ import {
 import { SearchCardProps } from "../interfaces/props";
 
 const SearchCard: React.FC<SearchCardProps>
-    = ({ id, poster_path, title, release_date, first_air_date, vote_average, overview, type }) => {
+    = ({ id,
+        poster_path,
+        title,
+        release_date,
+        first_air_date,
+        vote_average,
+        overview,
+        type }) => {
         const navigate = useNavigate();
 
         const navigateToScreen = () => {
@@ -85,7 +92,7 @@ const SearchCard: React.FC<SearchCardProps>
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8
-                        }}>{release_date ? (release_date).slice(0, 4) : null}</span>
+                        }}>{type === 'movie' ? release_date.slice(0, 4) : (String(first_air_date)).slice(0, 4)}</span>
 
                         <span style={{
                             color: 'white',

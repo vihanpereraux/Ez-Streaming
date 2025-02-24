@@ -136,7 +136,7 @@ const Search: React.FC = () => {
                                 vote_average={item.vote_average}
                                 release_date={item.release_date}
                                 poster_path={item.poster_path}
-                                title={item.title}
+                                title={searchType === 'movie' ? item.title : item.original_name}
                                 first_air_date={item.first_air_date} />
                         </div>
                     ))}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Carousel from "react-multi-carousel";
 
 // MUI
@@ -22,7 +22,9 @@ interface MovieCarouselProps {
     type: string
 }
 
-const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title }) => {
+const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title, type }) => {
+    useEffect(() => {console.log(content)}, [])
+    
     return (
         <>
             {/* main title */}
@@ -41,12 +43,15 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title }) => {
                         <div key={index}>
                             <div className="_carousel_card">
                                 <CarosuelCard
+                                    original_name={item.original_name}
                                     id={item.id}
                                     poster_path={item.poster_path}
                                     title={item.title}
                                     overview={item.overview}
                                     release_date={item.release_date}
-                                    vote_average={item.vote_average} type="" />
+                                    vote_average={item.vote_average} 
+                                    first_air_date={item.first_air_date}
+                                    type={type} />
                             </div>
                         </div>
                     ))}

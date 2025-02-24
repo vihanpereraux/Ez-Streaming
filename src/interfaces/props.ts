@@ -24,7 +24,9 @@ export interface CarosuelCardProps {
     vote_average: number,
     type: string,
     overview: string,
-    id: number
+    id: number,
+    first_air_date: string
+    original_name: string
 }
 
 export interface BannerCardProps {
@@ -45,6 +47,7 @@ export interface SearchCardProps {
     overview: string,
     id: number,
     first_air_date: string
+    // name: string,
 }
 
 export interface ScreenNavigationProps {
