@@ -6,7 +6,7 @@ import {
 
 // pages
 import Home from './pages/Home'
-import Screen from './pages/Screen'
+import MovieScreen from './pages/MovieScreen'
 import Search from './pages/Search'
 
 // components
@@ -22,7 +22,7 @@ function App() {
 
         <Routes>
           <Route path='/' Component={Home}></Route>
-          <Route path='/screen' Component={Screen}></Route>
+          <Route path='/screen/movie' Component={MovieScreen}></Route>
           <Route path='/search' Component={Search}></Route>
         </Routes>
       </BrowserRouter>

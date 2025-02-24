@@ -23,7 +23,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                 release_date: release_date,
                 vote_average: vote_average,
             };
-            navigate('/screen', { state: { data } });
+            navigate('/screen/movie', { state: { data } });
         }
 
         return (

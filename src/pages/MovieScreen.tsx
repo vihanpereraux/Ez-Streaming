@@ -16,7 +16,7 @@ import {
     ScreenNavigationProps
 } from "../interfaces/props";
 
-const Screen: React.FC = () => {
+const MovieScreen: React.FC = () => {
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
 
     // movie props (nav)
@@ -92,4 +92,4 @@ const Screen: React.FC = () => {
     )
 }
 
-export default Screen;
+export default MovieScreen;
