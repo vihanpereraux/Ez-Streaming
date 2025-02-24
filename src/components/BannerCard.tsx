@@ -81,7 +81,7 @@ const BannerCard: React.FC<BannerCardProps> = ({
                     style={{
                         width: '100%',
                         borderRadius: 16,
-                        objectFit: 'cover ',
+                        objectFit: 'cover',
                         height: '100%'
                     }}
                     src={poster_path} alt="" />

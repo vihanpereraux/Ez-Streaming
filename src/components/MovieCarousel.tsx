@@ -22,9 +22,7 @@ interface MovieCarouselProps {
     type: string
 }
 
-const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title, type }) => {
-    useEffect(() => {console.log(content)}, [])
-    
+const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title, type }) => {    
     return (
         <>
             {/* main title */}
