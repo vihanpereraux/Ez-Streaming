@@ -22,7 +22,7 @@ const MovieScreen: React.FC = () => {
     // movie props (nav)
     const location = useLocation();
     const props: ScreenNavigationProps = location.state?.data || {};
-    
+
     const relatedMoviesLocalArr: MoviesProps[] = []
     const getRelatedContent = async () => {
         const content = await getRelatedMovies(relatedMoviesLocalArr, props.id);
@@ -82,10 +82,23 @@ const MovieScreen: React.FC = () => {
 
                 {/* related content */}
                 <Box sx={{ mt: 8 }}>
-                    <MovieCarousel
-                        type="movie"
-                        title="Related Movies"
-                        content={relatedContent} />
+                    {relatedContent.length > 0 ? (
+                        <MovieCarousel
+                            type="movie"
+                            title="Movies You May Love : )"
+                            content={relatedContent} />
+                    ) : (
+                        <Typography
+                            sx={{
+                                fontWeight: 450,
+                                fontFamily: 'Rubik',
+                                color: 'white',
+                                fontSize: 22,
+                                mt: 8
+                            }}>
+                            No related movies found &nbsp; : (</Typography>
+                    )}
+
                 </Box>
             </Box>
         </>

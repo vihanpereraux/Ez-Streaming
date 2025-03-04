@@ -81,12 +81,27 @@ const TvScreen: React.FC = () => {
                 </Box>
 
                 {/* related content */}
-                <Box sx={{ mt: 8 }}>
-                    <MovieCarousel
-                        type="tv"
-                        title="Related TV Shows"
-                        content={relatedContent} />
-                </Box>
+                {relatedContent.length > 0 ? (
+                    <Box sx={{ mt: 8 }}>
+                        <MovieCarousel
+                            type="tv"
+                            title="TV Shows You May Enjoy"
+                            content={relatedContent} />
+                    </Box>
+                ) : (
+                    <div>
+                        <Typography
+                            sx={{
+                                fontWeight: 450,
+                                fontFamily: 'Rubik',
+                                color: 'white',
+                                fontSize: 22,
+                                mt: 8
+                            }}>
+                            No related tv shows found &nbsp; : (</Typography>
+                    </div>
+                )}
+
             </Box>
         </>
     )
