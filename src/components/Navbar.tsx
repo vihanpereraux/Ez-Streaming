@@ -23,17 +23,17 @@ const navButtonStylings = {
 
 const navItems: NavItemProps[] = [
     {
-        navItem: "All",
+        navItem: "Home",
         path: "/"
     },
-    {
-        navItem: "Movies",
-        path: "/movies"
-    },
-    {
-        navItem: "TV Series",
-        path: "/tv"
-    },
+    // {
+    //     navItem: "Movies",
+    //     path: "/movies"
+    // },
+    // {
+    //     navItem: "TV Series",
+    //     path: "/tv"
+    // },
     {
         navItem: "Search",
         path: "/search"
