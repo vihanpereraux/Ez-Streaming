@@ -13,7 +13,7 @@ import { getRelatedTVShows } from "../services/Api";
 // props
 import {
     MoviesProps,
-    ScreenNavigationProps
+    // ScreenNavigationProps
 } from "../interfaces/props";
 
 const TvScreen: React.FC = () => {
@@ -21,17 +21,18 @@ const TvScreen: React.FC = () => {
 
     // movie props (nav)
     const location = useLocation();
-    const props: ScreenNavigationProps = location.state?.data || {};
+    const params: any = new URLSearchParams(location.search);
 
     const relatedTVLocalArr: MoviesProps[] = []
     const getRelatedContent = async () => {
-        const content = await getRelatedTVShows(relatedTVLocalArr, props.id);
+        const content = await getRelatedTVShows(relatedTVLocalArr, params.get("id"));
         if (content) { setRelatedContent([...content]); }
     }
 
     useEffect(() => {
         getRelatedContent();
-    }, [props.id])
+    }, [params.get("id")])
+
 
     return (
         <>
@@ -46,7 +47,7 @@ const TvScreen: React.FC = () => {
                                 border: 'none',
                                 borderRadius: 12,
                             }}
-                            src={`https://vidsrc.xyz/embed/tv/${props.id}`}></iframe>
+                            src={`https://vidsrc.xyz/embed/tv/${params.get("id")}`}></iframe>
                     </Box>
                     {/* details */}
                     <Box sx={{ width: '40%', pl: 3.5 }}>
@@ -58,15 +59,15 @@ const TvScreen: React.FC = () => {
                                 fontFamily: 'Rubik',
                                 fontWeight: 450,
                                 mb: 1
-                            }}>{props.title}</Typography>
+                            }}>{params.get("title")}</Typography>
 
                         {/* other details */}
                         <span style={{
                             color: 'white',
                             fontSize: 16,
                         }}>
-                            {(props.first_air_date).slice(0, 4)} &nbsp;&nbsp;
-                            <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(props.vote_average * 10) / 10}</span>
+                            {(params.get("first_air_date")).slice(0, 4)} &nbsp;&nbsp;
+                            <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(params.get("vote_average") * 10) / 10}</span>
 
                         <Typography
                             sx={{
@@ -76,7 +77,7 @@ const TvScreen: React.FC = () => {
                                 fontWeight: 400,
                                 mt: 3,
                                 color: 'white'
-                            }}>{props.overview}</Typography>
+                            }}>{params.get("overview")}</Typography>
                     </Box>
                 </Box>
 

@@ -21,13 +21,15 @@ const BannerCard: React.FC<BannerCardProps> = ({
     const navigate = useNavigate();
     const navigateToTvScreen = () => {
         const data = {
-            id: id,
+            id: id.toString(),
             title: original_name,
             overview: overview,
             first_air_date: first_air_date,
-            vote_average: vote_average,
+            vote_average: vote_average.toString(),
         };
-        navigate('/screen/tv', { state: { data } })
+        const queryString = new URLSearchParams(data).toString();
+        // send user
+        navigate(`/screen/tv?${queryString}`);
     }
 
     return (

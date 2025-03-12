@@ -48,7 +48,7 @@ export interface SearchCardProps {
     overview: string,
     id: number,
     first_air_date: string
-    // name: string,
+    original_name: string
 }
 
 export interface ScreenNavigationProps {

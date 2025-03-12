@@ -20,8 +20,9 @@ import { getSearchResults } from "../services/Api";
 // interfaces
 import { MoviesProps } from "../interfaces/props";
 
-let searchResultsLocalArr: MoviesProps[] = []
 const Search: React.FC = () => {
+    let searchResultsLocalArr: MoviesProps[] = []
+    
     const [value, setValue] = useState<string>("");
     const [results, setResults] = useState<MoviesProps[]>(searchResultsLocalArr)
     const [searchType, setSearchType] = useState<string>("movie")
@@ -104,7 +105,6 @@ const Search: React.FC = () => {
                         >
                             <MenuItem value={"movie"}>Movies</MenuItem>
                             <MenuItem value={"tv"}>TV</MenuItem>
-                            <MenuItem value={"all"}>All</MenuItem>
                         </Select>
 
                         <Button sx={{
@@ -141,11 +141,12 @@ const Search: React.FC = () => {
                             <SearchCard
                                 id={item.id}
                                 overview={item.overview}
-                                type={searchType === 'movie' ? "movie" : "tv"}
+                                type={searchType}
                                 vote_average={item.vote_average}
                                 release_date={item.release_date}
                                 poster_path={item.poster_path}
                                 title={searchType === 'movie' ? item.title : item.original_name}
+                                original_name={item.original_name}
                                 first_air_date={item.first_air_date} />
                         </div>))
                         :

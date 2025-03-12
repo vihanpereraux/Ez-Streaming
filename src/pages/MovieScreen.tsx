@@ -30,12 +30,9 @@ const MovieScreen: React.FC = () => {
 
     useEffect(() => {
         getRelatedContent();
-    }, [params.id])
-
-    useEffect(() => {
-        console.log(params.get("id"));
     }, [params.get("id")])
 
+    
     return (
         <>
             <Box sx={{ pt: 15, pl: 6, pr: 6 }}>

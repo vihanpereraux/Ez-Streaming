@@ -39,14 +39,15 @@ const CarosuelCard: React.FC<CarosuelCardProps>
             }
             else {
                 const data = {
-                    id: id,
-                    title: title,
+                    id: id.toString(),
+                    title: original_name,
                     overview: overview,
                     first_air_date: first_air_date,
-                    vote_average: vote_average,
+                    vote_average: vote_average.toString(),
                 };
+                const queryString = new URLSearchParams(data).toString();
                 // send user
-                navigate('/screen/tv', { state: { data } });
+                navigate(`/screen/tv?${queryString}`);
             }
         }
 
