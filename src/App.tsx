@@ -22,7 +22,7 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path='/' Component={Home}></Route>
+          <Route path='/'  Component={Home}></Route>
           <Route path='/screen/movie' Component={MovieScreen}></Route>
           <Route path='/screen/tv' Component={TvScreen}></Route>
           <Route path='/search' Component={Search}></Route>
@@ -33,3 +33,4 @@ function App() {
 }
 
 export default App
+

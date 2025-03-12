@@ -13,7 +13,6 @@ import { getRelatedMovies } from "../services/Api";
 // props
 import {
     MoviesProps,
-    ScreenNavigationProps
 } from "../interfaces/props";
 
 const MovieScreen: React.FC = () => {
@@ -21,17 +20,21 @@ const MovieScreen: React.FC = () => {
 
     // movie props (nav)
     const location = useLocation();
-    const props: ScreenNavigationProps = location.state?.data || {};
+    const params: any = new URLSearchParams(location.search);
 
     const relatedMoviesLocalArr: MoviesProps[] = []
     const getRelatedContent = async () => {
-        const content = await getRelatedMovies(relatedMoviesLocalArr, props.id);
+        const content = await getRelatedMovies(relatedMoviesLocalArr, params.get("id"));
         if (content) { setRelatedContent([...content]); }
     }
 
     useEffect(() => {
         getRelatedContent();
-    }, [props.id])
+    }, [params.id])
+
+    useEffect(() => {
+        console.log(params.get("id"));
+    }, [params.get("id")])
 
     return (
         <>
@@ -46,7 +49,7 @@ const MovieScreen: React.FC = () => {
                                 border: 'none',
                                 borderRadius: 12,
                             }}
-                            src={`https://vidsrc.xyz/embed/movie/${props.id}`}></iframe>
+                            src={`https://vidsrc.xyz/embed/movie/${params.get("id")}`}></iframe>
                     </Box>
                     {/* details */}
                     <Box sx={{ width: '40%', pl: 3.5 }}>
@@ -58,15 +61,15 @@ const MovieScreen: React.FC = () => {
                                 fontFamily: 'Rubik',
                                 fontWeight: 450,
                                 mb: 1
-                            }}>{props.title}</Typography>
+                            }}>{params.title}</Typography>
 
                         {/* other details */}
                         <span style={{
                             color: 'white',
                             fontSize: 16,
                         }}>
-                            {(props.release_date).slice(0, 4)} &nbsp;&nbsp;
-                            <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(props.vote_average * 10) / 10}</span>
+                            {(params.get("release_date")).slice(0, 4)} &nbsp;&nbsp;
+                            <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(parseInt(params.get("vote_average")) * 10) / 10}</span>
 
                         <Typography
                             sx={{
@@ -76,7 +79,7 @@ const MovieScreen: React.FC = () => {
                                 fontWeight: 400,
                                 mt: 3,
                                 color: 'white'
-                            }}>{props.overview}</Typography>
+                            }}>{params.get("overview")}</Typography>
                     </Box>
                 </Box>
 
