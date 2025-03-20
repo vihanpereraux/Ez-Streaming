@@ -1,3 +1,6 @@
 {
-    "installCommand": "npm install --legacy-peer-deps"
+    "installCommand": "npm install --legacy-peer-deps",
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/" }
+    ]
 }
