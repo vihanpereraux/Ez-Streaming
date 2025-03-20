@@ -34,6 +34,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                     vote_average: vote_average.toString(),
                 };
                 const queryString = new URLSearchParams(data).toString();
+                console.log(type);
                 // send user
                 navigate(`/screen/movie?${queryString}`);
             }
@@ -47,7 +48,8 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                 };
                 const queryString = new URLSearchParams(data).toString();
                 // send user
-                navigate(`/screen/tv?${queryString}`);
+                console.log(type);
+                // navigate(`/screen/tv?${queryString}`);
             }
         }
 

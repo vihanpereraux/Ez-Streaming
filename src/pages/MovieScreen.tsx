@@ -1,38 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React,
+{
+    useEffect,
+    // useState
+} from "react";
 import { useLocation } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
 // MUI
 import { Box, Typography } from "@mui/material";
 
 // components
-import MovieCarousel from "../components/MovieCarousel";
+// import MovieCarousel from "../components/MovieCarousel";
 
 // services
-import { getRelatedMovies } from "../services/Api";
+// import { getRelatedMovies } from "../services/Api";
 
 // props
-import {
-    MoviesProps,
-} from "../interfaces/props";
+// import {
+//     MoviesProps,
+// } from "../interfaces/props";
 
 const MovieScreen: React.FC = () => {
-    const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
+    // const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
 
     // movie props (nav)
     const location = useLocation();
     const params: any = new URLSearchParams(location.search);
 
-    const relatedMoviesLocalArr: MoviesProps[] = []
+    // const relatedMoviesLocalArr: MoviesProps[] = []
     const getRelatedContent = async () => {
-        const content = await getRelatedMovies(relatedMoviesLocalArr, params.get("id"));
-        if (content) { setRelatedContent([...content]); }
+        // const content = await getRelatedMovies(relatedMoviesLocalArr, params.get("id"));
+        // if (content) { setRelatedContent([...content]); }
     }
 
     useEffect(() => {
         getRelatedContent();
     }, [params.get("id")])
 
-    
+
     return (
         <>
             <Box sx={{ pt: 15, pl: 6, pr: 6 }}>
