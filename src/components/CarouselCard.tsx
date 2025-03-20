@@ -49,7 +49,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                 const queryString = new URLSearchParams(data).toString();
                 // send user
                 console.log(type);
-                // navigate(`/screen/tv?${queryString}`);
+                navigate(`/screen/tv?${queryString}`);
             }
         }
 
