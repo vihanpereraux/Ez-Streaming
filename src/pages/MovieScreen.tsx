@@ -81,7 +81,7 @@ const MovieScreen: React.FC = () => {
                 </Box>
 
                 {/* related content */}
-                <Box sx={{ mt: 8 }}>
+                {/* <Box sx={{ mt: 8 }}>
                     {relatedContent.length > 0 ? (
                         <MovieCarousel
                             type="movie"
@@ -99,7 +99,7 @@ const MovieScreen: React.FC = () => {
                             No related movies found &nbsp; : (</Typography>
                     )}
 
-                </Box>
+                </Box> */}
             </Box>
         </>
     )
