@@ -16,6 +16,7 @@ import {
 } from "../interfaces/props";
 
 const MovieScreen: React.FC = () => {
+    const [movieDetails, setMovieDetails] = useState<any>({});
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
 
     // movie props (nav)
@@ -28,11 +29,21 @@ const MovieScreen: React.FC = () => {
         if (content) { setRelatedContent([...content]); }
     }
 
+    const getMovieDetails = async () => {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${params.get("id")}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`)
+        const data = await response.json();
+        console.log(data)
+        setMovieDetails({ ...data });
+        if (movieDetails) {
+            getRelatedContent();
+        }
+    }
+
     useEffect(() => {
-        getRelatedContent();
+        getMovieDetails();
     }, [params.get("id")])
 
-    
+
     return (
         <>
             <Box sx={{ pt: 15, pl: 6, pr: 6 }}>
@@ -46,7 +57,8 @@ const MovieScreen: React.FC = () => {
                                 border: 'none',
                                 borderRadius: 12,
                             }}
-                            src={`https://vidsrc.xyz/embed/movie/${params.get("id")}`}></iframe>
+                            src={`https://vidsrc.xyz/embed/movie/${params.get("id")}`}>
+                        </iframe>
                     </Box>
                     {/* details */}
                     <Box sx={{ width: '40%', pl: 3.5 }}>
@@ -58,15 +70,15 @@ const MovieScreen: React.FC = () => {
                                 fontFamily: 'Rubik',
                                 fontWeight: 450,
                                 mb: 1
-                            }}>{params.title}</Typography>
+                            }}>{movieDetails.original_title}</Typography>
 
                         {/* other details */}
                         <span style={{
                             color: 'white',
                             fontSize: 16,
                         }}>
-                            {(params.get("release_date")).slice(0, 4)} &nbsp;&nbsp;
-                            <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(parseInt(params.get("vote_average")) * 10) / 10}</span>
+                            {movieDetails.release_date ? movieDetails.release_date.slice(0, 4) : 'N/A'} &nbsp;&nbsp;
+                            <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
 
                         <Typography
                             sx={{
@@ -76,7 +88,7 @@ const MovieScreen: React.FC = () => {
                                 fontWeight: 400,
                                 mt: 3,
                                 color: 'white'
-                            }}>{params.get("overview")}</Typography>
+                            }}>{movieDetails.overview}</Typography>
                     </Box>
                 </Box>
 

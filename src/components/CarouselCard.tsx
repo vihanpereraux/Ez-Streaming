@@ -28,10 +28,6 @@ const CarosuelCard: React.FC<CarosuelCardProps>
             if (type === "movie") {
                 const data = {
                     id: id.toString(),
-                    title: title,
-                    overview: overview,
-                    release_date: release_date,
-                    vote_average: vote_average.toString(),
                 };
                 const queryString = new URLSearchParams(data).toString();
                 // send user
