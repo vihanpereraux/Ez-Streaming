@@ -57,10 +57,10 @@ const BannerCard: React.FC<BannerCardProps> = ({
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: { xs: '20px', lg: '45px' },
+                            fontSize: { xs: '20px', lg: '35px' },
                             fontFamily: 'Rubik',
                             textTransform: 'capitalize',
-                            fontWeight: { xs: '400', lg: '500' },
+                            fontWeight: { xs: '400', lg: '450' },
                             textAlign: 'center'
                         }}>{original_name}</Typography>
 
