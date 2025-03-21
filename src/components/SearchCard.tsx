@@ -55,7 +55,7 @@ const SearchCard: React.FC<SearchCardProps>
                 <Box sx={{
                     background: 'none',
                     pl: .6,
-                    pr: .6
+                    pr: .6,
                 }}>
                     {/* poster */}
                     <div className="_movie_poster_container"

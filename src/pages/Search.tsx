@@ -22,7 +22,7 @@ import { MoviesProps } from "../interfaces/props";
 
 const Search: React.FC = () => {
     let searchResultsLocalArr: MoviesProps[] = []
-    
+
     const [value, setValue] = useState<string>("");
     const [results, setResults] = useState<MoviesProps[]>(searchResultsLocalArr)
     const [searchType, setSearchType] = useState<string>("movie")
@@ -34,13 +34,13 @@ const Search: React.FC = () => {
 
     const getResults = async () => {
         searchResultsLocalArr = [];
-        const content: MoviesProps[] = await getSearchResults(value, searchType, searchResultsLocalArr) as MoviesProps [];
+        const content: MoviesProps[] = await getSearchResults(value, searchType, searchResultsLocalArr) as MoviesProps[];
         if (content) { setResults([...content]); }
 
         if (content.length == 0) {
             setSearched(true);
         }
-        else { 
+        else {
             setSearched(false);
         }
     }
@@ -52,7 +52,7 @@ const Search: React.FC = () => {
 
     return (
         <>
-            <Box sx={{ pt: 15, pl: 6 }}>
+            <Box sx={{ pt: 15, pl: { xs: 0, lg: 6 } }}>
                 <Box sx={{
                     background: 'none',
                     mt: 2
@@ -67,18 +67,20 @@ const Search: React.FC = () => {
                         }}> Search your favourite Movies & TV Shows
                     </Typography>
 
-                    <div
+                    <Box
                         className="_search_field_wrapper"
-                        style={{
+                        sx={{
                             display: 'flex',
                             justifyContent: 'center',
-                            marginTop: 25,
+                            marginTop: 5,
+                            pl: { xs: 1, lg: 50 },
+                            pr: { xs: 1, lg: 50 }
                         }}>
                         <input
                             onChange={handleUserInput}
                             value={value}
                             style={{
-                                width: '35%',
+                                width: '100%',
                                 height: 55,
                                 fontFamily: 'Rubik',
                                 borderRadius: 8,
@@ -93,7 +95,7 @@ const Search: React.FC = () => {
                             sx={{
                                 color: 'white',
                                 backgroundColor: 'rgb(20, 20, 20)',
-                                width: '8%',
+                                width: '15%',
                                 fontSize: 16,
                                 fontFamily: 'Rubik',
                                 ml: 1
@@ -122,7 +124,7 @@ const Search: React.FC = () => {
                         }}
                             variant="contained"
                             onClick={getResults}>Search</Button>
-                    </div>
+                    </Box>
                 </Box>
 
                 {/* search results */}
@@ -130,12 +132,14 @@ const Search: React.FC = () => {
                     position: 'relative',
                     display: 'flex',
                     flexWrap: 'wrap',
-                    width: '100%',
+                    width: { xs: 'auto', lg: '100%' },
                     gap: 0,
+                    pl: { xs: 2, lg: 0 },
+                    pr: { xs: 2, lg: 0 }
                 }}>
                     {results.length > 0 ? results.map((item, index) => (
-                        <div style={{
-                            width: 'calc(20% - 10px)',
+                        <Box sx={{
+                            width: { xs: 'calc(100%)', lg: 'calc(20% - 10px)' },
                             marginTop: '40px',
                         }} key={index}>
                             <SearchCard
@@ -148,7 +152,7 @@ const Search: React.FC = () => {
                                 title={searchType === 'movie' ? item.title : item.original_name}
                                 original_name={item.original_name}
                                 first_air_date={item.first_air_date} />
-                        </div>))
+                        </Box>))
                         :
                         (<div>
                             {searched ? <ValidationMessage /> : null}
