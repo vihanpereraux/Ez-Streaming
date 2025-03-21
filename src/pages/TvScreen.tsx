@@ -46,9 +46,9 @@ const TvScreen: React.FC = () => {
 
     return (
         <>
-            <Box sx={{ pt: 15, pl: 6, pr: 6 }}>
-                <Box sx={{ display: "flex" }}>
-                    <Box sx={{ width: '60%' }}>
+            <Box sx={{ pt: 15, pl: { xs: 2, lg: 6 }, pr: { xs: 2, lg: 6 } }}>
+                <Box sx={{ display: { xs: "block", lg: "flex" } }}>
+                    <Box sx={{ width: { xs: "100%", lg: "60%" } }}>
                         <iframe
                             allowFullScreen={true}
                             style={{
@@ -61,7 +61,7 @@ const TvScreen: React.FC = () => {
                         </iframe>
                     </Box>
                     {/* details */}
-                    <Box sx={{ width: '40%', pl: 3.5 }}>
+                    <Box sx={{ width: { xs: "100%", lg: "40%" }, pl: { xs: .5, lg: 3.5 }, mt: { xs: 1.5, lg: 0 } }}>
                         <Typography
                             sx={{
                                 color: 'white',
@@ -77,7 +77,7 @@ const TvScreen: React.FC = () => {
                             color: 'white',
                             fontSize: 16,
                         }}>
-                            {movieDetails.first_air_date ? `${(movieDetails.first_air_date).slice(0, 4)}` : "..."} &nbsp;&nbsp;
+                            {movieDetails.first_air_date ? movieDetails.first_air_date.slice(0, 4) : '...'} &nbsp;&nbsp;
                             <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
 
                         <Typography
@@ -93,15 +93,13 @@ const TvScreen: React.FC = () => {
                 </Box>
 
                 {/* related content */}
-                {relatedContent.length > 0 ? (
-                    <Box sx={{ mt: 8 }}>
+                <Box sx={{ mt: 8 }}>
+                    {relatedContent.length > 0 ? (
                         <MovieCarousel
                             type="tv"
-                            title="TV Shows You May Enjoy"
+                            title="TV Shows You May Love : )"
                             content={relatedContent} />
-                    </Box>
-                ) : (
-                    <div>
+                    ) : (
                         <Typography
                             sx={{
                                 fontWeight: 450,
@@ -111,9 +109,8 @@ const TvScreen: React.FC = () => {
                                 mt: 8
                             }}>
                             No related tv shows found &nbsp; : (</Typography>
-                    </div>
-                )}
-
+                    )}
+                </Box>
             </Box>
         </>
     )
