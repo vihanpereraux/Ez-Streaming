@@ -25,6 +25,18 @@ body {
   transition: padding-left 0.15s ease-in;
 }
 
+/* carousel card stylings */
+@media only screen and (max-width: 1024px) {
+  ._movie_poster_container img {
+    height: 50vw !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  ._movie_poster_container img {
+    height: 100vw !important;
+  }
+}
+
 /* movie / tv search selection stylings */
 .MuiSvgIcon-root {
   color: white !important;
