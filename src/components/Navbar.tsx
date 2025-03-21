@@ -22,10 +22,10 @@ const navButtonStylings = {
 }
 
 const navItems: NavItemProps[] = [
-    {
-        navItem: "Home",
-        path: "/"
-    },
+    // {
+    //     navItem: "Home",
+    //     path: "/"
+    // },
     // {
     //     navItem: "Movies",
     //     path: "/movies"

@@ -77,7 +77,7 @@ const MovieScreen: React.FC = () => {
                             color: 'white',
                             fontSize: 16,
                         }}>
-                            {movieDetails.release_date ? movieDetails.release_date.slice(0, 4) : 'N/A'} &nbsp;&nbsp;
+                            {movieDetails.release_date ? movieDetails.release_date.slice(0, 4) : '...'} &nbsp;&nbsp;
                             <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
 
                         <Typography
