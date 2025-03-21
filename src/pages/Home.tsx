@@ -70,77 +70,77 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <Box sx={{ pl: 6, pr: 6, pt: 6 }}>
-                {bannerContent ? (
-                    < Box sx={{ mt: carouselSpacing }}>
-                        <BannerCarosuel
-                            type="tv"
-                            content={bannerContent} />
-                    </Box>
+            <Box sx={{ pl: { xs: 2, lg: 6 }, pr: {xs: 2, lg: 6 }, pt: 6 }}>
+            {bannerContent ? (
+                < Box sx={{ mt: carouselSpacing }}>
+                    <BannerCarosuel
+                        type="tv"
+                        content={bannerContent} />
+                </Box>
+            ) : (<LoadingPreview />)}
+
+            {/* carosuel - trending movies */}
+            <Box sx={{ mt: carouselSpacing }}>
+                {trendingMovies ? (
+                    <MovieCarousel
+                        type="movie"
+                        title="Newest Trending Movies"
+                        content={trendingMovies} />
+                ) : (<LoadingPreview />)}
+            </Box>
+
+            {/* carosuel - now streaming movies */}
+            <Box sx={{ mt: carouselSpacing }}>
+                {upcommingMovies ? (
+                    <MovieCarousel
+                        type="movie"
+                        title="Now Streaming Movies"
+                        content={upcommingMovies} />
                 ) : (<LoadingPreview />)}
 
-                {/* carosuel - trending movies */}
-                <Box sx={{ mt: carouselSpacing }}>
-                    {trendingMovies ? (
-                        <MovieCarousel
-                            type="movie"
-                            title="Newest Trending Movies"
-                            content={trendingMovies} />
-                    ) : (<LoadingPreview />)}
-                </Box>
+            </Box>
 
-                {/* carosuel - now streaming movies */}
-                <Box sx={{ mt: carouselSpacing }}>
-                    {upcommingMovies ? (
-                        <MovieCarousel
-                            type="movie"
-                            title="Now Streaming Movies"
-                            content={upcommingMovies} />
-                    ) : (<LoadingPreview />)}
+            {/* carosuel - top rated movies  */}
+            <Box sx={{ mt: carouselSpacing }}>
+                {crimeMovies ? (
+                    <MovieCarousel
+                        type="movie"
+                        title="Crime & Action Movies"
+                        content={crimeMovies} />
+                ) : (<LoadingPreview />)}
 
-                </Box>
+            </Box>
 
-                {/* carosuel - top rated movies  */}
-                <Box sx={{ mt: carouselSpacing }}>
-                    {crimeMovies ? (
-                        <MovieCarousel
-                            type="movie"
-                            title="Crime & Action Movies"
-                            content={crimeMovies} />
-                    ) : (<LoadingPreview />)}
+            <Box sx={{ mt: carouselSpacing }}>
+                {thrillerMovies ? (
+                    <MovieCarousel
+                        type="movie"
+                        title="Thriller Movies"
+                        content={thrillerMovies} />
+                ) : (<LoadingPreview />)}
 
-                </Box>
+            </Box>
 
-                <Box sx={{ mt: carouselSpacing }}>
-                    {thrillerMovies ? (
-                        <MovieCarousel
-                            type="movie"
-                            title="Thriller Movies"
-                            content={thrillerMovies} />
-                    ) : (<LoadingPreview />)}
+            <Box sx={{ mt: carouselSpacing }}>
+                {documentaryMovies ? (
+                    <MovieCarousel
+                        type="movie"
+                        title="Documentery Movies"
+                        content={documentaryMovies} />
+                ) : (<LoadingPreview />)}
 
-                </Box>
+            </Box>
 
-                <Box sx={{ mt: carouselSpacing }}>
-                    {documentaryMovies ? (
-                        <MovieCarousel
-                            type="movie"
-                            title="Documentery Movies"
-                            content={documentaryMovies} />
-                    ) : (<LoadingPreview />)}
+            <Box sx={{ mt: carouselSpacing }}>
+                {topRatedMovies ? (
+                    <MovieCarousel
+                        type="movie"
+                        title="Top Rated Movies"
+                        content={topRatedMovies} />
+                ) : (<LoadingPreview />)}
 
-                </Box>
-
-                <Box sx={{ mt: carouselSpacing }}>
-                    {topRatedMovies ? (
-                        <MovieCarousel
-                            type="movie"
-                            title="Top Rated Movies"
-                            content={topRatedMovies} />
-                    ) : (<LoadingPreview />)}
-
-                </Box>
-            </Box >
+            </Box>
+        </Box >
         </>
     )
 }

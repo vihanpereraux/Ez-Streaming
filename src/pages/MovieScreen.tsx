@@ -46,9 +46,9 @@ const MovieScreen: React.FC = () => {
 
     return (
         <>
-            <Box sx={{ pt: 15, pl: 6, pr: 6 }}>
-                <Box sx={{ display: "flex" }}>
-                    <Box sx={{ width: '60%' }}>
+            <Box sx={{ pt: 15, pl: { xs: 2, lg: 6 }, pr: { xs: 2, lg: 6 } }}>
+                <Box sx={{ display: { xs: "block", lg: "flex" } }}>
+                    <Box sx={{ width: { xs: "100%", lg: "60%" } }}>
                         <iframe
                             allowFullScreen={true}
                             style={{
@@ -61,7 +61,7 @@ const MovieScreen: React.FC = () => {
                         </iframe>
                     </Box>
                     {/* details */}
-                    <Box sx={{ width: '40%', pl: 3.5 }}>
+                    <Box sx={{ width: { xs: "100%", lg: "40%" }, pl: { xs: .5, lg: 3.5 }, mt: { xs: 1.5, lg: 0 } }}>
                         <Typography
                             sx={{
                                 color: 'white',

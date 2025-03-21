@@ -77,7 +77,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             className="_movie_title"
                             sx={{
                                 color: 'white',
-                                fontSize: 16,
+                                fontSize: { xs: '16px', lg: '16px' },
                                 fontWeight: 450,
                                 fontFamily: 'Rubik',
                                 whiteSpace: 'nowrap',

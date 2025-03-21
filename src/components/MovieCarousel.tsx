@@ -22,7 +22,7 @@ interface MovieCarouselProps {
     type: string
 }
 
-const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title, type }) => {    
+const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title, type }) => {
     return (
         <>
             {/* main title */}
@@ -31,7 +31,7 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title, type }) =
                     fontWeight: 450,
                     fontFamily: 'Rubik',
                     color: 'white',
-                    fontSize: 22,
+                    fontSize: { xs: '20px', lg: '25px' },
                 }}>
                 {title}</Typography>
 
@@ -47,7 +47,7 @@ const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title, type }) =
                                     title={item.title}
                                     overview={item.overview}
                                     release_date={item.release_date}
-                                    vote_average={item.vote_average} 
+                                    vote_average={item.vote_average}
                                     first_air_date={item.first_air_date}
                                     type={type} />
                             </div>
