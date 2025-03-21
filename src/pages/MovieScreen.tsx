@@ -110,7 +110,6 @@ const MovieScreen: React.FC = () => {
                             }}>
                             No related movies found &nbsp; : (</Typography>
                     )}
-
                 </Box>
             </Box>
         </>
