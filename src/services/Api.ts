@@ -1,6 +1,5 @@
 // props
 import { MoviesProps } from "../interfaces/props";
-
 // API key
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -51,7 +50,7 @@ export const getUpcommingMovies = async (arr: MoviesProps[]) => {
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
         return cleanedArr
     } catch (error) {
-        alert(`Error - Upcomming Movies - ${error}`)
+        console.log(`Error - Upcomming Movies - ${error}`)
     }
 }
 
@@ -64,7 +63,7 @@ export const getMoviesByGenre = async (arr: MoviesProps[], genreId: string) => {
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
         return cleanedArr
     } catch (error) {
-        alert(`Error - ${genreId} Movies - ${error}`)
+        console.log(`Error - ${genreId} Movies - ${error}`)
     }
 }
 
