@@ -46,9 +46,13 @@ const TvScreen: React.FC = () => {
 
     return (
         <>
-            <Box sx={{ pt: 15, pl: { xs: 2, lg: 6 }, pr: { xs: 2, lg: 6 } }}>
-                <Box sx={{ display: { xs: "block", lg: "flex" } }}>
-                    <Box sx={{ width: { xs: "100%", lg: "60%" } }}>
+            <Box sx={{
+                pt: 15,
+                pl: { xs: 2, lg: 6 },
+                pr: { xs: 2, lg: 6 }
+            }}>
+                <Box sx={{ display: { xs: "block", lg: "block" } }}>
+                    <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
                         <iframe
                             allowFullScreen={true}
                             style={{
@@ -61,12 +65,16 @@ const TvScreen: React.FC = () => {
                         </iframe>
                     </Box>
                     {/* details */}
-                    <Box sx={{ width: { xs: "100%", lg: "40%" }, pl: { xs: .5, lg: 3.5 }, mt: { xs: 1.5, lg: 0 } }}>
+                    <Box sx={{
+                        width: { xs: "100%", lg: "100%" },
+                        pl: { xs: .5, lg: 0 },
+                        mt: { xs: 1.5, lg: 3 }
+                    }}>
                         <Typography
                             sx={{
                                 color: 'white',
                                 textAlign: 'left',
-                                fontSize: 25,
+                                fontSize: 24,
                                 fontFamily: 'Rubik',
                                 fontWeight: 450,
                                 mb: 1
@@ -75,7 +83,7 @@ const TvScreen: React.FC = () => {
                         {/* other details */}
                         <span style={{
                             color: 'white',
-                            fontSize: 16,
+                            fontSize: 14,
                         }}>
                             {movieDetails.first_air_date ? movieDetails.first_air_date.slice(0, 4) : '...'} &nbsp;&nbsp;
                             <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
@@ -85,7 +93,7 @@ const TvScreen: React.FC = () => {
                                 fontFamily: 'Rubik',
                                 fontSize: 16,
                                 lineHeight: 1.6,
-                                fontWeight: 400,
+                                fontWeight: 360,
                                 mt: 3,
                                 color: 'white'
                             }}>{movieDetails.overview}</Typography>

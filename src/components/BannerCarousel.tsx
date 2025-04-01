@@ -23,6 +23,9 @@ const BannerCarosuel: React.FC<BannerCarouselProps>
             <>
                 <Box sx={{ mt: 2.5 }}>
                     <Carousel
+                        autoPlay
+                        infinite
+                        autoPlaySpeed={3000}
                         responsive={bannerCarouselConfig}>
 
                         {content.map((item, index) => (

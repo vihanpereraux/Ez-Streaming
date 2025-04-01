@@ -65,12 +65,11 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                                 width: '100%',
                                 borderRadius: 15,
                                 objectFit: 'cover',
-                                height: '25vw',
+                                height: '22vw',
                                 cursor: 'pointer'
                             }}
                             src={poster_path} alt="" />
                     </div>
-
                     {/* movie title */}
                     <Box sx={{ mt: 1.5 }}>
                         <Typography
@@ -106,7 +105,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             opacity: .8,
                             marginLeft: 20
                         }}>
-                            <FaStar style={{ color: 'orange' }} />  {Math.round(vote_average * 10) / 10}</span>
+                            <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(vote_average * 10) / 10}</span>
                     </Box>
                 </Box>
             </>

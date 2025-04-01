@@ -23,12 +23,7 @@ const MovieScreen: React.FC = () => {
     const location = useLocation();
     const params: any = new URLSearchParams(location.search);
 
-    const relatedMoviesLocalArr: MoviesProps[] = []
-    const getRelatedContent = async () => {
-        const content = await getRelatedMovies(relatedMoviesLocalArr, params.get("id"));
-        if (content) { setRelatedContent([...content]); }
-    }
-
+    // get movie details
     const getMovieDetails = async () => {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${params.get("id")}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`)
         const data = await response.json();
@@ -39,6 +34,13 @@ const MovieScreen: React.FC = () => {
         }
     }
 
+    // get related movies
+    const relatedMoviesLocalArr: MoviesProps[] = []
+    const getRelatedContent = async () => {
+        const content = await getRelatedMovies(relatedMoviesLocalArr, params.get("id"));
+        if (content) { setRelatedContent([...content]); }
+    }
+
     useEffect(() => {
         getMovieDetails();
     }, [params.get("id")])
@@ -46,9 +48,13 @@ const MovieScreen: React.FC = () => {
 
     return (
         <>
-            <Box sx={{ pt: 15, pl: { xs: 2, lg: 6 }, pr: { xs: 2, lg: 6 } }}>
-                <Box sx={{ display: { xs: "block", lg: "flex" } }}>
-                    <Box sx={{ width: { xs: "100%", lg: "60%" } }}>
+            <Box sx={{
+                pt: 15,
+                pl: { xs: 2, lg: 6 },
+                pr: { xs: 2, lg: 6 }
+            }}>
+                <Box sx={{ display: { xs: "block", lg: "block" } }}>
+                    <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
                         <iframe
                             allowFullScreen={true}
                             style={{
@@ -61,21 +67,25 @@ const MovieScreen: React.FC = () => {
                         </iframe>
                     </Box>
                     {/* details */}
-                    <Box sx={{ width: { xs: "100%", lg: "40%" }, pl: { xs: .5, lg: 3.5 }, mt: { xs: 1.5, lg: 0 } }}>
+                    <Box sx={{
+                        width: { xs: "100%", lg: "100%" },
+                        pl: { xs: .5, lg: 0 },
+                        mt: { xs: 1.5, lg: 3 }
+                    }}>
                         <Typography
                             sx={{
                                 color: 'white',
                                 textAlign: 'left',
-                                fontSize: 25,
+                                fontSize: 24,
                                 fontFamily: 'Rubik',
-                                fontWeight: 450,
+                                fontWeight: 400,
                                 mb: 1
                             }}>{movieDetails.original_title}</Typography>
 
                         {/* other details */}
                         <span style={{
                             color: 'white',
-                            fontSize: 16,
+                            fontSize: 14,
                         }}>
                             {movieDetails.release_date ? movieDetails.release_date.slice(0, 4) : '...'} &nbsp;&nbsp;
                             <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
@@ -85,7 +95,7 @@ const MovieScreen: React.FC = () => {
                                 fontFamily: 'Rubik',
                                 fontSize: 16,
                                 lineHeight: 1.6,
-                                fontWeight: 400,
+                                fontWeight: 360,
                                 mt: 3,
                                 color: 'white'
                             }}>{movieDetails.overview}</Typography>
@@ -93,7 +103,7 @@ const MovieScreen: React.FC = () => {
                 </Box>
 
                 {/* related content */}
-                <Box sx={{ mt: 8 }}>
+                <Box sx={{ mt: 10 }}>
                     {relatedContent.length > 0 ? (
                         <MovieCarousel
                             type="movie"
