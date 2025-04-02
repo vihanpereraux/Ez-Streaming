@@ -10,6 +10,11 @@ body {
   background-color: black !important;
 }
 
+/* navbar animation */
+.Games-nav-item {
+  color: #a2ff00 !important;
+}
+
 /* carousel stylings */
 ._movie_poster_portrait {
   transition: all .15s ease-in-out;
@@ -31,6 +36,7 @@ body {
     height: 50vw !important;
   }
 }
+
 @media only screen and (max-width: 600px) {
   ._movie_poster_container img {
     height: 100% !important;

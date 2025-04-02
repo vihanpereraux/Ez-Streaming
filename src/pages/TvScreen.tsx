@@ -102,7 +102,7 @@ const TvScreen: React.FC = () => {
                             fontSize: 14,
                         }}>
                             {movieDetails.first_air_date ? movieDetails.first_air_date.slice(0, 4) : '...'} &nbsp;&nbsp;
-                            <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
+                            &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
 
                         <Typography
                             sx={{
@@ -117,7 +117,7 @@ const TvScreen: React.FC = () => {
                 </Box>
 
                 {/* related content */}
-                <Box sx={{ mt: 8 }}>
+                <Box sx={{ mt: 12 }}>
                     {relatedContent.length > 0 ? (
                         <MovieCarousel
                             type="tv"
@@ -129,7 +129,7 @@ const TvScreen: React.FC = () => {
                                 fontWeight: 450,
                                 fontFamily: 'Rubik',
                                 color: 'white',
-                                fontSize: 22,
+                                fontSize: { xs: '18px', lg: '20px' },
                                 mt: 8
                             }}>
                             No related tv shows found &nbsp; : (</Typography>

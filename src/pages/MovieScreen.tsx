@@ -106,7 +106,7 @@ const MovieScreen: React.FC = () => {
                         fontSize: 16,
                     }}>
                         {movieDetails.release_date ? movieDetails.release_date.slice(0, 4) : '...'} &nbsp;&nbsp;
-                        <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
+                        &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
 
                     <Typography
                         sx={{
@@ -121,7 +121,7 @@ const MovieScreen: React.FC = () => {
             </Box>
 
             {/* related content */}
-            <Box sx={{ mt: 8 }}>
+            <Box sx={{ mt: 12 }}>
                 {relatedContent.length > 0 ? (
                     <MovieCarousel
                         type="movie"
@@ -133,7 +133,7 @@ const MovieScreen: React.FC = () => {
                             fontWeight: 450,
                             fontFamily: 'Rubik',
                             color: 'white',
-                            fontSize: 22,
+                            fontSize: { xs: '18px', lg: '20px' },
                             mt: 8
                         }}>
                         No related movies found &nbsp; : (</Typography>

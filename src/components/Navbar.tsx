@@ -35,9 +35,13 @@ const navItems: NavItemProps[] = [
         path: "/search"
     },
     {
+        navItem: "Games",
+        path: "/games"
+    },
+    {
         navItem: "Disclaimer",
         path: "/disclaimer"
-    },
+    }
 ]
 
 const Navbar: React.FC = () => {
@@ -84,6 +88,7 @@ const Navbar: React.FC = () => {
                     {navItems.map((item, index) => (
                         <div key={index}>
                             <Button
+                                className={`${item.navItem}-nav-item`}
                                 onClick={() => { navigateToPages(item.path) }}
                                 sx={navButtonStylings}
                                 color="inherit">{item.navItem}</Button>

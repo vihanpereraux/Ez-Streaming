@@ -27,7 +27,6 @@ const BannerCarosuel: React.FC<BannerCarouselProps>
                         infinite
                         autoPlaySpeed={3000}
                         responsive={bannerCarouselConfig}>
-
                         {content.map((item, index) => (
                             <div key={index} style={{ cursor: 'pointer' }}>
                                 <BannerCard
