@@ -19,28 +19,19 @@ const CarosuelCard: React.FC<CarosuelCardProps>
         first_air_date,
         release_date,
         vote_average,
-        overview,
         type,
         original_name }) => {
         const navigate = useNavigate();
 
         const navigateToScreen = () => {
             if (type === "movie") {
-                const data = {
-                    id: id.toString(),
-                };
+                const data = { id: id.toString() };
                 const queryString = new URLSearchParams(data).toString();
                 // send user
                 navigate(`/screen/movie?${queryString}`);
             }
             else {
-                const data = {
-                    id: id.toString(),
-                    title: original_name,
-                    overview: overview,
-                    first_air_date: first_air_date,
-                    vote_average: vote_average.toString(),
-                };
+                const data = { id: id.toString() };
                 const queryString = new URLSearchParams(data).toString();
                 // send user
                 navigate(`/screen/tv?${queryString}`);
@@ -65,11 +56,12 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                                 width: '100%',
                                 borderRadius: 15,
                                 objectFit: 'cover',
-                                height: '22vw',
+                                height: '25vw',
                                 cursor: 'pointer'
                             }}
                             src={poster_path} alt="" />
                     </div>
+
                     {/* movie title */}
                     <Box sx={{ mt: 1.5 }}>
                         <Typography
@@ -105,7 +97,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             opacity: .8,
                             marginLeft: 20
                         }}>
-                            <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(vote_average * 10) / 10}</span>
+                            <FaStar style={{ color: 'orange' }} />  {Math.round(vote_average * 10) / 10}</span>
                     </Box>
                 </Box>
             </>

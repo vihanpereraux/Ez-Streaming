@@ -11,49 +11,65 @@ import MovieCarousel from "../components/MovieCarousel";
 import { getRelatedTVShows } from "../services/Api";
 
 // props
-import {
-    MoviesProps,
-    // ScreenNavigationProps
-} from "../interfaces/props";
+import { MoviesProps } from "../interfaces/props";
 
 const TvScreen: React.FC = () => {
     const [movieDetails, setMovieDetails] = useState<any>({});
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
-
-    // movie props (nav)
     const location = useLocation();
-    const params: any = new URLSearchParams(location.search);
+    const tvId = new URLSearchParams(location.search).get("id");
 
-    const relatedTVLocalArr: MoviesProps[] = []
-    const getRelatedContent = async () => {
-        const content = await getRelatedTVShows(relatedTVLocalArr, params.get("id"));
-        if (content) { setRelatedContent([...content]); }
-    }
-
+    // get tv show details
     const getTVDetails = async () => {
-        const response = await fetch(`https://api.themoviedb.org/3/tv/${params.get("id")}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`)
-        const data = await response.json();
-        setMovieDetails({ ...data });
-        if (movieDetails) {
-            getRelatedContent();
+        if (!tvId) return;
+
+        setMovieDetails({});
+        setRelatedContent([]);
+
+        try {
+            const response = await fetch(
+                `https://api.themoviedb.org/3/tv/${tvId}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+            );
+            const data = await response.json();
+            setMovieDetails(data);
+            await getRelatedContent();
+        } catch (error) {
+            console.error("Error fetching tv show details:", error);
+        }
+    };
+
+    // get related tv shows
+    const getRelatedContent = async () => {
+        if (!tvId) return;
+
+        const content = await getRelatedTVShows([], Number(tvId));
+        if (content) {
+            setRelatedContent(content);
         }
     }
 
     useEffect(() => {
         getTVDetails();
-    }, [params.get("id")])
+        return () => {
+            setMovieDetails({});
+            setRelatedContent([]);
+        }
+    }, [tvId])
 
 
     return (
         <>
-            <Box sx={{
-                pt: 15,
-                pl: { xs: 2, lg: 6 },
-                pr: { xs: 2, lg: 6 }
-            }}>
+            <Box
+                key={tvId}
+                sx={{
+                    pt: 15,
+                    pl: { xs: 2, lg: 6 },
+                    pr: { xs: 2, lg: 6 }
+                }}>
                 <Box sx={{ display: { xs: "block", lg: "block" } }}>
                     <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
                         <iframe
+                            key={tvId}
                             allowFullScreen={true}
                             style={{
                                 width: '100%',
@@ -61,7 +77,7 @@ const TvScreen: React.FC = () => {
                                 border: 'none',
                                 borderRadius: 12,
                             }}
-                            src={`https://vidsrc.xyz/embed/tv/${params.get("id")}`}>
+                            src={`https://vidsrc.xyz/embed/tv/${tvId}`}>
                         </iframe>
                     </Box>
                     {/* details */}
