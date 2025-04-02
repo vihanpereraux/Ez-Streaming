@@ -16,16 +16,12 @@ const BannerCard: React.FC<BannerCardProps> = ({
     original_name,
     first_air_date,
     vote_average,
-    id, overview }) => {
+    id }) => {
 
     const navigate = useNavigate();
     const navigateToTvScreen = () => {
         const data = {
             id: id.toString(),
-            title: original_name,
-            overview: overview,
-            first_air_date: first_air_date,
-            vote_average: vote_average.toString(),
         };
         const queryString = new URLSearchParams(data).toString();
         // send user
@@ -67,10 +63,11 @@ const BannerCard: React.FC<BannerCardProps> = ({
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: { xs: '14px', lg: '17px' },
+                            fontSize: { xs: '14px', lg: '15px' },
                             fontFamily: 'Rubik',
-                            mt: 1,
-                            textAlign: 'center'
+                            mt: 1.25,
+                            textAlign: 'center',
+                            fontWeight: 400
                         }}>
                         TV Series &nbsp;⋅
                         &nbsp;{first_air_date.slice(0, 4)} &nbsp;⋅

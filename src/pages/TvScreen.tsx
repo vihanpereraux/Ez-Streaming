@@ -11,45 +11,65 @@ import MovieCarousel from "../components/MovieCarousel";
 import { getRelatedTVShows } from "../services/Api";
 
 // props
-import {
-    MoviesProps,
-    // ScreenNavigationProps
-} from "../interfaces/props";
+import { MoviesProps } from "../interfaces/props";
 
 const TvScreen: React.FC = () => {
     const [movieDetails, setMovieDetails] = useState<any>({});
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
-
-    // movie props (nav)
     const location = useLocation();
-    const params: any = new URLSearchParams(location.search);
+    const tvId = new URLSearchParams(location.search).get("id");
 
-    const relatedTVLocalArr: MoviesProps[] = []
-    const getRelatedContent = async () => {
-        const content = await getRelatedTVShows(relatedTVLocalArr, params.get("id"));
-        if (content) { setRelatedContent([...content]); }
-    }
-
+    // get tv show details
     const getTVDetails = async () => {
-        const response = await fetch(`https://api.themoviedb.org/3/tv/${params.get("id")}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`)
-        const data = await response.json();
-        setMovieDetails({ ...data });
-        if (movieDetails) {
-            getRelatedContent();
+        if (!tvId) return;
+
+        setMovieDetails({});
+        setRelatedContent([]);
+
+        try {
+            const response = await fetch(
+                `https://api.themoviedb.org/3/tv/${tvId}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+            );
+            const data = await response.json();
+            setMovieDetails(data);
+            await getRelatedContent();
+        } catch (error) {
+            console.error("Error fetching tv show details:", error);
+        }
+    };
+
+    // get related tv shows
+    const getRelatedContent = async () => {
+        if (!tvId) return;
+
+        const content = await getRelatedTVShows([], Number(tvId));
+        if (content) {
+            setRelatedContent(content);
         }
     }
 
     useEffect(() => {
         getTVDetails();
-    }, [params.get("id")])
+        return () => {
+            setMovieDetails({});
+            setRelatedContent([]);
+        }
+    }, [tvId])
 
 
     return (
         <>
-            <Box sx={{ pt: 15, pl: { xs: 2, lg: 6 }, pr: { xs: 2, lg: 6 } }}>
-                <Box sx={{ display: { xs: "block", lg: "flex" } }}>
-                    <Box sx={{ width: { xs: "100%", lg: "60%" } }}>
+            <Box
+                key={tvId}
+                sx={{
+                    pt: 15,
+                    pl: { xs: 2, lg: 6 },
+                    pr: { xs: 2, lg: 6 }
+                }}>
+                <Box sx={{ display: { xs: "block", lg: "block" } }}>
+                    <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
                         <iframe
+                            key={tvId}
                             allowFullScreen={true}
                             style={{
                                 width: '100%',
@@ -57,16 +77,20 @@ const TvScreen: React.FC = () => {
                                 border: 'none',
                                 borderRadius: 12,
                             }}
-                            src={`https://vidsrc.xyz/embed/tv/${params.get("id")}`}>
+                            src={`https://vidsrc.xyz/embed/tv/${tvId}`}>
                         </iframe>
                     </Box>
                     {/* details */}
-                    <Box sx={{ width: { xs: "100%", lg: "40%" }, pl: { xs: .5, lg: 3.5 }, mt: { xs: 1.5, lg: 0 } }}>
+                    <Box sx={{
+                        width: { xs: "100%", lg: "100%" },
+                        pl: { xs: .5, lg: 0 },
+                        mt: { xs: 1.5, lg: 3 }
+                    }}>
                         <Typography
                             sx={{
                                 color: 'white',
                                 textAlign: 'left',
-                                fontSize: 25,
+                                fontSize: 24,
                                 fontFamily: 'Rubik',
                                 fontWeight: 450,
                                 mb: 1
@@ -75,17 +99,17 @@ const TvScreen: React.FC = () => {
                         {/* other details */}
                         <span style={{
                             color: 'white',
-                            fontSize: 16,
+                            fontSize: 14,
                         }}>
                             {movieDetails.first_air_date ? movieDetails.first_air_date.slice(0, 4) : '...'} &nbsp;&nbsp;
-                            <FaStar style={{ color: 'orange' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
+                            &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
 
                         <Typography
                             sx={{
                                 fontFamily: 'Rubik',
                                 fontSize: 16,
                                 lineHeight: 1.6,
-                                fontWeight: 400,
+                                fontWeight: 360,
                                 mt: 3,
                                 color: 'white'
                             }}>{movieDetails.overview}</Typography>
@@ -93,7 +117,7 @@ const TvScreen: React.FC = () => {
                 </Box>
 
                 {/* related content */}
-                <Box sx={{ mt: 8 }}>
+                <Box sx={{ mt: 12 }}>
                     {relatedContent.length > 0 ? (
                         <MovieCarousel
                             type="tv"
@@ -105,7 +129,7 @@ const TvScreen: React.FC = () => {
                                 fontWeight: 450,
                                 fontFamily: 'Rubik',
                                 color: 'white',
-                                fontSize: 22,
+                                fontSize: { xs: '18px', lg: '20px' },
                                 mt: 8
                             }}>
                             No related tv shows found &nbsp; : (</Typography>

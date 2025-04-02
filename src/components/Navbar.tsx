@@ -14,7 +14,7 @@ import { NavItemProps } from '../interfaces/props';
 
 const navButtonStylings = {
     textTransform: 'capitalize',
-    fontSize: 16,
+    fontSize: 15,
     fontFamily: 'Rubik',
     fontWeight: 400,
     mr: 1,
@@ -22,21 +22,25 @@ const navButtonStylings = {
 }
 
 const navItems: NavItemProps[] = [
-    // {
-    //     navItem: "Home",
-    //     path: "/"
-    // },
+    {
+        navItem: "Home",
+        path: "/"
+    },
     // {
     //     navItem: "Movies",
     //     path: "/movies"
     // },
-    // {
-    //     navItem: "TV Series",
-    //     path: "/tv"
-    // },
     {
         navItem: "Search",
         path: "/search"
+    },
+    {
+        navItem: "Games",
+        path: "/games"
+    },
+    {
+        navItem: "Disclaimer",
+        path: "/disclaimer"
     }
 ]
 
@@ -55,7 +59,6 @@ const Navbar: React.FC = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 backdropFilter: 'blur(10px)',
-                // boxShadow: 'none'
             }} position="fixed">
                 <Toolbar>
                     <IconButton
@@ -76,7 +79,8 @@ const Navbar: React.FC = () => {
                             flexGrow: 1,
                             fontFamily: 'Rubik',
                             cursor: 'pointer',
-                            fontSize: 18
+                            fontWeight: 450,
+                            fontSize: 16
                         }}>
                         Ez Streaming
                     </Typography>
@@ -84,6 +88,7 @@ const Navbar: React.FC = () => {
                     {navItems.map((item, index) => (
                         <div key={index}>
                             <Button
+                                className={`${item.navItem}-nav-item`}
                                 onClick={() => { navigateToPages(item.path) }}
                                 sx={navButtonStylings}
                                 color="inherit">{item.navItem}</Button>
