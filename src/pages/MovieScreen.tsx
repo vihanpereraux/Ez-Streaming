@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { FaStar } from "react-icons/fa6";
+
 // MUI
 import { Box, Typography } from "@mui/material";
 import Tabs from '@mui/material/Tabs';
