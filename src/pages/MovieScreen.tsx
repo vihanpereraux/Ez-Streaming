@@ -8,6 +8,7 @@ import Tab from '@mui/material/Tab';
 
 // components
 import MovieCarousel from "../components/MovieCarousel";
+import Player from "../components/Player";
 
 // services
 import { getRelatedMovies } from "../services/Api";
@@ -18,6 +19,15 @@ interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
     value: number;
+}
+
+// stylesheet
+const tabStyles = {
+    color: 'white',
+    fontFamily: 'Rubik',
+    textTransform: 'capitalize',
+    fontWeight: 450,
+    textDecoration: 'none'
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -87,7 +97,7 @@ const MovieScreen: React.FC = () => {
 
     useEffect(() => {
         getMovieDetails();
-        
+
         return () => {
             setMovieDetails({});
             setRelatedContent([]);
@@ -119,65 +129,33 @@ const MovieScreen: React.FC = () => {
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                                     {/* default - player */}
-                                    <Tab
-                                        sx={{
-                                            color: 'white',
-                                            fontFamily: 'Rubik',
-                                            textTransform: 'capitalize',
-                                            fontWeight: 450,
-                                            textDecoration: 'none'
-                                        }}
+                                    <Tab sx={tabStyles}
                                         label="Server Group 01 (Recommended)"
                                         {...a11yProps(0)} />
+
                                     {/* player two */}
-                                    <Tab
-                                        sx={{
-                                            color: 'white',
-                                            fontFamily: 'Rubik',
-                                            textTransform: 'capitalize',
-                                            fontWeight: 450,
-                                            textDecoration: 'none'
-                                        }}
+                                    <Tab sx={tabStyles}
                                         label="Server Group 02"
                                         {...a11yProps(1)} />
                                 </Tabs>
                             </Box>
+                            
                             {/* default - player */}
                             <CustomTabPanel value={value} index={0}>
                                 {movieId && (
-                                    <iframe
-                                        key={movieId}
-                                        allowFullScreen={true}
-                                        style={{
-                                            width: '100%',
-                                            aspectRatio: '16/9',
-                                            border: 'none',
-                                            borderRadius: 12,
-                                        }}
-                                        src={`https://vidfast.pro/movie/${movieId}?theme=a2ff00`}
-                                    />
+                                    <Player id={movieId} serverGroup="vidfast" />
                                 )}
                             </CustomTabPanel>
 
                             {/* player 02 */}
                             <CustomTabPanel value={value} index={1}>
                                 {movieId && (
-                                    <iframe
-                                        key={movieId}
-                                        allowFullScreen={true}
-                                        style={{
-                                            width: '100%',
-                                            aspectRatio: '16/9',
-                                            border: 'none',
-                                            borderRadius: 12,
-                                        }}
-                                        src={`https://vidsrc.xyz/embed/movie/${movieId}`}
-                                    />
+                                    <Player id={movieId} serverGroup="vidsrc" />
                                 )}
                             </CustomTabPanel>
                         </Box>
                     </Box>
-                    
+
                     {/* details */}
                     <Box sx={{
                         width: { xs: "100%", lg: "100%" },
