@@ -66,3 +66,32 @@ body {
 .MuiPopover-root .MuiList-root li:hover {
   background: rgb(40, 40, 40) !important;
 }
+
+/* movie/tv screen */
+.MuiTabs-flexContainer button {
+  padding: 0px !important;
+}
+
+.MuiTabs-flexContainer button:nth-of-type(2) {
+  margin-left: 20px;
+}
+
+.Mui-selected {
+  text-decoration: none !important;
+  color: #a2ff00 !important;
+  padding: 0px !important;
+}
+
+.MuiTabs-indicator {
+  background-color: #a2ff00 !important;
+}
+
+#simple-tabpanel-0 .MuiBox-root {
+  padding: 0px !important;
+  margin-top: 40px;
+}
+
+#simple-tabpanel-1 .MuiBox-root {
+  padding: 0px !important;
+  margin-top: 40px;
+}
