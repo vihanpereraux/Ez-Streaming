@@ -9,6 +9,7 @@ import Tab from '@mui/material/Tab';
 // components
 import MovieCarousel from "../components/MovieCarousel";
 import Player from "../components/Player";
+import MovieDetails from "../components/ContentDetails";
 
 // services
 import { getRelatedMovies } from "../services/Api";
@@ -139,7 +140,7 @@ const MovieScreen: React.FC = () => {
                                         {...a11yProps(1)} />
                                 </Tabs>
                             </Box>
-                            
+
                             {/* default - player */}
                             <CustomTabPanel value={value} index={0}>
                                 {movieId && (
@@ -160,35 +161,9 @@ const MovieScreen: React.FC = () => {
                     <Box sx={{
                         width: { xs: "100%", lg: "100%" },
                         pl: { xs: .5, lg: 0 },
-                        mt: { xs: 1.5, lg: 2 }
+                        mt: { xs: 1.5, lg: 3 }
                     }}>
-                        <Typography
-                            sx={{
-                                color: 'white',
-                                textAlign: 'left',
-                                fontSize: 25,
-                                fontFamily: 'Rubik',
-                                fontWeight: 450,
-                                mb: 1
-                            }}>{movieDetails.original_title}</Typography>
-
-                        {/* other details */}
-                        <span style={{
-                            color: 'white',
-                            fontSize: 16,
-                        }}>
-                            {movieDetails.release_date ? movieDetails.release_date.slice(0, 4) : '...'} &nbsp;&nbsp;
-                            &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
-
-                        <Typography
-                            sx={{
-                                fontFamily: 'Rubik',
-                                fontSize: 16,
-                                lineHeight: 1.6,
-                                fontWeight: 400,
-                                mt: 3,
-                                color: 'white'
-                            }}>{movieDetails.overview}</Typography>
+                        <MovieDetails props={movieDetails} />
                     </Box>
                 </Box>
 
