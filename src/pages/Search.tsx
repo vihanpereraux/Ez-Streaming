@@ -68,15 +68,15 @@ const Search: React.FC = () => {
                     </Typography>
 
                     <Box
-                        className="_search_field_wrapper"
                         sx={{
-                            display: 'flex',
+                            display: { xs: 'block', sm: 'flex' },
                             justifyContent: 'center',
                             marginTop: 5,
                             pl: { xs: 1, lg: 50 },
                             pr: { xs: 1, lg: 50 }
                         }}>
                         <input
+                            className="search_input"
                             onChange={handleUserInput}
                             value={value}
                             style={{
@@ -88,17 +88,18 @@ const Search: React.FC = () => {
                                 backgroundColor: 'rgb(20, 20, 20)',
                                 color: 'white',
                                 fontSize: 16
-                            }} placeholder="Type a name ..." type="text" />
+                            }} placeholder="Type to search for movies or TV shows..." type="text" />
 
                         {/* movies / tv selection */}
                         <Select
                             sx={{
                                 color: 'white',
                                 backgroundColor: 'rgb(20, 20, 20)',
-                                width: '15%',
+                                width: { xs: '100%', sm: '25%' },
                                 fontSize: 16,
                                 fontFamily: 'Rubik',
-                                ml: 1
+                                ml: { xs: 0, sm: 1 },
+                                mt: { xs: 1.5, sm: 0 }
                             }}
                             labelId="demo-simple-select-label"
                             id="search-type-select"
@@ -109,20 +110,25 @@ const Search: React.FC = () => {
                             <MenuItem value={"tv"}>TV</MenuItem>
                         </Select>
 
-                        <Button sx={{
-                            height: 57,
-                            borderRadius: 2,
-                            fontFamily: 'Rubik',
-                            textTransform: 'capitalize',
-                            fontWeight: 500,
-                            fontSize: 16,
-                            pl: 3,
-                            pr: 3,
-                            ml: 1.5,
-                            background: 'rgb(255, 255, 255)',
-                            color: "black"
-                        }}
+                        <Button
+                            className="search_button"
+                            sx={{
+                                width: { xs: '100%', sm: '20%' },
+                                height: 57,
+                                borderRadius: 2,
+                                fontFamily: 'Rubik',
+                                textTransform: 'capitalize',
+                                fontWeight: 450,
+                                fontSize: 16,
+                                pl: 3,
+                                pr: 3,
+                                ml: { xs: 0, sm: 1 },
+                                mt: { xs: 3, sm: 0 },
+                                background: '#a2ff00',
+                                color: "black"
+                            }}
                             variant="contained"
+                            disabled={value.length === 0}
                             onClick={getResults}>Search</Button>
                     </Box>
                 </Box>

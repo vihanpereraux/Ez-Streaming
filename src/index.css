@@ -76,7 +76,7 @@ body {
   margin-left: 20px;
 }
 
-.Mui-selected {
+.movie_screen .Mui-selected {
   text-decoration: none !important;
   color: #a2ff00 !important;
   padding: 0px !important;
@@ -94,4 +94,13 @@ body {
 #simple-tabpanel-1 .MuiBox-root {
   padding: 0px !important;
   margin-top: 40px;
+}
+
+/* search page */
+.search_input {
+  padding-left: 20px;
+}
+.search_button:disabled {
+  background-color: #223500 !important;
+  color: white !important;
 }
