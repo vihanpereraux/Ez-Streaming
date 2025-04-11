@@ -54,15 +54,19 @@ const TvScreen: React.FC = () => {
             setMovieDetails({});
             setRelatedContent([]);
         }
-    }, [tvId])
+    }, [tvId]);
 
+    // scrolls to the very top in the initial load
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [tvId]);
 
     return (
         <>
             <Box
                 key={tvId}
                 sx={{
-                    pt: 15,
+                    pt: 6,
                     pl: { xs: 2, lg: 6 },
                     pr: { xs: 2, lg: 6 }
                 }}>

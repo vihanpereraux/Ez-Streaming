@@ -116,7 +116,7 @@ const MovieScreen: React.FC = () => {
                 className="movie_screen"
                 key={movieId}
                 sx={{
-                    pt: 7,
+                    pt: 6,
                     pl: { xs: 2, lg: 6 },
                     pr: { xs: 2, lg: 6 }
                 }}>
