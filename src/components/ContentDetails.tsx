@@ -30,7 +30,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
             {/* other details */}
             <span style={{
                 color: 'white',
-                fontSize: 16
+                fontSize: 14
             }}>
                 {/* release date */}
                 {props.release_date ? props.release_date.slice(0, 4) : '...'} &nbsp;&nbsp;
@@ -45,7 +45,8 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
                     lineHeight: 1.6,
                     fontWeight: 400,
                     mt: 3,
-                    color: 'white'
+                    color: 'white',
+                    opacity: 0.85,
                 }}>{props.overview}</Typography>
         </>
     )
