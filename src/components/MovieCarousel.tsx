@@ -1,10 +1,10 @@
 import React from "react";
-import Carousel from "react-multi-carousel";
 
 // MUI
 import { Typography, Box } from "@mui/material";
 
 // components
+import Carousel from "react-multi-carousel";
 import CarosuelCard from "./CarouselCard";
 
 // stylesheet
@@ -15,14 +15,13 @@ import { multiCarouselConfig } from "../config/CarouselConfig";
 
 // props
 import { MoviesProps } from "../interfaces/props";
-
-interface MovieCarouselProps {
+interface props {
     title?: string
     content: MoviesProps[],
     type: string
 }
 
-const MovieCarousel: React.FC<MovieCarouselProps> = ({ content, title, type }) => {
+const MovieCarousel: React.FC<props> = ({ content, title, type }) => {
     return (
         <>
             {/* main title */}
