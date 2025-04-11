@@ -113,6 +113,7 @@ const MovieScreen: React.FC = () => {
     return (
         <>
             <Box
+                className="movie_screen"
                 key={movieId}
                 sx={{
                     pt: 7,
