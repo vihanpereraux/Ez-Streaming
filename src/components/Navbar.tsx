@@ -102,8 +102,11 @@ const Navbar: React.FC = (props: Props) => {
             {/* base nav */}
             <AppBar component="nav"
                 sx={{
-                    backgroundColor: 'rgb(10, 10, 10)',
-                    position: 'relative'
+                    backgroundColor: 'rgba(10, 10, 10, 0.65)',
+                    position: 'relative',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                    boxShadow: 'none'
                 }}>
                 <Toolbar>
                     <IconButton
