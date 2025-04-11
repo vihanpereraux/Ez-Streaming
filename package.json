@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.0.2",
     "@mui/material": "^6.4.4",
     "dotenv": "^16.4.7",
     "pure-react-carousel": "^1.32.0",

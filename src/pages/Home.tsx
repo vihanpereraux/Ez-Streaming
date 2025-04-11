@@ -70,7 +70,7 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <Box sx={{ pl: { xs: 2, lg: 6 }, pr: {xs: 2, lg: 6 }, pt: 6 }}>
+            <Box sx={{ pl: { xs: 2, lg: 6 }, pr: {xs: 2, lg: 6 }, pt: 0}}>
             {bannerContent ? (
                 < Box sx={{ mt: carouselSpacing }}>
                     <BannerCarosuel

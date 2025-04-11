@@ -71,7 +71,7 @@ const BannerCard: React.FC<BannerCardProps> = ({
                         }}>
                         TV Series &nbsp;⋅
                         &nbsp;{first_air_date.slice(0, 4)} &nbsp;⋅
-                        &nbsp;<FaStar style={{ color: 'orange' }} />
+                        &nbsp;<FaStar style={{ color: '#a2ff00' }} />
                         &nbsp;&nbsp;{Math.round(vote_average * 10) / 10}</Typography>
                 </div>
 
