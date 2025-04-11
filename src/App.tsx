@@ -20,11 +20,13 @@ import './App.css'
 function App() {
   return (
     <>
+      <div className="gradient-background"></div>
+
       <BrowserRouter>
         <Navbar />
 
         <Routes>
-          <Route path='/'  Component={Home}></Route>
+          <Route path='/' Component={Home}></Route>
           <Route path='/screen/movie' Component={MovieScreen}></Route>
           <Route path='/screen/tv' Component={TvScreen}></Route>
           <Route path='/search' Component={Search}></Route>
