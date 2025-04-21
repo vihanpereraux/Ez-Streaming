@@ -1,8 +1,10 @@
+import React from 'react'
 import {
   BrowserRouter,
   Routes,
   Route
 } from 'react-router-dom'
+import { Analytics } from "@vercel/analytics/react"
 
 // pages
 import Home from './pages/Home'
@@ -17,14 +19,13 @@ import Navbar from './components/Navbar'
 
 import './App.css'
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <div className="gradient-background"></div>
 
       <BrowserRouter>
         <Navbar />
-
         <Routes>
           <Route path='/' Component={Home}></Route>
           <Route path='/screen/movie' Component={MovieScreen}></Route>
@@ -34,6 +35,8 @@ function App() {
           <Route path='/games' Component={Games}></Route>
         </Routes>
       </BrowserRouter>
+
+      <Analytics />
     </>
   )
 }
