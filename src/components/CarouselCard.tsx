@@ -68,8 +68,8 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             className="_movie_title"
                             sx={{
                                 color: 'white',
-                                fontSize: { xs: '16px', lg: '16px' },
-                                fontWeight: 450,
+                                fontSize: { xs: '15px', md: 15, lg: '16px' },
+                                fontWeight: 400,
                                 fontFamily: 'Rubik',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
@@ -80,7 +80,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
 
                         <span style={{
                             color: 'white',
-                            fontSize: 14,
+                            fontSize: 13,
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8
@@ -91,7 +91,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
 
                         <span style={{
                             color: 'white',
-                            fontSize: 14,
+                            fontSize: 13,
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8,
