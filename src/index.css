@@ -65,9 +65,9 @@ body {
 }
 
 /* carousel card stylings */
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1080px) {
   ._movie_poster_container img {
-    height: 50vw !important;
+    height: 100% !important;
   }
 }
 
