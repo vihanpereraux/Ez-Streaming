@@ -4,7 +4,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom'
-import { Analytics } from "@vercel/analytics/react"
+// import { Analytics } from "@vercel/analytics/react"
 
 // pages
 import Home from './pages/Home'
@@ -36,7 +36,7 @@ const App: React.FC = () => {
         </Routes>
       </BrowserRouter>
 
-      <Analytics />
+      {/* <Analytics /> */}
     </>
   )
 }
