@@ -13,6 +13,7 @@ import {
 // components
 import SearchCard from "../components/SearchCard";
 import ValidationMessage from "../components/ValidationMessage";
+import Navbar from "../components/Navbar";
 
 // services
 import { getSearchResults } from "../services/Api";
@@ -52,6 +53,8 @@ const Search: React.FC = () => {
 
     return (
         <>
+            <Navbar />
+
             <Box sx={{ pt: 15, pl: { xs: 0, lg: 6 } }}>
                 <Box sx={{
                     background: 'none',

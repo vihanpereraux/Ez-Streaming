@@ -10,6 +10,7 @@ import { Box } from "@mui/material";
 import BannerCarosuel from "../components/BannerCarousel";
 import MovieCarousel from "../components/MovieCarousel";
 import LoadingPreview from "../components/LoadingPreview";
+import Navbar from "../components/Navbar";
 
 // services
 import {
@@ -70,77 +71,73 @@ const Home: React.FC = () => {
 
     return (
         <>
-            <Box sx={{ pl: { xs: 2, lg: 6 }, pr: {xs: 2, lg: 6 }, pt: 0}}>
-            {bannerContent ? (
-                < Box sx={{ mt: carouselSpacing }}>
-                    <BannerCarosuel
-                        type="tv"
-                        content={bannerContent} />
-                </Box>
-            ) : (<LoadingPreview />)}
+            <Navbar />
 
-            {/* carosuel - trending movies */}
-            <Box sx={{ mt: carouselSpacing }}>
-                {trendingMovies ? (
-                    <MovieCarousel
-                        type="movie"
-                        title="Newest Trending Movies"
-                        content={trendingMovies} />
-                ) : (<LoadingPreview />)}
-            </Box>
+            <Box sx={{ pl: { xs: 2, lg: 6 }, pr: { xs: 2, lg: 6 }, pt: 0 }}>
+                {bannerContent &&
+                    trendingMovies &&
+                    upcommingMovies &&
+                    crimeMovies &&
+                    thrillerMovies &&
+                    documentaryMovies &&
+                    topRatedMovies ? (
+                    <>
+                        {/* tv banner */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <BannerCarosuel
+                                type="tv"
+                                content={bannerContent} />
+                        </Box>
 
-            {/* carosuel - now streaming movies */}
-            <Box sx={{ mt: carouselSpacing }}>
-                {upcommingMovies ? (
-                    <MovieCarousel
-                        type="movie"
-                        title="Now Streaming Movies"
-                        content={upcommingMovies} />
-                ) : (<LoadingPreview />)}
+                        {/* carosuel - trending movies */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="movie"
+                                title="Newest Trending Movies"
+                                content={trendingMovies} />
+                        </Box>
 
-            </Box>
+                        {/* carosuel - now streaming movies */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="movie"
+                                title="Newest Trending Movies"
+                                content={upcommingMovies} />
+                        </Box>
 
-            {/* carosuel - top rated movies  */}
-            <Box sx={{ mt: carouselSpacing }}>
-                {crimeMovies ? (
-                    <MovieCarousel
-                        type="movie"
-                        title="Crime & Action Movies"
-                        content={crimeMovies} />
-                ) : (<LoadingPreview />)}
+                        {/* carosuel - top rated movies  */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="movie"
+                                title="Newest Trending Movies"
+                                content={crimeMovies} />
+                        </Box>
 
-            </Box>
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="movie"
+                                title="Newest Trending Movies"
+                                content={thrillerMovies} />
+                        </Box>
 
-            <Box sx={{ mt: carouselSpacing }}>
-                {thrillerMovies ? (
-                    <MovieCarousel
-                        type="movie"
-                        title="Thriller Movies"
-                        content={thrillerMovies} />
-                ) : (<LoadingPreview />)}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="movie"
+                                title="Newest Trending Movies"
+                                content={documentaryMovies} />
+                        </Box>
 
-            </Box>
-
-            <Box sx={{ mt: carouselSpacing }}>
-                {documentaryMovies ? (
-                    <MovieCarousel
-                        type="movie"
-                        title="Documentery Movies"
-                        content={documentaryMovies} />
-                ) : (<LoadingPreview />)}
-
-            </Box>
-
-            <Box sx={{ mt: carouselSpacing }}>
-                {topRatedMovies ? (
-                    <MovieCarousel
-                        type="movie"
-                        title="Top Rated Movies"
-                        content={topRatedMovies} />
-                ) : (<LoadingPreview />)}
-
-            </Box>
-        </Box >
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="movie"
+                                title="Newest Trending Movies"
+                                content={topRatedMovies} />
+                        </Box>
+                    </>
+                ) : (
+                    <LoadingPreview />
+                )}
+            </Box >
         </>
     )
 }

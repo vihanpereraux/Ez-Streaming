@@ -23,9 +23,7 @@ const App: React.FC = () => {
   return (
     <>
       <div className="gradient-background"></div>
-
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route path='/' Component={Home}></Route>
           <Route path='/screen/movie' Component={MovieScreen}></Route>
@@ -35,8 +33,6 @@ const App: React.FC = () => {
           <Route path='/games' Component={Games}></Route>
         </Routes>
       </BrowserRouter>
-
-      {/* <Analytics /> */}
     </>
   )
 }

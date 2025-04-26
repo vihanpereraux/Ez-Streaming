@@ -6,6 +6,7 @@ import { Box, Typography } from "@mui/material";
 
 // components
 import MovieCarousel from "../components/MovieCarousel";
+import Navbar from "../components/Navbar";
 
 // services
 import { getRelatedTVShows } from "../services/Api";
@@ -63,6 +64,8 @@ const TvScreen: React.FC = () => {
 
     return (
         <>
+            <Navbar />
+
             <Box
                 key={tvId}
                 sx={{
