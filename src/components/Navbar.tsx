@@ -14,7 +14,6 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 
 // props
@@ -80,8 +79,13 @@ const Navbar: React.FC = (props: Props) => {
                 {navItems.map((item, index) => (
                     <ListItem key={index} disablePadding>
                         <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item.navItem}
-                                onClick={() => { navigateToPages(item.path) }} />
+                            <Button key={index}
+                                sx={navButtonStylings}
+                                onClick={() => { navigateToPages(item.path) }} color="inherit">
+                                <span style={{
+                                    color: location.pathname == item.path ? "#a2ff00" : "white"
+                                }}>{item.navItem}</span>
+                            </Button>
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -133,7 +137,6 @@ const Navbar: React.FC = (props: Props) => {
                                 left: '50%'
                             }} src="/logo.png" alt="Ez-Streaming-Logo" />
                         </Box>
-                        <IconButton />
                     </IconButton>
                     {/* base nav -logo */}
                     <Typography
@@ -153,7 +156,9 @@ const Navbar: React.FC = (props: Props) => {
                             <Button key={index}
                                 sx={navButtonStylings}
                                 onClick={() => { navigateToPages(item.path) }} color="inherit">
-                                {item.navItem}
+                                <span style={{
+                                    color: location.pathname == item.path ? "#a2ff00" : "white"
+                                }}>{item.navItem}</span>
                             </Button>
                         ))}
                     </Box>
