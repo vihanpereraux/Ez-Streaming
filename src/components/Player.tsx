@@ -21,19 +21,34 @@ const Player: React.FC<PlayerProps> = ({ id, serverGroup }) => {
                     }}
                     src={`https://vidfast.pro/movie/${id}?theme=a2ff00`}
                 />
-            ) : (
-                <iframe
-                    key={id}
-                    allowFullScreen={true}
-                    style={{
-                        width: '100%',
-                        aspectRatio: '16/9',
-                        border: 'none',
-                        borderRadius: 12,
-                    }}
-                    src={`https://vidsrc.xyz/embed/movie/${id}`}
-                />
-            )}
+            ) :
+                serverGroup === 'vidsrc' ? (
+                    (
+                        <iframe
+                            key={id}
+                            allowFullScreen={true}
+                            style={{
+                                width: '100%',
+                                aspectRatio: '16/9',
+                                border: 'none',
+                                borderRadius: 12,
+                            }}
+                            src={`https://vidsrc.xyz/embed/movie/${id}`}
+                        />
+                    )
+                ) : (
+                    <iframe
+                        key={id}
+                        allowFullScreen={true}
+                        style={{
+                            width: '100%',
+                            aspectRatio: '16/9',
+                            border: 'none',
+                            borderRadius: 12,
+                        }}
+                        src={`https://multiembed.mov/?video_id=${id}&tmdb=1`}
+                    />
+                )}
 
         </>
     )

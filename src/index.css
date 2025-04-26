@@ -110,6 +110,10 @@ body {
   margin-left: 20px;
 }
 
+.MuiTabs-flexContainer button:nth-of-type(3) {
+  margin-left: 20px;
+}
+
 .movie_screen .Mui-selected {
   text-decoration: none !important;
   color: #a2ff00 !important;

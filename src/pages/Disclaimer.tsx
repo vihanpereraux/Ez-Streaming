@@ -1,5 +1,7 @@
 import React from "react";
 
+import Navbar from "../components/Navbar";
+
 // MUI
 import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
@@ -7,6 +9,8 @@ import { Typography } from "@mui/material";
 const Disclaimer: React.FC = () => {
     return (
         <>
+            <Navbar />
+
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',

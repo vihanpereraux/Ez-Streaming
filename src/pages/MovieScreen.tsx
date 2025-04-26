@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 // MUI
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
@@ -10,6 +10,7 @@ import Tab from '@mui/material/Tab';
 import MovieCarousel from "../components/MovieCarousel";
 import Player from "../components/Player";
 import MovieDetails from "../components/ContentDetails";
+import Navbar from "../components/Navbar";
 
 // services
 import { getRelatedMovies } from "../services/Api";
@@ -60,6 +61,7 @@ const MovieScreen: React.FC = () => {
     const location = useLocation();
     const movieId = new URLSearchParams(location.search).get("id");
     const [value, setValue] = React.useState(0);
+    const [lightsOffClicked, setLightsOffClicked] = useState<boolean>(false);
 
     const handleChange = (e: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -96,6 +98,16 @@ const MovieScreen: React.FC = () => {
         }
     };
 
+    // manage lights
+    const manageLights = () => {
+        if (lightsOffClicked) {
+            setLightsOffClicked(false);
+        }
+        else {
+            setLightsOffClicked(true);
+        }
+    }
+
     useEffect(() => {
         getMovieDetails();
 
@@ -105,13 +117,17 @@ const MovieScreen: React.FC = () => {
         };
     }, [movieId]);
 
-    // scrolls to the very top in the initial load
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [movieId]);
 
     return (
         <>
+            {!lightsOffClicked ?
+                (<Navbar />)
+                :
+                (<div style={{ opacity: 0, pointerEvents: 'none' }}><Navbar /></div>)}
+
             <Box
                 className="movie_screen"
                 key={movieId}
@@ -120,29 +136,55 @@ const MovieScreen: React.FC = () => {
                     pl: { xs: 2, lg: 6 },
                     pr: { xs: 2, lg: 6 }
                 }}>
-                <Box sx={{
-                    display: { xs: "block", lg: "block" }
-                }}>
+                <Box sx={{ display: { xs: "block", lg: "block" } }}>
                     {/* player */}
-                    <Box sx={{
-                        width: { xs: "100%", lg: "100%" }
-                    }}>
+                    <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
                         <Box sx={{ width: '100%' }}>
-                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                                    {/* default - player */}
+                            <Box sx={{
+                                borderBottom: 1,
+                                borderColor: 'divider',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                mb: '-12px'
+                            }}>
+                                <Tabs
+                                    sx={{
+                                        opacity: !lightsOffClicked ? 1 : 0,
+                                        pointerEvents: !lightsOffClicked ? "auto" : "none"
+                                    }}
+                                    value={value}
+                                    onChange={handleChange}
+                                    aria-label="basic tabs example">
+                                    {/* default server group */}
                                     <Tab sx={tabStyles}
-                                        label="Server Group 01 (Recommended)"
+                                        label="Server Group 01"
                                         {...a11yProps(0)} />
 
-                                    {/* player two */}
+                                    {/* server group two */}
                                     <Tab sx={tabStyles}
                                         label="Server Group 02"
                                         {...a11yProps(1)} />
+
+                                    {/* server group two */}
+                                    <Tab sx={tabStyles}
+                                        label="Server Group 03"
+                                        {...a11yProps(2)} />
                                 </Tabs>
+
+                                <Button sx={{
+                                    display: { xs: 'none', md: 'block' },
+                                    color: '#a2ff00',
+                                    fontFamily: 'Rubik',
+                                    fontSize: 14,
+                                    textTransform: 'capitalize',
+                                    backgroundColor: 'balck',
+                                    borderRadius: 2
+                                }}
+                                    onClick={manageLights}
+                                >{lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}</Button>
                             </Box>
 
-                            {/* default - player */}
+                            {/* player 01 - default */}
                             <CustomTabPanel value={value} index={0}>
                                 {movieId && (
                                     <Player id={movieId} serverGroup="vidfast" />
@@ -155,21 +197,28 @@ const MovieScreen: React.FC = () => {
                                     <Player id={movieId} serverGroup="vidsrc" />
                                 )}
                             </CustomTabPanel>
+
+                            {/* player 03 */}
+                            <CustomTabPanel value={value} index={2}>
+                                {movieId && (
+                                    <Player id={movieId} serverGroup="superEmbed" />
+                                )}
+                            </CustomTabPanel>
                         </Box>
                     </Box>
 
                     {/* details */}
-                    <Box sx={{
+                    {!lightsOffClicked && <Box sx={{
                         width: { xs: "100%", lg: "100%" },
                         pl: { xs: .5, lg: 0 },
                         mt: { xs: 1.5, lg: 3 }
                     }}>
                         <MovieDetails props={movieDetails} />
-                    </Box>
+                    </Box>}
                 </Box>
 
                 {/* related content */}
-                <Box sx={{ mt: 12 }}>
+                {!lightsOffClicked && <Box sx={{ mt: 12 }}>
                     {relatedContent.length > 0 ? (
                         <MovieCarousel
                             type="movie"
@@ -186,7 +235,7 @@ const MovieScreen: React.FC = () => {
                             }}>
                             No related movies found &nbsp; : (</Typography>
                     )}
-                </Box>
+                </Box>}
             </Box>
         </>
     );
