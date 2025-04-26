@@ -14,11 +14,6 @@ import Search from './pages/Search'
 import Disclaimer from './pages/Disclaimer'
 import Games from './pages/Games'
 
-// components
-import Navbar from './components/Navbar'
-
-import './App.css'
-
 const App: React.FC = () => {
   return (
     <>
