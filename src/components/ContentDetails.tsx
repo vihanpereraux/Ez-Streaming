@@ -24,7 +24,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
                     fontSize: 25,
                     fontFamily: 'Rubik',
                     fontWeight: 450,
-                    mb: 1
+                    mb: .8
                 }}>{props.original_title}</Typography>
 
             {/* other details */}

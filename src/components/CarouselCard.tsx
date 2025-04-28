@@ -68,13 +68,13 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             className="_movie_title"
                             sx={{
                                 color: 'white',
-                                fontSize: { xs: '15px', md: 15, lg: '16px' },
+                                fontSize: { xs: 14, md: 14, lg: 15 },
                                 fontWeight: 400,
                                 fontFamily: 'Rubik',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
-                                mb: .7,
+                                mb: .5,
                                 maxWidth: '90%'
                             }}>{type === "movie" ? title : original_name}</Typography>
 
@@ -95,7 +95,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8,
-                            marginLeft: 20
+                            marginLeft: 15
                         }}>
                             <FaStar style={{ color: '#a2ff00' }} />  {Math.round(vote_average * 10) / 10}</span>
                     </Box>

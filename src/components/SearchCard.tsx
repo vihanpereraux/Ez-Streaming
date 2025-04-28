@@ -15,35 +15,21 @@ const SearchCard: React.FC<SearchCardProps>
     = ({ id,
         poster_path,
         title,
-        original_name,
         release_date,
         first_air_date,
         vote_average,
-        overview,
         type }) => {
         const navigate = useNavigate();
 
         const navigateToScreen = () => {
             if (type === "movie") {
-                const data = {
-                    id: id.toString(),
-                    title: title,
-                    overview: overview,
-                    release_date: release_date,
-                    vote_average: vote_average.toString(),
-                };
+                const data = { id: id.toString() };
                 const queryString = new URLSearchParams(data).toString();
                 // send user
                 navigate(`/screen/movie?${queryString}`);
             }
             else {
-                const data = {
-                    id: id.toString(),
-                    title: original_name,
-                    overview: overview,
-                    first_air_date: first_air_date,
-                    vote_average: vote_average.toString(),
-                };
+                const data = { id: id.toString() };
                 const queryString = new URLSearchParams(data).toString();
                 // send user
                 navigate(`/screen/tv?${queryString}`);

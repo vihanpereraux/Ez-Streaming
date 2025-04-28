@@ -27,10 +27,10 @@ const MovieCarousel: React.FC<props> = ({ content, title, type }) => {
             {/* main title */}
             <Typography
                 sx={{
-                    fontWeight: 400,
+                    fontWeight: 450,
                     fontFamily: 'Rubik',
                     color: 'white',
-                    fontSize: { xs: '18px', lg: '20px' },
+                    fontSize: { xs: '18px', lg: '18px' },
                 }}>
                 {title}</Typography>
 
