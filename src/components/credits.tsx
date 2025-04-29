@@ -26,7 +26,6 @@ const Credits: React.FC<props> = ({ castDetails }) => {
                     {[...castDetails].reverse().map((cast, index) => (
                         <Box key={index}
                             sx={{
-                                // border: '1px solid red',
                                 width: '95%',
                                 textAlign: 'center'
                             }}>

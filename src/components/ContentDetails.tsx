@@ -21,7 +21,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
                 sx={{
                     color: 'white',
                     textAlign: 'left',
-                    fontSize: 25,
+                    fontSize: 22,
                     fontFamily: 'Rubik',
                     fontWeight: 450,
                     mb: .8

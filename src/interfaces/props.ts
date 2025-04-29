@@ -66,3 +66,8 @@ export interface ReviewDataProps {
     date: string
 }
 
+export interface SeasonProps {
+    season: number,
+    numOfEpisodes: number
+}
+

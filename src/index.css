@@ -9,6 +9,7 @@ body {
   min-height: 100vh;
   background-color: black !important;
   overflow-x: hidden !important;
+  position: relative;
 }
 
 .gradient-background {

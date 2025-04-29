@@ -55,7 +55,7 @@ const Search: React.FC = () => {
         <>
             <Navbar />
 
-            <Box sx={{ pt: 15, pl: { xs: 0, lg: 6 } }}>
+            <Box sx={{ pt: 8, pl: { xs: 0, lg: 6 } }}>
                 <Box sx={{
                     background: 'none',
                     mt: 2
@@ -168,6 +168,8 @@ const Search: React.FC = () => {
                         </div>)}
                 </Box>
             </Box>
+
+            <Box sx={{ mb: 15 }}></Box>
         </>
     )
 }

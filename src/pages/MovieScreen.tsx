@@ -68,7 +68,7 @@ const MovieScreen: React.FC = () => {
     const [castDetails, setCastDetails] = useState<any[]>([]);
     const [reviews, setReviews] = useState<ReviewDataProps[]>([]);
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const location = useLocation();
     const movieId = new URLSearchParams(location.search).get("id");
 
@@ -176,8 +176,10 @@ const MovieScreen: React.FC = () => {
                     pl: { xs: 2, lg: 6 },
                     pr: { xs: 2, lg: 6 }
                 }}>
+                {/* tabs and players */}
                 <Box sx={{ display: { xs: "block", lg: "block" } }}>
                     <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
+                        {/* tabs */}
                         <Box sx={{
                             borderBottom: 1,
                             borderColor: 'divider',
@@ -185,7 +187,6 @@ const MovieScreen: React.FC = () => {
                             justifyContent: 'space-between',
                             mb: '-12px'
                         }}>
-                            {/* tabs */}
                             <Tabs
                                 sx={{
                                     opacity: !lightsOffClicked ? 1 : 0,
@@ -247,24 +248,29 @@ const MovieScreen: React.FC = () => {
                 </Box>)}
 
                 {/* related content */}
-                {!lightsOffClicked && <Box sx={{ mt: 8 }}>
+                {!lightsOffClicked ? (<Box sx={{ mt: 8, mb: 15 }}>
                     {relatedContent.length > 0 ? (
                         <MovieCarousel
                             type="movie"
                             title="Movies You May Love : )"
                             content={relatedContent} />
                     ) : (
-                        <Typography
-                            sx={{
-                                fontWeight: 450,
-                                fontFamily: 'Rubik',
-                                color: 'white',
-                                fontSize: { xs: '18px', lg: '20px' },
-                                mt: 8
-                            }}>
-                            No related movies found &nbsp; : (</Typography>
+                        <>
+                            <Typography
+                                sx={{
+                                    fontWeight: 450,
+                                    fontFamily: 'Rubik',
+                                    color: 'white',
+                                    fontSize: { xs: '18px', lg: '20px' },
+                                    mt: 8
+                                }}>
+                                No related movies found &nbsp; : (</Typography>
+                            <Box sx={{ mb: 15 }}></Box>
+                        </>
                     )}
-                </Box>}
+                </Box>) : (
+                    <Box sx={{ mb: 15 }}></Box>
+                )}
             </Box>
         </>
     );

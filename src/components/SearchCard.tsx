@@ -54,10 +54,10 @@ const SearchCard: React.FC<SearchCardProps>
                                 width: '100%',
                                 borderRadius: 15,
                                 objectFit: 'cover',
-                                height: '24vw',
+                                height: '26vw',
                                 cursor: 'pointer'
                             }}
-                            src={poster_path} alt="" />
+                            src={poster_path} alt={title} />
                     </div>
 
                     {/* movie title */}

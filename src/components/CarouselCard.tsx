@@ -27,13 +27,11 @@ const CarosuelCard: React.FC<CarosuelCardProps>
             if (type === "movie") {
                 const data = { id: id.toString() };
                 const queryString = new URLSearchParams(data).toString();
-                // send user
                 navigate(`/screen/movie?${queryString}`);
             }
             else {
                 const data = { id: id.toString() };
                 const queryString = new URLSearchParams(data).toString();
-                // send user
                 navigate(`/screen/tv?${queryString}`);
             }
         }
@@ -59,7 +57,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                                 height: '24vw',
                                 cursor: 'pointer'
                             }}
-                            src={poster_path} alt="" />
+                            src={poster_path} alt={title} />
                     </div>
 
                     {/* movie title */}

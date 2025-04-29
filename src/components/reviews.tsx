@@ -19,7 +19,7 @@ const Reviews: React.FC<props> = ({ reviews }) => {
         <>
             <div>
                 <Accordion
-                    defaultExpanded
+                    defaultExpanded = {false}
                     sx={{
                         background: 'rgba(0, 0, 0, 0)',
                         color: 'white',
@@ -34,7 +34,7 @@ const Reviews: React.FC<props> = ({ reviews }) => {
                             fontFamily: 'Rubik',
                             color: 'white',
                             fontSize: { xs: '16px', lg: '18px' },
-                        }} component="span">Reviews & Discussions ({reviews.length.toString()})</Typography>
+                        }} component="span">Reviews & Discussions &nbsp; <span style={{ opacity: .7, fontSize : 15 }}>({reviews.length.toString()} Reviews)</span></Typography>
                     </AccordionSummary>
 
                     <AccordionDetails sx={{
