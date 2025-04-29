@@ -1,18 +1,22 @@
 import React from "react";
 
+import { Typography } from "@mui/material";
+
 const FooterDisclaimer: React.FC = () => {
-    return(
+    return (
         <>
-            <p style={{ 
+            <Typography sx={{
                 color: 'white',
                 textAlign: 'center',
-                paddingLeft: 10,
-                paddingRight: 10,
-                fontSize: 13,
-                marginTop: '100px',
+                pl: 18,
+                pr: 18,
+                pb: 2,
+                fontSize: 12,
                 fontFamily: 'Rubik',
-                opacity: .6
-             }}>Ez-Streaming @ {new Date().getFullYear()} · All media content available through this application is sourced from publicly available internet streams. We do not own, host, or distribute any of the content. All content remains the property of their respective owners.</p>
+                opacity: .6,
+                position: 'absolute',
+                bottom: 0
+            }}>Ez-Streaming @ {new Date().getFullYear()}<br />All media content available through this application is sourced from publicly available internet streams. We do not own, host, or distribute any of the content. All content remains the property of their respective owners.</Typography>
         </>
     )
 }

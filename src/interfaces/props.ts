@@ -60,3 +60,14 @@ export interface ScreenNavigationProps {
     first_air_date: string
 }
 
+export interface ReviewDataProps {
+    authorUsername: string,
+    review: string,
+    date: string
+}
+
+export interface SeasonProps {
+    season: number,
+    numOfEpisodes: number
+}
+

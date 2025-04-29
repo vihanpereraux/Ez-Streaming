@@ -36,3 +36,45 @@ export const multiCarouselConfig = {
         items: 1
     }
 };
+
+
+// cast carousel config
+export const castCarouselConfig = {
+    superLargeDesktop: {
+        breakpoint: { max: 4000, min: 3000 },
+        items: 10
+    },
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 9
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 600 },
+        items: 7
+    },
+    mobile: {
+        breakpoint: { max: 600, min: 0 },
+        items: 4
+    }
+};
+
+
+// tv episode config
+export const tvEpisodeCarouselConfig = {
+    superLargeDesktop: {
+        breakpoint: { max: 4000, min: 3000 },
+        items: 15
+    },
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 10
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 600 },
+        items: 6
+    },
+    mobile: {
+        breakpoint: { max: 600, min: 0 },
+        items: 2
+    }
+};

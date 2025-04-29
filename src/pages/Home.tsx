@@ -72,7 +72,6 @@ const Home: React.FC = () => {
     return (
         <>
             <Navbar />
-
             <Box sx={{ pl: { xs: 2, lg: 6 }, pr: { xs: 2, lg: 6 }, pt: 0 }}>
                 {bannerContent &&
                     trendingMovies &&
@@ -138,6 +137,7 @@ const Home: React.FC = () => {
                     <LoadingPreview />
                 )}
             </Box >
+            <Box sx={{ mb: 15 }}></Box>
         </>
     )
 }

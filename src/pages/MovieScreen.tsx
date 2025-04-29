@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "react-multi-carousel/lib/styles.css";
 
 // MUI
 import { Box, Typography, Button } from "@mui/material";
@@ -11,6 +13,8 @@ import MovieCarousel from "../components/MovieCarousel";
 import Player from "../components/Player";
 import MovieDetails from "../components/ContentDetails";
 import Navbar from "../components/Navbar";
+import Credits from "../components/credits";
+import Reviews from "../components/reviews";
 
 // services
 import { getRelatedMovies } from "../services/Api";
@@ -22,6 +26,7 @@ interface TabPanelProps {
     index: number;
     value: number;
 }
+import { ReviewDataProps } from "../interfaces/props";
 
 // stylesheet
 const tabStyles = {
@@ -58,10 +63,14 @@ function a11yProps(index: number) {
 const MovieScreen: React.FC = () => {
     const [movieDetails, setMovieDetails] = useState<any>({});
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([]);
+    const [lightsOffClicked, setLightsOffClicked] = useState<boolean>(false);
+    const [value, setValue] = React.useState(0);
+    const [castDetails, setCastDetails] = useState<any[]>([]);
+    const [reviews, setReviews] = useState<ReviewDataProps[]>([]);
+
+    const navigate = useNavigate();
     const location = useLocation();
     const movieId = new URLSearchParams(location.search).get("id");
-    const [value, setValue] = React.useState(0);
-    const [lightsOffClicked, setLightsOffClicked] = useState<boolean>(false);
 
     const handleChange = (e: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -70,11 +79,13 @@ const MovieScreen: React.FC = () => {
 
     // get movie details
     const getMovieDetails = async () => {
-        if (!movieId) return;
+        if (!movieId) navigate('/');
 
         // clean states
         setMovieDetails({});
+        setCastDetails([]);
         setRelatedContent([]);
+        setReviews([]);
 
         try {
             const response = await fetch(
@@ -82,11 +93,38 @@ const MovieScreen: React.FC = () => {
             );
             const data = await response.json();
             setMovieDetails(data);
+            await getCastDetails();
             await getRelatedContent();
+            await getReviews();
         } catch (error) {
             console.error("Error fetching movie details:", error);
         }
     };
+
+    // cast details
+    const getCastDetails = async () => {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
+        const data = await response.json();
+        const castArr: any[] = data.cast;
+        setCastDetails([...castArr]);
+    }
+
+    // reviews
+    const getReviews = async () => {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
+        const data = await response.json();
+        const reviewData: any[] = data.results;
+
+        const reviewsSnapshot: ReviewDataProps[] = []
+        reviewData.map((detail: any) => {
+            reviewsSnapshot.push({
+                authorUsername: detail.author,
+                review: detail.content,
+                date: detail.created_at
+            })
+        })
+        setReviews([...reviewsSnapshot]);
+    }
 
     // get related movies
     const getRelatedContent = async () => {
@@ -114,6 +152,8 @@ const MovieScreen: React.FC = () => {
         return () => {
             setMovieDetails({});
             setRelatedContent([]);
+            setCastDetails([]);
+            setReviews([]);
         };
     }, [movieId]);
 
@@ -136,106 +176,101 @@ const MovieScreen: React.FC = () => {
                     pl: { xs: 2, lg: 6 },
                     pr: { xs: 2, lg: 6 }
                 }}>
+                {/* tabs and players */}
                 <Box sx={{ display: { xs: "block", lg: "block" } }}>
-                    {/* player */}
                     <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
-                        <Box sx={{ width: '100%' }}>
-                            <Box sx={{
-                                borderBottom: 1,
-                                borderColor: 'divider',
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                mb: '-12px'
-                            }}>
-                                <Tabs
-                                    sx={{
-                                        opacity: !lightsOffClicked ? 1 : 0,
-                                        pointerEvents: !lightsOffClicked ? "auto" : "none"
-                                    }}
-                                    value={value}
-                                    onChange={handleChange}
-                                    aria-label="basic tabs example">
-                                    {/* default server group */}
-                                    <Tab sx={tabStyles}
-                                        label="Server Group 01"
-                                        {...a11yProps(0)} />
-
-                                    {/* server group two */}
-                                    <Tab sx={tabStyles}
-                                        label="Server Group 02"
-                                        {...a11yProps(1)} />
-
-                                    {/* server group two */}
-                                    <Tab sx={tabStyles}
-                                        label="Server Group 03"
-                                        {...a11yProps(2)} />
-                                </Tabs>
-
-                                <Button sx={{
-                                    display: { xs: 'none', md: 'block' },
-                                    color: '#a2ff00',
-                                    fontFamily: 'Rubik',
-                                    fontSize: 14,
-                                    textTransform: 'capitalize',
-                                    backgroundColor: 'balck',
-                                    borderRadius: 2
+                        {/* tabs */}
+                        <Box sx={{
+                            borderBottom: 1,
+                            borderColor: 'divider',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            mb: '-12px'
+                        }}>
+                            <Tabs
+                                sx={{
+                                    opacity: !lightsOffClicked ? 1 : 0,
+                                    pointerEvents: !lightsOffClicked ? "auto" : "none"
                                 }}
-                                    onClick={manageLights}
-                                >{lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}</Button>
-                            </Box>
+                                value={value}
+                                onChange={handleChange}
+                                aria-label="basic tabs example">
+                                {/* default server group */}
+                                {['Server Group 01', 'Server Group 02', 'Server Group 03'].map((label, index) => (
+                                    <Tab sx={tabStyles}
+                                        label={label}
+                                        {...a11yProps(index)} />
+                                ))}
+                            </Tabs>
 
-                            {/* player 01 - default */}
-                            <CustomTabPanel value={value} index={0}>
-                                {movieId && (
-                                    <Player id={movieId} serverGroup="vidfast" />
-                                )}
-                            </CustomTabPanel>
-
-                            {/* player 02 */}
-                            <CustomTabPanel value={value} index={1}>
-                                {movieId && (
-                                    <Player id={movieId} serverGroup="vidsrc" />
-                                )}
-                            </CustomTabPanel>
-
-                            {/* player 03 */}
-                            <CustomTabPanel value={value} index={2}>
-                                {movieId && (
-                                    <Player id={movieId} serverGroup="superEmbed" />
-                                )}
-                            </CustomTabPanel>
+                            {/* toggle */}
+                            <Button sx={{
+                                display: { xs: 'none', md: 'block' },
+                                color: '#a2ff00',
+                                fontFamily: 'Rubik',
+                                fontSize: 14,
+                                textTransform: 'capitalize',
+                                backgroundColor: 'balck',
+                                borderRadius: 2
+                            }}
+                                onClick={manageLights}
+                            >{lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}</Button>
                         </Box>
+
+                        {/* players */}
+                        {['vidfast', 'vidsrc', 'superEmbed'].map((provider, index) => (
+                            <CustomTabPanel value={value} index={index} key={index}>
+                                {movieId && (
+                                    <Player id={movieId} serverGroup={provider} />
+                                )}
+                            </CustomTabPanel>
+                        ))}
                     </Box>
 
                     {/* details */}
                     {!lightsOffClicked && <Box sx={{
                         width: { xs: "100%", lg: "100%" },
                         pl: { xs: .5, lg: 0 },
-                        mt: { xs: 1.5, lg: 3 }
+                        mt: { xs: 1.5, lg: 3 },
                     }}>
                         <MovieDetails props={movieDetails} />
                     </Box>}
                 </Box>
 
+                {/* cast info */}
+                {!lightsOffClicked && <Box sx={{ mt: 6 }}>
+                    <Credits castDetails={castDetails} />
+                </Box>}
+
+                {/* reviews */}
+                {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
+                    <Reviews reviews={reviews} />
+                </Box>)}
+
                 {/* related content */}
-                {!lightsOffClicked && <Box sx={{ mt: 12 }}>
+                {!lightsOffClicked ? (<Box sx={{ mt: 8, mb: 15 }}>
                     {relatedContent.length > 0 ? (
                         <MovieCarousel
                             type="movie"
                             title="Movies You May Love : )"
                             content={relatedContent} />
                     ) : (
-                        <Typography
-                            sx={{
-                                fontWeight: 450,
-                                fontFamily: 'Rubik',
-                                color: 'white',
-                                fontSize: { xs: '18px', lg: '20px' },
-                                mt: 8
-                            }}>
-                            No related movies found &nbsp; : (</Typography>
+                        <>
+                            <Typography
+                                sx={{
+                                    fontWeight: 450,
+                                    fontFamily: 'Rubik',
+                                    color: 'white',
+                                    fontSize: { xs: '18px', lg: '20px' },
+                                    mt: 8
+                                }}>
+                                No related movies found &nbsp; : (</Typography>
+                            <Box sx={{ mb: 15 }}></Box>
+                        </>
                     )}
-                </Box>}
+                </Box>) : (
+                    <Box sx={{ mb: 15 }}></Box>
+                )}
             </Box>
         </>
     );
