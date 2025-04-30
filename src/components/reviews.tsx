@@ -89,12 +89,12 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                                 />
                             </Box>
                         )) : (
-                            <Typography sx={{ 
+                            <Typography sx={{
                                 fontSize: 14,
                                 fontFamily: 'Rubik',
                                 color: 'white',
                                 opacity: .75
-                             }}>No reviews available</Typography>
+                            }}>No reviews available</Typography>
                         )}
                     </AccordionDetails>
                 </Accordion>

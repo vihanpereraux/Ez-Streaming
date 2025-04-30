@@ -23,7 +23,7 @@ const Videos: React.FC<props> = ({ videokeys }) => {
 
             <Box sx={{ mt: 2 }}>
                 <Carousel responsive={videoListConfig}>
-                    {videokeys.map((key, index) => (
+                    {videokeys.length > 0 ? videokeys.map((key, index) => (
                         <iframe
                             style={{
                                 border: 'none',
@@ -38,7 +38,19 @@ const Videos: React.FC<props> = ({ videokeys }) => {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen
                         ></iframe>
-                    ))}
+                    )) : (
+                        <Typography sx={{
+                            fontSize: 14,
+                            fontFamily: 'Rubik',
+                            color: 'white',
+                            opacity: .75,
+                            pl: 2
+                        }}>No trailers and clips available</Typography>
+                    )}
+
+                    {/* 
+                    
+                    */}
                 </Carousel>
             </Box>
         </>
