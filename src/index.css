@@ -144,3 +144,9 @@ body {
   background-color: #223500 !important;
   color: white !important;
 }
+
+/* games page */
+.game:hover {
+  border: 2px solid #a2ff00 !important;
+  transition: all .15s linear;
+}
