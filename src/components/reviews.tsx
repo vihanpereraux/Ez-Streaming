@@ -74,7 +74,7 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                                 {/* review */}
                                 <Typography
                                     sx={{
-                                        fontSize: 16,
+                                        fontSize: 15,
                                         fontFamilly: 'Rubik',
                                         fontWeight: 450,
                                         lineHeight: 1.7,

@@ -82,6 +82,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                     Array.from({ length: detail.numOfEpisodes }, (_, index) => (
                                         <Box key={index}
                                             sx={{
+                                                cursor: 'pointer',
                                                 textAlign: 'center',
                                                 color: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ?
                                                     "rgb(162, 255, 0)"
@@ -97,7 +98,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                 width: '90%',
                                                 borderRadius: 2,
                                                 border: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ?
-                                                    "2px solid rgba(162, 255, 0, 1)"
+                                                    "2px solid rgba(162, 255, 0, .35)"
                                                     :
                                                     "1px solid rgba(162, 255, 0, 0)",
                                             }}
@@ -126,7 +127,8 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                 fontSize: 13,
                                                 mt: .3,
                                                 fontFamily: 'Rubik',
-                                                opacity: .6
+                                                opacity: .6,
+                                                color: "white"
                                             }}>{detail.names[index] === `Episode ${index + 1}` ? `Not availabe` : detail.names[index]}</Typography>
                                         </Box>
                                     ))

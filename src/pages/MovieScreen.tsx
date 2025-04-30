@@ -18,7 +18,11 @@ import Reviews from "../components/reviews";
 import Videos from "../components/videos";
 
 // services
+import { getGeneralDetails } from "../services/general-details";
 import { getRelatedMovies } from "../services/Api";
+import { getReviewDetails } from "../services/review-details";
+import { getCastDetails } from "../services/cast-details";
+import { getVideos } from "../services/vidoes";
 
 // props
 import { MoviesProps } from "../interfaces/props";
@@ -80,7 +84,7 @@ const MovieScreen: React.FC = () => {
     };
 
     // get movie details
-    const getMovieDetails = async () => {
+    const getDetails = async () => {
         if (!movieId) navigate('/');
 
         // clean states
@@ -90,48 +94,47 @@ const MovieScreen: React.FC = () => {
         setReviews([]);
         setVideoKeys([]);
 
-        try {
-            const response = await fetch(
-                `https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`
-            );
-            const data = await response.json();
-            setMovieDetails(data);
-            await getCastDetails();
+        const response = await getGeneralDetails(movieId as string, "movie");
+        if (response.status == 200) {
+            console.log(response.data)
+            setMovieDetails({ ...response.data });
+            await getCast();
             await getRelatedContent();
             await getReviews();
-            await getVideos();
-        } catch (error) {
-            console.error("Error fetching movie details:", error);
+            await getClips();
+        }
+        else {
+            console.error(`Error occured - ${response.data}`);
         }
     };
 
     // cast details
-    const getCastDetails = async () => {
-        try {
-            const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
-            const data = await response.json();
-            const castArr: any[] = data.cast;
-            setCastDetails([...castArr]);
-        } catch (error) {
-            console.error(`Error - ${error}`);
+    const getCast = async () => {
+        const response = await getCastDetails(movieId as string, "movie");
+        if (response.status == 200) {
+            setCastDetails(response.data as any[]);
+        } else {
+            console.error(`Error occured - ${response.data}`);
         }
+
     }
 
     // reviews
     const getReviews = async () => {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
-        const data = await response.json();
-        const reviewData: any[] = data.results;
-
-        const reviewsSnapshot: ReviewDataProps[] = []
-        reviewData.map((detail: any) => {
-            reviewsSnapshot.push({
-                authorUsername: detail.author,
-                review: detail.content,
-                date: detail.created_at
+        const response = await getReviewDetails(movieId as string, "movie");
+        const reviewsSnapshot: ReviewDataProps[] = [];
+        if (response.status == 200) {
+            (response.data as any[]).map((detail: any) => {
+                reviewsSnapshot.push({
+                    authorUsername: detail.author,
+                    review: detail.content,
+                    date: detail.created_at
+                })
             })
-        })
-        setReviews([...reviewsSnapshot]);
+            setReviews([...reviewsSnapshot]);
+        } else {
+            console.error(`Error occured - ${response.data}`);
+        }
     }
 
     // get related movies
@@ -145,16 +148,14 @@ const MovieScreen: React.FC = () => {
     };
 
     // trailers and videos
-    const getVideos = async () => {
-        try {
-            const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
-            const data = await response.json();
-            const results: any[] = data.results;
+    const getClips = async () => {
+        const response = await getVideos(movieId as string, "movie");
+        if (response.status == 200) {
             const snapshot: string[] = [];
-            results.map((result) => { result.site == 'YouTube' && snapshot.push(result.key) });
+            (response.data as any[]).map((result) => { result.site == 'YouTube' && snapshot.push(result.key) });
             setVideoKeys([...snapshot]);
-        } catch (error) {
-            console.error(`Error - ${error}`);
+        } else {
+            console.error(`Error occured - ${response.data}`);
         }
     }
 
@@ -169,7 +170,7 @@ const MovieScreen: React.FC = () => {
     }
 
     useEffect(() => {
-        getMovieDetails();
+        getDetails();
 
         return () => {
             setMovieDetails({});
