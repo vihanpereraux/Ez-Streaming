@@ -104,6 +104,8 @@ const Games: React.FC = () => {
                             </Grid>
                         ))}
                 </Grid>
+
+                <Box sx={{ mb: { xs: 12, lg: 12 } }}></Box>
             </Box>
 
             {/* game player */}

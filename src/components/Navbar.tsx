@@ -31,7 +31,7 @@ interface Props { window?: () => Window; }
 // nav items
 const navItems: NavItemProps[] = [
     {
-        navItem: "Home",
+        navItem: "Gallery",
         path: "/"
     },
     {
@@ -39,8 +39,12 @@ const navItems: NavItemProps[] = [
         path: "/search"
     },
     {
-        navItem: "Games",
+        navItem: "Online Games",
         path: "/games"
+    },
+    {
+        navItem: "Live TV",
+        path: "/live-tv"
     },
     {
         navItem: "Disclaimer",
