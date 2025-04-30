@@ -13,6 +13,7 @@ import Navbar from "../components/Navbar";
 import TvEpisodes from "../components/tv-episodes";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
+import Videos from "../components/videos";
 
 // services
 import { getRelatedTVShows } from "../services/Api";
@@ -36,6 +37,7 @@ const TvScreen: React.FC = () => {
         season: 1,
         episodeNumber: 1
     });
+    const [videoKeys, setVideoKeys] = useState<string[]>([])
     const [lightsOffClicked, setLightsOffClicked] = useState<boolean>(false);
 
     const location = useLocation();
@@ -50,6 +52,7 @@ const TvScreen: React.FC = () => {
         setRelatedContent([]);
         setCastDetails([]);
         setReviews([]);
+        setVideoKeys([]);
 
         try {
             const response = await fetch(`https://api.themoviedb.org/3/tv/${tvId}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
@@ -58,6 +61,7 @@ const TvScreen: React.FC = () => {
             await getCastDetails();
             await getReviews();
             await getRelatedContent();
+            await getVideos();
             sortEpisodeDetails(data.seasons)
         } catch (error) {
             console.error("Error fetching tv show details:", error);
@@ -125,6 +129,21 @@ const TvScreen: React.FC = () => {
         }
     }
 
+
+    // trailers and videos
+    const getVideos = async () => {
+        try {
+            const response = await fetch(`https://api.themoviedb.org/3/tv/${tvId}/videos?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
+            const data = await response.json();
+            const results: any[] = data.results;
+            const snapshot: string[] = [];
+            results.map((result) => { result.site == 'YouTube' && snapshot.push(result.key) });
+            setVideoKeys([...snapshot]);
+        } catch (error) {
+            console.error(`Error - ${error}`);
+        }
+    }
+
     // manage lights
     const manageLights = () => {
         if (lightsOffClicked) {
@@ -142,6 +161,7 @@ const TvScreen: React.FC = () => {
             setRelatedContent([]);
             setCastDetails([]);
             setReviews([]);
+            setVideoKeys([]);
         }
     }, [tvId]);
 
@@ -174,13 +194,12 @@ const TvScreen: React.FC = () => {
                         textTransform: 'capitalize',
                         backgroundColor: 'balck',
                         borderRadius: 2,
-                        height : 55,
+                        height: 55,
                         mb: 1
                     }}
                         onClick={manageLights}
                     >{lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}</Button>
                 </Box>
-
 
                 {/* player and details */}
                 <Box sx={{ display: { xs: "block", lg: "block" } }}>
@@ -233,6 +252,11 @@ const TvScreen: React.FC = () => {
                                 color: 'white'
                             }}>{movieDetails.overview}</Typography>
                     </Box>}
+                </Box>
+
+                {/* trailers */}
+                <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
+                    <Videos videokeys={videoKeys} />
                 </Box>
 
                 {/* seasons and episodes */}

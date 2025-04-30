@@ -15,6 +15,7 @@ import MovieDetails from "../components/ContentDetails";
 import Navbar from "../components/Navbar";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
+import Videos from "../components/videos";
 
 // services
 import { getRelatedMovies } from "../services/Api";
@@ -67,6 +68,7 @@ const MovieScreen: React.FC = () => {
     const [value, setValue] = React.useState(0);
     const [castDetails, setCastDetails] = useState<any[]>([]);
     const [reviews, setReviews] = useState<ReviewDataProps[]>([]);
+    const [videoKeys, setVideoKeys] = useState<string[]>([])
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -86,6 +88,7 @@ const MovieScreen: React.FC = () => {
         setCastDetails([]);
         setRelatedContent([]);
         setReviews([]);
+        setVideoKeys([]);
 
         try {
             const response = await fetch(
@@ -96,6 +99,7 @@ const MovieScreen: React.FC = () => {
             await getCastDetails();
             await getRelatedContent();
             await getReviews();
+            await getVideos();
         } catch (error) {
             console.error("Error fetching movie details:", error);
         }
@@ -103,10 +107,14 @@ const MovieScreen: React.FC = () => {
 
     // cast details
     const getCastDetails = async () => {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
-        const data = await response.json();
-        const castArr: any[] = data.cast;
-        setCastDetails([...castArr]);
+        try {
+            const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
+            const data = await response.json();
+            const castArr: any[] = data.cast;
+            setCastDetails([...castArr]);
+        } catch (error) {
+            console.error(`Error - ${error}`);
+        }
     }
 
     // reviews
@@ -136,6 +144,20 @@ const MovieScreen: React.FC = () => {
         }
     };
 
+    // trailers and videos
+    const getVideos = async () => {
+        try {
+            const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
+            const data = await response.json();
+            const results: any[] = data.results;
+            const snapshot: string[] = [];
+            results.map((result) => { result.site == 'YouTube' && snapshot.push(result.key) });
+            setVideoKeys([...snapshot]);
+        } catch (error) {
+            console.error(`Error - ${error}`);
+        }
+    }
+
     // manage lights
     const manageLights = () => {
         if (lightsOffClicked) {
@@ -154,6 +176,7 @@ const MovieScreen: React.FC = () => {
             setRelatedContent([]);
             setCastDetails([]);
             setReviews([]);
+            setVideoKeys([]);
         };
     }, [movieId]);
 
@@ -237,10 +260,15 @@ const MovieScreen: React.FC = () => {
                     </Box>}
                 </Box>
 
+                {/* trailers */}
+                <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
+                    <Videos videokeys={videoKeys} />
+                </Box>
+
                 {/* cast info */}
-                {!lightsOffClicked && <Box sx={{ mt: 6 }}>
+                {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
                     <Credits castDetails={castDetails} />
-                </Box>}
+                </Box>)}
 
                 {/* reviews */}
                 {!lightsOffClicked && (<Box sx={{ mt: 6 }}>

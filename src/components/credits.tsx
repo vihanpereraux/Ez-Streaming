@@ -29,13 +29,21 @@ const Credits: React.FC<props> = ({ castDetails }) => {
                                 width: '95%',
                                 textAlign: 'center'
                             }}>
-                            <img style={{
-                                width: 90,
-                                height: 90,
-                                objectFit: 'cover',
-                                aspectRatio: 1,
-                                borderRadius: '50%'
-                            }} src={`https://image.tmdb.org/t/p/w300/${cast.profile_path}.jpg`} alt={cast.name} loading="lazy" />
+                            <img
+                                style={{
+                                    width: 90,
+                                    height: 90,
+                                    objectFit: 'cover',
+                                    aspectRatio: 1,
+                                    borderRadius: '50%'
+                                }}
+                                src={`https://image.tmdb.org/t/p/w300/${cast.profile_path}.jpg`}
+                                alt={cast.name}
+                                loading="lazy"
+                                onError={(e) => {
+                                    (e.currentTarget as HTMLImageElement).src = 'https://media.istockphoto.com/id/1130424979/vector/person-gray-photo-placeholder-man.jpg?s=612x612&w=0&k=20&c=Oc5r-nuA8FxnBBFSa6azLq5bWDyPZlKNu-8qFrUDy5I=';
+                                }}
+                            />
                             <Box sx={{ color: 'white' }}>
                                 <Typography sx={{
                                     fontSize: 13.5,
