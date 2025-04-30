@@ -266,11 +266,6 @@ const TvScreen: React.FC = () => {
                     </Box>}
                 </Box>
 
-                {/* trailers */}
-                <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
-                    <Videos videokeys={videoKeys} />
-                </Box>
-
                 {/* seasons and episodes */}
                 {!lightsOffClicked && (
                     < Box sx={{ mt: 6 }}>
@@ -288,8 +283,13 @@ const TvScreen: React.FC = () => {
 
                 {/* reviews */}
                 {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                    <Reviews reviews={reviews} />
+                    <Reviews reviews={reviews} defaultExpanded={false} />
                 </Box>)}
+
+                {/* trailers */}
+                <Box sx={{ mt: 8, display: !lightsOffClicked ? "block" : "none" }}>
+                    <Videos videokeys={videoKeys} />
+                </Box>
 
                 {/* related content */}
                 {!lightsOffClicked ? (

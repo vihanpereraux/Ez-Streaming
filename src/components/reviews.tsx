@@ -11,15 +11,16 @@ import { Box } from "@mui/material";
 // props
 import { ReviewDataProps } from "../interfaces/props";
 interface props {
-    reviews: ReviewDataProps[]
+    reviews: ReviewDataProps[],
+    defaultExpanded: boolean
 }
 
-const Reviews: React.FC<props> = ({ reviews }) => {
+const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
     return (
         <>
             <div>
                 <Accordion
-                    defaultExpanded={false}
+                    defaultExpanded={defaultExpanded}
                     sx={{
                         background: 'rgba(0, 0, 0, 0)',
                         color: 'white',

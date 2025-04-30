@@ -35,7 +35,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
     return (
         <>
             <Accordion
-                defaultExpanded={false}
+                defaultExpanded={true}
                 sx={{
                     background: 'rgba(0, 0, 0, 0)',
                     color: 'white',

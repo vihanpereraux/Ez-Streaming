@@ -260,11 +260,6 @@ const MovieScreen: React.FC = () => {
                     </Box>}
                 </Box>
 
-                {/* trailers */}
-                <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
-                    <Videos videokeys={videoKeys} />
-                </Box>
-
                 {/* cast info */}
                 {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
                     <Credits castDetails={castDetails} />
@@ -272,8 +267,13 @@ const MovieScreen: React.FC = () => {
 
                 {/* reviews */}
                 {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                    <Reviews reviews={reviews} />
+                    <Reviews reviews={reviews} defaultExpanded={true} />
                 </Box>)}
+
+                {/* trailers */}
+                <Box sx={{ mt: 8, display: !lightsOffClicked ? "block" : "none" }}>
+                    <Videos videokeys={videoKeys} />
+                </Box>
 
                 {/* related content */}
                 {!lightsOffClicked ? (<Box sx={{ mt: 8, mb: 15 }}>
