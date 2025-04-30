@@ -22,11 +22,9 @@ import { getSearchResults } from "../services/Api";
 import { MoviesProps } from "../interfaces/props";
 
 const Search: React.FC = () => {
-    let searchResultsLocalArr: MoviesProps[] = []
-
     const [value, setValue] = useState<string>("");
-    const [results, setResults] = useState<MoviesProps[]>(searchResultsLocalArr)
-    const [searchType, setSearchType] = useState<string>("movie")
+    const [results, setResults] = useState<MoviesProps[]>([]);
+    const [searchType, setSearchType] = useState<string>("movie");
     const [searched, setSearched] = useState<boolean>(false);
 
     const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +32,7 @@ const Search: React.FC = () => {
     }
 
     const getResults = async () => {
-        searchResultsLocalArr = [];
+        const searchResultsLocalArr: MoviesProps[] = [];
         const content: MoviesProps[] = await getSearchResults(value, searchType, searchResultsLocalArr) as MoviesProps[];
         if (content) { setResults([...content]); }
 
@@ -48,6 +46,7 @@ const Search: React.FC = () => {
 
     const handleSearchTypeChange = (e: SelectChangeEvent) => {
         setSearchType(e.target.value);
+        setResults([]);
     }
 
 
