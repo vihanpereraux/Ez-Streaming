@@ -62,23 +62,36 @@ const TvScreen: React.FC = () => {
             await getReviews();
             await getRelatedContent();
             await getVideos();
-            sortEpisodeDetails(data.seasons)
+            await sortEpisodeDetails(data.seasons)
         } catch (error) {
             console.error("Error fetching tv show details:", error);
         }
     };
 
     // sort episodes
-    const sortEpisodeDetails = (seasons: any[]) => {
+    const sortEpisodeDetails = async (seasons: any[]) => {
         try {
             const legitSeasons: any[] = seasons[0].name == 'Specials' ? seasons.slice(1) : seasons;
             const snapshot: SeasonProps[] = []
-            legitSeasons.map((season: any) => {
+            for (const season of legitSeasons) {
+                const response = await fetch(`https://api.themoviedb.org/3/tv/${tvId}/season/${season.season_number}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
+                const data = await response.json();
+                const episodes: any[] = data.episodes;
+
+                const imagesSnaphot: string[] = [];
+                const namesSnaphot: string[] = [];
+                episodes.map((episode) => {
+                    imagesSnaphot.push(episode.still_path);
+                    namesSnaphot.push(episode.name);
+                });
+
                 snapshot.push({
                     season: season.season_number,
-                    numOfEpisodes: season.episode_count
+                    numOfEpisodes: season.episode_count,
+                    image: imagesSnaphot,
+                    names: namesSnaphot
                 });
-            });
+            }
             console.log(snapshot);
             setSeasonDeatils([...snapshot]);
         } catch (error) {
@@ -128,7 +141,6 @@ const TvScreen: React.FC = () => {
             setRelatedContent(content);
         }
     }
-
 
     // trailers and videos
     const getVideos = async () => {
