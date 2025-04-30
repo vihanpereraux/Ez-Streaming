@@ -68,6 +68,8 @@ export interface ReviewDataProps {
 
 export interface SeasonProps {
     season: number,
-    numOfEpisodes: number
+    numOfEpisodes: number,
+    names: string[],
+    image: string[]
 }
 

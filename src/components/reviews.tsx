@@ -11,15 +11,16 @@ import { Box } from "@mui/material";
 // props
 import { ReviewDataProps } from "../interfaces/props";
 interface props {
-    reviews: ReviewDataProps[]
+    reviews: ReviewDataProps[],
+    defaultExpanded: boolean
 }
 
-const Reviews: React.FC<props> = ({ reviews }) => {
+const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
     return (
         <>
             <div>
                 <Accordion
-                    defaultExpanded = {false}
+                    defaultExpanded={defaultExpanded}
                     sx={{
                         background: 'rgba(0, 0, 0, 0)',
                         color: 'white',
@@ -34,7 +35,7 @@ const Reviews: React.FC<props> = ({ reviews }) => {
                             fontFamily: 'Rubik',
                             color: 'white',
                             fontSize: { xs: '16px', lg: '18px' },
-                        }} component="span">Reviews & Discussions &nbsp; <span style={{ opacity: .7, fontSize : 15 }}>({reviews.length.toString()} Reviews)</span></Typography>
+                        }} component="span">Reviews & Discussions &nbsp; <span style={{ opacity: .7, fontSize: 15 }}>({reviews.length.toString()} Reviews)</span></Typography>
                     </AccordionSummary>
 
                     <AccordionDetails sx={{
@@ -66,6 +67,7 @@ const Reviews: React.FC<props> = ({ reviews }) => {
                                         fontSize: 12,
                                         fontWeight: 400,
                                         mt: 1,
+                                        mb: 1.5,
                                         opacity: .7
                                     }}>{new Date(review.date).toLocaleDateString()}</Typography>
 
@@ -76,7 +78,6 @@ const Reviews: React.FC<props> = ({ reviews }) => {
                                         fontFamilly: 'Rubik',
                                         fontWeight: 450,
                                         lineHeight: 1.7,
-                                        mt: 1.5
                                     }}
                                     component="span"
                                     dangerouslySetInnerHTML={{

@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import { tvEpisodeCarouselConfig } from "../config/CarouselConfig";
 
 // MUI
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -35,7 +35,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
     return (
         <>
             <Accordion
-                defaultExpanded={false}
+                defaultExpanded={true}
                 sx={{
                     background: 'rgba(0, 0, 0, 0)',
                     color: 'white',
@@ -50,7 +50,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                         fontFamily: 'Rubik',
                         color: 'white',
                         fontSize: { xs: '16px', lg: '18px' },
-                    }} component="span">Seasons & Episodes &nbsp; <span style={{ opacity: .7, fontSize : 15 }}>({seasonDetails.length.toString()} Seasons)</span></Typography>
+                    }} component="span">Seasons & Episodes &nbsp; <span style={{ opacity: .7, fontSize: 15 }}>({seasonDetails.length.toString()} Seasons)</span></Typography>
                 </AccordionSummary>
 
                 <AccordionDetails sx={{
@@ -59,7 +59,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                     pt: 2
                 }}>
                     {/* selection */}
-                    {seasonDetails.map((details, index) => (
+                    {seasonDetails.map((detail, index) => (
                         <Box key={index} sx={{ mt: 3 }}>
                             {/* title */}
                             <Typography sx={{
@@ -67,11 +67,11 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                 fontSize: 15,
                                 fontFamily: 'Rubik',
                                 mb: 2,
-                            }}>Season {details.season} &nbsp; ⋅ <span style={{ opacity: .65 }}>{details.numOfEpisodes} Episodes</span></Typography>
+                            }}>Season {detail.season} &nbsp; ⋅ <span style={{ opacity: .65 }}>{detail.numOfEpisodes} Episodes</span></Typography>
 
                             {/* selection */}
                             <Carousel responsive={tvEpisodeCarouselConfig}>
-                                {details.numOfEpisodes == 0 ? (
+                                {detail.numOfEpisodes == 0 ? (
                                     <Typography sx={{
                                         color: 'white',
                                         fontSize: 14,
@@ -79,23 +79,56 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                         fontWeight: 450
                                     }}>No episodes yet</Typography>
                                 ) : (
-                                    Array.from({ length: details.numOfEpisodes }, (_, index) => (
-                                        <Button key={index}
+                                    Array.from({ length: detail.numOfEpisodes }, (_, index) => (
+                                        <Box key={index}
                                             sx={{
-                                                color: userSelection.season == details.season && userSelection.episodeNumber == index + 1 ? "rgb(162, 255, 0)" : "white",
+                                                textAlign: 'center',
+                                                color: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ?
+                                                    "rgb(162, 255, 0)"
+                                                    :
+                                                    "white",
                                                 textTransform: 'capitalize',
                                                 backgroundColor: 'rgba(0, 0, 0, .55)',
-                                                pt: 1.5,
+                                                pt: 0,
                                                 pb: 1.5,
                                                 fontSize: 14,
                                                 fontFamily: 'Rubik',
                                                 fontWeight: 400,
                                                 width: '90%',
                                                 borderRadius: 2,
-                                                border: userSelection.season == details.season && userSelection.episodeNumber == index + 1 ? "2px solid rgba(162, 255, 0, 1)" : "1px solid rgba(162, 255, 0, 0.25)",
+                                                border: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ?
+                                                    "2px solid rgba(162, 255, 0, 1)"
+                                                    :
+                                                    "1px solid rgba(162, 255, 0, 0)",
                                             }}
-                                            onClick={() => { manageUserSelection(details.season, (index + 1)) }}>
-                                            Episode {index + 1}</Button>
+                                            onClick={() => { manageUserSelection(detail.season, (index + 1)) }}>
+
+                                            {/* still image */}
+                                            <img
+                                                style={{
+                                                    width: '100%',
+                                                    aspectRatio: '16/9',
+                                                    objectFit: 'cover',
+                                                    borderRadius: 8,
+                                                }}
+                                                src={detail.image[index] ? `https://image.tmdb.org/t/p/w300/${detail.image[index]}` : `https://i.ibb.co/1YCDW7pR/tv-not-availabe-yet.jpg`}
+                                                alt={`Preview for episode ${index + 1} in season ${detail.season}`} />
+
+                                            {/* episode number */}
+                                            <Typography sx={{
+                                                fontSize: 14,
+                                                mt: 1,
+                                                fontFamily: 'Rubik'
+                                            }}>Episode {index + 1}</Typography>
+
+                                            {/* episode name */}
+                                            <Typography sx={{
+                                                fontSize: 13,
+                                                mt: .3,
+                                                fontFamily: 'Rubik',
+                                                opacity: .6
+                                            }}>{detail.names[index] === `Episode ${index + 1}` ? `Not availabe` : detail.names[index]}</Typography>
+                                        </Box>
                                     ))
                                 )}
                             </Carousel>
