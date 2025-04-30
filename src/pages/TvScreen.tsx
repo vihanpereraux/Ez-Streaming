@@ -16,6 +16,10 @@ import Reviews from "../components/reviews";
 import Videos from "../components/videos";
 
 // services
+import { getGeneralDetails } from "../services/general-details";
+import { getReviewDetails } from "../services/review-details";
+import { getCastDetails } from "../services/cast-details";
+import { getVideos } from "../services/vidoes";
 import { getRelatedTVShows } from "../services/Api";
 
 // props
@@ -45,26 +49,28 @@ const TvScreen: React.FC = () => {
     const tvId = new URLSearchParams(location.search).get("id");
 
     // get tv show details
-    const getTVDetails = async () => {
+    const getDetails = async () => {
         if (!tvId) navigate('/');
 
+        // clean states
         setMovieDetails({});
-        setRelatedContent([]);
         setCastDetails([]);
+        setRelatedContent([]);
         setReviews([]);
         setVideoKeys([]);
 
-        try {
-            const response = await fetch(`https://api.themoviedb.org/3/tv/${tvId}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
-            const data = await response.json();
-            setMovieDetails(data);
-            await getCastDetails();
-            await getReviews();
+        const response = await getGeneralDetails(tvId as string, "tv");
+        if (response.status == 200) {
+            console.log(response.data)
+            setMovieDetails({ ...response.data });
+            await getCast();
             await getRelatedContent();
-            await getVideos();
-            await sortEpisodeDetails(data.seasons)
-        } catch (error) {
-            console.error("Error fetching tv show details:", error);
+            await getReviews();
+            await getClips();
+            await sortEpisodeDetails(response.data.seasons);
+        }
+        else {
+            console.error(`Error occured - ${response.data}`);
         }
     };
 
@@ -100,26 +106,22 @@ const TvScreen: React.FC = () => {
     }
 
     // cast details
-    const getCastDetails = async () => {
-        try {
-            const response = await fetch(`https://api.themoviedb.org/3/tv/${tvId}/credits?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
-            const data = await response.json();
-            const castArr: any[] = data.cast;
-            setCastDetails([...castArr]);
-        } catch (error) {
-            console.error("Error fetching details:", error);
+    const getCast = async () => {
+        const response = await getCastDetails(tvId as string, "tv");
+        if (response.status == 200) {
+            setCastDetails(response.data as any[]);
+        } else {
+            console.error(`Error occured - ${response.data}`);
         }
+
     }
 
     // reviews
     const getReviews = async () => {
-        try {
-            const response = await fetch(`https://api.themoviedb.org/3/tv/${tvId}/reviews?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
-            const data = await response.json();
-            const reviewData: any[] = data.results;
-
-            const reviewsSnapshot: ReviewDataProps[] = []
-            reviewData.map((detail: any) => {
+        const response = await getReviewDetails(tvId as string, "tv");
+        const reviewsSnapshot: ReviewDataProps[] = [];
+        if (response.status == 200) {
+            (response.data as any[]).map((detail: any) => {
                 reviewsSnapshot.push({
                     authorUsername: detail.author,
                     review: detail.content,
@@ -127,8 +129,8 @@ const TvScreen: React.FC = () => {
                 })
             })
             setReviews([...reviewsSnapshot]);
-        } catch (error) {
-            console.error("Error fetching details:", error);
+        } else {
+            console.error(`Error occured - ${response.data}`);
         }
     }
 
@@ -143,16 +145,14 @@ const TvScreen: React.FC = () => {
     }
 
     // trailers and videos
-    const getVideos = async () => {
-        try {
-            const response = await fetch(`https://api.themoviedb.org/3/tv/${tvId}/videos?api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
-            const data = await response.json();
-            const results: any[] = data.results;
+    const getClips = async () => {
+        const response = await getVideos(tvId as string, "tv");
+        if (response.status == 200) {
             const snapshot: string[] = [];
-            results.map((result) => { result.site == 'YouTube' && snapshot.push(result.key) });
+            (response.data as any[]).map((result) => { result.site == 'YouTube' && snapshot.push(result.key) });
             setVideoKeys([...snapshot]);
-        } catch (error) {
-            console.error(`Error - ${error}`);
+        } else {
+            console.error(`Error occured - ${response.data}`);
         }
     }
 
@@ -167,7 +167,7 @@ const TvScreen: React.FC = () => {
     }
 
     useEffect(() => {
-        getTVDetails();
+        getDetails();
         return () => {
             setMovieDetails({});
             setRelatedContent([]);
@@ -283,7 +283,7 @@ const TvScreen: React.FC = () => {
 
                 {/* reviews */}
                 {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                    <Reviews reviews={reviews} defaultExpanded={false} />
+                    <Reviews reviews={reviews} defaultExpanded={true} />
                 </Box>)}
 
                 {/* trailers */}
@@ -293,7 +293,7 @@ const TvScreen: React.FC = () => {
 
                 {/* related content */}
                 {!lightsOffClicked ? (
-                    <Box sx={{ mt: 6, mb: 15 }}>
+                    <Box sx={{ mt: 8, mb: 15 }}>
                         {relatedContent.length > 0 ? (
                             <MovieCarousel
                                 type="tv"
