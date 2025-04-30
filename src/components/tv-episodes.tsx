@@ -124,8 +124,8 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
 
                                             {/* episode name */}
                                             <Typography sx={{
-                                                fontSize: 13,
-                                                mt: .3,
+                                                fontSize: 12,
+                                                mt: .75,
                                                 fontFamily: 'Rubik',
                                                 opacity: .6,
                                                 color: "white"

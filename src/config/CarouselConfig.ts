@@ -17,7 +17,7 @@ export const bannerCarouselConfig = {
     }
 };
 
-// multi carousel config
+// content carousel config
 export const multiCarouselConfig = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
@@ -29,11 +29,11 @@ export const multiCarouselConfig = {
     },
     tablet: {
         breakpoint: { max: 1024, min: 600 },
-        items: 2.5
+        items: 4.2
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
-        items: 1
+        items: 2.25
     }
 };
 
@@ -46,15 +46,15 @@ export const castCarouselConfig = {
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 9
+        items: 10
     },
     tablet: {
         breakpoint: { max: 1024, min: 600 },
-        items: 7
+        items: 5
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
-        items: 4
+        items: 3
     }
 };
 
@@ -75,7 +75,7 @@ export const tvEpisodeCarouselConfig = {
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
-        items: 2
+        items: 1.45
     }
 };
 
@@ -95,6 +95,6 @@ export const videoListConfig = {
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
-        items: 2
+        items: 1
     }
 };

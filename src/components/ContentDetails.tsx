@@ -21,9 +21,9 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
                 sx={{
                     color: 'white',
                     textAlign: 'left',
-                    fontSize: 22,
+                    fontSize: {xs: 20, lg: 22},
                     fontFamily: 'Rubik',
-                    fontWeight: 450,
+                    fontWeight: 400,
                     mb: .8
                 }}>{props.original_title}</Typography>
 
@@ -41,7 +41,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
             <Typography
                 sx={{
                     fontFamily: 'Rubik',
-                    fontSize: 16,
+                    fontSize: { xs: 15, lg: 15.5 },
                     lineHeight: 1.6,
                     fontWeight: 400,
                     mt: 3,

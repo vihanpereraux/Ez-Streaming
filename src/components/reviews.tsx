@@ -43,7 +43,7 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                         borderRadius: 3,
                         pt: 2
                     }}>
-                        {reviews && reviews.map((review, index) => (
+                        {reviews.length > 0 ? reviews.map((review, index) => (
                             <Box key={index}
                                 sx={{
                                     color: 'white',
@@ -75,8 +75,8 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                                 <Typography
                                     sx={{
                                         fontSize: 15,
-                                        fontFamilly: 'Rubik',
-                                        fontWeight: 450,
+                                        fontFamily: 'Rubik',
+                                        fontWeight: 350,
                                         lineHeight: 1.7,
                                     }}
                                     component="span"
@@ -88,7 +88,14 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                                     }}
                                 />
                             </Box>
-                        ))}
+                        )) : (
+                            <Typography sx={{ 
+                                fontSize: 14,
+                                fontFamily: 'Rubik',
+                                color: 'white',
+                                opacity: .75
+                             }}>No reviews available</Typography>
+                        )}
                     </AccordionDetails>
                 </Accordion>
             </div >

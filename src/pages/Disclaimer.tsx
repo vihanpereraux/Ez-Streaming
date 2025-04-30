@@ -16,15 +16,15 @@ const Disclaimer: React.FC = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '100vh',
+                height: '90vh',
                 backgroundColor: 'none',
-                padding: '20px',
+                padding: { xs: '10px', lg: '20px' },
             }}>
                 <Typography sx={{
-                    fontSize: '16px',
+                    fontSize: { xs: '14px', lg: '16px' },
                     fontFamily: 'Rubik',
                     color: 'white',
-                    width: { xs: '70%', md: '85%'},
+                    width: { xs: '95%', md: '85%' },
                     textAlign: 'center',
                     lineHeight: '1.65',
                 }}>

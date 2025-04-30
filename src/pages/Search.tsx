@@ -148,7 +148,7 @@ const Search: React.FC = () => {
                 }}>
                     {results.length > 0 ? results.map((item, index) => (
                         <Box sx={{
-                            width: { xs: 'calc(100%)', sm: 'calc(50%)', md: 'calc(33%)', lg: 'calc(20% - 10px)' },
+                            width: { xs: 'calc(50%)', sm: 'calc(50%)', md: 'calc(33%)', lg: 'calc(20% - 10px)' },
                             marginTop: '40px',
                         }} key={index}>
                             <SearchCard

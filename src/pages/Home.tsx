@@ -92,7 +92,7 @@ const Home: React.FC = () => {
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
-                                title="Newest Trending Movies"
+                                title="Trending Movies"
                                 content={trendingMovies} />
                         </Box>
 
@@ -100,7 +100,7 @@ const Home: React.FC = () => {
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
-                                title="Newest Trending Movies"
+                                title="Now Streaming Movies"
                                 content={upcommingMovies} />
                         </Box>
 
@@ -108,28 +108,28 @@ const Home: React.FC = () => {
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
-                                title="Newest Trending Movies"
+                                title="Crime Movies"
                                 content={crimeMovies} />
                         </Box>
 
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
-                                title="Newest Trending Movies"
+                                title="Thriller Movies"
                                 content={thrillerMovies} />
                         </Box>
 
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
-                                title="Newest Trending Movies"
+                                title="Documentary Movies"
                                 content={documentaryMovies} />
                         </Box>
 
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
-                                title="Newest Trending Movies"
+                                title="Top Rated Movies"
                                 content={topRatedMovies} />
                         </Box>
                     </>
@@ -137,7 +137,7 @@ const Home: React.FC = () => {
                     <LoadingPreview />
                 )}
             </Box >
-            <Box sx={{ mb: 15 }}></Box>
+            <Box sx={{ mb: { xs: 16, lg: 15 } }}></Box>
         </>
     )
 }
