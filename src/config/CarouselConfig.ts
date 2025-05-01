@@ -25,7 +25,7 @@ export const multiCarouselConfig = {
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 5.55
+        items: 6.25
     },
     tablet: {
         breakpoint: { max: 1024, min: 600 },
