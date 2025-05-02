@@ -118,6 +118,32 @@ export const getSearchResults = async (query: string, type: string, arr: MoviesP
     }
 }
 
+// get movies by provider
+export const getMoviesByProvider = async (arr: MoviesProps[], providerId: string) => {
+    try {
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc`);
+        const data = await resposne.json();
+
+        const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
+        return cleanedArr
+    } catch (error) {
+        console.log(`Error - ${providerId} Movies - ${error}`)
+    }
+}
+
+// get tv shows by provider
+export const getTvShowsByProvider = async (arr: MoviesProps[], providerId: string) => {
+    try {
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc`);
+        const data = await resposne.json();
+
+        const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
+        return cleanedArr
+    } catch (error) {
+        console.log(`Error - ${providerId} Movies - ${error}`)
+    }
+}
+
 const cleanMovieDetails = (data: any[], arr: MoviesProps[],) => {
     data.map((item: any) => {
         arr.push({

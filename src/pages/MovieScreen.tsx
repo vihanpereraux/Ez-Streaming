@@ -191,10 +191,7 @@ const MovieScreen: React.FC = () => {
 
     return (
         <>
-            {!lightsOffClicked ?
-                (<Navbar />)
-                :
-                (<div style={{ opacity: 0, pointerEvents: 'none' }}><Navbar /></div>)}
+            {!lightsOffClicked && <Navbar />}
 
             {isLoading ? (
                 <LoadingPreview />
@@ -205,8 +202,8 @@ const MovieScreen: React.FC = () => {
                         key={movieId}
                         sx={{
                             pt: 6,
-                            pl: { xs: 2, lg: 6 },
-                            pr: { xs: 2, lg: 6 }
+                            pl: { xs: 2, lg: 3 },
+                            pr: { xs: 2, lg: 3 }
                         }}>
                         {/* tabs and players */}
                         <Box sx={{ display: { xs: "block", lg: "block" } }}>
@@ -216,8 +213,7 @@ const MovieScreen: React.FC = () => {
                                     borderBottom: 1,
                                     borderColor: 'divider',
                                     display: 'flex',
-                                    justifyContent: 'space-between',
-                                    mb: '-12px'
+                                    justifyContent: 'space-between'
                                 }}>
                                     <Tabs
                                         sx={{
@@ -228,7 +224,7 @@ const MovieScreen: React.FC = () => {
                                         onChange={handleChange}
                                         aria-label="basic tabs example">
                                         {/* default server group */}
-                                        {['Server Group 01', 'Server Group 02', 'Server Group 03'].map((label, index) => (
+                                        {['Reel Magic', 'Chad Player', 'Cinematic Canvas'].map((label, index) => (
                                             <Tab sx={tabStyles}
                                                 label={label}
                                                 {...a11yProps(index)} />
@@ -248,6 +244,20 @@ const MovieScreen: React.FC = () => {
                                         onClick={manageLights}
                                     >{lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}</Button>
                                 </Box>
+
+                                {/* note for the player switch */}
+                                {!lightsOffClicked && (
+                                    <Typography sx={{
+                                        color: ' white',
+                                        opacity: .7,
+                                        fontFamily: 'Rubik',
+                                        mt: 3,
+                                        fontWeight: 400,
+                                        fontSize: 14,
+                                        mb: '-10px'
+                                    }}>Change the player above if you are not satisfied with the current player 😃</Typography>
+
+                                )}
 
                                 {/* players */}
                                 {['vidfast', 'vidsrc', 'superEmbed'].map((provider, index) => (
@@ -271,7 +281,7 @@ const MovieScreen: React.FC = () => {
 
                         {/* cast info */}
                         {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                            <Credits castDetails={castDetails} />
+                            <Credits contentTitle={movieDetails.original_title} castDetails={castDetails} />
                         </Box>)}
 
                         {/* reviews */}

@@ -6,6 +6,8 @@ import "react-multi-carousel/lib/styles.css";
 
 // MUI
 import { Box, Typography, Button } from "@mui/material";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 // components
 import MovieCarousel from "../components/MovieCarousel";
@@ -31,13 +33,51 @@ interface UserSelectionProps {
     season: number,
     episodeNumber: number
 }
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+}
+
+// stylesheet
+const tabStyles = {
+    color: 'white',
+    fontFamily: 'Rubik',
+    textTransform: 'capitalize',
+    fontWeight: 450,
+    textDecoration: 'none'
+}
+
+function CustomTabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+        </div>
+    );
+}
+
+function a11yProps(index: number) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
 
 const TvScreen: React.FC = () => {
+    const [value, setValue] = React.useState(0);
     const [movieDetails, setMovieDetails] = useState<any>({});
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
     const [castDetails, setCastDetails] = useState<any[]>([]);
     const [reviews, setReviews] = useState<ReviewDataProps[]>();
-    const [seasonDetails, setSeasonDeatils] = useState<SeasonProps[]>()
+    const [seasonDetails, setSeasonDeatils] = useState<SeasonProps[]>([])
     const [userSelection, setUserSelection] = useState<UserSelectionProps>({
         season: 1,
         episodeNumber: 1
@@ -49,6 +89,11 @@ const TvScreen: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const tvId = new URLSearchParams(location.search).get("id");
+
+    const handleChange = (e: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+        console.log(e);
+    };
 
     // get tv show details
     const getDetails = async () => {
@@ -193,18 +238,38 @@ const TvScreen: React.FC = () => {
             ) : (
                 <>
                     <Box
+                        className="tv_screen"
                         key={tvId}
                         sx={{
                             pt: 6,
-                            pl: { xs: 2, lg: 6 },
-                            pr: { xs: 2, lg: 6 }
+                            pl: { xs: 2, lg: 3 },
+                            pr: { xs: 2, lg: 3 }
                         }}>
 
-                        {/* toggle */}
+                        {/* tabs */}
                         <Box sx={{
+                            borderBottom: 1,
+                            borderColor: 'divider',
                             display: 'flex',
-                            justifyContent: 'flex-end'
+                            justifyContent: 'space-between'
                         }}>
+                            <Tabs
+                                sx={{
+                                    opacity: !lightsOffClicked ? 1 : 0,
+                                    pointerEvents: !lightsOffClicked ? "auto" : "none"
+                                }}
+                                value={value}
+                                onChange={handleChange}
+                                aria-label="basic tabs example">
+                                {/* default server group */}
+                                {['Reel Magic', 'Chad Player'].map((label, index) => (
+                                    <Tab sx={tabStyles}
+                                        label={label}
+                                        {...a11yProps(index)} />
+                                ))}
+                            </Tabs>
+
+                            {/* toggle */}
                             <Button sx={{
                                 display: { xs: 'none', md: 'block' },
                                 color: '#a2ff00',
@@ -212,32 +277,56 @@ const TvScreen: React.FC = () => {
                                 fontSize: 14,
                                 textTransform: 'capitalize',
                                 backgroundColor: 'balck',
-                                borderRadius: 2,
-                                height: 55,
-                                mb: 1
+                                borderRadius: 2
                             }}
                                 onClick={manageLights}
                             >{lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}</Button>
                         </Box>
 
-                        {/* player and details */}
-                        <Box sx={{ display: { xs: "block", lg: "block" } }}>
-                            {/* player */}
-                            <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
-                                <iframe
-                                    key={tvId}
-                                    allowFullScreen={true}
-                                    style={{
-                                        width: '100%',
-                                        aspectRatio: '16/9',
-                                        border: 'none',
-                                        borderRadius: 12,
-                                    }}
-                                    src={`https://vidfast.pro/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}?theme=a2ff00`}>
-                                </iframe>
-                            </Box>
+                        {/* note for the player switch */}
+                        {!lightsOffClicked && (
+                            <Typography sx={{
+                                color: ' white',
+                                opacity: .7,
+                                fontFamily: 'Rubik',
+                                mt: 3,
+                                fontWeight: 400,
+                                fontSize: 14,
+                                mb: '-10px'
+                            }}>Change the player above if you are not satisfied with the current player 😃</Typography>
+                        )}
 
-                            {/* details */}
+                        {/* players */}
+                        <CustomTabPanel value={value} index={0}>
+                            <iframe
+                                key={tvId}
+                                allowFullScreen={true}
+                                style={{
+                                    width: '100%',
+                                    aspectRatio: '16/9',
+                                    border: 'none',
+                                    borderRadius: 12,
+                                }}
+                                src={`https://vidfast.pro/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}?theme=a2ff00`}>
+                            </iframe>
+                        </CustomTabPanel>
+
+                        <CustomTabPanel value={value} index={1}>
+                            <iframe
+                                key={tvId}
+                                allowFullScreen={true}
+                                style={{
+                                    width: '100%',
+                                    aspectRatio: '16/9',
+                                    border: 'none',
+                                    borderRadius: 12,
+                                }}
+                                src={`https://vidsrc.xyz/embed/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}`}>
+                            </iframe>
+                        </CustomTabPanel>
+
+                        {/* details */}
+                        <Box sx={{ display: { xs: "block", lg: "block" } }}>
                             {!lightsOffClicked && <Box sx={{
                                 width: { xs: "100%", lg: "100%" },
                                 pl: { xs: .5, lg: 0 },
@@ -258,9 +347,17 @@ const TvScreen: React.FC = () => {
                                     color: 'white',
                                     fontSize: 14,
                                 }}>
-                                    {movieDetails.first_air_date ? movieDetails.first_air_date.slice(0, 4) : '...'} &nbsp;&nbsp;
-                                    &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10}</span>
+                                    {/* first air data */}
+                                    {movieDetails.first_air_date ? movieDetails.first_air_date.slice(0, 4) : '...'} &nbsp; ⋅
 
+                                    {/* rating */}
+                                    &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10} &nbsp;⋅
+                                </span>
+
+                                {/* genre */}
+                                &nbsp;&nbsp;{movieDetails.genres.map((genre: any, index: any) => (
+                                    <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 14, marginRight: 6 }}>{genre.name}</span>
+                                ))}
                                 <Typography
                                     sx={{
                                         fontFamily: 'Rubik',
@@ -275,28 +372,17 @@ const TvScreen: React.FC = () => {
 
                         {/* seasons and episodes */}
                         {!lightsOffClicked && (
-                            seasonDetails ? (
-                                <Box sx={{ mt: 6 }}>
-                                    <TvEpisodes
-                                        seasonDetails={seasonDetails}
-                                        userSelection={userSelection}
-                                        setUserSelection={setUserSelection} />
-                                </Box>
-                            ) : (
-                                <Box sx={{ mt: 6 }}>
-                                    <Typography sx={{
-                                        fontWeight: 450,
-                                        fontFamily: 'Rubik',
-                                        color: 'white',
-                                        fontSize: { xs: '16px', lg: '18px' },
-                                    }}>Loading seasons and episodes ...</Typography>
-                                </Box>
-                            )
+                            <Box sx={{ mt: 6 }}>
+                                <TvEpisodes
+                                    seasonDetails={seasonDetails}
+                                    userSelection={userSelection}
+                                    setUserSelection={setUserSelection} />
+                            </Box>
                         )}
 
                         {/* cast info */}
                         {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                            <Credits castDetails={castDetails} />
+                            <Credits contentTitle={movieDetails.original_name} castDetails={castDetails} />
                         </Box>)}
 
                         {/* reviews */}

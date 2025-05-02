@@ -39,7 +39,7 @@ const navItems: NavItemProps[] = [
         path: "/movies"
     },
     {
-        navItem: "TV Shows",
+        navItem: "TV Series",
         path: "/tv-shows"
     },
     {

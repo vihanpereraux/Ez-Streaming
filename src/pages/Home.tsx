@@ -18,7 +18,9 @@ import {
     getTrendingMovies,
     getTopRatedMovies,
     getUpcommingMovies,
-    getMoviesByGenre
+    getMoviesByGenre,
+    getMoviesByProvider,
+    getTvShowsByProvider
 } from "../services/api";
 
 // props
@@ -34,6 +36,17 @@ const Home: React.FC = () => {
     const [familyMovies, setFamilyMovies] = useState<MoviesProps[]>();
     const [romanceMovies, setRomanceMovies] = useState<MoviesProps[]>();
     const [horrorMovies, setHorrorMovies] = useState<MoviesProps[]>();
+    // movie states for providers
+    const [appleTvMovies, setAppleTvMovies] = useState<MoviesProps[]>();
+    const [netflixMovies, setNetflixMovies] = useState<MoviesProps[]>();
+    const [amazonPrimeMovies, setAmazonPrimeMovies] = useState<MoviesProps[]>();
+    const [huluMovies, setHuluMovies] = useState<MoviesProps[]>();
+    // tv states for providers
+    const [appleTvShows, setAppleTvShows] = useState<MoviesProps[]>();
+    const [netflixShows, setNetflixShows] = useState<MoviesProps[]>();
+    const [amazonPrimeShows, setAmazonPrimeShows] = useState<MoviesProps[]>();
+    const [huluShows, setHuluShows] = useState<MoviesProps[]>();
+
 
     const getData = async () => {
         const bannerContentLocalArr: MoviesProps[] = []
@@ -63,6 +76,40 @@ const Home: React.FC = () => {
         const thrillerMoviesLocalArr: MoviesProps[] = [];
         const horrorMovies = await getMoviesByGenre(thrillerMoviesLocalArr, "27");
         if (horrorMovies) { setHorrorMovies([...horrorMovies]); }
+
+        // providers movie collection
+        const appletvMoviesLocalArr: MoviesProps[] = [];
+        const appleTvMovies = await getMoviesByProvider(appletvMoviesLocalArr, "2");
+        if (appleTvMovies) { setAppleTvMovies([...appleTvMovies]); }
+
+        const netflixMoviesLocalArr: MoviesProps[] = [];
+        const netflixMovies = await getMoviesByProvider(netflixMoviesLocalArr, "8");
+        if (netflixMovies) { setNetflixMovies([...netflixMovies]); }
+
+        const amazonPrimeMoviesLocalArr: MoviesProps[] = [];
+        const amazonPrimeMovies = await getMoviesByProvider(amazonPrimeMoviesLocalArr, "9");
+        if (amazonPrimeMovies) { setAmazonPrimeMovies([...amazonPrimeMovies]); }
+
+        const huluMoviesLocalArr: MoviesProps[] = [];
+        const huluMovies = await getMoviesByProvider(huluMoviesLocalArr, "15");
+        if (huluMovies) { setHuluMovies([...huluMovies]); }
+
+        // providers tv collection
+        const appletvShowsLocalArr: MoviesProps[] = [];
+        const appleTvShows = await getTvShowsByProvider(appletvShowsLocalArr, "2");
+        if (appleTvShows) { setAppleTvShows([...appleTvShows]); }
+
+        const netflixShowsLocalArr: MoviesProps[] = [];
+        const netflixShows = await getTvShowsByProvider(netflixShowsLocalArr, "8");
+        if (netflixShows) { setNetflixShows([...netflixShows]); }
+
+        const amazonPrimeShowsLocalArr: MoviesProps[] = [];
+        const amazonPrimeShows = await getTvShowsByProvider(amazonPrimeShowsLocalArr, "9");
+        if (amazonPrimeShows) { setAmazonPrimeShows([...amazonPrimeShows]); }
+
+        const huluShowsLocalArr: MoviesProps[] = [];
+        const huluShows = await getTvShowsByProvider(huluShowsLocalArr, "15");
+        if (huluShows) { setHuluShows([...huluShows]); }
     }
 
     useEffect(() => {
@@ -79,7 +126,15 @@ const Home: React.FC = () => {
                     familyMovies &&
                     horrorMovies &&
                     romanceMovies &&
-                    topRatedMovies ? (
+                    topRatedMovies &&
+                    appleTvMovies &&
+                    netflixMovies &&
+                    amazonPrimeMovies &&
+                    huluMovies &&
+                    appleTvShows &&
+                    netflixShows &&
+                    amazonPrimeShows &&
+                    huluShows ? (
                     <>
                         {/* tv banner */}
                         <Box sx={{ mt: carouselSpacing }}>
@@ -96,12 +151,28 @@ const Home: React.FC = () => {
                                 content={trendingMovies} />
                         </Box>
 
+                        {/* carosuel - apple tv shows */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="tv"
+                                title="TV Shows From Apple TV"
+                                content={appleTvShows} />
+                        </Box>
+
                         {/* carosuel - now streaming movies */}
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
                                 title="Now Streaming Movies"
                                 content={upcommingMovies} />
+                        </Box>
+
+                        {/* netflix movies */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="movie"
+                                title="Netflix Movies"
+                                content={netflixMovies} />
                         </Box>
 
                         {/* carosuel - family movies  */}
@@ -112,12 +183,44 @@ const Home: React.FC = () => {
                                 content={familyMovies} />
                         </Box>
 
+                        {/* carosuel - netflix tv shows */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="tv"
+                                title="TV Shows From Netflix"
+                                content={netflixShows} />
+                        </Box>
+
+                        {/* apple tv movies */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="movie"
+                                title="Apple TV Movies"
+                                content={appleTvMovies} />
+                        </Box>
+
                         {/* carosuel - horror movies */}
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
                                 title="Horror Movies"
                                 content={horrorMovies} />
+                        </Box>
+
+                        {/* carosuel - amazon prime tv shows */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="tv"
+                                title="TV Shows From Amazon Prime"
+                                content={amazonPrimeShows} />
+                        </Box>
+
+                        {/* amazon prime movies */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="movie"
+                                title="Amazon Prime Movies"
+                                content={amazonPrimeMovies} />
                         </Box>
 
                         {/* carosuel - romance movies */}
@@ -128,12 +231,28 @@ const Home: React.FC = () => {
                                 content={romanceMovies} />
                         </Box>
 
+                        {/* hulu movies */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="movie"
+                                title="Hulu Movies"
+                                content={huluMovies} />
+                        </Box>
+
                         {/* carosuel - top rated movies */}
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
                                 title="Top Rated Movies"
                                 content={topRatedMovies} />
+                        </Box>
+
+                        {/* carosuel - hulu tv shows */}
+                        <Box sx={{ mt: carouselSpacing }}>
+                            <MovieCarousel
+                                type="tv"
+                                title="TV Shows from Hulu"
+                                content={huluShows} />
                         </Box>
                     </>
                 ) : (

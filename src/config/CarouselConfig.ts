@@ -25,11 +25,11 @@ export const multiCarouselConfig = {
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 6.25
+        items: 6.15
     },
     tablet: {
         breakpoint: { max: 1024, min: 600 },
-        items: 4.2
+        items: 4.5
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
@@ -46,7 +46,7 @@ export const castCarouselConfig = {
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 10
+        items: 11
     },
     tablet: {
         breakpoint: { max: 1024, min: 600 },
@@ -67,11 +67,11 @@ export const tvEpisodeCarouselConfig = {
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 5.4
+        items: 6
     },
     tablet: {
         breakpoint: { max: 1024, min: 600 },
-        items: 6
+        items: 4.5
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
