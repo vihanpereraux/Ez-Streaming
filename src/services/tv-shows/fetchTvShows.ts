@@ -7,42 +7,39 @@ interface GenreProps {
 import { CollectionArrayProps } from './../../interfaces/props';
 
 // api service
-import { getMoviesByGenre } from './api';
+import { getTvShowsByGenre } from './api';
 
-export const fetchMoviesInAllGenres = async () => {
+export const fetchTvShowsInAllGenres = async () => {
     const genreCollection: GenreProps[] = [
-        { genre: 'action', id: '28' },
-        { genre: 'adventure', id: '12' },
+        { genre: 'actionAndAdventure', id: '10759' },
         { genre: 'animation', id: '16' },
         { genre: 'comedy', id: '35' },
         { genre: 'crime', id: '80' },
         { genre: 'documentary', id: '99' },
         { genre: 'drama', id: '18' },
         { genre: 'family', id: '10751' },
-        { genre: 'fantasy', id: '14' },
-        { genre: 'history', id: '36' },
-        { genre: 'horror', id: '27' },
-        { genre: 'music', id: '10402' },
+        { genre: 'kids', id: '10762' },
         { genre: 'mystery', id: '9648' },
-        { genre: 'romance', id: '10749' },
-        { genre: 'scienceFiction', id: '878' },
-        { genre: 'tvMovie', id: '10770' },
-        { genre: 'thriller', id: '53' },
-        { genre: 'war', id: '10752' },
+        { genre: 'news', id: '10763' },
+        { genre: 'reality', id: '10764' },
+        { genre: 'scifiAndFantasy', id: '10765' },
+        { genre: 'soap', id: '10766' },
+        { genre: 'talk', id: '10767' },
+        { genre: 'warAndPolitics', id: '10768' },
         { genre: 'western', id: '37' }
     ];
 
     try {
-        const moviesCollectorArr: CollectionArrayProps[] = [];
+        const tvShowsCollectorArr: CollectionArrayProps[] = [];
         for (const genre of genreCollection) {
-            const moviesSnapshot: MoviesProps[] = [];
-            const movies = await getMoviesByGenre(moviesSnapshot, genre.id);
-            moviesCollectorArr.push({
+            const tvShowsSnapshot: MoviesProps[] = [];
+            const movies = await getTvShowsByGenre(tvShowsSnapshot, genre.id);
+            tvShowsCollectorArr.push({
                 genre: genre.genre,
                 collection: movies as MoviesProps[]
             });
         }
-        return moviesCollectorArr;
+        return tvShowsCollectorArr;
     } catch (error) {
         console.error(`Error occured - ${error}`);
     }

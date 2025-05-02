@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+
+// components
 import Navbar from "../components/Navbar";
+import LoadingPreview from "../components/LoadingPreview";
 
 // MUI
 import { Grid } from "@mui/material";
@@ -18,6 +21,7 @@ interface GameProps {
 }
 
 const Games: React.FC = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [games, setGames] = useState<GameProps[]>([]);
     const [open, setOpen] = React.useState(false);
     const [embedLink, setEmbedLink] = useState<string>("");
@@ -32,6 +36,7 @@ const Games: React.FC = () => {
         else {
             console.error(`Error - ${response.data}`)
         }
+        setIsLoading(false);
     }
 
     const handleUserSelection = (link: string) => {
@@ -46,67 +51,74 @@ const Games: React.FC = () => {
         <>
             <Navbar />
 
-            <Box sx={{ p: 3 }}>
-                {/* title */}
-                <Typography
-                    sx={{
-                        color: "white",
-                        fontFamily: "Rubik",
-                        textAlign: "center",
-                        fontWeight: 450,
-                        fontSize: 22
-                    }}>
-                    Enjoy Free Online Games
-                </Typography>
+            {isLoading ? (
+                <LoadingPreview />
+            ) : (
+                <>
+                    <Box sx={{ p: 3 }}>
+                        {/* title */}
+                        <Typography
+                            sx={{
+                                color: "white",
+                                fontFamily: "Rubik",
+                                textAlign: "center",
+                                fontWeight: 450,
+                                fontSize: 22
+                            }}>
+                            Enjoy Free Online Games
+                        </Typography>
 
-                {/* description */}
-                <Typography
-                    sx={{
-                        color: "white",
-                        fontFamily: "Rubik",
-                        mt: 2,
-                        textAlign: "center",
-                        fontWeight: 400,
-                        fontSize: 14,
-                        opacity: .75,
-                        pl: { sx: 5, lg: 30 },
-                        pr: { sx: 5, lg: 30 },
-                        lineHeight: 1.65
-                    }}>
-                    Dive into a curated collection of free online games! Click on any game below to
-                    start playing instantly in your browser—no downloads or sign-ups required.
-                    Enjoy a variety of genres and discover new favorites every day.
-                </Typography>
+                        {/* description */}
+                        <Typography
+                            sx={{
+                                color: "white",
+                                fontFamily: "Rubik",
+                                mt: 2,
+                                textAlign: "center",
+                                fontWeight: 400,
+                                fontSize: 14,
+                                opacity: .75,
+                                pl: { sx: 5, lg: 30 },
+                                pr: { sx: 5, lg: 30 },
+                                lineHeight: 1.65
+                            }}>
+                            Dive into a curated collection of free online games! Click on any game below to
+                            start playing instantly in your browser—no downloads or sign-ups required.
+                            Enjoy a variety of genres and discover new favorites every day.
+                        </Typography>
 
-                {/* grid */}
-                <Grid container spacing={2} justifyContent="center" sx={{ mt: 5 }}>
-                    {[...games]
-                        .sort(() => Math.random() - 0.5)
-                        .map((game, index) => (
-                            <Grid item xs={4} sm={3} md={2} key={index}>
-                                <Box sx={{
-                                    width: "100%",
-                                    aspectRatio: "1",
-                                    borderRadius: 2,
-                                    boxShadow: 2,
-                                }} onClick={() => { handleUserSelection(game.embed) }}>
-                                    <img
-                                        className="game"
-                                        style={{
-                                            aspectRatio: 1,
-                                            width: '100%',
-                                            height: '100%',
-                                            objectFit: 'cover',
-                                            borderRadius: 12,
-                                            border: ' 2px solid black'
-                                        }} onClick={handleOpen} src={game.image} alt="" loading="lazy" />
-                                </Box>
-                            </Grid>
-                        ))}
-                </Grid>
+                        {/* grid */}
+                        <Grid container spacing={2} justifyContent="center" sx={{ mt: 5 }}>
+                            {[...games]
+                                .sort(() => Math.random() - 0.5)
+                                .map((game, index) => (
+                                    <Grid item xs={4} sm={3} md={2} key={index}>
+                                        <Box sx={{
+                                            width: "100%",
+                                            aspectRatio: "1",
+                                            borderRadius: 2,
+                                            boxShadow: 2,
+                                        }} onClick={() => { handleUserSelection(game.embed) }}>
+                                            <img
+                                                className="game"
+                                                style={{
+                                                    aspectRatio: 1,
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    objectFit: 'cover',
+                                                    borderRadius: 12,
+                                                    border: ' 2px solid black'
+                                                }} onClick={handleOpen} src={game.image} alt="" loading="lazy" />
+                                        </Box>
+                                    </Grid>
+                                ))}
+                        </Grid>
 
-                <Box sx={{ mb: { xs: 12, lg: 12 } }}></Box>
-            </Box>
+                        <Box sx={{ mb: { xs: 12, lg: 12 } }}></Box>
+                    </Box>
+                </>
+            )}
+
 
             {/* game player */}
             <Modal

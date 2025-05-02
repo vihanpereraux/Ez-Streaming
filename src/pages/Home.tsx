@@ -31,9 +31,9 @@ const Home: React.FC = () => {
     const [trendingMovies, setTrendingMovies] = useState<MoviesProps[]>();
     const [topRatedMovies, setTopRatedMovies] = useState<MoviesProps[]>();
     const [upcommingMovies, setUpcommingMovies] = useState<MoviesProps[]>();
-    const [crimeMovies, setCrimeMovies] = useState<MoviesProps[]>();
-    const [documentaryMovies, setDocumentaryMovies] = useState<MoviesProps[]>();
-    const [thrillerMovies, setThrillerMovies] = useState<MoviesProps[]>();
+    const [familyMovies, setFamilyMovies] = useState<MoviesProps[]>();
+    const [romanceMovies, setRomanceMovies] = useState<MoviesProps[]>();
+    const [horrorMovies, setHorrorMovies] = useState<MoviesProps[]>();
 
     const getData = async () => {
         const bannerContentLocalArr: MoviesProps[] = []
@@ -53,16 +53,16 @@ const Home: React.FC = () => {
         if (upcommingMovies) { setUpcommingMovies([...upcommingMovies]); }
 
         const crimeMoviesLocalArr: MoviesProps[] = [];
-        const crimeMovies = await getMoviesByGenre(crimeMoviesLocalArr, "80");
-        if (crimeMovies) { setCrimeMovies([...crimeMovies]); }
+        const familyMovies = await getMoviesByGenre(crimeMoviesLocalArr, "10751");
+        if (familyMovies) { setFamilyMovies([...familyMovies]); }
 
         const documentaryMoviesLocalArr: MoviesProps[] = [];
-        const docMovies = await getMoviesByGenre(documentaryMoviesLocalArr, "99");
-        if (docMovies) { setDocumentaryMovies([...docMovies]); }
+        const romanceMovies = await getMoviesByGenre(documentaryMoviesLocalArr, "10749");
+        if (romanceMovies) { setRomanceMovies([...romanceMovies]); }
 
         const thrillerMoviesLocalArr: MoviesProps[] = [];
-        const thrillerMovies = await getMoviesByGenre(thrillerMoviesLocalArr, "53");
-        if (thrillerMovies) { setThrillerMovies([...thrillerMovies]); }
+        const horrorMovies = await getMoviesByGenre(thrillerMoviesLocalArr, "27");
+        if (horrorMovies) { setHorrorMovies([...horrorMovies]); }
     }
 
     useEffect(() => {
@@ -76,9 +76,9 @@ const Home: React.FC = () => {
                 {bannerContent &&
                     trendingMovies &&
                     upcommingMovies &&
-                    crimeMovies &&
-                    thrillerMovies &&
-                    documentaryMovies &&
+                    familyMovies &&
+                    horrorMovies &&
+                    romanceMovies &&
                     topRatedMovies ? (
                     <>
                         {/* tv banner */}
@@ -104,28 +104,31 @@ const Home: React.FC = () => {
                                 content={upcommingMovies} />
                         </Box>
 
-                        {/* carosuel - top rated movies  */}
+                        {/* carosuel - family movies  */}
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
-                                title="Crime Movies"
-                                content={crimeMovies} />
+                                title="Family Movies"
+                                content={familyMovies} />
                         </Box>
 
+                        {/* carosuel - horror movies */}
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
-                                title="Thriller Movies"
-                                content={thrillerMovies} />
+                                title="Horror Movies"
+                                content={horrorMovies} />
                         </Box>
 
+                        {/* carosuel - romance movies */}
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"
-                                title="Documentary Movies"
-                                content={documentaryMovies} />
+                                title="Romance Movies"
+                                content={romanceMovies} />
                         </Box>
 
+                        {/* carosuel - top rated movies */}
                         <Box sx={{ mt: carouselSpacing }}>
                             <MovieCarousel
                                 type="movie"

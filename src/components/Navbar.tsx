@@ -39,16 +39,20 @@ const navItems: NavItemProps[] = [
         path: "/movies"
     },
     {
-        navItem: "Search",
-        path: "/search"
+        navItem: "TV Shows",
+        path: "/tv-shows"
     },
     {
-        navItem: "Online Games",
+        navItem: "Games",
         path: "/games"
     },
     {
         navItem: "Live TV",
         path: "/live-tv"
+    },
+    {
+        navItem: "Search",
+        path: "/search"
     },
     {
         navItem: "Disclaimer",

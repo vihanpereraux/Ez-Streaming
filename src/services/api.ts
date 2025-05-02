@@ -67,6 +67,19 @@ export const getMoviesByGenre = async (arr: MoviesProps[], genreId: string) => {
     }
 }
 
+// discover tv shows by genre
+export const getTvShowsByGenre = async (arr: MoviesProps[], genreId: string) => {
+    try {
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=${genreId}`);
+        const data = await resposne.json();
+
+        const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
+        return cleanedArr
+    } catch (error) {
+        console.log(`Error - ${genreId} Movies - ${error}`)
+    }
+}
+
 // related movies
 export const getRelatedMovies = async (arr: MoviesProps[], movieId: number) => {
     try {
