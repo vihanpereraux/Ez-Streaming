@@ -73,3 +73,8 @@ export interface SeasonProps {
     image: string[]
 }
 
+export interface CollectionArrayProps {
+    genre: string,
+    collection: MoviesProps[]
+}
+

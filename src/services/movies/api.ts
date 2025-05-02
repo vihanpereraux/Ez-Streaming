@@ -1,0 +1,37 @@
+// props
+import { MoviesProps } from "../../interfaces/props";
+
+// API key
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+export const getMoviesByGenre = async (arr: MoviesProps[], id: string) => {
+    try {
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${id}`);
+        const data = await resposne.json();
+
+        const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
+        return cleanedArr
+    } catch (error) {
+        console.error(`Error fetching content - ${error}`)
+    }
+}
+
+const cleanMovieDetails = (data: any[], arr: MoviesProps[],) => {
+    data.map((item: any) => {
+        arr.push({
+            title: item.original_title,
+            backdrop_path: 'https://image.tmdb.org/t/p/original/' + item.backdrop_path,
+            id: item.id,
+            original_language: item.original_language,
+            popularity: item.popularity,
+            poster_path: item.poster_path ? `https://image.tmdb.org/t/p/w300/${item.poster_path}` : `https://i.ibb.co/YTdfZHjX/no-preview.jpg`,
+            overview: item.overview,
+            release_date: item.release_date,
+            vote_average: item.vote_average,
+            original_name: item.original_name ? item.original_name : null,
+            first_air_date: item.first_air_date ? item.first_air_date : null
+        })
+    });
+
+    return arr;
+}
