@@ -139,8 +139,8 @@ const Home: React.FC = () => {
                             { type: "movie", title: "Hulu Movies", content: huluMovies! },
                             { type: "movie", title: "Top Rated Movies", content: topRatedMovies! },
                             { type: "tv", title: "TV Shows from Hulu", content: huluShows! }
-                        ].map((carousel, idx) => (
-                            <Box sx={{ mt: carouselSpacing }} key={carousel.title}>
+                        ].map((carousel, index) => (
+                            <Box sx={{ mt: carouselSpacing }} key={index}>
                                 <MovieCarousel
                                     type={carousel.type as "movie" | "tv"}
                                     title={carousel.title}
