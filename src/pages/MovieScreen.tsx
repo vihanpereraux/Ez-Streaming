@@ -224,7 +224,7 @@ const MovieScreen: React.FC = () => {
                                         onChange={handleChange}
                                         aria-label="basic tabs example">
                                         {/* default server group */}
-                                        {['Reel Magic', 'Chad Player', 'Cinematic Canvas'].map((label, index) => (
+                                        {['Chad Player', 'Cinematic Canvas', 'Reel Magic'].map((label, index) => (
                                             <Tab sx={tabStyles}
                                                 label={label}
                                                 {...a11yProps(index)} />
@@ -260,7 +260,7 @@ const MovieScreen: React.FC = () => {
                                 )}
 
                                 {/* players */}
-                                {['vidfast', 'vidsrc', 'superEmbed'].map((provider, index) => (
+                                {['vidsrc', 'superEmbed', 'vidfast'].map((provider, index) => (
                                     <CustomTabPanel value={value} index={index} key={index}>
                                         {movieId && (
                                             <Player id={movieId} serverGroup={provider} />

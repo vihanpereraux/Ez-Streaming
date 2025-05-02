@@ -262,7 +262,7 @@ const TvScreen: React.FC = () => {
                                 onChange={handleChange}
                                 aria-label="basic tabs example">
                                 {/* default server group */}
-                                {['Reel Magic', 'Chad Player'].map((label, index) => (
+                                {['Chad Player', 'Cinematic Canvas', 'Reel Magic'].map((label, index) => (
                                     <Tab sx={tabStyles}
                                         label={label}
                                         {...a11yProps(index)} />
@@ -307,7 +307,7 @@ const TvScreen: React.FC = () => {
                                     border: 'none',
                                     borderRadius: 12,
                                 }}
-                                src={`https://vidfast.pro/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}?theme=a2ff00`}>
+                                src={`https://vidsrc.xyz/embed/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}`}>
                             </iframe>
                         </CustomTabPanel>
 
@@ -321,7 +321,21 @@ const TvScreen: React.FC = () => {
                                     border: 'none',
                                     borderRadius: 12,
                                 }}
-                                src={`https://vidsrc.xyz/embed/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}`}>
+                                src={`https://multiembed.mov/directstream.php?video_id=${tvId}&tmdb=1&s=${userSelection.season}&e=${userSelection.episodeNumber}`}>
+                            </iframe>
+                        </CustomTabPanel>
+
+                        <CustomTabPanel value={value} index={2}>
+                            <iframe
+                                key={tvId}
+                                allowFullScreen={true}
+                                style={{
+                                    width: '100%',
+                                    aspectRatio: '16/9',
+                                    border: 'none',
+                                    borderRadius: 12,
+                                }}
+                                src={`https://vidfast.pro/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}?theme=a2ff00`}>
                             </iframe>
                         </CustomTabPanel>
 
