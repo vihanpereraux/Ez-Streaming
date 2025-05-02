@@ -16,7 +16,7 @@ import ValidationMessage from "../components/ValidationMessage";
 import Navbar from "../components/Navbar";
 
 // services
-import { getSearchResults } from "../services/Api";
+import { getSearchResults } from "../services/api";
 
 // interfaces
 import { MoviesProps } from "../interfaces/props";

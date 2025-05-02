@@ -19,7 +19,7 @@ import {
     getTopRatedMovies,
     getUpcommingMovies,
     getMoviesByGenre
-} from "../services/Api";
+} from "../services/api";
 
 // props
 import { MoviesProps } from "../interfaces/props";
@@ -72,7 +72,7 @@ const Home: React.FC = () => {
     return (
         <>
             <Navbar />
-            <Box sx={{ pl: { xs: 2, lg: 6 }, pr: { xs: 2, lg: 6 }, pt: 0 }}>
+            <Box sx={{ pl: { xs: 2, lg: 3 }, pr: { xs: 2, lg: 3 }, pt: 0 }}>
                 {bannerContent &&
                     trendingMovies &&
                     upcommingMovies &&

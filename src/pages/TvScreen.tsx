@@ -16,11 +16,11 @@ import Reviews from "../components/reviews";
 import Videos from "../components/videos";
 
 // services
-import { getGeneralDetails } from "../services/general-details";
-import { getReviewDetails } from "../services/review-details";
-import { getCastDetails } from "../services/cast-details";
-import { getVideos } from "../services/vidoes";
-import { getRelatedTVShows } from "../services/Api";
+import { getGeneralDetails } from "../services/screens/general-details";
+import { getReviewDetails } from "../services/screens/review-details";
+import { getCastDetails } from "../services/screens/cast-details";
+import { getVideos } from "../services/screens/vidoes";
+import { getRelatedTVShows } from "../services/api";
 
 // props
 import { MoviesProps } from "../interfaces/props";

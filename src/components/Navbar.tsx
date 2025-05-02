@@ -35,6 +35,10 @@ const navItems: NavItemProps[] = [
         path: "/"
     },
     {
+        navItem: "Movies",
+        path: "/movies"
+    },
+    {
         navItem: "Search",
         path: "/search"
     },

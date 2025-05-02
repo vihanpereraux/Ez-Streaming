@@ -14,6 +14,7 @@ import TvScreen from './pages/TvScreen'
 import Search from './pages/Search'
 import Disclaimer from './pages/Disclaimer'
 import Games from './pages/Games'
+import Movies from './pages/Movies'
 
 // components
 import FooterDisclaimer from './components/footer-disclaimer'
@@ -27,6 +28,7 @@ const App: React.FC = () => {
           <Route path='/' Component={Home}></Route>
           <Route path='/screen/movie' Component={MovieScreen}></Route>
           <Route path='/screen/tv' Component={TvScreen}></Route>
+          <Route path='/movies' Component={Movies}></Route>
           <Route path='/live-tv' Component={LiveTV}></Route>
           <Route path='/search' Component={Search}></Route>
           <Route path='/disclaimer' Component={Disclaimer}></Route>
