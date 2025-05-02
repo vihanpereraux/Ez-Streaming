@@ -45,11 +45,6 @@ body {
   }
 }
 
-/* navbar animation */
-.Games-nav-item {
-  color: #a2ff00 !important;
-}
-
 /* carousel stylings */
 ._movie_poster_portrait {
   transition: all .15s ease-in-out;
@@ -123,6 +118,12 @@ body {
 
 .MuiTabs-indicator {
   background-color: #a2ff00 !important;
+}
+
+.tv_screen .Mui-selected {
+  text-decoration: none !important;
+  color: #a2ff00 !important;
+  padding: 0px !important;
 }
 
 #simple-tabpanel-0 .MuiBox-root {

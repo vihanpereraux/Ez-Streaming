@@ -11,7 +11,7 @@ const FooterDisclaimer: React.FC = () => {
                 pl: { xs: 1, md: 18, lg: 18 },
                 pr: { xs: 1, md: 18, lg: 18 },
                 pb: 2,
-                fontSize: { xs: 10, lg: 12 },
+                fontSize: { xs: 8, lg: 10 },
                 fontFamily: 'Rubik',
                 opacity: .6,
                 position: 'absolute',
