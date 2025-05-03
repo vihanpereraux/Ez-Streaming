@@ -37,7 +37,20 @@ const Player: React.FC<PlayerProps> = ({ id, serverGroup }) => {
                         />
                     )
                 ) : (
-                    <iframe
+                    serverGroup === 'videasy' ?  (
+                        <iframe
+                        key={id}
+                        allowFullScreen={true}
+                        style={{
+                            width: '100%',
+                            aspectRatio: '16/9',
+                            border: 'none',
+                            borderRadius: 12,
+                        }}
+                        src={`https://player.videasy.net/movie/${id}`}
+                    />
+                    ) : (
+                        <iframe
                         key={id}
                         allowFullScreen={true}
                         style={{
@@ -48,6 +61,7 @@ const Player: React.FC<PlayerProps> = ({ id, serverGroup }) => {
                         }}
                         src={`https://multiembed.mov/?video_id=${id}&tmdb=1`}
                     />
+                    )
                 )}
 
         </>

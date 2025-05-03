@@ -246,98 +246,114 @@ const TvScreen: React.FC = () => {
                             pr: { xs: 2, lg: 3 }
                         }}>
 
-                        {/* tabs */}
-                        <Box sx={{
-                            borderBottom: 1,
-                            borderColor: 'divider',
-                            display: 'flex',
-                            justifyContent: 'space-between'
-                        }}>
-                            <Tabs
-                                sx={{
-                                    opacity: !lightsOffClicked ? 1 : 0,
-                                    pointerEvents: !lightsOffClicked ? "auto" : "none"
-                                }}
-                                value={value}
-                                onChange={handleChange}
-                                aria-label="basic tabs example">
-                                {/* default server group */}
-                                {['Chad Player', 'Cinematic Canvas', 'Reel Magic'].map((label, index) => (
-                                    <Tab sx={tabStyles}
-                                        label={label}
-                                        {...a11yProps(index)} />
-                                ))}
-                            </Tabs>
+                        {/* tabs and players */}
+                        <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
+                            <Box sx={{
+                                borderBottom: 1,
+                                borderColor: 'divider',
+                                display: 'flex',
+                                justifyContent: 'space-between'
+                            }}>
+                                <Tabs
+                                    sx={{
+                                        opacity: !lightsOffClicked ? 1 : 0,
+                                        pointerEvents: !lightsOffClicked ? "auto" : "none"
+                                    }}
+                                    value={value}
+                                    onChange={handleChange}
+                                    aria-label="basic tabs example">
+                                    {/* default server group */}
+                                    {['Chad Player', 'Popcorn Bunjie', 'Cinema Canvas', 'Reel Magic'].map((label, index) => (
+                                        <Tab sx={tabStyles}
+                                            label={label}
+                                            {...a11yProps(index)} />
+                                    ))}
+                                </Tabs>
 
-                            {/* toggle */}
-                            <Button sx={{
-                                display: { xs: 'none', md: 'block' },
-                                color: '#a2ff00',
-                                fontFamily: 'Rubik',
-                                fontSize: 14,
-                                textTransform: 'capitalize',
-                                backgroundColor: 'balck',
-                                borderRadius: 2
-                            }}
-                                onClick={manageLights}
-                            >{lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}</Button>
+                                {/* toggle */}
+                                <Button sx={{
+                                    display: { xs: 'none', md: 'block' },
+                                    color: '#a2ff00',
+                                    fontFamily: 'Rubik',
+                                    fontSize: 14,
+                                    textTransform: 'capitalize',
+                                    backgroundColor: 'balck',
+                                    borderRadius: 2
+                                }}
+                                    onClick={manageLights}
+                                >{lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}</Button>
+                            </Box>
+
+                            {/* note for the player switch */}
+                            {!lightsOffClicked && (
+                                <Typography sx={{
+                                    color: ' white',
+                                    opacity: .7,
+                                    fontFamily: 'Rubik',
+                                    mt: 3,
+                                    fontWeight: 400,
+                                    fontSize: 14,
+                                    mb: '-10px'
+                                }}>Change the player above if you are not satisfied with the current player 😃</Typography>
+                            )}
+
+                            {/* players */}
+                            <CustomTabPanel value={value} index={0}>
+                                <iframe
+                                    key={tvId}
+                                    allowFullScreen={true}
+                                    style={{
+                                        width: '100%',
+                                        aspectRatio: '16/9',
+                                        border: 'none',
+                                        borderRadius: 12,
+                                    }}
+                                    src={`https://vidsrc.xyz/embed/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}`}>
+                                </iframe>
+                            </CustomTabPanel>
+
+                            <CustomTabPanel value={value} index={1}>
+                                <iframe
+                                    key={tvId}
+                                    allowFullScreen={true}
+                                    style={{
+                                        width: '100%',
+                                        aspectRatio: '16/9',
+                                        border: 'none',
+                                        borderRadius: 12,
+                                    }}
+                                    src={`https://player.videasy.net/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}`}>
+                                </iframe>
+                            </CustomTabPanel>
+
+                            <CustomTabPanel value={value} index={2}>
+                                <iframe
+                                    key={tvId}
+                                    allowFullScreen={true}
+                                    style={{
+                                        width: '100%',
+                                        aspectRatio: '16/9',
+                                        border: 'none',
+                                        borderRadius: 12,
+                                    }}
+                                    src={`https://multiembed.mov/directstream.php?video_id=${tvId}&tmdb=1&s=${userSelection.season}&e=${userSelection.episodeNumber}`}>
+                                </iframe>
+                            </CustomTabPanel>
+
+                            <CustomTabPanel value={value} index={3}>
+                                <iframe
+                                    key={tvId}
+                                    allowFullScreen={true}
+                                    style={{
+                                        width: '100%',
+                                        aspectRatio: '16/9',
+                                        border: 'none',
+                                        borderRadius: 12,
+                                    }}
+                                    src={`https://vidfast.pro/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}?theme=a2ff00`}>
+                                </iframe>
+                            </CustomTabPanel>
                         </Box>
-
-                        {/* note for the player switch */}
-                        {!lightsOffClicked && (
-                            <Typography sx={{
-                                color: ' white',
-                                opacity: .7,
-                                fontFamily: 'Rubik',
-                                mt: 3,
-                                fontWeight: 400,
-                                fontSize: 14,
-                                mb: '-10px'
-                            }}>Change the player above if you are not satisfied with the current player 😃</Typography>
-                        )}
-
-                        {/* players */}
-                        <CustomTabPanel value={value} index={0}>
-                            <iframe
-                                key={tvId}
-                                allowFullScreen={true}
-                                style={{
-                                    width: '100%',
-                                    aspectRatio: '16/9',
-                                    border: 'none',
-                                    borderRadius: 12,
-                                }}
-                                src={`https://vidsrc.xyz/embed/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}`}>
-                            </iframe>
-                        </CustomTabPanel>
-
-                        <CustomTabPanel value={value} index={1}>
-                            <iframe
-                                key={tvId}
-                                allowFullScreen={true}
-                                style={{
-                                    width: '100%',
-                                    aspectRatio: '16/9',
-                                    border: 'none',
-                                    borderRadius: 12,
-                                }}
-                                src={`https://multiembed.mov/directstream.php?video_id=${tvId}&tmdb=1&s=${userSelection.season}&e=${userSelection.episodeNumber}`}>
-                            </iframe>
-                        </CustomTabPanel>
-
-                        <CustomTabPanel value={value} index={2}>
-                            <iframe
-                                key={tvId}
-                                allowFullScreen={true}
-                                style={{
-                                    width: '100%',
-                                    aspectRatio: '16/9',
-                                    border: 'none',
-                                    borderRadius: 12,
-                                }}
-                                src={`https://vidfast.pro/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}?theme=a2ff00`}>
-                            </iframe>
-                        </CustomTabPanel>
 
                         {/* details */}
                         <Box sx={{ display: { xs: "block", lg: "block" } }}>

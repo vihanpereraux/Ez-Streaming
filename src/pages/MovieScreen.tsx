@@ -99,7 +99,6 @@ const MovieScreen: React.FC = () => {
 
         const response = await getGeneralDetails(movieId as string, "movie");
         if (response.status == 200) {
-            console.log(response.data)
             setMovieDetails({ ...response.data });
             await getCast();
             await getRelatedContent();
@@ -205,7 +204,7 @@ const MovieScreen: React.FC = () => {
                             pl: { xs: 2, lg: 3 },
                             pr: { xs: 2, lg: 3 }
                         }}>
-                        {/* tabs and players */}
+                        {/* tabs, players and information */}
                         <Box sx={{ display: { xs: "block", lg: "block" } }}>
                             <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
                                 {/* tabs */}
@@ -224,7 +223,7 @@ const MovieScreen: React.FC = () => {
                                         onChange={handleChange}
                                         aria-label="basic tabs example">
                                         {/* default server group */}
-                                        {['Chad Player', 'Cinematic Canvas', 'Reel Magic'].map((label, index) => (
+                                        {['Chad Player', 'Popcorn Bunjie', 'Cinema Canvas', 'Reel Magic'].map((label, index) => (
                                             <Tab sx={tabStyles}
                                                 label={label}
                                                 {...a11yProps(index)} />
@@ -260,7 +259,7 @@ const MovieScreen: React.FC = () => {
                                 )}
 
                                 {/* players */}
-                                {['vidsrc', 'superEmbed', 'vidfast'].map((provider, index) => (
+                                {['vidsrc', 'videasy', 'superEmbed', 'vidfast'].map((provider, index) => (
                                     <CustomTabPanel value={value} index={index} key={index}>
                                         {movieId && (
                                             <Player id={movieId} serverGroup={provider} />
