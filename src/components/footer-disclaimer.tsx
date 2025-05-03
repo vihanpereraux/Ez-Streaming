@@ -8,8 +8,6 @@ const FooterDisclaimer: React.FC = () => {
             <Typography sx={{
                 color: 'white',
                 textAlign: 'center',
-                pl: { xs: 1, md: 18, lg: 18 },
-                pr: { xs: 1, md: 18, lg: 18 },
                 pb: 2,
                 fontSize: { xs: 8, lg: 10 },
                 fontFamily: 'Rubik',
