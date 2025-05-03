@@ -6,7 +6,7 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export const getMoviesByGenre = async (arr: MoviesProps[], id: string) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${id}`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${id}&page=${Math.floor(Math.random() * 3) + 1}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);

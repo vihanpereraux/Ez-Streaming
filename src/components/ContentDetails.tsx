@@ -62,8 +62,8 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
             <Typography
                 sx={{
                     fontFamily: 'Rubik',
-                    fontSize: { xs: 15, lg: 15.5 },
-                    lineHeight: 1.6,
+                    fontSize: { xs: 15, lg: 15 },
+                    lineHeight: 1.65,
                     fontWeight: 400,
                     mt: 3,
                     color: 'white',

@@ -391,9 +391,9 @@ const TvScreen: React.FC = () => {
                                 <Typography
                                     sx={{
                                         fontFamily: 'Rubik',
-                                        fontSize: 16,
-                                        lineHeight: 1.6,
-                                        fontWeight: 360,
+                                        fontSize: 15,
+                                        lineHeight: 1.65,
+                                        fontWeight: 400,
                                         mt: 3,
                                         color: 'white'
                                     }}>{movieDetails.overview}</Typography>
