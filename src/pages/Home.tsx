@@ -98,6 +98,16 @@ const Home: React.FC = () => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        const watchedMovies = localStorage.getItem('watchedMovies');
+        const watchedTvShows = localStorage.getItem('watchedTvShows');
+
+        if (!watchedMovies && !watchedTvShows) {
+            localStorage.setItem('watchedTvShows', JSON.stringify([] as MoviesProps[]));
+            localStorage.setItem('watchedMovies', JSON.stringify([] as MoviesProps[]));
+        }
+    }, []);
+
     const isLoaded =
         bannerContent &&
         trendingMovies &&

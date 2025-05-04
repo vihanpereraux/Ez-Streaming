@@ -47,10 +47,6 @@ const Videos: React.FC<props> = ({ videokeys }) => {
                             pl: 2
                         }}>No trailers and clips available</Typography>
                     )}
-
-                    {/* 
-                    
-                    */}
                 </Carousel>
             </Box>
         </>

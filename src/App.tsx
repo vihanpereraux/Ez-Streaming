@@ -13,6 +13,7 @@ import LiveTV from './pages/TV'
 import TvScreen from './pages/TvScreen'
 import Search from './pages/Search'
 import Disclaimer from './pages/Disclaimer'
+import WatchHistory from './pages/watch-history'
 import Games from './pages/Games'
 import Movies from './pages/Movies'
 import TvShows from './pages/TvShows'
@@ -32,6 +33,7 @@ const App: React.FC = () => {
           <Route path='/movies' Component={Movies}></Route>
           <Route path='/tv-shows' Component={TvShows}></Route>
           <Route path='/live-tv' Component={LiveTV}></Route>
+          <Route path='/watch-history' Component={WatchHistory}></Route>
           <Route path='/search' Component={Search}></Route>
           <Route path='/disclaimer' Component={Disclaimer}></Route>
           <Route path='/games' Component={Games}></Route>

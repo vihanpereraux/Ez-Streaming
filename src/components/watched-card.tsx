@@ -11,7 +11,7 @@ import {
 // props
 import { CarosuelCardProps } from "../interfaces/props";
 
-const CarosuelCard: React.FC<CarosuelCardProps>
+const WatchedCard: React.FC<CarosuelCardProps>
     = ({
         id,
         poster_path,
@@ -54,14 +54,14 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                                 width: '100%',
                                 borderRadius: 15,
                                 objectFit: 'cover',
-                                height: '350px',
+                                height: '24vw',
                                 cursor: 'pointer'
                             }}
                             src={poster_path} alt={title} />
                     </div>
 
-                    {/* movie title */}
-                    <Box sx={{ mt: 1.5 }}>
+                    {/* movie title and meta data */}
+                    <Box>
                         <Typography
                             className="_movie_title"
                             sx={{
@@ -73,6 +73,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
                                 mb: .5,
+                                mt: 1.5,
                                 maxWidth: '90%'
                             }}>{type === "movie" ? title : original_name}</Typography>
 
@@ -102,4 +103,4 @@ const CarosuelCard: React.FC<CarosuelCardProps>
         )
     }
 
-export default CarosuelCard;
+export default WatchedCard;

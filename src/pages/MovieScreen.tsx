@@ -33,6 +33,7 @@ interface TabPanelProps {
     value: number;
 }
 import { ReviewDataProps } from "../interfaces/props";
+import { CarosuelCardProps } from "../interfaces/props";
 
 // stylesheet
 const tabStyles = {
@@ -108,6 +109,7 @@ const MovieScreen: React.FC = () => {
         else {
             console.error(`Error occured - ${response.data}`);
         }
+        updateUserWatchState(response.data, movieId as string);
         setIsLoading(false);
     };
 
@@ -187,6 +189,27 @@ const MovieScreen: React.FC = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [movieId]);
+
+    const updateUserWatchState = (movieDetails: any, movieId: string) => {
+        const watchedMoviesSnaphot: CarosuelCardProps[] = JSON.parse(localStorage.getItem('watchedMovies') || '[]');
+        const isContentAvailable = watchedMoviesSnaphot.find(item => item.id.toString() == movieId);
+        if (!isContentAvailable) {
+            watchedMoviesSnaphot.push(
+                {
+                    original_name: movieDetails.original_name,
+                    poster_path: movieDetails.poster_path,
+                    id: parseInt(movieId),
+                    title: movieDetails.title,
+                    overview: movieDetails.overview,
+                    release_date: movieDetails.release_date,
+                    vote_average: movieDetails.vote_average,
+                    first_air_date: movieDetails.first_air_date,
+                    type: "movie"
+                }
+            )
+        }
+        localStorage.setItem('watchedMovies', JSON.stringify(watchedMoviesSnaphot));
+    }
 
     return (
         <>
