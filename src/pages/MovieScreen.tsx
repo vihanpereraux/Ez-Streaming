@@ -11,7 +11,7 @@ import Tab from '@mui/material/Tab';
 // components
 import LoadingPreview from "../components/LoadingPreview";
 import MovieCarousel from "../components/MovieCarousel";
-import Player from "../components/Player";
+import MoviePlayer from "../components/movie-player";
 import MovieDetails from "../components/ContentDetails";
 import Navbar from "../components/Navbar";
 import Credits from "../components/credits";
@@ -246,7 +246,7 @@ const MovieScreen: React.FC = () => {
                                         onChange={handleChange}
                                         aria-label="basic tabs example">
                                         {/* default server group */}
-                                        {['Chad Player', 'Popcorn Bunjie', 'Cinema Canvas', 'Reel Magic'].map((label, index) => (
+                                        {['Chad Player', 'VimStar', 'Popcorn Bunjie', 'Cinema Canvas', 'Reel Magic'].map((label, index) => (
                                             <Tab sx={tabStyles}
                                                 label={label}
                                                 {...a11yProps(index)} />
@@ -282,10 +282,10 @@ const MovieScreen: React.FC = () => {
                                 )}
 
                                 {/* players */}
-                                {['vidsrc', 'videasy', 'superEmbed', 'vidfast'].map((provider, index) => (
+                                {['videsrc.xyz', 'videsrc.cc', 'videasy', 'videasy.net', 'multiembed.mov', 'vidfast.pro'].map((provider, index) => (
                                     <CustomTabPanel value={value} index={index} key={index}>
                                         {movieId && (
-                                            <Player id={movieId} serverGroup={provider} />
+                                            <MoviePlayer id={movieId} serverGroup={provider} />
                                         )}
                                     </CustomTabPanel>
                                 ))}
