@@ -63,7 +63,7 @@ export const castCarouselConfig = {
 export const tvEpisodeCarouselConfig = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
-        items: 15
+        items: 10
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },

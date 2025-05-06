@@ -12,6 +12,7 @@ import Tab from '@mui/material/Tab';
 // components
 import MovieCarousel from "../components/MovieCarousel";
 import Navbar from "../components/Navbar";
+import TvPlayer from "../components/tv-player";
 import TvEpisodes from "../components/tv-episodes";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
@@ -46,7 +47,8 @@ const tabStyles = {
     fontFamily: 'Rubik',
     textTransform: 'capitalize',
     fontWeight: 450,
-    textDecoration: 'none'
+    textDecoration: 'none',
+    mr: 2
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -110,7 +112,6 @@ const TvScreen: React.FC = () => {
 
         const response = await getGeneralDetails(tvId as string, "tv");
         if (response.status == 200) {
-            console.log(response.data)
             setMovieDetails({ ...response.data });
             await getCast();
             await getRelatedContent();
@@ -149,7 +150,6 @@ const TvScreen: React.FC = () => {
                     names: namesSnaphot
                 });
             }
-            console.log(snapshot);
             setSeasonDeatils([...snapshot]);
         } catch (error) {
             console.error(`Error - ${error}`)
@@ -286,7 +286,7 @@ const TvScreen: React.FC = () => {
                                     onChange={handleChange}
                                     aria-label="basic tabs example">
                                     {/* default server group */}
-                                    {['Chad Player', 'Popcorn Bunjie', 'Cinema Canvas', 'Reel Magic'].map((label, index) => (
+                                    {['Chad Player', 'Chad VimStar', 'Popcorn Bunjie', 'Cinema Canvas', 'Reel Magic'].map((label, index) => (
                                         <Tab sx={tabStyles}
                                             label={label}
                                             {...a11yProps(index)} />
@@ -321,61 +321,17 @@ const TvScreen: React.FC = () => {
                             )}
 
                             {/* players */}
-                            <CustomTabPanel value={value} index={0}>
-                                <iframe
-                                    key={tvId}
-                                    allowFullScreen={true}
-                                    style={{
-                                        width: '100%',
-                                        aspectRatio: '16/9',
-                                        border: 'none',
-                                        borderRadius: 12,
-                                    }}
-                                    src={`https://vidsrc.xyz/embed/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}`}>
-                                </iframe>
-                            </CustomTabPanel>
-
-                            <CustomTabPanel value={value} index={1}>
-                                <iframe
-                                    key={tvId}
-                                    allowFullScreen={true}
-                                    style={{
-                                        width: '100%',
-                                        aspectRatio: '16/9',
-                                        border: 'none',
-                                        borderRadius: 12,
-                                    }}
-                                    src={`https://player.videasy.net/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}`}>
-                                </iframe>
-                            </CustomTabPanel>
-
-                            <CustomTabPanel value={value} index={2}>
-                                <iframe
-                                    key={tvId}
-                                    allowFullScreen={true}
-                                    style={{
-                                        width: '100%',
-                                        aspectRatio: '16/9',
-                                        border: 'none',
-                                        borderRadius: 12,
-                                    }}
-                                    src={`https://multiembed.mov/directstream.php?video_id=${tvId}&tmdb=1&s=${userSelection.season}&e=${userSelection.episodeNumber}`}>
-                                </iframe>
-                            </CustomTabPanel>
-
-                            <CustomTabPanel value={value} index={3}>
-                                <iframe
-                                    key={tvId}
-                                    allowFullScreen={true}
-                                    style={{
-                                        width: '100%',
-                                        aspectRatio: '16/9',
-                                        border: 'none',
-                                        borderRadius: 12,
-                                    }}
-                                    src={`https://vidfast.pro/tv/${tvId}/${userSelection.season}/${userSelection.episodeNumber}?theme=a2ff00`}>
-                                </iframe>
-                            </CustomTabPanel>
+                            {['videsrc.xyz', 'videsrc.cc', 'videasy', 'videasy.net', 'multiembed.mov', 'vidfast.pro'].map((provider, index) => (
+                                <CustomTabPanel value={value} index={index} key={index}>
+                                    {tvId && (
+                                        <TvPlayer
+                                            id={tvId}
+                                            serverGroup={provider}
+                                            season={(userSelection.season).toString()}
+                                            episode={(userSelection.episodeNumber).toString()} />
+                                    )}
+                                </CustomTabPanel>
+                            ))}
                         </Box>
 
                         {/* details */}
