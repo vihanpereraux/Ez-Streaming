@@ -65,7 +65,7 @@ const EmptyNote: React.FC<EmptyNoteProps> = ({ type }) => {
                     opacity: 1,
                     mt: 10,
                     textAlign: 'center',
-                }}>No previously watched {type === "movies" ? "movies" : "tv series"} found, Keep <span style={{ color: '#a2ff00' }}>streaming</span> !</Typography>
+                }}>No previously watched {type === "movies" ? "Movies" : "Tv Shows"} found, Keep <span style={{ color: '#a2ff00' }}>streaming</span> !</Typography>
             </Box>
         </>
     )
@@ -76,7 +76,7 @@ const WatchHistory: React.FC = () => {
     const [watchedMovies, setWatchedMovies] = useState<CarosuelCardProps[]>(
         JSON.parse(localStorage.getItem('watchedMovies') || '[]')
     );
-    const [originalMovieList, setOriginalMovieList] = useState<CarosuelCardProps[]>(
+    const [originalMovieList] = useState<CarosuelCardProps[]>(
         JSON.parse(localStorage.getItem('watchedMovies') || '[]')
     );
     const [watchedTvShows] = useState<CarosuelCardProps[]>(
@@ -110,7 +110,6 @@ const WatchHistory: React.FC = () => {
                 }}>
                 {/* tabs */}
                 <Box sx={{
-                    borderBottom: 1,
                     borderColor: 'none',
                     display: 'flex',
                     justifyContent: 'center'
@@ -123,20 +122,28 @@ const WatchHistory: React.FC = () => {
                 </Box>
                 {/*  */}
                 <CustomTabPanel value={value} index={0}>
-                    <input
-                        className="search_input"
-                        onChange={handleMoviesQuickSearch}
-                        // value={value}
-                        style={{
-                            width: '35%',
-                            height: 55,
-                            fontFamily: 'Rubik',
-                            borderRadius: 8,
-                            border: 'none',
-                            backgroundColor: 'rgb(20, 20, 20)',
-                            color: 'white',
-                            fontSize: 16
-                        }} placeholder="Search already watched movies" type="text" />
+                    {/* fzf for watched movies */}
+                    <Box sx={{ 
+                        display: watchedMovies.length > 0 ? "felx" : "none",
+                        justifyContent: 'center',
+                     }}>
+                        <input
+                            className="search_input"
+                            onChange={handleMoviesQuickSearch}
+                            style={{
+                                width: window.innerWidth < 1024 ? "100%" : "35%",
+                                height: 55,
+                                fontFamily: 'Rubik',
+                                borderRadius: 8,
+                                border: 'none',
+                                backgroundColor: 'rgb(30, 30, 30)',
+                                color: 'white',
+                                fontSize: 15,
+                                marginTop: 30,
+                                marginBottom: 20
+                            }} placeholder="Search already watched movies" type="text" />
+
+                    </Box>
 
                     <Box sx={{
                         position: 'relative',
