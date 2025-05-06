@@ -5,7 +5,7 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export const getBannerContent = async (arr: MoviesProps[]) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${API_KEY}`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${API_KEY}&page=${Math.floor(Math.random() * 5) + 1}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
@@ -31,7 +31,7 @@ export const getTrendingMovies = async (arr: MoviesProps[]) => {
 // top rated movies
 export const getTopRatedMovies = async (arr: MoviesProps[]) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&page=${Math.floor(Math.random() * 10) + 1}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
@@ -57,7 +57,7 @@ export const getUpcommingMovies = async (arr: MoviesProps[]) => {
 // discover movies by genre
 export const getMoviesByGenre = async (arr: MoviesProps[], genreId: string) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${Math.floor(Math.random() * 20) + 1}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
@@ -70,7 +70,7 @@ export const getMoviesByGenre = async (arr: MoviesProps[], genreId: string) => {
 // discover tv shows by genre
 export const getTvShowsByGenre = async (arr: MoviesProps[], genreId: string) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=${genreId}`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=${genreId}&page=${Math.floor(Math.random() * 10) + 1}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
@@ -121,7 +121,7 @@ export const getSearchResults = async (query: string, type: string, arr: MoviesP
 // get movies by provider
 export const getMoviesByProvider = async (arr: MoviesProps[], providerId: string) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc&page=${Math.floor(Math.random() * 20) + 1}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
@@ -134,7 +134,7 @@ export const getMoviesByProvider = async (arr: MoviesProps[], providerId: string
 // get tv shows by provider
 export const getTvShowsByProvider = async (arr: MoviesProps[], providerId: string) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc&page=${Math.floor(Math.random() * 15) + 1}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);

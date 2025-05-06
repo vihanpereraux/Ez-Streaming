@@ -39,8 +39,12 @@ const navItems: NavItemProps[] = [
         path: "/movies"
     },
     {
-        navItem: "TV Series",
+        navItem: "TV Shows",
         path: "/tv-shows"
+    },
+    {
+        navItem: "Previously Watched",
+        path: "/watch-history"
     },
     {
         navItem: "Games",

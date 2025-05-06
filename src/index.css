@@ -19,8 +19,8 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: radial-gradient(circle, rgba(162, 255, 0, 0.8) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0.6) 70%), 
-              linear-gradient(120deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+  background: radial-gradient(circle, rgba(162, 255, 0, 0.8) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0.6) 70%),
+    linear-gradient(120deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
   background-size: 200% 200%;
   animation: randomMovement 20s ease-in-out infinite;
   filter: blur(30px);
@@ -31,15 +31,19 @@ body {
   0% {
     background-position: 0% 0%;
   }
+
   25% {
     background-position: 50% 30%;
   }
+
   50% {
     background-position: 100% 70%;
   }
+
   75% {
     background-position: 30% 100%;
   }
+
   100% {
     background-position: 0% 0%;
   }
@@ -143,6 +147,7 @@ body {
 /* search page */
 .search_input {
   padding-left: 20px;
+  transition: border 0.2s ease;
 }
 
 .search_button:disabled {
@@ -154,4 +159,38 @@ body {
 .game:hover {
   border: 2px solid #a2ff00 !important;
   transition: all .15s linear;
+}
+
+/* previously watched page  */
+.watch_history_wrapper .Mui-selected {
+  text-decoration: none !important;
+  color: #a2ff00 !important;
+  padding: 0px !important;
+}
+
+.watched_movies_wrapper img {
+  height: 27vw !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .watched_movies_wrapper img {
+    height: 100% !important;
+  }
+}
+
+.watched_movies_wrapper .MuiBox-root {
+  margin-top: 0px !important;
+}
+
+.watch_history_wrapper .MuiBox-root {
+  margin-top: 0px !important;
+}
+
+.watched_movies_wrapper {
+  margin: 5px !important;
+}
+
+.search_input:focus {
+  border: 1px solid rgba(162, 255, 0, .25) !important;
+  outline: none !important;
 }
