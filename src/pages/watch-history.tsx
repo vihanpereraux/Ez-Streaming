@@ -106,9 +106,7 @@ const WatchHistory: React.FC = () => {
     }
 
     useEffect(() => {
-        if (originalTvShowList.length > 0) {
-            setIsLoading(false);
-        }
+        setIsLoading(false);
     }, [originalTvShowList])
 
     return (
