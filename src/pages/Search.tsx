@@ -57,13 +57,13 @@ const Search: React.FC = () => {
             <Box sx={{ pt: 8, pl: { xs: 0, lg: 6 } }}>
                 <Box sx={{
                     background: 'none',
-                    mt: 2
+                    mt: 0
                 }}>
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: 22,
-                            fontWeight: 450,
+                            fontSize: 20,
+                            fontWeight: 420,
                             fontFamily: 'Rubik',
                             textAlign: 'center'
                         }}> Search your favourite Movies & TV Shows
@@ -74,8 +74,8 @@ const Search: React.FC = () => {
                             display: { xs: 'block', sm: 'flex' },
                             justifyContent: 'center',
                             marginTop: 5,
-                            pl: { xs: 1, lg: 50 },
-                            pr: { xs: 1, lg: 50 }
+                            pl: { xs: 1, sm: 8, md: 20, lg: 50 },
+                            pr: { xs: 1, sm: 8, md: 20, lg: 50 }
                         }}>
                         <input
                             className="search_input"
@@ -147,7 +147,7 @@ const Search: React.FC = () => {
                 }}>
                     {results.length > 0 ? results.map((item, index) => (
                         <Box sx={{
-                            width: { xs: 'calc(50%)', sm: 'calc(50%)', md: 'calc(33%)', lg: 'calc(20% - 10px)' },
+                            width: { xs: 'calc(50%)', sm: 'calc(50%)', md: 'calc(25% - 10px)', lg: 'calc(20% - 10px)' },
                             marginTop: '40px',
                         }} key={index}>
                             <SearchCard
