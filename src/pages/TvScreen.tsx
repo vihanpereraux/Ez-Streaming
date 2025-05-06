@@ -38,6 +38,7 @@ interface TabPanelProps {
     index: number;
     value: number;
 }
+import { CarosuelCardProps } from "../interfaces/props";
 
 // stylesheet
 const tabStyles = {
@@ -120,6 +121,7 @@ const TvScreen: React.FC = () => {
         else {
             console.error(`Error occured - ${response.data}`);
         }
+        updateUserWatchState(response.data, tvId as string);
         setIsLoading(false);
     };
 
@@ -228,6 +230,27 @@ const TvScreen: React.FC = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [tvId]);
+
+    const updateUserWatchState = (details: any, tvId: string) => {
+        const watchedTvShowsSnaphot: CarosuelCardProps[] = JSON.parse(localStorage.getItem('watchedTvShows') || '[]');
+        const isContentAvailable = watchedTvShowsSnaphot.find(item => item.id.toString() == tvId);
+        if (!isContentAvailable) {
+            watchedTvShowsSnaphot.push(
+                {
+                    original_name: details.original_name,
+                    poster_path: details.poster_path,
+                    id: parseInt(tvId),
+                    title: details.title,
+                    overview: details.overview,
+                    release_date: details.release_date,
+                    vote_average: details.vote_average,
+                    first_air_date: details.first_air_date,
+                    type: "tv"
+                }
+            )
+        }
+        localStorage.setItem('watchedTvShows', JSON.stringify(watchedTvShowsSnaphot));
+    }
 
     return (
         <>
