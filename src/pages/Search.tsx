@@ -90,7 +90,7 @@ const Search: React.FC = () => {
                                 backgroundColor: 'rgb(20, 20, 20)',
                                 color: 'white',
                                 fontSize: 16
-                            }} placeholder="Type to search for movies or TV shows..." type="text" />
+                            }} placeholder="Type to search" type="text" />
 
                         {/* movies / tv selection */}
                         <Select

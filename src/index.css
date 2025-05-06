@@ -147,6 +147,7 @@ body {
 /* search page */
 .search_input {
   padding-left: 20px;
+  transition: border 0.2s ease;
 }
 
 .search_button:disabled {
@@ -187,4 +188,9 @@ body {
 
 .watched_movies_wrapper {
   margin: 5px !important;
+}
+
+.search_input:focus {
+  border: 1px solid rgba(162, 255, 0, .25) !important;
+  outline: none !important;
 }

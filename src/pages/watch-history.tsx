@@ -139,7 +139,7 @@ const WatchHistory: React.FC = () => {
                             ))}
                         </Tabs>
                     </Box>
-                    
+
                     {/* watched movies cat.log */}
                     <CustomTabPanel value={value} index={0}>
                         {/* fzf for watched movies */}
@@ -182,7 +182,7 @@ const WatchHistory: React.FC = () => {
                                         }}
                                         key={index}>
                                         <Box sx={{ mb: 2 }}></Box>
-                                        
+
                                         <WatchedCard
                                             id={movie.id}
                                             overview={movie.overview}
@@ -243,7 +243,7 @@ const WatchHistory: React.FC = () => {
                                         }}
                                         key={index}>
                                         <Box sx={{ mb: 5 }}></Box>
-                                        
+
                                         <WatchedCard
                                             id={movie.id}
                                             overview={movie.overview}
