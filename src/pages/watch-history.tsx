@@ -176,7 +176,7 @@ const WatchHistory: React.FC = () => {
                                 watchedMovies.map((movie, index) => (
                                     <Box className="watched_movies_wrapper"
                                         sx={{
-                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(50% - 10px)', md: 'calc(33% - 10px)', lg: 'calc(20% - 10px)' },
+                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(50% - 10px)', md: 'calc(25% - 10px)', lg: 'calc(20% - 10px)' },
                                         }}
                                         key={index}>
                                         <Box sx={{ mb: 2 }}></Box>
@@ -240,7 +240,7 @@ const WatchHistory: React.FC = () => {
                                             width: { xs: 'calc(50% - 10px)', sm: 'calc(50% - 10px)', md: 'calc(33% - 10px)', lg: 'calc(20% - 10px)' },
                                         }}
                                         key={index}>
-                                        <Box sx={{ mb: 5 }}></Box>
+                                        <Box sx={{ mb: 2 }}></Box>
 
                                         <WatchedCard
                                             id={movie.id}

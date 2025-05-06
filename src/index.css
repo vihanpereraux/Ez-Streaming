@@ -178,6 +178,12 @@ body {
   }
 }
 
+@media only screen and (max-width: 1200px) {
+  .watched_movies_wrapper img {
+    height: 100% !important;
+  }
+}
+
 .watched_movies_wrapper .MuiBox-root {
   margin-top: 0px !important;
 }
