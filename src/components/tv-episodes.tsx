@@ -113,8 +113,9 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
 
                                             {/* episode number */}
                                             <Typography sx={{
-                                                fontSize: 14,
+                                                fontSize: 13,
                                                 mt: 1,
+                                                fontWeight: 400,
                                                 fontFamily: 'Rubik',
                                                 color: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ?
                                                     "#a2ff00"
