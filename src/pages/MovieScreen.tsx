@@ -40,8 +40,9 @@ const tabStyles = {
     color: 'white',
     fontFamily: 'Rubik',
     textTransform: 'capitalize',
-    fontWeight: 450,
-    textDecoration: 'none'
+    fontWeight: 420,
+    textDecoration: 'none',
+    mr: 2
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -282,7 +283,7 @@ const MovieScreen: React.FC = () => {
                                 )}
 
                                 {/* players */}
-                                {['videsrc.xyz', 'videsrc.cc', 'videasy', 'videasy.net', 'multiembed.mov', 'vidfast.pro'].map((provider, index) => (
+                                {['videsrc.xyz', 'videsrc.cc', 'videasy.net', 'multiembed.mov', 'vidfast.pro'].map((provider, index) => (
                                     <CustomTabPanel value={value} index={index} key={index}>
                                         {movieId && (
                                             <MoviePlayer id={movieId} serverGroup={provider} />

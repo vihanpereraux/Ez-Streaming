@@ -91,14 +91,14 @@ const WatchHistory: React.FC = () => {
         console.log(event);
     };
 
-    // fzf function for movies
+    // fzf for movies
     const handleMoviesQuickSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const keyword = e.target.value;
         const sortedList = originalMovieList.filter(item => item.title.toLowerCase().includes(keyword.toLowerCase()));
         setWatchedMovies([...sortedList]);
     }
 
-    // fzf function for tv shows
+    // fzf for tv shows
     const handleTvShowsQuickSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const keyword = e.target.value;
         const sortedList = originalTvShowList.filter(item => item.original_name.toLowerCase().includes(keyword.toLowerCase()));
@@ -176,7 +176,7 @@ const WatchHistory: React.FC = () => {
                                 watchedMovies.map((movie, index) => (
                                     <Box className="watched_movies_wrapper"
                                         sx={{
-                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(50% - 10px)', md: 'calc(25% - 10px)', lg: 'calc(20% - 10px)' },
+                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(50% - 10px)', md: 'calc(25% - 10px)', lg: 'calc(20% - 10px)', xl: 'calc(16.6% - 10px)' },
                                         }}
                                         key={index}>
                                         <Box sx={{ mb: 2 }}></Box>

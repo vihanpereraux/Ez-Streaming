@@ -87,15 +87,21 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             :
                             String(first_air_date).slice(0, 4)}</span>
 
-                        <span style={{
-                            color: 'white',
-                            fontSize: 13,
-                            fontWeight: 400,
-                            fontFamily: 'Rubik',
-                            opacity: .8,
-                            marginLeft: 15
-                        }}>
-                            <FaStar style={{ color: '#a2ff00' }} />  {Math.round(vote_average * 10) / 10}</span>
+                        <span
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                color: "white",
+                                fontSize: 13,
+                                fontWeight: 400,
+                                fontFamily: "Rubik",
+                                opacity: 0.8,
+                                marginLeft: 15,
+                            }}
+                        >
+                            <FaStar style={{ color: "#a2ff00", marginRight: 5 }} />
+                            {Math.round(vote_average * 10) / 10}
+                        </span>
                     </Box>
                 </Box>
             </>

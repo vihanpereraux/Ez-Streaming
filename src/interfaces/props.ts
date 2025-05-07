@@ -66,11 +66,15 @@ export interface ReviewDataProps {
     date: string
 }
 
+export interface EpisodeDetailsProps {
+    stills: string [],
+    names: string [],
+    airDates: string []
+}
 export interface SeasonProps {
     season: number,
     numOfEpisodes: number,
-    names: string[],
-    image: string[]
+    episodeDetails: EpisodeDetailsProps
 }
 
 export interface CollectionArrayProps {

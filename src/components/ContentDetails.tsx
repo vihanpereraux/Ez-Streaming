@@ -40,13 +40,15 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
             {/* other details */}
             <span style={{
                 color: 'white',
-                fontSize: 14
+                fontSize: 14,
+                display: "inline-flex",
+                alignItems: "center"
             }}>
                 {/* release date */}
                 {props.release_date ? props.release_date.slice(0, 4) : '...'} &nbsp;⋅
 
                 {/* ratings */}
-                &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp;{Math.round(props.vote_average * 10) / 10} &nbsp;⋅
+                &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp; {Math.round(props.vote_average * 10) / 10} &nbsp;⋅
             </span>
 
             {/* genre */}
@@ -55,7 +57,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
             ))}
 
             &nbsp;<span style={{ color: 'white', fontFamily: 'Rubik', fontSize: 14 }}>
-            ⋅&nbsp; {formatRuntime(props.runtime)}
+                ⋅&nbsp; {props.runtime ? formatRuntime(props.runtime) : 'Duration not available'}
             </span>
 
             {/* overview */}

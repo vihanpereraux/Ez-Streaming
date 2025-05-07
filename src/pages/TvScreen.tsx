@@ -40,13 +40,14 @@ interface TabPanelProps {
     value: number;
 }
 import { CarosuelCardProps } from "../interfaces/props";
+import { EpisodeDetailsProps } from "../interfaces/props";
 
 // stylesheet
 const tabStyles = {
     color: 'white',
     fontFamily: 'Rubik',
     textTransform: 'capitalize',
-    fontWeight: 450,
+    fontWeight: 420,
     textDecoration: 'none',
     mr: 2
 }
@@ -138,16 +139,24 @@ const TvScreen: React.FC = () => {
 
                 const imagesSnaphot: string[] = [];
                 const namesSnaphot: string[] = [];
+                const airDatesSnaphot: string[] = [];    
+
+                let episodeDetails: EpisodeDetailsProps = {stills: [] as string[], names: [] as string[], airDates: [] as string[]}
+
                 episodes.map((episode) => {
                     imagesSnaphot.push(episode.still_path);
                     namesSnaphot.push(episode.name);
+                    airDatesSnaphot.push(episode.air_date);
                 });
-
+                episodeDetails = {
+                    stills: imagesSnaphot,
+                    names: namesSnaphot,
+                    airDates: airDatesSnaphot
+                }
                 snapshot.push({
                     season: season.season_number,
                     numOfEpisodes: season.episode_count,
-                    image: imagesSnaphot,
-                    names: namesSnaphot
+                    episodeDetails: episodeDetails
                 });
             }
             setSeasonDeatils([...snapshot]);

@@ -71,7 +71,7 @@ export const tvEpisodeCarouselConfig = {
     },
     tablet: {
         breakpoint: { max: 1024, min: 600 },
-        items: 4.5
+        items: 4
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
