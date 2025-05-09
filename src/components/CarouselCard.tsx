@@ -41,11 +41,16 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                 <Box sx={{
                     background: 'none',
                     pl: .6,
-                    pr: .6
+                    pr: .6,
                 }}>
                     {/* poster */}
                     <div className="_movie_poster_container"
-                        style={{ overflow: 'hidden', borderRadius: 15 }}>
+                        style={{
+                            overflow: 'hidden',
+                            borderRadius: 15,
+                            // border: '1px solid red',
+                            position: 'relative'
+                        }}>
                         <img
                             loading="lazy"
                             className="_movie_poster_portrait"
@@ -54,8 +59,8 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                                 width: '100%',
                                 borderRadius: 15,
                                 objectFit: 'cover',
-                                height: '350px',
-                                cursor: 'pointer'
+                                height: '100%',
+                                cursor: 'pointer',
                             }}
                             src={poster_path} alt={title} />
                     </div>

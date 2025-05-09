@@ -65,15 +65,15 @@ body {
 }
 
 /* carousel card stylings */
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1200px) {
   ._movie_poster_container img {
-    height: 100% !important;
+    height: 400px !important;
   }
 }
 
 @media only screen and (max-width: 600px) {
   ._movie_poster_container img {
-    height: 100% !important;
+    height: 75vw !important;
   }
 }
 
