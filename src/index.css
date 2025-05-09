@@ -149,9 +149,9 @@ body {
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 600px) {
   .search_results_poster_container img {
-    height: 75vw !important;
+    height: 76vw !important;
   }
 }
 
