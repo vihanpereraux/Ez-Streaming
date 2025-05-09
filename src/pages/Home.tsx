@@ -23,7 +23,7 @@ import {
 // props
 import { MoviesProps } from "../interfaces/props";
 
-const carouselSpacing = 5;
+const carouselSpacing = 3.5;
 
 const Home: React.FC = () => {
     const [bannerContent, setBannerContent] = useState<MoviesProps[]>();

@@ -48,7 +48,6 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                         style={{
                             overflow: 'hidden',
                             borderRadius: 15,
-                            // border: '1px solid red',
                             position: 'relative'
                         }}>
                         <img
@@ -59,7 +58,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                                 width: '100%',
                                 borderRadius: 15,
                                 objectFit: 'cover',
-                                height: '100%',
+                                height: '24vw',
                                 cursor: 'pointer',
                             }}
                             src={poster_path} alt={title} />

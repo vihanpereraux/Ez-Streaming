@@ -14,7 +14,7 @@ import { fetchTvShowsInAllGenres } from "../services/tv-shows/fetchTvShows";
 // props
 import { MoviesProps } from "../interfaces/props";
 
-const carouselSpacing: number = 5;
+const carouselSpacing: number = 3.5;
 
 const genreTitles = [
     "Action & Adventure Shows",
