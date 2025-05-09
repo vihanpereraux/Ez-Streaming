@@ -21,7 +21,7 @@ export const bannerCarouselConfig = {
 export const multiCarouselConfig = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
-        items: 5.85
+        items: 9.5
     },
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
@@ -33,7 +33,7 @@ export const multiCarouselConfig = {
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
-        items: 2.25
+        items: 2.1
     }
 };
 

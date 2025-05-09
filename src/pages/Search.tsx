@@ -62,7 +62,7 @@ const Search: React.FC = () => {
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: 420,
                             fontFamily: 'Rubik',
                             textAlign: 'center'
@@ -74,8 +74,8 @@ const Search: React.FC = () => {
                             display: { xs: 'block', sm: 'flex' },
                             justifyContent: 'center',
                             marginTop: 5,
-                            pl: { xs: 1, sm: 8, md: 20, lg: 50 },
-                            pr: { xs: 1, sm: 8, md: 20, lg: 50 }
+                            pl: { xs: 1, sm: 8, md: 20, lg: '25vw', xl: '30vw' },
+                            pr: { xs: 1, sm: 8, md: 20, lg: '25vw', xl: '30vw' }
                         }}>
                         <input
                             className="search_input"
@@ -83,13 +83,13 @@ const Search: React.FC = () => {
                             value={value}
                             style={{
                                 width: '100%',
-                                height: 55,
+                                height: 50,
                                 fontFamily: 'Rubik',
                                 borderRadius: 8,
                                 border: 'none',
                                 backgroundColor: 'rgb(20, 20, 20)',
                                 color: 'white',
-                                fontSize: 16
+                                fontSize: 14
                             }} placeholder="Type to search" type="text" />
 
                         {/* movies / tv selection */}
@@ -98,10 +98,11 @@ const Search: React.FC = () => {
                                 color: 'white',
                                 backgroundColor: 'rgb(20, 20, 20)',
                                 width: { xs: '100%', sm: '25%' },
-                                fontSize: 16,
+                                fontSize: 14,
                                 fontFamily: 'Rubik',
                                 ml: { xs: 0, sm: 1 },
-                                mt: { xs: 1.5, sm: 0 }
+                                mt: { xs: 1.5, sm: 0 },
+                                height: 50,
                             }}
                             labelId="demo-simple-select-label"
                             id="search-type-select"
@@ -116,12 +117,12 @@ const Search: React.FC = () => {
                             className="search_button"
                             sx={{
                                 width: { xs: '100%', sm: '20%' },
-                                height: 57,
-                                borderRadius: 2,
+                                height: 50,
+                                borderRadius: 1.8,
                                 fontFamily: 'Rubik',
                                 textTransform: 'capitalize',
                                 fontWeight: 450,
-                                fontSize: 16,
+                                fontSize: 15,
                                 pl: 3,
                                 pr: 3,
                                 ml: { xs: 0, sm: 1 },
@@ -142,12 +143,13 @@ const Search: React.FC = () => {
                     flexWrap: 'wrap',
                     width: { xs: 'auto', lg: '100%' },
                     gap: 0,
-                    pl: { xs: 2, lg: 0 },
-                    pr: { xs: 2, lg: 0 }
+                    pl: { xs: .5, lg: 0 },
+                    pr: { xs: .5, lg: 0 },
+                    // border: '1px solid red',
                 }}>
                     {results.length > 0 ? results.map((item, index) => (
                         <Box sx={{
-                            width: { xs: 'calc(50%)', sm: 'calc(50%)', md: 'calc(25% - 10px)', lg: 'calc(20% - 10px)' },
+                            width: { xs: 'calc(50%)', sm: 'calc(33.3%)', md: 'calc(25%)', lg: 'calc(20% - 8px)', xl: 'calc(16.6% - 6px)' },
                             marginTop: '40px',
                         }} key={index}>
                             <SearchCard

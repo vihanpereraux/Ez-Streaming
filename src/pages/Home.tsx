@@ -128,7 +128,11 @@ const Home: React.FC = () => {
     return (
         <>
             <Navbar />
-            <Box sx={{ pl: { xs: 2, lg: 3 }, pr: { xs: 2, lg: 3 }, pt: 0 }}>
+            <Box sx={{
+                pl: { xs: .5, lg: 2 },
+                pr: { xs: .5, lg: 2 },
+                pt: 0
+            }}>
                 {isLoaded ? (
                     <>
                         <Box sx={{ mt: carouselSpacing }}>
