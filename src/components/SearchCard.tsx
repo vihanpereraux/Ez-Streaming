@@ -44,7 +44,7 @@ const SearchCard: React.FC<SearchCardProps>
                     pr: .6,
                 }}>
                     {/* poster */}
-                    <div className="_movie_poster_container"
+                    <div className="search_results_poster_container"
                         style={{ overflow: 'hidden', borderRadius: 15 }}>
                         <img
                             loading="lazy"
@@ -54,7 +54,7 @@ const SearchCard: React.FC<SearchCardProps>
                                 width: '100%',
                                 borderRadius: 15,
                                 objectFit: 'cover',
-                                height: '26vw',
+                                height: '25vw',
                                 cursor: 'pointer'
                             }}
                             src={poster_path} alt={title} />

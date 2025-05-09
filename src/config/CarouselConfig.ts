@@ -24,12 +24,12 @@ export const multiCarouselConfig = {
         items: 9.5
     },
     desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 6.15
+        breakpoint: { max: 3000, min: 1200 },
+        items: 6.1
     },
     tablet: {
-        breakpoint: { max: 1024, min: 600 },
-        items: 4.5
+        breakpoint: { max: 1200, min: 600 },
+        items: 5.1
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
