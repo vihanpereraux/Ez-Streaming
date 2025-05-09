@@ -33,7 +33,7 @@ export const multiCarouselConfig = {
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
-        items: 2.25
+        items: 2.1
     }
 };
 
