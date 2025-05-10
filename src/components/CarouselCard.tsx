@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
 
 // MUI
-import {
-    Box,
-    Typography
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 // props
 import { CarosuelCardProps } from "../interfaces/props";
@@ -86,10 +83,9 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8
-                        }}>{type === "movie" ?
-                            String(release_date).slice(0, 4)
+                        }}>{type === "movie" ? String(release_date).length > 0 ? String(release_date).slice(0, 4) : "--"
                             :
-                            String(first_air_date).slice(0, 4)}</span>
+                            String(first_air_date).length > 0 ? String(first_air_date).slice(0, 4) : "--"}</span>
 
                         <span
                             style={{
@@ -104,7 +100,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             }}
                         >
                             <FaStar style={{ color: "#a2ff00", marginRight: 5 }} />
-                            {Math.round(vote_average * 10) / 10}
+                            {vote_average ? (Math.round(vote_average * 10) / 10) : "--"}
                         </span>
                     </Box>
                 </Box>
