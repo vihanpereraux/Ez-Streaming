@@ -25,7 +25,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
             <Box sx={{ mt: 3 }}>
                 <Carousel responsive={castCarouselConfig} infinite={true}>
                     {castDetails.length > 0 ? (
-                        [...castDetails].reverse().map((cast, index) => (
+                        [...castDetails].map((cast, index) => (
                             <Box key={index}
                                 sx={{
                                     width: '95%',

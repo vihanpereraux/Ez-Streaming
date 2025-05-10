@@ -129,8 +129,8 @@ const Home: React.FC = () => {
         <>
             <Navbar />
             <Box sx={{
-                pl: { xs: .5, lg: 2 },
-                pr: { xs: .5, lg: 2 },
+                pl: { xs: 1, lg: 2 },
+                pr: { xs: 1, lg: 2 },
                 pt: 0
             }}>
                 {isLoaded ? (
