@@ -23,7 +23,7 @@ const navButtonStylings = {
     fontSize: 14,
     fontFamily: 'Rubik',
     fontWeight: 400,
-    mr: 1,
+    ml: 1,
     background: 'none'
 }
 interface Props { window?: () => Window; }
