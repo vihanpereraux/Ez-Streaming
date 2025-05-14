@@ -24,7 +24,7 @@ body {
   background-size: 200% 200%;
   animation: randomMovement 20s ease-in-out infinite;
   filter: blur(30px);
-  opacity: .15;
+  opacity: .2;
 }
 
 @keyframes randomMovement {
@@ -101,6 +101,11 @@ body {
   background: rgb(40, 40, 40) !important;
 }
 
+.search_input:focus {
+  border: 1px solid rgba(162, 255, 0, .25) !important;
+  outline: none !important;
+}
+
 /* movie/tv screen */
 .MuiTabs-flexContainer button {
   padding: 0px !important;
@@ -169,8 +174,20 @@ body {
   padding: 0px !important;
 }
 
+.watched_movies_wrapper {
+  position: relative;
+}
+
 .watched_movies_wrapper img {
   height: 27vw !important;
+}
+
+.watched_items_remove_button {
+  transition: scale 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.watched_items_remove_button:hover {
+  scale: 0.6 !important;
 }
 
 @media only screen and (max-width: 600px) {
@@ -201,9 +218,4 @@ body {
 
 .watched_movies_wrapper {
   margin: 5px !important;
-}
-
-.search_input:focus {
-  border: 1px solid rgba(162, 255, 0, .25) !important;
-  outline: none !important;
 }

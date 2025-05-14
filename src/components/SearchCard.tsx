@@ -54,7 +54,7 @@ const SearchCard: React.FC<SearchCardProps>
                                 width: '100%',
                                 borderRadius: 15,
                                 objectFit: 'cover',
-                                height: '25vw',
+                                height: '24vw',
                                 cursor: 'pointer'
                             }}
                             src={poster_path} alt={title} />
@@ -66,20 +66,20 @@ const SearchCard: React.FC<SearchCardProps>
                             className="_movie_title"
                             sx={{
                                 color: 'white',
-                                fontSize: 16,
+                                fontSize: { xs: 14, md: 14, lg: 14 },
                                 fontWeight: 450,
                                 fontFamily: 'Rubik',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
-                                mb: .7,
+                                mb: .25,
                                 maxWidth: '90%'
                             }}>
                             {title}</Typography>
 
                         <span style={{
                             color: 'white',
-                            fontSize: 14,
+                            fontSize: 12,
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8

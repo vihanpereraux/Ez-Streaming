@@ -44,21 +44,18 @@ const WatchedCard: React.FC<CarosuelCardProps>
                     pr: .6
                 }}>
                     {/* poster */}
-                    <div className="_movie_poster_container"
-                        style={{ overflow: 'hidden', borderRadius: 15 }}>
-                        <img
-                            loading="lazy"
-                            className="_movie_poster_portrait"
-                            onClick={navigateToScreen}
-                            style={{
-                                width: '100%',
-                                borderRadius: 15,
-                                objectFit: 'cover',
-                                height: '24vw',
-                                cursor: 'pointer'
-                            }}
-                            src={poster_path} alt={title} />
-                    </div>
+                    <img
+                        loading="lazy"
+                        className="_movie_poster_portrait"
+                        onClick={navigateToScreen}
+                        style={{
+                            width: '100%',
+                            borderRadius: 15,
+                            objectFit: 'cover',
+                            height: '24vw',
+                            cursor: 'pointer'
+                        }}
+                        src={poster_path} alt={title} />
 
                     {/* movie title and meta data */}
                     <Box>
@@ -66,14 +63,14 @@ const WatchedCard: React.FC<CarosuelCardProps>
                             className="_movie_title"
                             sx={{
                                 color: 'white',
-                                fontSize: { xs: 14, md: 14, lg: 15 },
+                                fontSize: { xs: 14, md: 14, lg: 14 },
                                 fontWeight: 400,
                                 fontFamily: 'Rubik',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
-                                mb: .5,
-                                mt: 1.5,
+                                mb: .25,
+                                mt: 1.6,
                                 maxWidth: '90%'
                             }}>{type === "movie" ? title : original_name}</Typography>
 
