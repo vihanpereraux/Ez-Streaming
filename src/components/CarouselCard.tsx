@@ -67,19 +67,19 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             className="_movie_title"
                             sx={{
                                 color: 'white',
-                                fontSize: { xs: 14, md: 14, lg: 15 },
+                                fontSize: { xs: 14, md: 14, lg: 14 },
                                 fontWeight: 400,
                                 fontFamily: 'Rubik',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
-                                mb: .5,
+                                mb: .25,
                                 maxWidth: '90%'
                             }}>{type === "movie" ? title : original_name}</Typography>
 
                         <span style={{
                             color: 'white',
-                            fontSize: 13,
+                            fontSize: 12,
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8

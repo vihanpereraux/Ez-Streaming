@@ -54,7 +54,7 @@ const SearchCard: React.FC<SearchCardProps>
                                 width: '100%',
                                 borderRadius: 15,
                                 objectFit: 'cover',
-                                height: '25vw',
+                                height: '24vw',
                                 cursor: 'pointer'
                             }}
                             src={poster_path} alt={title} />

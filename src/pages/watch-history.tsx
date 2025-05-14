@@ -6,7 +6,7 @@ import WatchedCard from '../components/watched-card';
 import LoadingPreview from '../components/LoadingPreview';
 
 // MUI
-import { Typography } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -105,6 +105,14 @@ const WatchHistory: React.FC = () => {
         setWatchedTvShows([...sortedList]);
     }
 
+    // remove items form the watch history
+    const removeItemsFromWatchHistory = (index: number) => {
+        const tempMovieCollector: CarosuelCardProps[] = [...watchedMovies];
+        tempMovieCollector.splice(index, 1);
+        localStorage.setItem('watchedMovies', JSON.stringify(tempMovieCollector));
+        setWatchedMovies([...tempMovieCollector]);
+    }
+
     useEffect(() => {
         setIsLoading(false);
     }, [originalTvShowList])
@@ -150,14 +158,14 @@ const WatchHistory: React.FC = () => {
                                 onChange={handleMoviesQuickSearch}
                                 style={{
                                     display: JSON.parse(localStorage.getItem('watchedMovies') || '[]').length > 0 ? "block" : "none",
-                                    width: window.innerWidth < 1024 ? "100%" : "35%",
-                                    height: 55,
+                                    width: window.innerWidth < 1024 ? "100%" : "30%",
+                                    height: 50,
                                     fontFamily: 'Rubik',
                                     borderRadius: 8,
                                     border: 'none',
                                     backgroundColor: 'rgb(30, 30, 30)',
                                     color: 'white',
-                                    fontSize: 15,
+                                    fontSize: 14,
                                     marginTop: 30,
                                     marginBottom: 20
                                 }} placeholder="Search already watched movies" type="text" />
@@ -191,6 +199,21 @@ const WatchHistory: React.FC = () => {
                                             original_name={movie.original_name}
                                             first_air_date={movie.first_air_date}
                                             type={movie.type} />
+
+                                        <Button sx={{
+                                            color: 'black',
+                                            fontFamily: 'Rubik',
+                                            fontSize: 30,
+                                            textTransform: 'capitalize',
+                                            backgroundColor: '#a2ff00',
+                                            borderRadius: '50%',
+                                            aspectRatio: 1,
+                                            scale: .5,
+                                            fontWeight: 600,
+                                            position: 'absolute',
+                                            top: 15,
+                                            right: 0
+                                        }} onClick={() => { removeItemsFromWatchHistory(index) }}>✘</Button>
                                     </Box>
 
                                 ))
