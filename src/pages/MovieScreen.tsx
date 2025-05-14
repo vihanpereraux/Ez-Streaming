@@ -42,7 +42,7 @@ const tabStyles = {
     textTransform: 'capitalize',
     fontWeight: 420,
     textDecoration: 'none',
-    mr: 2
+    mr: 2,
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -247,7 +247,7 @@ const MovieScreen: React.FC = () => {
                                         onChange={handleChange}
                                         aria-label="basic tabs example">
                                         {/* default server group */}
-                                        {['Chad Player', 'VimStar', 'Popcorn Bunjie', 'Cinema Canvas', 'Reel Magic'].map((label, index) => (
+                                        {['Chad Player', 'VimStar', 'Popcorn Bunjie', 'Star Cinema', 'Reel Magic', 'Cinema Canvas'].map((label, index) => (
                                             <Tab sx={tabStyles}
                                                 label={label}
                                                 {...a11yProps(index)} />
@@ -259,13 +259,14 @@ const MovieScreen: React.FC = () => {
                                         display: { xs: 'none', md: 'block' },
                                         color: '#a2ff00',
                                         fontFamily: 'Rubik',
-                                        fontSize: 14,
+                                        fontSize: 13,
                                         textTransform: 'capitalize',
                                         backgroundColor: 'balck',
-                                        borderRadius: 2
-                                    }}
-                                        onClick={manageLights}
-                                    >{lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}</Button>
+                                        borderRadius: 2,
+                                        fontWeight: 420
+                                    }} onClick={manageLights}>
+                                        {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
+                                    </Button>
                                 </Box>
 
                                 {/* note for the player switch */}
@@ -283,7 +284,7 @@ const MovieScreen: React.FC = () => {
                                 )}
 
                                 {/* players */}
-                                {['videsrc.xyz', 'videsrc.cc', 'videasy.net', 'multiembed.mov', 'vidfast.pro'].map((provider, index) => (
+                                {['videsrc.xyz', 'videsrc.cc', 'videasy.net', 'vidjoy.pro', 'vidfast.pro', 'multiembed.mov'].map((provider, index) => (
                                     <CustomTabPanel value={value} index={index} key={index}>
                                         {movieId && (
                                             <MoviePlayer id={movieId} serverGroup={provider} />
