@@ -182,6 +182,14 @@ body {
   height: 27vw !important;
 }
 
+.watched_items_remove_button {
+  transition: scale 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.watched_items_remove_button:hover {
+  scale: 0.6 !important;
+}
+
 @media only screen and (max-width: 600px) {
   .watched_movies_wrapper img {
     height: 100% !important;

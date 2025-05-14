@@ -275,9 +275,9 @@ const MovieScreen: React.FC = () => {
                                         color: ' white',
                                         opacity: .7,
                                         fontFamily: 'Rubik',
-                                        mt: 3,
+                                        mt: 2.5,
                                         fontWeight: 400,
-                                        fontSize: 14,
+                                        fontSize: 12,
                                         mb: '-10px'
                                     }}>Change the player above if you are not satisfied with the current player 😃</Typography>
 

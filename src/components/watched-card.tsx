@@ -44,21 +44,18 @@ const WatchedCard: React.FC<CarosuelCardProps>
                     pr: .6
                 }}>
                     {/* poster */}
-                    <div className="_movie_poster_container"
-                        style={{ overflow: 'hidden', borderRadius: 15 }}>
-                        <img
-                            loading="lazy"
-                            className="_movie_poster_portrait"
-                            onClick={navigateToScreen}
-                            style={{
-                                width: '100%',
-                                borderRadius: 15,
-                                objectFit: 'cover',
-                                height: '24vw',
-                                cursor: 'pointer'
-                            }}
-                            src={poster_path} alt={title} />
-                    </div>
+                    <img
+                        loading="lazy"
+                        className="_movie_poster_portrait"
+                        onClick={navigateToScreen}
+                        style={{
+                            width: '100%',
+                            borderRadius: 15,
+                            objectFit: 'cover',
+                            height: '24vw',
+                            cursor: 'pointer'
+                        }}
+                        src={poster_path} alt={title} />
 
                     {/* movie title and meta data */}
                     <Box>

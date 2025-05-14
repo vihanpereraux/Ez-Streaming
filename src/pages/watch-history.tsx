@@ -106,11 +106,19 @@ const WatchHistory: React.FC = () => {
     }
 
     // remove items form the watch history
-    const removeItemsFromWatchHistory = (index: number) => {
-        const tempMovieCollector: CarosuelCardProps[] = [...watchedMovies];
-        tempMovieCollector.splice(index, 1);
-        localStorage.setItem('watchedMovies', JSON.stringify(tempMovieCollector));
-        setWatchedMovies([...tempMovieCollector]);
+    const removeItemsFromWatchHistory = (contentType: string, index: number) => {
+        if (contentType === "movie") {
+            const tempMovieCollector: CarosuelCardProps[] = [...watchedMovies];
+            tempMovieCollector.splice(index, 1);
+            localStorage.setItem('watchedMovies', JSON.stringify(tempMovieCollector));
+            setWatchedMovies([...tempMovieCollector]);
+        }
+        else {
+            const tempTvCollector: CarosuelCardProps[] = [...watchedTvShows];
+            tempTvCollector.splice(index, 1);
+            localStorage.setItem('watchedTvShows', JSON.stringify(tempTvCollector));
+            setWatchedTvShows([...tempTvCollector]);
+        }
     }
 
     useEffect(() => {
@@ -200,20 +208,22 @@ const WatchHistory: React.FC = () => {
                                             first_air_date={movie.first_air_date}
                                             type={movie.type} />
 
-                                        <Button sx={{
-                                            color: 'black',
-                                            fontFamily: 'Rubik',
-                                            fontSize: 30,
-                                            textTransform: 'capitalize',
-                                            backgroundColor: '#a2ff00',
-                                            borderRadius: '50%',
-                                            aspectRatio: 1,
-                                            scale: .5,
-                                            fontWeight: 600,
-                                            position: 'absolute',
-                                            top: 15,
-                                            right: 0
-                                        }} onClick={() => { removeItemsFromWatchHistory(index) }}>✘</Button>
+                                        <Button
+                                            className='watched_items_remove_button'
+                                            sx={{
+                                                color: 'black',
+                                                fontFamily: 'Rubik',
+                                                fontSize: 30,
+                                                textTransform: 'capitalize',
+                                                backgroundColor: '#a2ff00',
+                                                borderRadius: '50%',
+                                                aspectRatio: 1,
+                                                scale: .5,
+                                                fontWeight: 600,
+                                                position: 'absolute',
+                                                top: 15,
+                                                right: 0
+                                            }} onClick={() => { removeItemsFromWatchHistory("movies", index) }}>✘</Button>
                                     </Box>
 
                                 ))
@@ -275,6 +285,23 @@ const WatchHistory: React.FC = () => {
                                             original_name={movie.original_name}
                                             first_air_date={movie.first_air_date}
                                             type={movie.type} />
+
+                                        <Button
+                                            className='watched_items_remove_button'
+                                            sx={{
+                                                color: 'black',
+                                                fontFamily: 'Rubik',
+                                                fontSize: 30,
+                                                textTransform: 'capitalize',
+                                                backgroundColor: '#a2ff00',
+                                                borderRadius: '50%',
+                                                aspectRatio: 1,
+                                                scale: .5,
+                                                fontWeight: 600,
+                                                position: 'absolute',
+                                                top: 15,
+                                                right: 0
+                                            }} onClick={() => { removeItemsFromWatchHistory("tv", index) }}>✘</Button>
                                     </Box>
 
                                 ))
