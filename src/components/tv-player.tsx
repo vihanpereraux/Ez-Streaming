@@ -18,6 +18,10 @@ const getRelevantProvider = (id: string, source: string, season: string, episode
             return `https://vidsrc.cc/v2/embed/tv/${id}/${season}/${episode}?autoPlay=false`
             break;
 
+        case "vidjoy.pro":
+            return `https://vidjoy.pro/embed/tv/${id}/${season}/${episode}`
+            break;
+
         case "videasy.net":
             return `https://player.videasy.net/tv/${id}/${season}/${episode}`
             break;

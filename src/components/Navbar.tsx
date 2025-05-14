@@ -20,10 +20,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavItemProps } from '../interfaces/props';
 const navButtonStylings = {
     textTransform: 'capitalize',
-    fontSize: 14,
+    fontSize: 13,
     fontFamily: 'Rubik',
     fontWeight: 400,
-    ml: 1,
+    ml: 0.45,
     background: 'none'
 }
 interface Props { window?: () => Window; }
@@ -50,10 +50,10 @@ const navItems: NavItemProps[] = [
         navItem: "Games",
         path: "/games"
     },
-    {
-        navItem: "Live TV",
-        path: "/live-tv"
-    },
+    // {
+    //     navItem: "Live TV",
+    //     path: "/live-tv"
+    // },
     {
         navItem: "Search",
         path: "/search"

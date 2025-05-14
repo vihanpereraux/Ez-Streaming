@@ -12,6 +12,10 @@ const getRelevantProvider = (source: string, id: string) => {
             return `https://vidsrc.xyz/embed/movie/${id}`
             break;
 
+        case "vidjoy.pro":
+            return `https://vidjoy.pro/embed/movie/${id}`
+            break;
+
         case "videsrc.cc":
             return `https://vidsrc.cc/v2/embed/movie/${id}?autoPlay=false`
             break;
