@@ -49,7 +49,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                         fontWeight: 450,
                         fontFamily: 'Rubik',
                         color: 'white',
-                        fontSize: { xs: '16px', lg: '18px' },
+                        fontSize: { xs: '15px', lg: '16px' },
                     }} component="span">Seasons & Episodes &nbsp; <span style={{ opacity: .7, fontSize: 15 }}>({seasonDetails.length.toString()} Seasons)</span></Typography>
                 </AccordionSummary>
 

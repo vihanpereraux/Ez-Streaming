@@ -364,7 +364,7 @@ const TvScreen: React.FC = () => {
                                 {/* other details */}
                                 <span style={{
                                     color: 'white',
-                                    fontSize: 14,
+                                    fontSize: 13,
                                 }}>
                                     {/* first air data */}
                                     {movieDetails.first_air_date ? movieDetails.first_air_date.slice(0, 4) : '...'} &nbsp; ⋅
@@ -375,16 +375,17 @@ const TvScreen: React.FC = () => {
 
                                 {/* genre */}
                                 &nbsp;&nbsp;{movieDetails.genres.map((genre: any, index: any) => (
-                                    <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 14, marginRight: 6 }}>{genre.name}</span>
+                                    <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 13, marginRight: 6 }}>{genre.name}</span>
                                 ))}
                                 <Typography
                                     sx={{
                                         fontFamily: 'Rubik',
-                                        fontSize: 15,
-                                        lineHeight: 1.65,
+                                        fontSize: { xs: 14, lg: 14.5 },
+                                        lineHeight: 1.75,
                                         fontWeight: 400,
-                                        mt: 3,
-                                        color: 'white'
+                                        mt: 2.5,
+                                        color: 'white',
+                                        opacity: 0.9,
                                     }}>{movieDetails.overview}</Typography>
                             </Box>}
                         </Box>
@@ -412,7 +413,7 @@ const TvScreen: React.FC = () => {
                         </Box>)}
 
                         {/* trailers */}
-                        <Box sx={{ mt: 8, display: !lightsOffClicked ? "block" : "none" }}>
+                        <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
                             <Videos videokeys={videoKeys} />
                         </Box>
 

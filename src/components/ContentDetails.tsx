@@ -40,7 +40,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
             {/* other details */}
             <span style={{
                 color: 'white',
-                fontSize: 14,
+                fontSize: 13,
                 display: "inline-flex",
                 alignItems: "center"
             }}>
@@ -53,10 +53,10 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
 
             {/* genre */}
             &nbsp;&nbsp;{props.genres.map((genre, index) => (
-                <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 14, marginRight: 6 }}>{genre.name}</span>
+                <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 13, marginRight: 6 }}>{genre.name}</span>
             ))}
 
-            &nbsp;<span style={{ color: 'white', fontFamily: 'Rubik', fontSize: 14 }}>
+            &nbsp;<span style={{ color: 'white', fontFamily: 'Rubik', fontSize: 13 }}>
                 ⋅&nbsp; {props.runtime ? formatRuntime(props.runtime) : 'Duration not available'}
             </span>
 
@@ -64,12 +64,12 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
             <Typography
                 sx={{
                     fontFamily: 'Rubik',
-                    fontSize: { xs: 15, lg: 15 },
-                    lineHeight: 1.65,
+                    fontSize: { xs: 14, lg: 14.5 },
+                    lineHeight: 1.75,
                     fontWeight: 400,
-                    mt: 3,
+                    mt: 2.5,
                     color: 'white',
-                    opacity: 0.85,
+                    opacity: 0.9,
                 }}>{props.overview}</Typography>
         </>
     )
