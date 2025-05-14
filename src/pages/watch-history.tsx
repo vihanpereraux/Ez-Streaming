@@ -223,7 +223,7 @@ const WatchHistory: React.FC = () => {
                                                 position: 'absolute',
                                                 top: 15,
                                                 right: 0
-                                            }} onClick={() => { removeItemsFromWatchHistory("movies", index) }}>✘</Button>
+                                            }} onClick={() => { removeItemsFromWatchHistory("movie", index) }}>✘</Button>
                                     </Box>
 
                                 ))

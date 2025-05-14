@@ -63,14 +63,14 @@ const WatchedCard: React.FC<CarosuelCardProps>
                             className="_movie_title"
                             sx={{
                                 color: 'white',
-                                fontSize: { xs: 14, md: 14, lg: 15 },
+                                fontSize: { xs: 14, md: 14, lg: 14 },
                                 fontWeight: 400,
                                 fontFamily: 'Rubik',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
-                                mb: .5,
-                                mt: 1.5,
+                                mb: .25,
+                                mt: 1.6,
                                 maxWidth: '90%'
                             }}>{type === "movie" ? title : original_name}</Typography>
 
