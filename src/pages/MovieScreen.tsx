@@ -314,7 +314,7 @@ const MovieScreen: React.FC = () => {
                         </Box>)}
 
                         {/* trailers */}
-                        <Box sx={{ mt: 8, display: !lightsOffClicked ? "block" : "none" }}>
+                        <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
                             <Videos videokeys={videoKeys} />
                         </Box>
 

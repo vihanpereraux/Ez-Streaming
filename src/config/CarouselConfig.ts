@@ -46,7 +46,7 @@ export const multiCarouselConfig = {
 export const castCarouselConfig = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
-        items: 10
+        items: 13
     },
     desktop: {
         breakpoint: { max: 3000, min: 1200 },

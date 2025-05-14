@@ -24,7 +24,7 @@ body {
   background-size: 200% 200%;
   animation: randomMovement 20s ease-in-out infinite;
   filter: blur(30px);
-  opacity: .2;
+  opacity: .15;
 }
 
 @keyframes randomMovement {
