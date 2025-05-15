@@ -9,27 +9,27 @@ interface PlayerProps {
 const getRelevantProvider = (source: string, id: string) => {
     switch (source) {
         case "videsrc.xyz":
-            return `https://vidsrc.xyz/embed/movie/${id}`
+            return `https://player.vidsrc.co/embed/movie/${id}?adFree=true`
             break;
 
         case "vidjoy.pro":
-            return `https://vidjoy.pro/embed/movie/${id}`
+            return `https://vidjoy.pro/embed/movie/${id}?adFree=true`
             break;
 
         case "videsrc.cc":
-            return `https://vidsrc.cc/v2/embed/movie/${id}?autoPlay=false`
+            return `https://vidsrc.cc/v2/embed/movie/${id}?adFree=true`
             break;
 
         case "videasy.net":
-            return `https://player.videasy.net/movie/${id}`
+            return `https://player.videasy.net/movie/${id}?adFree=true`
             break;
 
         case "multiembed.mov":
-            return `https://multiembed.mov/?video_id=${id}&tmdb=1`
+            return `https://vidsrc.su/embed/movie/${id}?adFree=true`
             break;
 
         default:
-            return `https://vidfast.pro/movie/${id}?theme=a2ff00`
+            return `https://vidfast.pro/movie/${id}?theme=a2ff00&adFree=true`
             break;
     }
 }

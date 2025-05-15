@@ -295,7 +295,7 @@ const TvScreen: React.FC = () => {
                                     onChange={handleChange}
                                     aria-label="basic tabs example">
                                     {/* default server group */}
-                                    {['VimStar', 'Star Cinema', 'Chad Player', 'Popcorn Bunjie', 'Cinema Canvas', 'Reel Magic'].map((label, index) => (
+                                    {['VimStar', 'Chad Player', 'Reel Magic', 'Cinema Canvas', 'Star Cinema', 'Popcorn Bunjie'].map((label, index) => (
                                         <Tab sx={tabStyles}
                                             label={label}
                                             {...a11yProps(index)} />
@@ -331,7 +331,7 @@ const TvScreen: React.FC = () => {
                             )}
 
                             {/* players */}
-                            {['videsrc.cc', 'vidjoy.pro', 'videsrc.xyz', 'videasy', 'videasy.net', 'multiembed.mov', 'vidfast.pro'].map((provider, index) => (
+                            {['videsrc.cc', 'videasy.net', 'multiembed.mov', 'vidjoy.pro', 'videsrc.xyz', 'vidfast.pro'].map((provider, index) => (
                                 <CustomTabPanel value={value} index={index} key={index}>
                                     {tvId && (
                                         <TvPlayer

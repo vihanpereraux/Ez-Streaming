@@ -9,7 +9,7 @@ const FooterDisclaimer: React.FC = () => {
                 color: 'white',
                 textAlign: 'center',
                 pb: 2,
-                fontSize: { xs: 8, lg: 10 },
+                fontSize: { xs: 8, lg: 9 },
                 fontFamily: 'Rubik',
                 opacity: .6,
                 position: 'absolute',
