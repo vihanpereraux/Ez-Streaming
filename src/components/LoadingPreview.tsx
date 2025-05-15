@@ -35,10 +35,10 @@ const LoadingPreview: React.FC = () => {
                     fontFamily: 'Rubik',
                     color: 'white',
                     textAlign: 'center',
-                    fontSize: 16,
+                    fontSize: 15,
                     letterSpacing: 1,
                     marginTop: 15,
-                    fontWeight: 500,
+                    fontWeight: 450,
                     textTransform: 'uppercase',
                 }}>Loading your <span style={{ color: '#a2ff00' }}>experience</span></p>
             </div>
