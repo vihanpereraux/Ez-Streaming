@@ -9,51 +9,27 @@ interface PlayerProps {
 const getRelevantProvider = (source: string, id: string) => {
     switch (source) {
         case "videsrc.xyz":
-            if (window.innerWidth < 628) {
-                return `https://player.vidsrc.co/embed/movie/${id}?adFree=true`
-            } else {
-                return `https://player.vidsrc.co/embed/movie/${id}`
-            }
+            return `https://vidsrc.xyz/embed/movie/${id}`
             break;
 
         case "vidjoy.pro":
-            if (window.innerWidth < 628) {
-                return `https://vidjoy.pro/embed/movie/${id}?adFree=true`
-            } else {
-                return `https://vidjoy.pro/embed/movie/${id}`
-            }
+            return `https://vidjoy.pro/embed/movie/${id}`
             break;
 
         case "videsrc.cc":
-            if (window.innerWidth < 628) {
-                return `https://vidsrc.cc/v2/embed/movie/${id}?adFree=true`
-            } else {
-                return `https://vidsrc.cc/v2/embed/movie/${id}`
-            }
+            return `https://vidsrc.cc/v2/embed/movie/${id}?autoPlay=false`
             break;
 
         case "videasy.net":
-            if (window.innerWidth < 628) {
-                return `https://player.videasy.net/movie/${id}?adFree=true`
-            } else {
-                return `https://player.videasy.net/movie/${id}`
-            }
+            return `https://player.videasy.net/movie/${id}`
             break;
 
         case "multiembed.mov":
-            if (window.innerWidth < 628) {
-                return `https://vidsrc.su/embed/movie/${id}?adFree=true`
-            } else {
-                return `https://vidsrc.su/embed/movie/${id}`
-            }
+            return `https://multiembed.mov/?video_id=${id}&tmdb=1`
             break;
 
         default:
-            if (window.innerWidth < 628) {
-                return `https://vidfast.pro/movie/${id}?theme=a2ff00&adFree=true`
-            } else {
-                return `https://vidfast.pro/movie/${id}?theme=a2ff00`
-            }
+            return `https://vidfast.pro/movie/${id}?theme=a2ff00`
             break;
     }
 }

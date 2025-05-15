@@ -11,27 +11,27 @@ interface PlayerProps {
 const getRelevantProvider = (id: string, source: string, season: string, episode: string) => {
     switch (source) {
         case "videsrc.xyz":
-            return `https://player.vidsrc.co/embed/tv/${id}/${season}/${episode}?adFree=true`
+            return `https://vidsrc.xyz/embed/tv/${id}/${season}/${episode}`
             break;
 
         case "videsrc.cc":
-            return `https://vidsrc.cc/v2/embed/tv/${id}/${season}/${episode}?autoPlay=false&adFree=true`
+            return `https://vidsrc.cc/v2/embed/tv/${id}/${season}/${episode}?autoPlay=false`
             break;
 
         case "vidjoy.pro":
-            return `https://vidjoy.pro/embed/tv/${id}/${season}/${episode}?adFree=true`
+            return `https://vidjoy.pro/embed/tv/${id}/${season}/${episode}`
             break;
 
         case "videasy.net":
-            return `https://player.videasy.net/tv/${id}/${season}/${episode}?adFree=true`
+            return `https://player.videasy.net/tv/${id}/${season}/${episode}`
             break;
 
         case "multiembed.mov":
-            return `https://vidsrc.su/embed/tv/${id}/${season}/${episode}?adFree=true`
+            return `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${season}&e=${episode}`
             break;
 
         default:
-            return `https://vidfast.pro/tv/${id}/${season}/${episode}?theme=a2ff00&adFree=true`
+            return `https://vidfast.pro/tv/${id}/${season}/${episode}?theme=a2ff00`
             break;
     }
 }
