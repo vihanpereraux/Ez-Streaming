@@ -1,40 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+// component
 import Navbar from "../components/Navbar";
 
 // MUI
 import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
 
+// props
+interface DisclaimerContentProps {
+    heading: string,
+    context: string
+}
+
 const Disclaimer: React.FC = () => {
+    const [content, setContent] = useState<DisclaimerContentProps[]>();
+
+    const fetchDisclaimerData = async () => {
+        const response = await fetch('/data/disclaimer-content.json');
+        const data = await response.json();
+        setContent([...data]);
+    }
+
+    useEffect(() => {
+        fetchDisclaimerData()
+    }, [])
+
     return (
         <>
             <Navbar />
 
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '90vh',
-                backgroundColor: 'none',
-                padding: { xs: '10px', lg: '20px' },
-            }}>
-                <Typography sx={{
-                    fontSize: { xs: '14px', lg: '16px' },
-                    fontFamily: 'Rubik',
-                    color: 'white',
-                    width: { xs: '95%', md: '85%' },
-                    textAlign: 'center',
-                    lineHeight: '1.65',
-                }}>
-                    This website provides links to third-party content that is freely available on the internet.
-                    We do not host any of the content displayed on this platform, nor do we claim ownership of it.
-                    All trademarks, copyrights, and other intellectual property rights belong to their respective owners.
-                    The content linked through this platform is not endorsed or verified by us.
-                    We do not guarantee the availability, accuracy, or legality of the content on external sites.
-                </Typography>
-            </Box>
+            {content && content.map((point, index) => (
+                <Box key={index}
+                    sx={{
+                        mt: 5,
+                        pl: { xs: 2, sm: 3, lg: 15 },
+                        pr: { xs: 2, sm: 3, lg: 15 }
+                    }}>
+                    <Typography sx={{
+                        fontSize: { xs: '17px', lg: '18px' },
+                        fontFamily: 'Rubik',
+                        color: 'white',
+                        textAlign: 'center',
+                        fontWeight: 450,
+                        opacity: .9
+                    }}>{point.heading}</Typography>
+
+                    <Typography sx={{
+                        mt: .75,
+                        fontSize: { xs: '14px', lg: '15px' },
+                        fontFamily: 'Rubik',
+                        color: 'white',
+                        textAlign: 'center',
+                        lineHeight: '1.65',
+                        opacity: .85
+                    }}>{point.context}</Typography>
+                </Box>
+            ))}
+
+            <Box sx={{ mb: { xs: 16, lg: 15 } }} />
         </>
     )
 }

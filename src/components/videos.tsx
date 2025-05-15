@@ -32,7 +32,7 @@ const Videos: React.FC<props> = ({ videokeys }) => {
                             }}
                             key={index}
                             width={`98%`}
-                            height={`330`}
+                            height={`310`}
                             src={`https://www.youtube.com/embed/${key}`}
                             title="YouTube video player"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
