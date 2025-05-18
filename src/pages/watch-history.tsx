@@ -76,13 +76,13 @@ const WatchHistory: React.FC = () => {
     const [watchedMovies, setWatchedMovies] = useState<CarosuelCardProps[]>(
         JSON.parse(localStorage.getItem('watchedMovies') || '[]')
     );
-    const [originalMovieList] = useState<CarosuelCardProps[]>(
+    const [originalMovieList, setOriginalMovieList] = useState<CarosuelCardProps[]>(
         JSON.parse(localStorage.getItem('watchedMovies') || '[]')
     );
     const [watchedTvShows, setWatchedTvShows] = useState<CarosuelCardProps[]>(
         JSON.parse(localStorage.getItem('watchedTvShows') || '[]')
     );
-    const [originalTvShowList] = useState<CarosuelCardProps[]>(
+    const [originalTvShowList, setOriginalTvShowList] = useState<CarosuelCardProps[]>(
         JSON.parse(localStorage.getItem('watchedTvShows') || '[]')
     );
 
@@ -112,12 +112,14 @@ const WatchHistory: React.FC = () => {
             tempMovieCollector.splice(index, 1);
             localStorage.setItem('watchedMovies', JSON.stringify(tempMovieCollector));
             setWatchedMovies([...tempMovieCollector]);
+            setOriginalMovieList([...tempMovieCollector]);
         }
         else {
             const tempTvCollector: CarosuelCardProps[] = [...watchedTvShows];
             tempTvCollector.splice(index, 1);
             localStorage.setItem('watchedTvShows', JSON.stringify(tempTvCollector));
             setWatchedTvShows([...tempTvCollector]);
+            setOriginalTvShowList([...tempTvCollector]);
         }
     }
 
