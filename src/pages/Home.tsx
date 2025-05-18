@@ -167,7 +167,7 @@ const Home: React.FC = () => {
                     <LoadingPreview />
                 )}
             </Box>
-            <Box sx={{ mb: { xs: 16, lg: 15 } }} />
+            <Box sx={{ mb: { xs: 12, lg: 12 } }} />
         </>
     );
 };

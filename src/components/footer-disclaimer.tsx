@@ -14,7 +14,9 @@ const FooterDisclaimer: React.FC = () => {
                 opacity: .6,
                 position: 'absolute',
                 bottom: 0,
-                width: '100%'
+                width: '100%',
+                pl: {xs: 3, lg: 0},
+                pr: {xs: 3, lg: 0}
             }}>Ez-Streaming @ {new Date().getFullYear()}<br />All media content available through this application is sourced from publicly available internet streams. We do not own, host, or distribute any of the content. All content remains the property of their respective owners.</Typography>
         </>
     )

@@ -30,33 +30,35 @@ const Disclaimer: React.FC = () => {
         <>
             <Navbar />
 
-            {content && content.map((point, index) => (
-                <Box key={index}
-                    sx={{
-                        mt: 5,
-                        pl: { xs: 2, sm: 3, lg: 15 },
-                        pr: { xs: 2, sm: 3, lg: 15 }
-                    }}>
-                    <Typography sx={{
-                        fontSize: { xs: '17px', lg: '18px' },
-                        fontFamily: 'Rubik',
-                        color: 'white',
-                        textAlign: 'center',
-                        fontWeight: 450,
-                        opacity: .9
-                    }}>{point.heading}</Typography>
+            <Box sx={{ mt: { xs: 8, lg: 10 } }}>
+                {content && content.map((point, index) => (
+                    <Box key={index}
+                        sx={{
+                            mt: 5,
+                            pl: { xs: 2, sm: 3, lg: 15 },
+                            pr: { xs: 2, sm: 3, lg: 15 }
+                        }}>
+                        <Typography sx={{
+                            fontSize: { xs: 18, lg: 18 },
+                            fontFamily: 'Rubik',
+                            color: 'white',
+                            textAlign: 'center',
+                            fontWeight: 450,
+                            opacity: .9
+                        }}>{point.heading}</Typography>
 
-                    <Typography sx={{
-                        mt: .75,
-                        fontSize: { xs: '14px', lg: '15px' },
-                        fontFamily: 'Rubik',
-                        color: 'white',
-                        textAlign: 'center',
-                        lineHeight: '1.65',
-                        opacity: .85
-                    }}>{point.context}</Typography>
-                </Box>
-            ))}
+                        <Typography sx={{
+                            mt: 1,
+                            fontSize: { xs: '14px', lg: '15px' },
+                            fontFamily: 'Rubik',
+                            color: 'white',
+                            textAlign: 'center',
+                            lineHeight: '1.65',
+                            opacity: .85
+                        }}>{point.context}</Typography>
+                    </Box>
+                ))}
+            </Box>
 
             <Box sx={{ mb: { xs: 16, lg: 15 } }} />
         </>

@@ -143,9 +143,8 @@ const Search: React.FC = () => {
                     flexWrap: 'wrap',
                     width: { xs: 'auto', lg: '100%' },
                     gap: 0,
-                    pl: { xs: .5, lg: 0 },
-                    pr: { xs: .5, lg: 0 },
-                    // border: '1px solid red',
+                    pl: { xs: .5, md: 1.5, lg: 0 },
+                    pr: { xs: .5, md: 1.5, lg: 0 },
                 }}>
                     {results.length > 0 ? results.map((item, index) => (
                         <Box sx={{

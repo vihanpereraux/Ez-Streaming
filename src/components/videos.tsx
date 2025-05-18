@@ -28,11 +28,11 @@ const Videos: React.FC<props> = ({ videokeys }) => {
                             style={{
                                 border: 'none',
                                 outline: 'none',
-                                borderRadius: 10
+                                borderRadius: 10,
+                                aspectRatio: 16/9
                             }}
                             key={index}
-                            width={`98%`}
-                            height={`310`}
+                            width={window.innerWidth < 600 ? '100%' : '98%'}
                             src={`https://www.youtube.com/embed/${key}`}
                             title="YouTube video player"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

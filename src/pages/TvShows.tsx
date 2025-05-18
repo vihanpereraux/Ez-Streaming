@@ -118,7 +118,7 @@ const TvShows: React.FC = () => {
                         </Box>
                     ))}
 
-                    <Box sx={{ mb: { xs: 20, lg: 15 } }}></Box>
+                    <Box sx={{ mb: { xs: 12, lg: 12 } }} />
                 </Box>
             )}
         </>

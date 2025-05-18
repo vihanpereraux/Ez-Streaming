@@ -64,20 +64,6 @@ body {
   transition: padding-left 0.15s ease-in;
 }
 
-/* carousel card stylings */
-@media only screen and (max-width: 1200px) {
-  ._movie_poster_container img {
-    height: 320px !important;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  ._movie_poster_container img {
-    height: 70vw !important;
-  }
-}
-
-/* movie / tv search selection stylings */
 .MuiSvgIcon-root {
   color: white !important;
 }
@@ -148,26 +134,13 @@ body {
   color: white !important;
 }
 
-@media only screen and (max-width: 1200px) {
-  .search_results_poster_container img {
-    height: 400px !important;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .search_results_poster_container img {
-    height: 76vw !important;
-  }
-}
-
-
 /* games page */
 .game:hover {
   border: 2px solid #a2ff00 !important;
   transition: all .15s linear;
 }
 
-/* previously watched page  */
+/* previously watched - watch history page  */
 .watch_history_wrapper .Mui-selected {
   text-decoration: none !important;
   color: #a2ff00 !important;
@@ -178,34 +151,12 @@ body {
   position: relative;
 }
 
-.watched_movies_wrapper img {
-  height: 27vw !important;
-}
-
 .watched_items_remove_button {
   transition: scale 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .watched_items_remove_button:hover {
   scale: 0.6 !important;
-}
-
-@media only screen and (max-width: 600px) {
-  .watched_movies_wrapper img {
-    height: 100% !important;
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  .watched_movies_wrapper img {
-    height: 100% !important;
-  }
-}
-
-@media only screen and (min-width: 1536px) {
-  .watched_movies_wrapper img {
-    height: 22vw !important;
-  }
 }
 
 .watched_movies_wrapper .MuiBox-root {

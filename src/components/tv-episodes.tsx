@@ -72,7 +72,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                             {/* selection */}
                             <Carousel
                                 responsive={tvEpisodeCarouselConfig}
-                                slidesToSlide={window.innerWidth > 1024 ? 5 : 3}>
+                                slidesToSlide={window.innerWidth > 1024 ? 5 : 1}>
                                 {detail.numOfEpisodes == 0 ? (
                                     <Typography sx={{
                                         color: 'white',
