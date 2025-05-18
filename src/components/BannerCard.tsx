@@ -30,14 +30,12 @@ const BannerCard: React.FC<BannerCardProps> = ({
 
     return (
         <>
-            <div
-                style={{
-                    background: 'none',
-                    position: 'relative',
-                    height: '50vw',
-                    width: '100%'
-                }}
-                onClick={navigateToTvScreen}>
+            <Box sx={{
+                background: 'none',
+                position: 'relative',
+                height: { xs: '100vw', sm: '50vw', md: '50vw', lg: '50vw' },
+                width: '100%'
+            }} onClick={navigateToTvScreen}>
                 {/* details */}
                 <div
                     className="_banner_details_wrapper"
@@ -53,7 +51,7 @@ const BannerCard: React.FC<BannerCardProps> = ({
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: { xs: '20px', lg: '28px' },
+                            fontSize: { xs: '18px', lg: '28px' },
                             fontFamily: 'Rubik',
                             textTransform: 'capitalize',
                             fontWeight: { xs: '400', lg: '450' },
@@ -95,7 +93,7 @@ const BannerCard: React.FC<BannerCardProps> = ({
                     zIndex: 1,
                     borderRadius: 4
                 }}  ></Box>
-            </div>
+            </Box>
         </>
     )
 }

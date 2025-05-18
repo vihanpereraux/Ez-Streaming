@@ -24,16 +24,20 @@ export const multiCarouselConfig = {
         items: 9.5
     },
     desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+        breakpoint: { max: 3000, min: 1200 },
         items: 6.1
+    },
+    mini_desktop: {
+        breakpoint: { max: 1200, min: 1024 },
+        items: 5.1
     },
     tablet: {
         breakpoint: { max: 1024, min: 860 },
-        items: 4.5
+        items: 4.1
     },
     ipad: {
         breakpoint: { max: 860, min: 600 },
-        items: 3.5
+        items: 3.1
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
@@ -42,7 +46,7 @@ export const multiCarouselConfig = {
 };
 
 
-// cast carousel config
+// credits carousel config
 export const castCarouselConfig = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
@@ -54,7 +58,7 @@ export const castCarouselConfig = {
     },
     tablet: {
         breakpoint: { max: 1200, min: 600 },
-        items: 7
+        items: 6
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
@@ -94,8 +98,12 @@ export const videoListConfig = {
         items: 3
     },
     tablet: {
-        breakpoint: { max: 1024, min: 600 },
-        items: 6
+        breakpoint: { max: 1024, min: 860 },
+        items: 2.5
+    },
+    ipad: {
+        breakpoint: { max: 860, min: 600 },
+        items: 1.55
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },

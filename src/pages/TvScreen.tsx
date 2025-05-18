@@ -358,13 +358,13 @@ const TvScreen: React.FC = () => {
                                         fontSize: 22,
                                         fontFamily: 'Rubik',
                                         fontWeight: 450,
-                                        mb: 1
+                                        mb: .8
                                     }}>{movieDetails.original_name}</Typography>
 
                                 {/* other details */}
                                 <span style={{
                                     color: 'white',
-                                    fontSize: 13,
+                                    fontSize: 12,
                                 }}>
                                     {/* first air data */}
                                     {movieDetails.first_air_date ? movieDetails.first_air_date.slice(0, 4) : '...'} &nbsp; ⋅
@@ -375,7 +375,7 @@ const TvScreen: React.FC = () => {
 
                                 {/* genre */}
                                 &nbsp;&nbsp;{movieDetails.genres.map((genre: any, index: any) => (
-                                    <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 13, marginRight: 6 }}>{genre.name}</span>
+                                    <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 12, marginRight: 6 }}>{genre.name}</span>
                                 ))}
                                 <Typography
                                     sx={{
@@ -436,12 +436,12 @@ const TvScreen: React.FC = () => {
                                                 mt: 8
                                             }}>
                                             No related tv shows found &nbsp; : (</Typography>
-                                        <Box sx={{ mb: 15 }}></Box>
+                                        <Box sx={{ mb: { xs: 12, lg: 12 } }} />
                                     </>
                                 )}
                             </Box>
                         ) : (
-                            <Box sx={{ mb: 15 }}></Box>
+                            <Box sx={{ mb: { xs: 12, lg: 12 } }} />
                         )}
                     </Box >
                 </>

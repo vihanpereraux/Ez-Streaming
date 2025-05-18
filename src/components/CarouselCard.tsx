@@ -44,7 +44,7 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                     <div className="_movie_poster_container"
                         style={{
                             overflow: 'hidden',
-                            borderRadius: 15,
+                            borderRadius: 12,
                             position: 'relative'
                         }}>
                         <img
@@ -53,9 +53,9 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                             onClick={navigateToScreen}
                             style={{
                                 width: '100%',
-                                borderRadius: 15,
+                                borderRadius: 12,
                                 objectFit: 'cover',
-                                height: '24vw',
+                                aspectRatio: 3/4.5,
                                 cursor: 'pointer',
                             }}
                             src={poster_path} alt={title} />
@@ -77,31 +77,35 @@ const CarosuelCard: React.FC<CarosuelCardProps>
                                 maxWidth: '90%'
                             }}>{type === "movie" ? title : original_name}</Typography>
 
-                        <span style={{
-                            color: 'white',
-                            fontSize: 12,
-                            fontWeight: 400,
-                            fontFamily: 'Rubik',
-                            opacity: .8
-                        }}>{type === "movie" ? String(release_date).length > 0 ? String(release_date).slice(0, 4) : "--"
-                            :
-                            String(first_air_date).length > 0 ? String(first_air_date).slice(0, 4) : "--"}</span>
-
-                        <span
-                            style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                color: "white",
-                                fontSize: 13,
+                        <Box sx={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                        }}>
+                            <span style={{
+                                color: 'white',
+                                fontSize: 12,
                                 fontWeight: 400,
-                                fontFamily: "Rubik",
-                                opacity: 0.8,
-                                marginLeft: 15,
-                            }}
-                        >
-                            <FaStar style={{ color: "#a2ff00", marginRight: 5 }} />
-                            {vote_average ? (Math.round(vote_average * 10) / 10) : "--"}
-                        </span>
+                                fontFamily: 'Rubik',
+                                opacity: .8
+                            }}>{type === "movie" ? String(release_date).length > 0 ? String(release_date).slice(0, 4) : "--"
+                                :
+                                String(first_air_date).length > 0 ? String(first_air_date).slice(0, 4) : "--"}</span>
+
+                            <span
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    color: "white",
+                                    fontSize: 12,
+                                    fontWeight: 400,
+                                    fontFamily: "Rubik",
+                                    opacity: 0.8,
+                                    marginLeft: 15,
+                                }}>
+                                <FaStar style={{ color: "#a2ff00", marginRight: 5 }} />
+                                {vote_average ? (Math.round(vote_average * 10) / 10) : "--"}
+                            </span>
+                        </Box>
                     </Box>
                 </Box>
             </>

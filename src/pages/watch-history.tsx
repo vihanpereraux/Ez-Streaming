@@ -194,7 +194,7 @@ const WatchHistory: React.FC = () => {
                                 watchedMovies.map((movie, index) => (
                                     <Box className="watched_movies_wrapper"
                                         sx={{
-                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(50% - 10px)', md: 'calc(25% - 10px)', lg: 'calc(20% - 10px)', xl: 'calc(16.6% - 10px)' },
+                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(33.3% - 10px)', md: 'calc(20% - 10px)', lg: 'calc(20% - 10px)', xl: 'calc(16.6% - 10px)' },
                                         }}
                                         key={index}>
                                         <Box sx={{ mb: 2 }}></Box>
@@ -272,7 +272,7 @@ const WatchHistory: React.FC = () => {
                                 watchedTvShows.map((movie, index) => (
                                     <Box className="watched_movies_wrapper"
                                         sx={{
-                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(50% - 10px)', md: 'calc(25% - 10px)', lg: 'calc(20% - 10px)', xl: 'calc(16.6% - 10px)' },
+                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(33.3% - 10px)', md: 'calc(20% - 10px)', lg: 'calc(20% - 10px)', xl: 'calc(16.6% - 10px)' },
                                         }}
                                         key={index}>
                                         <Box sx={{ mb: 2 }}></Box>
