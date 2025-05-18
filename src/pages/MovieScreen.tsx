@@ -284,7 +284,7 @@ const MovieScreen: React.FC = () => {
                                 )}
 
                                 {/* players */}
-                                {['videsrc.xyz', 'videsrc.cc', 'videasy.net', 'vidjoy.pro', 'vidfast.pro', 'multiembed.mov'].map((provider, index) => (
+                                {['vidsrc.su', 'vidsrc.cc', 'videasy.net', 'vidjoy.pro', 'vidfast.pro', 'multiembed.mov'].map((provider, index) => (
                                     <CustomTabPanel value={value} index={index} key={index}>
                                         {movieId && (
                                             <MoviePlayer id={movieId} serverGroup={provider} />

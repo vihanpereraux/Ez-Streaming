@@ -8,20 +8,23 @@ interface PlayerProps {
 
 const getRelevantProvider = (source: string, id: string) => {
     switch (source) {
-        case "videsrc.xyz":
-            return `https://vidsrc.xyz/embed/movie/${id}`
+        case "vidsrc.su":
+            // return `https://vidsrc.xyz/embed/movie/${id}`
+            // return `https://vidora.su/movie/${id}?autoPlay=true&nextButton=true&autoNext=true&adFree=true`
+            return `https://vidsrc.su/embed/movie/${id}?autoPlay=true&nextButton=true&autoNext=true&adFree=true`
             break;
 
-        case "vidjoy.pro":
-            return `https://vidjoy.pro/embed/movie/${id}`
-            break;
-
-        case "videsrc.cc":
-            return `https://vidsrc.cc/v2/embed/movie/${id}?autoPlay=false`
+        case "vidsrc.cc":
+            // return `https://vidsrc.cc/v2/embed/movie/${id}?autoPlay=false`
+            return `https://vidlink.pro/movie/${id}?autoPlay=true&nextButton=true&autoNext=true&adFree=true`
             break;
 
         case "videasy.net":
             return `https://player.videasy.net/movie/${id}`
+            break;
+
+        case "vidjoy.pro":
+            return `https://vidjoy.pro/embed/movie/${id}`
             break;
 
         case "multiembed.mov":
@@ -41,6 +44,7 @@ const MoviePlayer: React.FC<PlayerProps> = ({ id, serverGroup }) => {
         <>
             <iframe
                 key={id}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen={true}
                 style={{
                     width: '100%',
