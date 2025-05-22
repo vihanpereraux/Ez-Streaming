@@ -1,6 +1,6 @@
 # Ez-Streaming 🎬
 
-A minimalist movie streaming platform built with React, offering free content with zero hassle.
+A self-hosted, dead-simple & minimalist: Movies and TV Show streaming platform built with React (Typescript), offering free content with zero hassle.
 
 ## Features ✨
 
