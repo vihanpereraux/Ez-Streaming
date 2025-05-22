@@ -5,7 +5,7 @@ A minimalist movie streaming platform built with React, offering free content wi
 ## Features ✨
 
 - Simple and intuitive interface
-- Free movie streaming
+- Free movie and tv show streaming
 - Built with React
 - TMDB API integration
 - Ad-free experience (with uBlock Origin)
