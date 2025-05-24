@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
 
@@ -11,39 +11,48 @@ import {
 // props
 import { CarosuelCardProps } from "../interfaces/props";
 
-const WatchedCard: React.FC<CarosuelCardProps>
-    = ({
-        id,
-        poster_path,
-        title,
-        first_air_date,
-        release_date,
-        vote_average,
-        type,
-        original_name }) => {
-        const navigate = useNavigate();
+const WatchedCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, first_air_date, release_date, vote_average, type, original_name }) => {
+    const navigate = useNavigate();
+    const [imageLoaded, setImageLoaded] = useState(false);
 
-        const navigateToScreen = () => {
-            if (type === "movie") {
-                const data = { id: id.toString() };
-                const queryString = new URLSearchParams(data).toString();
-                navigate(`/screen/movie?${queryString}`);
-            }
-            else {
-                const data = { id: id.toString() };
-                const queryString = new URLSearchParams(data).toString();
-                navigate(`/screen/tv?${queryString}`);
-            }
+    const navigateToScreen = () => {
+        if (type === "movie") {
+            const data = { id: id.toString() };
+            const queryString = new URLSearchParams(data).toString();
+            navigate(`/screen/movie?${queryString}`);
         }
+        else {
+            const data = { id: id.toString() };
+            const queryString = new URLSearchParams(data).toString();
+            navigate(`/screen/tv?${queryString}`);
+        }
+    }
 
-        return (
-            <>
-                <Box sx={{
-                    background: 'none',
-                    pl: .6,
-                    pr: .6
-                }}>
+    return (
+        <>
+            <Box sx={{
+                background: 'none',
+                pl: .6,
+                pr: .6,
+            }}>
+                <Box sx={{ position: 'relative' }}>
                     {/* poster */}
+                    {!imageLoaded && (
+                        <div className="loading-animation"
+                            style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                                background: '#1a1a1a',
+                                borderRadius: 8,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}><div className="loading-spinner card-loading-spinner"></div>
+                        </div>
+                    )}
                     <img
                         loading="lazy"
                         className="_movie_poster_portrait"
@@ -52,52 +61,64 @@ const WatchedCard: React.FC<CarosuelCardProps>
                             width: '100%',
                             borderRadius: 15,
                             objectFit: 'cover',
-                            aspectRatio: 3/4.5,
-                            cursor: 'pointer'
+                            aspectRatio: 3 / 4.5,
+                            cursor: 'pointer',
+                            opacity: imageLoaded ? 1 : 0,
                         }}
+                        onLoad={() => { setImageLoaded(true) }}
                         src={poster_path} alt={title} />
+                </Box>
 
-                    {/* movie title and meta data */}
-                    <Box>
-                        <Typography
-                            className="_movie_title"
-                            sx={{
-                                color: 'white',
-                                fontSize: { xs: 14, md: 14, lg: 14 },
-                                fontWeight: 400,
-                                fontFamily: 'Rubik',
-                                whiteSpace: 'nowrap',
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                                mb: .25,
-                                mt: 1.6,
-                                maxWidth: '90%'
-                            }}>{type === "movie" ? title : original_name}</Typography>
+                {/* movie title and meta data */}
+                <Box>
+                    <Typography
+                        className="_movie_title"
+                        sx={{
+                            color: 'white',
+                            fontSize: { xs: 14, md: 14, lg: 14 },
+                            fontWeight: 400,
+                            fontFamily: 'Rubik',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            mb: .25,
+                            mt: 1.6,
+                            maxWidth: '90%'
+                        }}>{type === "movie" ? title : original_name}</Typography>
 
+                    <Box sx={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                    }}>
                         <span style={{
                             color: 'white',
-                            fontSize: 13,
+                            fontSize: 11,
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8
-                        }}>{type === "movie" ?
-                            String(release_date).slice(0, 4)
+                        }}>{type === "movie" ? String(release_date).length > 0 ? String(release_date).slice(0, 4) : "--"
                             :
-                            String(first_air_date).slice(0, 4)}</span>
+                            String(first_air_date).length > 0 ? String(first_air_date).slice(0, 4) : "--"}</span>
 
-                        <span style={{
-                            color: 'white',
-                            fontSize: 13,
-                            fontWeight: 400,
-                            fontFamily: 'Rubik',
-                            opacity: .8,
-                            marginLeft: 15
-                        }}>
-                            <FaStar style={{ color: '#a2ff00' }} />  {Math.round(vote_average * 10) / 10}</span>
+                        <span
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                color: "white",
+                                fontSize: 11,
+                                fontWeight: 400,
+                                fontFamily: "Rubik",
+                                opacity: 0.8,
+                                marginLeft: 15,
+                            }}>
+                            <FaStar style={{ color: "#a2ff00", marginRight: 5, fontSize: 11 }} />
+                            {vote_average ? (Math.round(vote_average * 10) / 10) : "--"}
+                        </span>
                     </Box>
                 </Box>
-            </>
-        )
-    }
+            </Box>
+        </>
+    )
+}
 
 export default WatchedCard;

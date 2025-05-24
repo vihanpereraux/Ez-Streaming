@@ -25,7 +25,7 @@ export const multiCarouselConfig = {
     },
     desktop: {
         breakpoint: { max: 3000, min: 1200 },
-        items: 6.1
+        items: 6.5
     },
     mini_desktop: {
         breakpoint: { max: 1200, min: 1024 },

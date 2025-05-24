@@ -152,7 +152,7 @@ const cleanMovieDetails = (data: any[], arr: MoviesProps[],) => {
             id: item.id,
             original_language: item.original_language,
             popularity: item.popularity,
-            poster_path: item.poster_path ? `https://image.tmdb.org/t/p/w300/${item.poster_path}`: `https://i.ibb.co/YTdfZHjX/no-preview.jpg`,
+            poster_path: item.poster_path ? `https://image.tmdb.org/t/p/w300${item.poster_path}`: `https://i.ibb.co/YTdfZHjX/no-preview.jpg`,
             overview: item.overview,
             release_date: item.release_date,
             vote_average: item.vote_average,

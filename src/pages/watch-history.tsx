@@ -162,6 +162,7 @@ const WatchHistory: React.FC = () => {
                         <Box sx={{
                             display: "flex",
                             justifyContent: 'center',
+                            mb: 3
                         }}>
                             <input
                                 className="search_input"
@@ -190,15 +191,12 @@ const WatchHistory: React.FC = () => {
                             pl: { xs: 2, lg: 0 },
                             pr: { xs: 2, lg: 0 }
                         }}>
-                            {watchedMovies.length > 0 ? (
-                                watchedMovies.map((movie, index) => (
-                                    <Box className="watched_movies_wrapper"
-                                        sx={{
-                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(33.3% - 10px)', md: 'calc(20% - 10px)', lg: 'calc(20% - 10px)', xl: 'calc(16.6% - 10px)' },
-                                        }}
-                                        key={index}>
-                                        <Box sx={{ mb: 2 }}></Box>
-
+                            {watchedMovies.length > 0 ? (watchedMovies.map((movie, index) => (
+                                <Box className="watched_movies_wrapper"
+                                    sx={{
+                                        width: { xs: 'calc(50% - 10px)', sm: 'calc(33.3% - 10px)', md: 'calc(20% - 10px)', lg: 'calc(16.66% - 10px)', xl: 'calc(16.6% - 10px)' },
+                                    }} key={index}>
+                                    <Box sx={{ mb: 4 }}>
                                         <WatchedCard
                                             id={movie.id}
                                             overview={movie.overview}
@@ -227,8 +225,9 @@ const WatchHistory: React.FC = () => {
                                                 right: 0
                                             }} onClick={() => { removeItemsFromWatchHistory("movie", index) }}>✘</Button>
                                     </Box>
+                                </Box>
 
-                                ))
+                            ))
                             ) : (
                                 <EmptyNote type="movies" />
                             )}
@@ -240,20 +239,21 @@ const WatchHistory: React.FC = () => {
                         <Box sx={{
                             display: "flex",
                             justifyContent: 'center',
+                            mb: 3
                         }}>
                             <input
                                 className="search_input"
                                 onChange={handleTvShowsQuickSearch}
                                 style={{
                                     display: JSON.parse(localStorage.getItem('watchedTvShows') || '[]').length > 0 ? "block" : "none",
-                                    width: window.innerWidth < 1024 ? "100%" : "35%",
-                                    height: 55,
+                                    width: window.innerWidth < 1024 ? "100%" : "30%",
+                                    height: 50,
                                     fontFamily: 'Rubik',
                                     borderRadius: 8,
                                     border: 'none',
                                     backgroundColor: 'rgb(30, 30, 30)',
                                     color: 'white',
-                                    fontSize: 15,
+                                    fontSize: 14,
                                     marginTop: 30,
                                     marginBottom: 20
                                 }} placeholder="Search already watched tv shows" type="text" />
@@ -272,7 +272,7 @@ const WatchHistory: React.FC = () => {
                                 watchedTvShows.map((movie, index) => (
                                     <Box className="watched_movies_wrapper"
                                         sx={{
-                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(33.3% - 10px)', md: 'calc(20% - 10px)', lg: 'calc(20% - 10px)', xl: 'calc(16.6% - 10px)' },
+                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(33.3% - 10px)', md: 'calc(20% - 10px)', lg: 'calc(16.66% - 10px)', xl: 'calc(16.6% - 10px)' },
                                         }}
                                         key={index}>
                                         <Box sx={{ mb: 2 }}></Box>

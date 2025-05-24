@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
 
@@ -11,18 +11,12 @@ import {
 // props
 import { BannerCardProps } from "../interfaces/props";
 
-const BannerCard: React.FC<BannerCardProps> = ({
-    poster_path,
-    original_name,
-    first_air_date,
-    vote_average,
-    id }) => {
+const BannerCard: React.FC<BannerCardProps> = ({ poster_path, original_name, first_air_date, vote_average, id }) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     const navigate = useNavigate();
     const navigateToTvScreen = () => {
-        const data = {
-            id: id.toString(),
-        };
+        const data = { id: id.toString() };
         const queryString = new URLSearchParams(data).toString();
         // send user
         navigate(`/screen/tv?${queryString}`);
@@ -74,13 +68,31 @@ const BannerCard: React.FC<BannerCardProps> = ({
                 </div>
 
                 {/* poster */}
+                {!imageLoaded && (
+                    <div className="loading-animation"
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            background: '#1a1a1a',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}><div className="loading-spinner banner-loading-spinner"></div>
+                    </div>
+                )}
                 <img
+                    loading="lazy"
                     style={{
                         width: '100%',
                         borderRadius: 16,
                         objectFit: 'cover',
-                        height: '100%'
+                        height: '100%',
+                        opacity: imageLoaded ? 1 : 0,
                     }}
+                    onLoad={() => setImageLoaded(true)}
                     src={poster_path} alt="" />
 
                 {/* shader */}
@@ -92,7 +104,7 @@ const BannerCard: React.FC<BannerCardProps> = ({
                     height: '100%',
                     zIndex: 1,
                     borderRadius: 4
-                }}  ></Box>
+                }}></Box>
             </Box>
         </>
     )

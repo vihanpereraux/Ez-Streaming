@@ -49,6 +49,36 @@ body {
   }
 }
 
+/* image pre loading animation */
+.loading-spinner {
+  border: 2px solid #ffffff1a;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-loading-spinner {
+  width: 30px;
+  height: 30px;
+  border-top: 2px solid #a2ff00;
+}
+
+.banner-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border-top: 4px solid #a2ff00;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* carousel stylings */
 ._movie_poster_portrait {
   transition: all .15s ease-in-out;
