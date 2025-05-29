@@ -19,6 +19,7 @@ import Reviews from "../components/reviews";
 import Videos from "../components/videos";
 
 // services
+import { getAllMovieProviders } from "../services/providers/movie-providers";
 import { getGeneralDetails } from "../services/screens/general-details";
 import { getRelatedMovies } from "../services/api";
 import { getReviewDetails } from "../services/screens/review-details";
@@ -34,6 +35,7 @@ interface TabPanelProps {
 }
 import { ReviewDataProps } from "../interfaces/props";
 import { CarosuelCardProps } from "../interfaces/props";
+import { MovieProviderDetailsProps } from "../interfaces/props";
 
 // stylesheet
 const tabStyles = {
@@ -70,17 +72,26 @@ function a11yProps(index: number) {
 
 const MovieScreen: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [movieProviders, setMovieProviders] = useState<MovieProviderDetailsProps[]>([]);
     const [movieDetails, setMovieDetails] = useState<any>({});
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([]);
     const [lightsOffClicked, setLightsOffClicked] = useState<boolean>(false);
     const [value, setValue] = React.useState(0);
     const [castDetails, setCastDetails] = useState<any[]>([]);
     const [reviews, setReviews] = useState<ReviewDataProps[]>([]);
-    const [videoKeys, setVideoKeys] = useState<string[]>([])
+    const [videoKeys, setVideoKeys] = useState<string[]>([]);
 
     const navigate = useNavigate();
     const location = useLocation();
     const movieId = new URLSearchParams(location.search).get("id");
+
+    // getting providers
+    useEffect(() => {
+        const providers = getAllMovieProviders();
+        if (providers) {
+            setMovieProviders([...providers] as MovieProviderDetailsProps[]);
+        }
+    }, [movieId])
 
     const handleChange = (e: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -247,9 +258,11 @@ const MovieScreen: React.FC = () => {
                                         onChange={handleChange}
                                         aria-label="basic tabs example">
                                         {/* default server group */}
-                                        {['Chad Player', 'VimStar', 'Popcorn Bunjie', 'Star Cinema', 'Reel Magic', 'Cinema Canvas'].map((label, index) => (
+                                        {/* ['Chad Player', 'VimStar', 'Popcorn Bunjie', 'Star Cinema', 'Reel Magic', 'Cinema Canvas'] */}
+                                        {movieProviders.map((item, index) => (
                                             <Tab sx={tabStyles}
-                                                label={label}
+                                                key={index}
+                                                label={item.displayName}
                                                 {...a11yProps(index)} />
                                         ))}
                                     </Tabs>
@@ -284,10 +297,10 @@ const MovieScreen: React.FC = () => {
                                 )}
 
                                 {/* players */}
-                                {['videsrc.xyz', 'videsrc.cc', 'videasy.net', 'vidjoy.pro', 'vidfast.pro', 'multiembed.mov'].map((provider, index) => (
+                                {movieProviders.map((item, index) => (
                                     <CustomTabPanel value={value} index={index} key={index}>
                                         {movieId && (
-                                            <MoviePlayer id={movieId} serverGroup={provider} />
+                                            <MoviePlayer id={movieId} serverGroup={item.providerName} />
                                         )}
                                     </CustomTabPanel>
                                 ))}

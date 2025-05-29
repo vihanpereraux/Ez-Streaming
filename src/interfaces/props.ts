@@ -82,3 +82,7 @@ export interface CollectionArrayProps {
     collection: MoviesProps[]
 }
 
+export interface MovieProviderDetailsProps {
+    displayName: string,
+    providerName: string
+}
