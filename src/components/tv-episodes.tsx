@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { tvEpisodeCarouselConfig } from "../config/carousel-config";
@@ -24,6 +24,7 @@ interface props {
 
 
 const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSelection }) => {
+    const [isThumbnailLoaded, setIsThumbnailLoaded] = useState<boolean>(false);
     const manageUserSelection = (season: number, episodeNumber: number) => {
         const snapshot: UserSelectionProps = {
             season: season,
@@ -103,45 +104,64 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                             onClick={() => { manageUserSelection(detail.season, (index + 1)) }}>
 
                                             {/* still image */}
-                                            <img
-                                                style={{
-                                                    width: '100%',
-                                                    aspectRatio: '16/9',
-                                                    objectFit: 'cover',
-                                                    borderRadius: 8,
-                                                }}
-                                                src={detail.episodeDetails.stills[index] ? `https://image.tmdb.org/t/p/w300/${detail.episodeDetails.stills[index]}` : `https://i.ibb.co/1YCDW7pR/tv-not-availabe-yet.jpg`}
-                                                alt={`Preview for episode ${index + 1} in season ${detail.season}`} />
+                                            <Box sx={{ position: 'relative' }}>
+                                                {!isThumbnailLoaded && (
+                                                    <Box style={{
+                                                        position: 'absolute',
+                                                        top: 0,
+                                                        left: 0,
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        background: 'red',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center'
+                                                    }}><Box className="loading-spinner card-loading-spinner"></Box>
+                                                    </Box>
+                                                )}
+                                                <img
+                                                    style={{
+                                                        width: '100%',
+                                                        aspectRatio: '16/9',
+                                                        objectFit: 'cover',
+                                                        borderRadius: 8,
+                                                        opacity: isThumbnailLoaded ? 1 : 0
+                                                    }}
+                                                    onLoad={() => { setIsThumbnailLoaded(true); }}
+                                                    src={detail.episodeDetails.stills[index] ? `https://image.tmdb.org/t/p/w300/${detail.episodeDetails.stills[index]}` : `https://i.ibb.co/1YCDW7pR/tv-not-availabe-yet.jpg`}
+                                                    alt={`Preview for episode ${index + 1} in season ${detail.season}`} />
 
-                                            {/* episode number */}
-                                            <Typography sx={{
-                                                fontSize: 13,
-                                                mt: 1,
-                                                fontWeight: 400,
-                                                fontFamily: 'Rubik',
-                                                color: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ?
-                                                    "#a2ff00"
-                                                    :
-                                                    "white",
-                                            }}>Episode {index + 1}</Typography>
+                                                {/* episode number */}
+                                                <Typography sx={{
+                                                    fontSize: 13,
+                                                    mt: 1,
+                                                    fontWeight: 400,
+                                                    fontFamily: 'Rubik',
+                                                    color: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ?
+                                                        "#a2ff00"
+                                                        :
+                                                        "white",
+                                                }}>Episode {index + 1}</Typography>
 
-                                            {/* episode name */}
-                                            <Typography sx={{
-                                                fontSize: 12,
-                                                mt: .5,
-                                                fontFamily: 'Rubik',
-                                                opacity: .6,
-                                                color: "white"
-                                            }}>{detail.episodeDetails.names[index] === `Episode ${index + 1}` ? `Not availabe` : detail.episodeDetails.names[index]}</Typography>
+                                                {/* episode name */}
+                                                <Typography sx={{
+                                                    fontSize: 12,
+                                                    mt: .5,
+                                                    fontFamily: 'Rubik',
+                                                    opacity: .6,
+                                                    color: "white"
+                                                }}>{detail.episodeDetails.names[index] === `Episode ${index + 1}` ? `Not availabe` : detail.episodeDetails.names[index]}</Typography>
 
-                                            {/* episode name */}
-                                            <Typography sx={{
-                                                fontSize: 10,
-                                                mt: .85,
-                                                fontFamily: 'Rubik',
-                                                opacity: .45,
-                                                color: "white"
-                                            }}>{detail.episodeDetails.airDates[index] ? detail.episodeDetails.airDates[index] : "--"}</Typography>
+                                                {/* episode name */}
+                                                <Typography sx={{
+                                                    fontSize: 10,
+                                                    mt: .85,
+                                                    fontFamily: 'Rubik',
+                                                    opacity: .45,
+                                                    color: "white"
+                                                }}>{detail.episodeDetails.airDates[index] ? detail.episodeDetails.airDates[index] : "--"}</Typography>
+
+                                            </Box>
                                         </Box>
                                     ))
                                 )}

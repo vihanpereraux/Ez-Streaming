@@ -38,19 +38,18 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                         position: 'relative'
                     }}>
                     {!imageLoaded && (
-                        <div className="loading-animation"
-                            style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: '100%',
-                                height: '100%',
-                                background: '#1a1a1a',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}><div className="loading-spinner card-loading-spinner"></div>
-                        </div>
+                        <Box style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            background: '#1a1a1a',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}><Box className="loading-spinner card-loading-spinner"></Box>
+                        </Box>
                     )}
                     <img
                         loading="lazy"
