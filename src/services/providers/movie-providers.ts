@@ -49,12 +49,16 @@ export const getAllMovieProviders = () => {
             providerName: "vidsrc.su"
         },
         {
-            displayName: "Vimstar",
-            providerName: "player.vidsrc.co"
+            displayName: "Jolliby",
+            providerName: "spencerdevs.xyz"
         },
         {
-            displayName: "Star Cinema",
-            providerName: "videsrc.cc"
+            displayName: "KingStar",
+            providerName: "vidora.su"
+        },
+        {
+            displayName: "Vimstar",
+            providerName: "player.vidsrc.co"
         }].map((item) => {
             providerDetails.push({
                 displayName: item.displayName,
