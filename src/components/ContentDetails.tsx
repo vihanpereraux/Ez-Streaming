@@ -16,7 +16,6 @@ interface ContentDetailsProps {
     };
 }
 
-// Helper to convert runtime in minutes to "Xh Ym" format
 const formatRuntime = (runtime: number) => {
     if (!runtime || runtime <= 0) return null;
     const hours = Math.floor(runtime / 60);
@@ -31,10 +30,10 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
                 sx={{
                     color: 'white',
                     textAlign: 'left',
-                    fontSize: { xs: 20, lg: 22 },
+                    fontSize: { xs: 18, lg: 22 },
                     fontFamily: 'Rubik',
                     fontWeight: 400,
-                    mb: .8
+                    mb: .25
                 }}>{props.original_title}</Typography>
 
             {/* other details */}
@@ -68,7 +67,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
                     fontSize: { xs: 13, lg: 14.5 },
                     lineHeight: 1.75,
                     fontWeight: 400,
-                    mt: 2.5,
+                    mt: 2,
                     color: 'white',
                     opacity: 0.9,
                 }}>{props.overview}</Typography>

@@ -307,18 +307,18 @@ const MovieScreen: React.FC = () => {
                             </Box>}
                         </Box>
 
-                        {/* cast info */}
-                        {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
+                        {/* cast info / credits */}
+                        {!lightsOffClicked && (<Box sx={{ mt: 5 }}>
                             <Credits contentTitle={movieDetails.original_title} castDetails={castDetails} />
                         </Box>)}
 
                         {/* reviews */}
-                        {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
+                        {!lightsOffClicked && (<Box sx={{ mt: 5 }}>
                             <Reviews reviews={reviews} defaultExpanded={true} />
                         </Box>)}
 
                         {/* trailers */}
-                        <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
+                        <Box sx={{ mt: 5, display: !lightsOffClicked ? "block" : "none" }}>
                             {videoKeys.length > 3 ? (
                                 <Videos videokeys={videoKeys.slice(0, 3)} />
                             ) : (
