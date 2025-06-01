@@ -1,8 +1,8 @@
 // props
-import { MovieProviderDetailsProps } from "../../interfaces/props"
+import { StreamProviderProps } from "../../interfaces/props"
 
 export const getAllMovieProviders = () => {
-    let providerDetails: MovieProviderDetailsProps[] = [];
+    let providerDetails: StreamProviderProps[] = [];
     // desktop and tablet providers 
     if (window.innerWidth > 700) {
         [{

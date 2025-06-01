@@ -12,6 +12,10 @@ const getRelevantProvider = (source: string, id: string) => {
             return `https://vidora.su/movie/${id}?colour=a2ff00`
             break;
 
+        case "vidsrc.su":
+            return `https://vidsrc.su/embed/movie/${id}?colour=a2ff00&adFree=true`
+            break;
+
         case "spencerdevs.xyz":
             return `https://spencerdevs.xyz/movie/${id}?colour=a2ff00&autoPlay=true&primarycolor=a2ff00&autoNext=true&nextButton=true&poster=true`
             break;
@@ -24,28 +28,16 @@ const getRelevantProvider = (source: string, id: string) => {
             return `https://vidsrc.xyz/embed/movie/${id}`
             break;
 
-        case "vidjoy.pro":
-            return `https://vidjoy.pro/embed/movie/${id}`
-            break;
-
         case "videsrc.cc":
             return `https://vidsrc.cc/v2/embed/movie/${id}?autoPlay=false`
             break;
 
+        case "vidjoy.pro":
+            return `https://vidjoy.pro/embed/movie/${id}`
+            break;
+
         case "videasy.net":
             return `https://player.videasy.net/movie/${id}`
-            break;
-
-        case "multiembed.mov":
-            return `https://multiembed.mov/?video_id=${id}&tmdb=1`
-            break;
-
-        case "vidsrc.su":
-            return `https://vidsrc.su/embed/movie/${id}?colour=a2ff00&adFree=true`
-            break;
-
-        case "player.vidsrc.co":
-            return `https://player.vidsrc.co/embed/movie/${id}?colour=a2ff00&autoPlay=true&primarycolor=a2ff00&autoNext=true&nextButton=true&poster=true`
             break;
 
         default:

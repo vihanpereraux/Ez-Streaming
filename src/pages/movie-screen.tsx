@@ -12,7 +12,7 @@ import Tab from '@mui/material/Tab';
 import LoadingPreview from "../components/loading-preview";
 import MovieCarousel from "../components/movie-carousel";
 import MoviePlayer from "../components/movie-player";
-import MovieDetails from "../components/content-details";
+import MovieDetails from "../components/movie-details";
 import Navbar from "../components/navbar";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
@@ -35,7 +35,7 @@ interface TabPanelProps {
 }
 import { ReviewDataProps } from "../interfaces/props";
 import { CarosuelCardProps } from "../interfaces/props";
-import { MovieProviderDetailsProps } from "../interfaces/props";
+import { StreamProviderProps } from "../interfaces/props";
 
 // stylesheet
 const tabStyles = {
@@ -44,7 +44,7 @@ const tabStyles = {
     textTransform: 'capitalize',
     fontWeight: 420,
     textDecoration: 'none',
-    mr: { xs: 0, md: 0, lg: 1.5},
+    mr: { xs: 0, md: 0, lg: 1.5 },
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -72,11 +72,11 @@ function a11yProps(index: number) {
 
 const MovieScreen: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [movieProviders, setMovieProviders] = useState<MovieProviderDetailsProps[]>([]);
+    const [value, setValue] = React.useState(0);
+    const [movieProviders, setMovieProviders] = useState<StreamProviderProps[]>([]);
     const [movieDetails, setMovieDetails] = useState<any>({});
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([]);
     const [lightsOffClicked, setLightsOffClicked] = useState<boolean>(false);
-    const [value, setValue] = React.useState(0);
     const [castDetails, setCastDetails] = useState<any[]>([]);
     const [reviews, setReviews] = useState<ReviewDataProps[]>([]);
     const [videoKeys, setVideoKeys] = useState<string[]>([])
@@ -232,8 +232,8 @@ const MovieScreen: React.FC = () => {
                         key={movieId}
                         sx={{
                             pt: 6,
-                            pl: { xs: 2, lg: 3 },
-                            pr: { xs: 2, lg: 3 }
+                            pl: { xs: 1, lg: 3 },
+                            pr: { xs: 1, lg: 3 }
                         }}>
                         {/* tabs, players and information */}
                         <Box sx={{ display: { xs: "block", lg: "block" } }}>

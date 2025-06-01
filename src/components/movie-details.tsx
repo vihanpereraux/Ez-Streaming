@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 import { FaStar } from "react-icons/fa6";
 
 // props
-interface ContentDetailsProps {
+interface MovieDetailsProps {
     props: {
         original_title: string,
         release_date: string,
@@ -23,7 +23,7 @@ const formatRuntime = (runtime: number) => {
     return `${hours > 0 ? `${hours}h ` : ''}${minutes}m`;
 };
 
-const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
+const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
     return (
         <>
             <Typography
@@ -75,4 +75,4 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
     )
 }
 
-export default ContentDetails
+export default MovieDetails

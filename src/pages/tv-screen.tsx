@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { FaStar } from "react-icons/fa6";
 import "react-multi-carousel/lib/styles.css";
 
 // MUI
@@ -13,6 +12,7 @@ import Tab from '@mui/material/Tab';
 import MovieCarousel from "../components/movie-carousel";
 import Navbar from "../components/navbar";
 import TvPlayer from "../components/tv-player";
+import TvDetails from "../components/tv-details";
 import TvEpisodes from "../components/tv-episodes";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
@@ -25,6 +25,7 @@ import { getReviewDetails } from "../services/screens/review-details";
 import { getCastDetails } from "../services/screens/cast-details";
 import { getVideos } from "../services/screens/vidoes";
 import { getRelatedTVShows } from "../services/api";
+import { getAllTvProviders } from "../services/providers/tv-providers";
 
 // props
 import { MoviesProps } from "../interfaces/props";
@@ -41,6 +42,7 @@ interface TabPanelProps {
 }
 import { CarosuelCardProps } from "../interfaces/props";
 import { EpisodeDetailsProps } from "../interfaces/props";
+import { StreamProviderProps } from "../interfaces/props";
 
 // stylesheet
 const tabStyles = {
@@ -76,8 +78,10 @@ function a11yProps(index: number) {
 }
 
 const TvScreen: React.FC = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [value, setValue] = React.useState(0);
-    const [movieDetails, setMovieDetails] = useState<any>({});
+    const [tvProviders, setTvProviders] = useState<StreamProviderProps[]>([]);
+    const [tvDetails, setTvDetails] = useState<any>({});
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
     const [castDetails, setCastDetails] = useState<any[]>([]);
     const [reviews, setReviews] = useState<ReviewDataProps[]>();
@@ -88,7 +92,6 @@ const TvScreen: React.FC = () => {
     });
     const [videoKeys, setVideoKeys] = useState<string[]>([])
     const [lightsOffClicked, setLightsOffClicked] = useState<boolean>(false);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -104,7 +107,7 @@ const TvScreen: React.FC = () => {
         if (!tvId) navigate('/');
 
         // clean states
-        setMovieDetails({});
+        setTvDetails({});
         setCastDetails([]);
         setRelatedContent([]);
         setReviews([]);
@@ -113,7 +116,7 @@ const TvScreen: React.FC = () => {
 
         const response = await getGeneralDetails(tvId as string, "tv");
         if (response.status == 200) {
-            setMovieDetails({ ...response.data });
+            setTvDetails({ ...response.data });
             await getCast();
             await getRelatedContent();
             await getReviews();
@@ -226,9 +229,14 @@ const TvScreen: React.FC = () => {
     }
 
     useEffect(() => {
+        const providers = getAllTvProviders();
+        setTvProviders([...providers])
+    }, [tvId])
+
+    useEffect(() => {
         getDetails();
         return () => {
-            setMovieDetails({});
+            setTvDetails({});
             setRelatedContent([]);
             setCastDetails([]);
             setReviews([]);
@@ -295,10 +303,8 @@ const TvScreen: React.FC = () => {
                                     onChange={handleChange}
                                     aria-label="basic tabs example">
                                     {/* default server group */}
-                                    {['VimStar', 'Star Cinema', 'Chad Player', 'Popcorn Bunjie', 'Cinema Canvas', 'Reel Magic'].map((label, index) => (
-                                        <Tab sx={tabStyles}
-                                            label={label}
-                                            {...a11yProps(index)} />
+                                    {tvProviders.map((provider, index) => (
+                                        <Tab sx={tabStyles} label={provider.displayName} {...a11yProps(index)} />
                                     ))}
                                 </Tabs>
 
@@ -331,12 +337,12 @@ const TvScreen: React.FC = () => {
                             )}
 
                             {/* players */}
-                            {['videsrc.cc', 'vidjoy.pro', 'videsrc.xyz', 'videasy', 'videasy.net', 'multiembed.mov', 'vidfast.pro'].map((provider, index) => (
+                            {tvProviders.map((provider, index) => (
                                 <CustomTabPanel value={value} index={index} key={index}>
                                     {tvId && (
                                         <TvPlayer
                                             id={tvId}
-                                            serverGroup={provider}
+                                            serverGroup={provider.providerName}
                                             season={(userSelection.season).toString()}
                                             episode={(userSelection.episodeNumber).toString()} />
                                     )}
@@ -345,50 +351,13 @@ const TvScreen: React.FC = () => {
                         </Box>
 
                         {/* details */}
-                        <Box sx={{ display: { xs: "block", lg: "block" } }}>
-                            {!lightsOffClicked && <Box sx={{
-                                width: { xs: "100%", lg: "100%" },
-                                pl: { xs: .5, lg: 0 },
-                                mt: { xs: 1.5, lg: 3 }
-                            }}>
-                                <Typography
-                                    sx={{
-                                        color: 'white',
-                                        textAlign: 'left',
-                                        fontSize: 22,
-                                        fontFamily: 'Rubik',
-                                        fontWeight: 450,
-                                        mb: .8
-                                    }}>{movieDetails.original_name}</Typography>
-
-                                {/* other details */}
-                                <span style={{
-                                    color: 'white',
-                                    fontSize: 12,
-                                }}>
-                                    {/* first air data */}
-                                    {movieDetails.first_air_date ? movieDetails.first_air_date.slice(0, 4) : '...'} &nbsp; ⋅
-
-                                    {/* rating */}
-                                    &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp;{Math.round(movieDetails.vote_average * 10) / 10} &nbsp;⋅
-                                </span>
-
-                                {/* genre */}
-                                &nbsp;&nbsp;{movieDetails.genres.map((genre: any, index: any) => (
-                                    <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 12, marginRight: 6 }}>{genre.name}</span>
-                                ))}
-                                <Typography
-                                    sx={{
-                                        fontFamily: 'Rubik',
-                                        fontSize: { xs: 14, lg: 14.5 },
-                                        lineHeight: 1.75,
-                                        fontWeight: 400,
-                                        mt: 2.5,
-                                        color: 'white',
-                                        opacity: 0.9,
-                                    }}>{movieDetails.overview}</Typography>
-                            </Box>}
-                        </Box>
+                        {!lightsOffClicked && <Box sx={{
+                            width: { xs: "100%", lg: "100%" },
+                            pl: { xs: .5, lg: 0 },
+                            mt: { xs: 1.5, lg: 3 },
+                        }}>
+                            <TvDetails props={tvDetails} />
+                        </Box>}
 
                         {/* seasons and episodes */}
                         {!lightsOffClicked && (
@@ -402,7 +371,7 @@ const TvScreen: React.FC = () => {
 
                         {/* cast info */}
                         {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                            <Credits contentTitle={movieDetails.original_name} castDetails={castDetails} />
+                            <Credits contentTitle={tvDetails.original_name} castDetails={castDetails} />
                         </Box>)}
 
                         {/* reviews */}
@@ -414,12 +383,16 @@ const TvScreen: React.FC = () => {
 
                         {/* trailers */}
                         <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
-                            <Videos videokeys={videoKeys} />
+                            {videoKeys.length > 3 ? (
+                                <Videos videokeys={videoKeys.slice(0, 3)} />
+                            ) : (
+                                <Videos videokeys={videoKeys} />
+                            )}
                         </Box>
 
                         {/* related content */}
                         {!lightsOffClicked ? (
-                            <Box sx={{ mt: 8, mb: 15 }}>
+                            <Box sx={{ mt: 10, mb: 15 }}>
                                 {relatedContent.length > 0 ? (
                                     <MovieCarousel
                                         type="tv"

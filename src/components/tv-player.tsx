@@ -10,6 +10,22 @@ interface PlayerProps {
 
 const getRelevantProvider = (id: string, source: string, season: string, episode: string) => {
     switch (source) {
+        case "vidora.su":
+            return `https://vidora.su/tv/${id}/${season}/${episode}?colour=a2ff00`
+            break;
+
+        case "vidsrc.su":
+            return `https://vidsrc.su/embed/tv/${id}/${season}/${episode}`
+            break;
+
+        case "spencerdevs.xyz":
+            return `https://spencerdevs.xyz/tv/${id}/${season}/${episode}?theme=a2ff00&autoPlay=true&autoNext=true&nextButton=true&poster=true`
+            break;
+
+        case "player.vidsrc.co":
+            return `https://player.vidsrc.co/embed/tv/${id}/${season}/${episode}?colour=a2ff00&autoPlay=true&primarycolor=a2ff00&autoNext=true&nextButton=true&poster=true&server=1`
+            break;
+
         case "videsrc.xyz":
             return `https://vidsrc.xyz/embed/tv/${id}/${season}/${episode}`
             break;
@@ -24,10 +40,6 @@ const getRelevantProvider = (id: string, source: string, season: string, episode
 
         case "videasy.net":
             return `https://player.videasy.net/tv/${id}/${season}/${episode}`
-            break;
-
-        case "multiembed.mov":
-            return `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${season}&e=${episode}`
             break;
 
         default:
