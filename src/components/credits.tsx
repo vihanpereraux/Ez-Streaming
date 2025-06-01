@@ -1,6 +1,6 @@
 import React from 'react'
 import Carousel from "react-multi-carousel";
-import { castCarouselConfig } from "../config/CarouselConfig";
+import { castCarouselConfig } from "../config/carousel-config";
 
 // MUI
 import { Typography, Box } from '@mui/material'

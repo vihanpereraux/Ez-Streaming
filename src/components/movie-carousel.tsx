@@ -5,13 +5,13 @@ import { Typography, Box } from "@mui/material";
 
 // components
 import Carousel from "react-multi-carousel";
-import CarosuelCard from "./CarouselCard";
+import CarosuelCard from "./carousel-card";
 
 // stylesheet
 import "react-multi-carousel/lib/styles.css";
 
 // carousel config
-import { multiCarouselConfig } from "../config/CarouselConfig";
+import { multiCarouselConfig } from "../config/carousel-config";
 
 // props
 import { MoviesProps } from "../interfaces/props";

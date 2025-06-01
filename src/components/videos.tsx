@@ -1,7 +1,7 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { videoListConfig } from "../config/CarouselConfig";
+import { videoListConfig } from "../config/carousel-config";
 
 // MUI
 import { Typography, Box } from '@mui/material'

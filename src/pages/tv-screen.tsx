@@ -10,14 +10,14 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 // components
-import MovieCarousel from "../components/MovieCarousel";
-import Navbar from "../components/Navbar";
+import MovieCarousel from "../components/movie-carousel";
+import Navbar from "../components/navbar";
 import TvPlayer from "../components/tv-player";
 import TvEpisodes from "../components/tv-episodes";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
 import Videos from "../components/videos";
-import LoadingPreview from "../components/LoadingPreview";
+import LoadingPreview from "../components/loading-preview";
 
 // services
 import { getGeneralDetails } from "../services/screens/general-details";

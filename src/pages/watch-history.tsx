@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
 // components
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar'
 import WatchedCard from '../components/watched-card';
-import LoadingPreview from '../components/LoadingPreview';
+import LoadingPreview from '../components/loading-preview';
 
 // MUI
 import { Typography, Button } from '@mui/material';

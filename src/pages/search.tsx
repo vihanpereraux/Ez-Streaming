@@ -11,9 +11,9 @@ import {
 } from "@mui/material";
 
 // components
-import SearchCard from "../components/SearchCard";
-import ValidationMessage from "../components/ValidationMessage";
-import Navbar from "../components/Navbar";
+import SearchCard from "../components/search-card";
+import ValidationMessage from "../components/validation-message";
+import Navbar from "../components/navbar";
 
 // services
 import { getSearchResults } from "../services/api";

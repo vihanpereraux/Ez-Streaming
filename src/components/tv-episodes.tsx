@@ -1,7 +1,7 @@
 import React from 'react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { tvEpisodeCarouselConfig } from "../config/CarouselConfig";
+import { tvEpisodeCarouselConfig } from "../config/carousel-config";
 
 // MUI
 import { Box, Typography } from "@mui/material";

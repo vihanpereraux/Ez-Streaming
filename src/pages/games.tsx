@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 // components
-import Navbar from "../components/Navbar";
-import LoadingPreview from "../components/LoadingPreview";
+import Navbar from "../components/navbar";
+import LoadingPreview from "../components/loading-preview";
 
 // MUI
 import { Grid } from "@mui/material";

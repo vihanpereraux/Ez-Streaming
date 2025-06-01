@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
 // components
-import BannerCarosuel from "../components/BannerCarousel";
-import MovieCarousel from "../components/MovieCarousel";
-import LoadingPreview from "../components/LoadingPreview";
-import Navbar from "../components/Navbar";
+import BannerCarosuel from "../components/banner-carousel";
+import MovieCarousel from "../components/movie-carousel";
+import LoadingPreview from "../components/loading-preview";
+import Navbar from "../components/navbar";
 
 // services
 import {

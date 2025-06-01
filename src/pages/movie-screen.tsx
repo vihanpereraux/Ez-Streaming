@@ -9,11 +9,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 // components
-import LoadingPreview from "../components/LoadingPreview";
-import MovieCarousel from "../components/MovieCarousel";
+import LoadingPreview from "../components/loading-preview";
+import MovieCarousel from "../components/movie-carousel";
 import MoviePlayer from "../components/movie-player";
-import MovieDetails from "../components/ContentDetails";
-import Navbar from "../components/Navbar";
+import MovieDetails from "../components/content-details";
+import Navbar from "../components/navbar";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
 import Videos from "../components/videos";
