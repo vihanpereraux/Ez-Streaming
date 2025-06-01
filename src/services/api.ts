@@ -22,6 +22,8 @@ export const getTrendingMovies = async (arr: MoviesProps[]) => {
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
+        console.log(data.results);
+        console.log(cleanedArr);
         return cleanedArr;
     } catch (error) {
         console.log(`Error (Trending Movies) - ${error}`);
@@ -148,7 +150,7 @@ const cleanMovieDetails = (data: any[], arr: MoviesProps[],) => {
     data.map((item: any) => {
         arr.push({
             title: item.original_title,
-            backdrop_path: 'https://image.tmdb.org/t/p/original/' + item.backdrop_path,
+            backdrop_path: 'https://image.tmdb.org/t/p/original' + item.backdrop_path,
             id: item.id,
             original_language: item.original_language,
             popularity: item.popularity,

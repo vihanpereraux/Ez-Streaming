@@ -1,12 +1,23 @@
 // props
 import { MovieProviderDetailsProps } from "../../interfaces/props"
 
-// all movie providers
 export const getAllMovieProviders = () => {
     let providerDetails: MovieProviderDetailsProps[] = [];
     // desktop and tablet providers 
     if (window.innerWidth > 700) {
         [{
+            displayName: "KingStar",
+            providerName: "vidora.su"
+        },
+        {
+            displayName: "Jolliby",
+            providerName: "spencerdevs.xyz"
+        },
+        {
+            displayName: "Premify",
+            providerName: "player.vidsrc.co"
+        },
+        {
             displayName: "Chad Player",
             providerName: "videsrc.xyz"
         },
@@ -25,10 +36,6 @@ export const getAllMovieProviders = () => {
         {
             displayName: "Reel Magic",
             providerName: "vidfast.pro"
-        },
-        {
-            displayName: "Cinema Canvas",
-            providerName: "multiembed.mov"
         }].map((item) => {
             providerDetails.push({
                 displayName: item.displayName,
@@ -38,7 +45,15 @@ export const getAllMovieProviders = () => {
     } else {
         // mobile friendly providers
         [{
-            displayName: "VimStar",
+            displayName: "Chad Player",
+            providerName: "vidsrc.su"
+        },
+        {
+            displayName: "Vimstar",
+            providerName: "player.vidsrc.co"
+        },
+        {
+            displayName: "Star Cinema",
             providerName: "videsrc.cc"
         }].map((item) => {
             providerDetails.push({

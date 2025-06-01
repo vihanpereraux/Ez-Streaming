@@ -18,6 +18,8 @@ import Games from './pages/Games'
 import Movies from './pages/Movies'
 import TvShows from './pages/TvShows'
 
+import TestScreen from './pages/test-screen';
+
 // components
 import FooterDisclaimer from './components/footer-disclaimer'
 
@@ -37,6 +39,7 @@ const App: React.FC = () => {
           <Route path='/search' Component={Search}></Route>
           <Route path='/disclaimer' Component={Disclaimer}></Route>
           <Route path='/games' Component={Games}></Route>
+          <Route path='/test' Component={TestScreen}></Route>
         </Routes>
       </BrowserRouter>
       <FooterDisclaimer />

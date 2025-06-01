@@ -81,11 +81,11 @@ body {
 
 /* carousel stylings */
 ._movie_poster_portrait {
-  transition: all .15s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 ._movie_poster_container:hover ._movie_poster_portrait {
-  transform: scale(1.15) !important;
+  transform: scale(1.1) !important;
   transform-origin: 50% 50%;
 }
 
@@ -125,6 +125,8 @@ body {
 /* movie/tv screen */
 .MuiTabs-flexContainer button {
   padding: 0px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }
 
 .movie_screen .Mui-selected {
@@ -135,6 +137,7 @@ body {
 
 .MuiTabs-indicator {
   background-color: #a2ff00 !important;
+  height: 1px !important;
 }
 
 .tv_screen .Mui-selected {

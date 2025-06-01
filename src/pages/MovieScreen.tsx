@@ -19,12 +19,12 @@ import Reviews from "../components/reviews";
 import Videos from "../components/videos";
 
 // services
-import { getAllMovieProviders } from "../services/providers/movie-providers";
 import { getGeneralDetails } from "../services/screens/general-details";
 import { getRelatedMovies } from "../services/api";
 import { getReviewDetails } from "../services/screens/review-details";
 import { getCastDetails } from "../services/screens/cast-details";
 import { getVideos } from "../services/screens/vidoes";
+import { getAllMovieProviders } from "../services/providers/movie-providers";
 
 // props
 import { MoviesProps } from "../interfaces/props";
@@ -44,7 +44,7 @@ const tabStyles = {
     textTransform: 'capitalize',
     fontWeight: 420,
     textDecoration: 'none',
-    mr: 2,
+    mr: 1.25,
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -79,19 +79,11 @@ const MovieScreen: React.FC = () => {
     const [value, setValue] = React.useState(0);
     const [castDetails, setCastDetails] = useState<any[]>([]);
     const [reviews, setReviews] = useState<ReviewDataProps[]>([]);
-    const [videoKeys, setVideoKeys] = useState<string[]>([]);
+    const [videoKeys, setVideoKeys] = useState<string[]>([])
 
     const navigate = useNavigate();
     const location = useLocation();
     const movieId = new URLSearchParams(location.search).get("id");
-
-    // getting providers
-    useEffect(() => {
-        const providers = getAllMovieProviders();
-        if (providers) {
-            setMovieProviders([...providers] as MovieProviderDetailsProps[]);
-        }
-    }, [movieId])
 
     const handleChange = (e: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -133,7 +125,6 @@ const MovieScreen: React.FC = () => {
         } else {
             console.error(`Error occured - ${response.data}`);
         }
-
     }
 
     // reviews
@@ -185,6 +176,11 @@ const MovieScreen: React.FC = () => {
             setLightsOffClicked(true);
         }
     }
+
+    useEffect(() => {
+        const providers = getAllMovieProviders();
+        setMovieProviders([...providers]);
+    }, [movieId])
 
     useEffect(() => {
         getDetails();
@@ -257,13 +253,8 @@ const MovieScreen: React.FC = () => {
                                         value={value}
                                         onChange={handleChange}
                                         aria-label="basic tabs example">
-                                        {/* default server group */}
-                                        {/* ['Chad Player', 'VimStar', 'Popcorn Bunjie', 'Star Cinema', 'Reel Magic', 'Cinema Canvas'] */}
-                                        {movieProviders.map((item, index) => (
-                                            <Tab sx={tabStyles}
-                                                key={index}
-                                                label={item.displayName}
-                                                {...a11yProps(index)} />
+                                        {movieProviders.map((provider, index) => (
+                                            <Tab sx={tabStyles} label={provider.displayName} {...a11yProps(index)} />
                                         ))}
                                     </Tabs>
 
@@ -297,10 +288,10 @@ const MovieScreen: React.FC = () => {
                                 )}
 
                                 {/* players */}
-                                {movieProviders.map((item, index) => (
+                                {movieProviders.map((provider, index) => (
                                     <CustomTabPanel value={value} index={index} key={index}>
                                         {movieId && (
-                                            <MoviePlayer id={movieId} serverGroup={item.providerName} />
+                                            <MoviePlayer id={movieId} serverGroup={provider.providerName} />
                                         )}
                                     </CustomTabPanel>
                                 ))}
@@ -328,7 +319,11 @@ const MovieScreen: React.FC = () => {
 
                         {/* trailers */}
                         <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
-                            <Videos videokeys={videoKeys} />
+                            {videoKeys.length > 3 ? (
+                                <Videos videokeys={videoKeys.slice(0, 3)} />
+                            ) : (
+                                <Videos videokeys={videoKeys} />
+                            )}
                         </Box>
 
                         {/* related content */}

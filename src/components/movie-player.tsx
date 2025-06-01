@@ -8,6 +8,18 @@ interface PlayerProps {
 
 const getRelevantProvider = (source: string, id: string) => {
     switch (source) {
+        case "vidora.su":
+            return `https://vidora.su/movie/${id}?colour=a2ff00`
+            break;
+
+        case "spencerdevs.xyz":
+            return `https://spencerdevs.xyz/movie/${id}?colour=a2ff00&autoPlay=true&primarycolor=a2ff00&autoNext=true&nextButton=true&poster=true`
+            break;
+
+        case "player.vidsrc.co":
+            return `https://player.vidsrc.co/embed/movie/${id}?colour=a2ff00&autoPlay=true&primarycolor=a2ff00&autoNext=true&nextButton=true&poster=true&server=1`
+            break;
+
         case "videsrc.xyz":
             return `https://vidsrc.xyz/embed/movie/${id}`
             break;
@@ -26,6 +38,14 @@ const getRelevantProvider = (source: string, id: string) => {
 
         case "multiembed.mov":
             return `https://multiembed.mov/?video_id=${id}&tmdb=1`
+            break;
+
+        case "vidsrc.su":
+            return `https://vidsrc.su/embed/movie/${id}?colour=a2ff00&adFree=true`
+            break;
+
+        case "player.vidsrc.co":
+            return `https://player.vidsrc.co/embed/movie/${id}?colour=a2ff00&autoPlay=true&primarycolor=a2ff00&autoNext=true&nextButton=true&poster=true`
             break;
 
         default:

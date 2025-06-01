@@ -156,7 +156,7 @@ const Home: React.FC = () => {
                         ].map((carousel, index) => (
                             <Box sx={{ mt: carouselSpacing }} key={index}>
                                 <MovieCarousel
-                                    type={carousel.type as "movie" | "tv"}
+                                    type={carousel.type}
                                     title={carousel.title}
                                     content={carousel.content}
                                 />
