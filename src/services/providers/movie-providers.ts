@@ -6,15 +6,19 @@ export const getAllMovieProviders = () => {
     // desktop and tablet providers 
     if (window.innerWidth > 700) {
         [{
-            displayName: "KingStar",
+            displayName: "🜲\u00A0 KingStar",
             providerName: "vidora.su"
         },
         {
-            displayName: "Jolliby",
+            displayName: "🜲\u00A0 Enigma",
+            providerName: "vidsrc.su"
+        },
+        {
+            displayName: "🜲\u00A0 Jolliby",
             providerName: "spencerdevs.xyz"
         },
         {
-            displayName: "Premify",
+            displayName: "🜲\u00A0 Premify",
             providerName: "player.vidsrc.co"
         },
         {
@@ -45,19 +49,19 @@ export const getAllMovieProviders = () => {
     } else {
         // mobile friendly providers
         [{
-            displayName: "Chad Player",
+            displayName: "🜲\u00A0 Enigma",
             providerName: "vidsrc.su"
         },
         {
-            displayName: "Jolliby",
+            displayName: "🜲\u00A0 Jolliby",
             providerName: "spencerdevs.xyz"
         },
         {
-            displayName: "KingStar",
+            displayName: "🜲\u00A0 KingStar",
             providerName: "vidora.su"
         },
         {
-            displayName: "Vimstar",
+            displayName: "🜲\u00A0 Premify",
             providerName: "player.vidsrc.co"
         }].map((item) => {
             providerDetails.push({

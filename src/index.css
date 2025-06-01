@@ -132,7 +132,7 @@ body {
 .movie_screen .Mui-selected {
   text-decoration: none !important;
   color: #a2ff00 !important;
-  padding: 0px !important;
+  /* padding: 0px !important; */
 }
 
 .MuiTabs-indicator {

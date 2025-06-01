@@ -44,7 +44,7 @@ const tabStyles = {
     textTransform: 'capitalize',
     fontWeight: 420,
     textDecoration: 'none',
-    mr: 1.25,
+    mr: { xs: 0, md: 0, lg: 1.5},
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -308,17 +308,17 @@ const MovieScreen: React.FC = () => {
                         </Box>
 
                         {/* cast info / credits */}
-                        {!lightsOffClicked && (<Box sx={{ mt: 5 }}>
+                        {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
                             <Credits contentTitle={movieDetails.original_title} castDetails={castDetails} />
                         </Box>)}
 
                         {/* reviews */}
-                        {!lightsOffClicked && (<Box sx={{ mt: 5 }}>
+                        {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
                             <Reviews reviews={reviews} defaultExpanded={true} />
                         </Box>)}
 
                         {/* trailers */}
-                        <Box sx={{ mt: 5, display: !lightsOffClicked ? "block" : "none" }}>
+                        <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
                             {videoKeys.length > 3 ? (
                                 <Videos videokeys={videoKeys.slice(0, 3)} />
                             ) : (
@@ -327,7 +327,7 @@ const MovieScreen: React.FC = () => {
                         </Box>
 
                         {/* related content */}
-                        {!lightsOffClicked ? (<Box sx={{ mt: 8, mb: 15 }}>
+                        {!lightsOffClicked ? (<Box sx={{ mt: 10, mb: 15 }}>
                             {relatedContent.length > 0 ? (
                                 <MovieCarousel
                                     type="movie"
