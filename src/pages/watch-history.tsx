@@ -58,11 +58,11 @@ const EmptyNote: React.FC<EmptyNoteProps> = ({ type }) => {
         <>
             <Box sx={{ width: '100%' }}>
                 <Typography sx={{
-                    fontSize: 15,
+                    fontSize: 13,
                     fontFamily: 'Rubik',
                     color: 'white',
                     opacity: 1,
-                    mt: 10,
+                    mt: 6,
                     textAlign: 'center',
                 }}>No previously watched {type === "movies" ? "Movies" : "Tv Shows"} found, Keep <span style={{ color: '#a2ff00' }}>streaming</span> !</Typography>
             </Box>

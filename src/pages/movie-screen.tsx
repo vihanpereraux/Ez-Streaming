@@ -48,7 +48,7 @@ const tabStyles = {
     textTransform: 'capitalize',
     fontWeight: 420,
     textDecoration: 'none',
-    mr: { xs: 0, md: 0, lg: 1.5 },
+    mr: { xs: .8, md: 1, lg: 1.75 },
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -263,14 +263,14 @@ const MovieScreen: React.FC = () => {
                                                 <Tab sx={tabStyles} label={
                                                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                                         {provider.premium ? (
-                                                            <Lottie style={{ width: 18 }} animationData={premiumIcon} loop={true} />
+                                                            <Lottie style={{ width: 16 }} animationData={premiumIcon} loop={true} />
                                                         ) : (
-                                                            <Lottie style={{ width: 20 }} animationData={serverIcon} loop={true} />
+                                                            <Lottie style={{ width: 18 }} animationData={serverIcon} loop={true} />
                                                         )}
                                                         <Typography sx={{
                                                             fontFamily: 'Rubik',
                                                             fontWeight: { xs: 400, md: 420, lg: 420 },
-                                                            fontSize: { xs: 14, md: 15, lg: 15 },
+                                                            fontSize: { xs: 14, md: 14, lg: 13 },
                                                             ml: 1.5
                                                         }}>{provider.displayName}</Typography>
                                                     </Box>

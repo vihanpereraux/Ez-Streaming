@@ -4,7 +4,7 @@ import { StreamProviderProps } from "../../interfaces/props"
 export const getAllMovieProviders = () => {
     let providerDetails: StreamProviderProps[] = [];
     // desktop and tablet providers 
-    if (window.innerWidth > 700) {
+    if (window.innerWidth > 1200) {
         [{
             displayName: "KingStar",
             providerName: "vidora.su",

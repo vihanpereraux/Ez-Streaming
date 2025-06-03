@@ -25,13 +25,14 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                 <Modal
                     open={!isAdDisclaimerDisabled && open}
                     onClose={handleClose}
+                    hideBackdrop
                 >
                     <Box sx={{
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: 400,
+                        width: 380,
                         bgcolor: 'black',
                         border: '1px solid rgba(162, 255, 0, .35)',
                         outline: 'none',
@@ -43,8 +44,8 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                     }}>
                         <Typography sx={{
                             fontFamily: 'Rubik',
-                            fontSize: 18,
-                            fontWeight: 430,
+                            fontSize: 17,
+                            fontWeight: 420,
                             lineHeight: 1.65,
                             textAlign: 'center',
                             color: '#a2ff00'
@@ -54,11 +55,12 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
 
                         <Typography sx={{
                             fontFamily: 'Rubik',
-                            fontSize: 15,
-                            fontWeight: 400,
+                            fontSize: 13,
+                            fontWeight: 380,
                             lineHeight: 1.65,
                             mt: 3,
-                            color: 'white'
+                            color: 'white',
+                            opacity: .9
                         }}>
                             <span style={{ color: '#a2ff00' }}>Ez Streaming</span> is an ad-free streaming platform, but some content providers
                             (non-premium ones) may have advertisements within their content
@@ -68,10 +70,11 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                         <Typography sx={{
                             mt: 2,
                             fontFamily: 'Rubik',
-                            fontSize: 15,
-                            fontWeight: 400,
+                            fontSize: 13,
+                            fontWeight: 380,
                             lineHeight: 1.65,
-                            color: 'white'
+                            color: 'white',
+                            opacity: .9
                         }}>
                             Hence We strongly advise you to use <a style={{ textDecoration: 'none', color: '#a2ff00' }} href="https://ublockorigin.com/" target="_blank">uBlock Origin </a>
                             browser extension before streaming your content. Happy streaming !
@@ -81,7 +84,7 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                             ml: -1,
                             display: 'flex',
                             alignItems: 'center',
-                            mt: 2
+                            mt: 2,
                         }}>
                             <Checkbox onChange={() => {
                                 localStorage.setItem('adDisclaimerDisabled', JSON.stringify(true));
@@ -89,7 +92,9 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                             <Typography sx={{
                                 color: 'white',
                                 fontFamily: 'Rubik',
-                                fontSize: 15
+                                fontSize: 13,
+                                fontWeight: 380,
+                                opacity: .9
                             }}>Don't show this disclaimer again</Typography>
                         </Box>
 
@@ -97,18 +102,18 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                             variant="contained"
                             sx={{
                                 width: '100%',
-                                height: 50,
+                                height: 45,
                                 mt: 3,
                                 background: '#a2ff00',
                                 color: 'black',
                                 fontFamily: 'Rubik',
                                 borderRadius: 2,
                                 fontWeight: 550,
-                                fontSize: 14.5
+                                fontSize: 13
                             }} onClick={() => {
                                 handleClose();
                                 setIsContinuePressed(true);
-                            }}>Continue</Button>
+                            }}>Continue </Button>
                     </Box>
                 </Modal>
             </Box>

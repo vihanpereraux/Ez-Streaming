@@ -58,15 +58,15 @@ body {
 }
 
 .card-loading-spinner {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-top: 2px solid #a2ff00;
 }
 
 .banner-loading-spinner {
-  width: 40px;
-  height: 40px;
-  border-top: 4px solid #a2ff00;
+  width: 25px;
+  height: 25px;
+  border-top: 2px solid #a2ff00;
 }
 
 @keyframes spin {
@@ -89,9 +89,12 @@ body {
   transform-origin: 50% 50%;
 }
 
+._carousel_card ._movie_title {
+  transition: all 0.15s ease-in;
+}
+
 ._carousel_card:hover ._movie_title {
   padding-left: 6px;
-  transition: padding-left 0.15s ease-in;
 }
 
 .MuiSvgIcon-root {
