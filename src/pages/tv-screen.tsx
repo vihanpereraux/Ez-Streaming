@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "react-multi-carousel/lib/styles.css";
+import Lottie from "lottie-react";
+import serverIcon from "../../public/icons/server-icon.json";
+import premiumIcon from "../../public/icons/premium-icon.json";
 
 // MUI
 import { Box, Typography, Button } from "@mui/material";
@@ -304,8 +307,41 @@ const TvScreen: React.FC = () => {
                                     aria-label="basic tabs example">
                                     {/* default server group */}
                                     {tvProviders.map((provider, index) => (
-                                        <Tab sx={tabStyles} label={provider.displayName} {...a11yProps(index)} />
+                                        <Tab sx={tabStyles} label={
+                                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                {provider.premium ? (
+                                                    <Lottie style={{ width: 18 }} animationData={premiumIcon} loop={true} />
+                                                ) : (
+                                                    <Lottie style={{ width: 20 }} animationData={serverIcon} loop={true} />
+                                                )}
+                                                <Typography sx={{
+                                                    fontFamily: 'Rubik',
+                                                    fontWeight: { xs: 400, md: 420, lg: 420 },
+                                                    fontSize: { xs: 14, md: 15, lg: 15 },
+                                                    ml: 1.5
+                                                }}>{provider.displayName}</Typography>
+                                            </Box>
+                                        } {...a11yProps(index)} />
                                     ))}
+
+                                    {/* 
+                                    
+                                        <Tab sx={tabStyles} label={
+                                                                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                                                            {provider.premium ? (
+                                                                                                <Lottie style={{ width: 18 }} animationData={premiumIcon} loop={true} />
+                                                                                            ) : (
+                                                                                                <Lottie style={{ width: 20 }} animationData={serverIcon} loop={true} />
+                                                                                            )}
+                                                                                            <Typography sx={{
+                                                                                                fontFamily: 'Rubik',
+                                                                                                fontWeight: { xs: 400, md: 420, lg: 420 },
+                                                                                                fontSize: { xs: 14, md: 15, lg: 15 },
+                                                                                                ml: 1.5
+                                                                                            }}>{provider.displayName}</Typography>
+                                                                                        </Box>
+                                                                                    } {...a11yProps(index)} />
+                                    */}
                                 </Tabs>
 
                                 {/* toggle */}
@@ -324,7 +360,7 @@ const TvScreen: React.FC = () => {
                             </Box>
 
                             {/* note for the player switch */}
-                            {!lightsOffClicked && (
+                            {/* {!lightsOffClicked && (
                                 <Typography sx={{
                                     color: ' white',
                                     opacity: .7,
@@ -334,7 +370,7 @@ const TvScreen: React.FC = () => {
                                     fontSize: 14,
                                     mb: '-10px'
                                 }}>Change the player above if you are not satisfied with the current player 😃</Typography>
-                            )}
+                            )} */}
 
                             {/* players */}
                             {tvProviders.map((provider, index) => (
@@ -344,7 +380,8 @@ const TvScreen: React.FC = () => {
                                             id={tvId}
                                             serverGroup={provider.providerName}
                                             season={(userSelection.season).toString()}
-                                            episode={(userSelection.episodeNumber).toString()} />
+                                            episode={(userSelection.episodeNumber).toString()}
+                                            note={provider.note} />
                                     )}
                                 </CustomTabPanel>
                             ))}
@@ -384,9 +421,9 @@ const TvScreen: React.FC = () => {
                         {/* trailers */}
                         <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
                             {videoKeys.length > 3 ? (
-                                <Videos videokeys={videoKeys.slice(0, 3)} />
+                                <Videos videokeys={videoKeys.slice(0, 3)} title={tvDetails.original_name} />
                             ) : (
-                                <Videos videokeys={videoKeys} />
+                                <Videos videokeys={videoKeys} title={tvDetails.original_name} />
                             )}
                         </Box>
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "react-multi-carousel/lib/styles.css";
-import Lottie, { LottiePlayer } from "lottie-react";
+import Lottie from "lottie-react";
 import serverIcon from "../../public/icons/server-icon.json";
 import premiumIcon from "../../public/icons/premium-icon.json";
 
@@ -307,7 +307,7 @@ const MovieScreen: React.FC = () => {
                                 {movieProviders.map((provider, index) => (
                                     <CustomTabPanel value={value} index={index} key={index}>
                                         {movieId && (
-                                            <MoviePlayer id={movieId} serverGroup={provider.providerName} />
+                                            <MoviePlayer id={movieId} serverGroup={provider.providerName} note={provider.note} />
                                         )}
                                     </CustomTabPanel>
                                 ))}
@@ -317,7 +317,7 @@ const MovieScreen: React.FC = () => {
                             {!lightsOffClicked && <Box sx={{
                                 width: { xs: "100%", lg: "100%" },
                                 pl: { xs: .5, lg: 0 },
-                                mt: { xs: 1.5, lg: 3 },
+                                mt: { xs: .5, md: 1, lg: 3 },
                             }}>
                                 <MovieDetails props={movieDetails} />
                             </Box>}
