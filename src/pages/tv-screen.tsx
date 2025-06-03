@@ -12,6 +12,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 // components
+import LoadingPreview from "../components/loading-preview";
+import AdDisclaimer from "../components/ad-disclaimer";
 import MovieCarousel from "../components/movie-carousel";
 import Navbar from "../components/navbar";
 import TvPlayer from "../components/tv-player";
@@ -20,7 +22,6 @@ import TvEpisodes from "../components/tv-episodes";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
 import Videos from "../components/videos";
-import LoadingPreview from "../components/loading-preview";
 
 // services
 import { getGeneralDetails } from "../services/screens/general-details";
@@ -95,6 +96,9 @@ const TvScreen: React.FC = () => {
     });
     const [videoKeys, setVideoKeys] = useState<string[]>([])
     const [lightsOffClicked, setLightsOffClicked] = useState<boolean>(false);
+    const [isContinuePressed, setIsContinuePressed] = useState<boolean>(
+        JSON.parse(localStorage.getItem('adDisclaimerDisabled') || 'false') ? true : false
+    );
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -274,187 +278,174 @@ const TvScreen: React.FC = () => {
 
     return (
         <>
-            {!lightsOffClicked && <Navbar />}
-
-            {isLoading ? (
-                <LoadingPreview />
-            ) : (
+            {isLoading ? (<LoadingPreview />) : (
                 <>
-                    <Box
-                        className="tv_screen"
-                        key={tvId}
-                        sx={{
-                            pt: 6,
-                            pl: { xs: 2, lg: 3 },
-                            pr: { xs: 2, lg: 3 }
-                        }}>
+                    {isContinuePressed && (
+                        <>
+                            {!lightsOffClicked && <Navbar />}
 
-                        {/* tabs and players */}
-                        <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
-                            <Box sx={{
-                                borderBottom: 1,
-                                borderColor: 'divider',
-                                display: 'flex',
-                                justifyContent: 'space-between'
-                            }}>
-                                <Tabs
-                                    sx={{
-                                        opacity: !lightsOffClicked ? 1 : 0,
-                                        pointerEvents: !lightsOffClicked ? "auto" : "none"
-                                    }}
-                                    value={value}
-                                    onChange={handleChange}
-                                    aria-label="basic tabs example">
-                                    {/* default server group */}
-                                    {tvProviders.map((provider, index) => (
-                                        <Tab sx={tabStyles} label={
-                                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                                {provider.premium ? (
-                                                    <Lottie style={{ width: 18 }} animationData={premiumIcon} loop={true} />
-                                                ) : (
-                                                    <Lottie style={{ width: 20 }} animationData={serverIcon} loop={true} />
-                                                )}
-                                                <Typography sx={{
-                                                    fontFamily: 'Rubik',
-                                                    fontWeight: { xs: 400, md: 420, lg: 420 },
-                                                    fontSize: { xs: 14, md: 15, lg: 15 },
-                                                    ml: 1.5
-                                                }}>{provider.displayName}</Typography>
-                                            </Box>
-                                        } {...a11yProps(index)} />
-                                    ))}
+                            <Box
+                                className="tv_screen"
+                                key={tvId}
+                                sx={{
+                                    pt: 6,
+                                    pl: { xs: 2, lg: 3 },
+                                    pr: { xs: 2, lg: 3 }
+                                }}>
 
-                                    {/* 
-                                    
-                                        <Tab sx={tabStyles} label={
-                                                                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                                                                            {provider.premium ? (
-                                                                                                <Lottie style={{ width: 18 }} animationData={premiumIcon} loop={true} />
-                                                                                            ) : (
-                                                                                                <Lottie style={{ width: 20 }} animationData={serverIcon} loop={true} />
-                                                                                            )}
-                                                                                            <Typography sx={{
-                                                                                                fontFamily: 'Rubik',
-                                                                                                fontWeight: { xs: 400, md: 420, lg: 420 },
-                                                                                                fontSize: { xs: 14, md: 15, lg: 15 },
-                                                                                                ml: 1.5
-                                                                                            }}>{provider.displayName}</Typography>
-                                                                                        </Box>
-                                                                                    } {...a11yProps(index)} />
-                                    */}
-                                </Tabs>
-
-                                {/* toggle */}
-                                <Button sx={{
-                                    display: { xs: 'none', md: 'block' },
-                                    color: '#a2ff00',
-                                    fontFamily: 'Rubik',
-                                    fontSize: 13,
-                                    textTransform: 'capitalize',
-                                    backgroundColor: 'balck',
-                                    borderRadius: 2,
-                                    fontWeight: 420
-                                }} onClick={manageLights}>
-                                    {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
-                                </Button>
-                            </Box>
-
-                            {/* note for the player switch */}
-                            {/* {!lightsOffClicked && (
-                                <Typography sx={{
-                                    color: ' white',
-                                    opacity: .7,
-                                    fontFamily: 'Rubik',
-                                    mt: 3,
-                                    fontWeight: 400,
-                                    fontSize: 14,
-                                    mb: '-10px'
-                                }}>Change the player above if you are not satisfied with the current player 😃</Typography>
-                            )} */}
-
-                            {/* players */}
-                            {tvProviders.map((provider, index) => (
-                                <CustomTabPanel value={value} index={index} key={index}>
-                                    {tvId && (
-                                        <TvPlayer
-                                            id={tvId}
-                                            serverGroup={provider.providerName}
-                                            season={(userSelection.season).toString()}
-                                            episode={(userSelection.episodeNumber).toString()}
-                                            note={provider.note} />
-                                    )}
-                                </CustomTabPanel>
-                            ))}
-                        </Box>
-
-                        {/* details */}
-                        {!lightsOffClicked && <Box sx={{
-                            width: { xs: "100%", lg: "100%" },
-                            pl: { xs: .5, lg: 0 },
-                            mt: { xs: 1.5, lg: 3 },
-                        }}>
-                            <TvDetails props={tvDetails} />
-                        </Box>}
-
-                        {/* seasons and episodes */}
-                        {!lightsOffClicked && (
-                            <Box sx={{ mt: 6 }}>
-                                <TvEpisodes
-                                    seasonDetails={seasonDetails}
-                                    userSelection={userSelection}
-                                    setUserSelection={setUserSelection} />
-                            </Box>
-                        )}
-
-                        {/* cast info */}
-                        {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                            <Credits contentTitle={tvDetails.original_name} castDetails={castDetails} />
-                        </Box>)}
-
-                        {/* reviews */}
-                        {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                            {reviews && (
-                                <Reviews reviews={reviews} defaultExpanded={true} />
-                            )}
-                        </Box>)}
-
-                        {/* trailers */}
-                        <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
-                            {videoKeys.length > 3 ? (
-                                <Videos videokeys={videoKeys.slice(0, 3)} title={tvDetails.original_name} />
-                            ) : (
-                                <Videos videokeys={videoKeys} title={tvDetails.original_name} />
-                            )}
-                        </Box>
-
-                        {/* related content */}
-                        {!lightsOffClicked ? (
-                            <Box sx={{ mt: 10, mb: 15 }}>
-                                {relatedContent.length > 0 ? (
-                                    <MovieCarousel
-                                        type="tv"
-                                        title="TV Shows You May Love : )"
-                                        content={relatedContent} />
-                                ) : (
-                                    <>
-                                        <Typography
+                                {/* tabs and players */}
+                                <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
+                                    <Box sx={{
+                                        borderBottom: 1,
+                                        borderColor: 'divider',
+                                        display: 'flex',
+                                        justifyContent: 'space-between'
+                                    }}>
+                                        <Tabs
                                             sx={{
-                                                fontWeight: 450,
-                                                fontFamily: 'Rubik',
-                                                color: 'white',
-                                                fontSize: { xs: '18px', lg: '20px' },
-                                                mt: 8
-                                            }}>
-                                            No related tv shows found &nbsp; : (</Typography>
-                                        <Box sx={{ mb: { xs: 12, lg: 12 } }} />
-                                    </>
+                                                opacity: !lightsOffClicked ? 1 : 0,
+                                                pointerEvents: !lightsOffClicked ? "auto" : "none"
+                                            }}
+                                            value={value}
+                                            onChange={handleChange}
+                                            aria-label="basic tabs example">
+                                            {/* default server group */}
+                                            {tvProviders.map((provider, index) => (
+                                                <Tab sx={tabStyles} label={
+                                                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                        {provider.premium ? (
+                                                            <Lottie style={{ width: 18 }} animationData={premiumIcon} loop={true} />
+                                                        ) : (
+                                                            <Lottie style={{ width: 20 }} animationData={serverIcon} loop={true} />
+                                                        )}
+                                                        <Typography sx={{
+                                                            fontFamily: 'Rubik',
+                                                            fontWeight: { xs: 400, md: 420, lg: 420 },
+                                                            fontSize: { xs: 14, md: 15, lg: 15 },
+                                                            ml: 1.5
+                                                        }}>{provider.displayName}</Typography>
+                                                    </Box>
+                                                } {...a11yProps(index)} />
+                                            ))}
+                                        </Tabs>
+
+                                        {/* toggle */}
+                                        <Button sx={{
+                                            display: { xs: 'none', md: 'block' },
+                                            color: '#a2ff00',
+                                            fontFamily: 'Rubik',
+                                            fontSize: 13,
+                                            textTransform: 'capitalize',
+                                            backgroundColor: 'balck',
+                                            borderRadius: 2,
+                                            fontWeight: 420
+                                        }} onClick={manageLights}>
+                                            {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
+                                        </Button>
+                                    </Box>
+
+                                    {/* note for the player switch */}
+                                    {/* {!lightsOffClicked && (
+                                        <Typography sx={{
+                                            color: ' white',
+                                            opacity: .7,
+                                            fontFamily: 'Rubik',
+                                            mt: 3,
+                                            fontWeight: 400,
+                                            fontSize: 14,
+                                            mb: '-10px'
+                                        }}>Change the player above if you are not satisfied with the current player 😃</Typography>
+                                    )} */}
+
+                                    {/* players */}
+                                    {tvProviders.map((provider, index) => (
+                                        <CustomTabPanel value={value} index={index} key={index}>
+                                            {tvId && (
+                                                <TvPlayer
+                                                    id={tvId}
+                                                    serverGroup={provider.providerName}
+                                                    season={(userSelection.season).toString()}
+                                                    episode={(userSelection.episodeNumber).toString()}
+                                                    note={provider.note} />
+                                            )}
+                                        </CustomTabPanel>
+                                    ))}
+                                </Box>
+
+                                {/* details */}
+                                {!lightsOffClicked && <Box sx={{
+                                    width: { xs: "100%", lg: "100%" },
+                                    pl: { xs: .5, lg: 0 },
+                                    mt: { xs: 1.5, lg: 3 },
+                                }}>
+                                    <TvDetails props={tvDetails} />
+                                </Box>}
+
+                                {/* seasons and episodes */}
+                                {!lightsOffClicked && (
+                                    <Box sx={{ mt: 6 }}>
+                                        <TvEpisodes
+                                            seasonDetails={seasonDetails}
+                                            userSelection={userSelection}
+                                            setUserSelection={setUserSelection} />
+                                    </Box>
                                 )}
-                            </Box>
-                        ) : (
-                            <Box sx={{ mb: { xs: 12, lg: 12 } }} />
-                        )}
-                    </Box >
+
+                                {/* cast info */}
+                                {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
+                                    <Credits contentTitle={tvDetails.original_name} castDetails={castDetails} />
+                                </Box>)}
+
+                                {/* reviews */}
+                                {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
+                                    {reviews && (
+                                        <Reviews reviews={reviews} defaultExpanded={true} />
+                                    )}
+                                </Box>)}
+
+                                {/* trailers */}
+                                <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
+                                    {videoKeys.length > 3 ? (
+                                        <Videos videokeys={videoKeys.slice(0, 3)} title={tvDetails.original_name} />
+                                    ) : (
+                                        <Videos videokeys={videoKeys} title={tvDetails.original_name} />
+                                    )}
+                                </Box>
+
+                                {/* related content */}
+                                {!lightsOffClicked ? (
+                                    <Box sx={{ mt: 10, mb: 15 }}>
+                                        {relatedContent.length > 0 ? (
+                                            <MovieCarousel
+                                                type="tv"
+                                                title="TV Shows You May Love : )"
+                                                content={relatedContent} />
+                                        ) : (
+                                            <>
+                                                <Typography
+                                                    sx={{
+                                                        fontWeight: 450,
+                                                        fontFamily: 'Rubik',
+                                                        color: 'white',
+                                                        fontSize: { xs: '18px', lg: '20px' },
+                                                        mt: 8
+                                                    }}>
+                                                    No related tv shows found &nbsp; : (</Typography>
+                                                <Box sx={{ mb: { xs: 12, lg: 12 } }} />
+                                            </>
+                                        )}
+                                    </Box>
+                                ) : (
+                                    <Box sx={{ mb: { xs: 12, lg: 12 } }} />
+                                )}
+                            </Box >
+                        </>
+                    )}
                 </>
+            )}
+
+            {!isLoading && (
+                <AdDisclaimer setIsContinuePressed={setIsContinuePressed} />
             )}
         </>
     )

@@ -20,13 +20,13 @@ export const getAllMovieProviders = () => {
             premium: true,
         },
         {
-            displayName: "Enigma",
-            providerName: "vidsrc.su",
+            displayName: "Jolliby",
+            providerName: "spencerdevs.xyz",
             premium: true,
         },
         {
-            displayName: "Jolliby",
-            providerName: "spencerdevs.xyz",
+            displayName: "Enigma",
+            providerName: "vidsrc.su",
             premium: true,
         },
         {
@@ -83,7 +83,7 @@ export const getAllMovieProviders = () => {
             providerName: "player.vidsrc.co",
             premium: true,
             note: {
-                note: '* pPlay / pause button is in the middle of the screen for this provider',
+                note: '* Play / pause button is in the middle of the screen for this provider',
                 device: 'mobile'
             }
         }].map((item) => {
