@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 // component
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 
 // MUI
 import { Box } from "@mui/material";

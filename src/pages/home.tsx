@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
 // components
-import BannerCarosuel from "../components/BannerCarousel";
-import MovieCarousel from "../components/MovieCarousel";
-import LoadingPreview from "../components/LoadingPreview";
-import Navbar from "../components/Navbar";
+import BannerCarosuel from "../components/banner-carousel";
+import MovieCarousel from "../components/movie-carousel";
+import LoadingPreview from "../components/loading-preview";
+import Navbar from "../components/navbar";
 
 // services
 import {
@@ -98,6 +98,7 @@ const Home: React.FC = () => {
         fetchData();
     }, []);
 
+    // local storage configs
     useEffect(() => {
         const watchedMovies = localStorage.getItem('watchedMovies');
         const watchedTvShows = localStorage.getItem('watchedTvShows');
@@ -105,6 +106,10 @@ const Home: React.FC = () => {
         if (!watchedMovies && !watchedTvShows) {
             localStorage.setItem('watchedTvShows', JSON.stringify([] as MoviesProps[]));
             localStorage.setItem('watchedMovies', JSON.stringify([] as MoviesProps[]));
+        }
+
+        if (!(JSON.parse(localStorage.getItem('adDisclaimerDisabled')  || 'false'))) {
+            localStorage.setItem('adDisclaimerDisabled', JSON.stringify(false));   
         }
     }, []);
 
@@ -156,7 +161,7 @@ const Home: React.FC = () => {
                         ].map((carousel, index) => (
                             <Box sx={{ mt: carouselSpacing }} key={index}>
                                 <MovieCarousel
-                                    type={carousel.type as "movie" | "tv"}
+                                    type={carousel.type}
                                     title={carousel.title}
                                     content={carousel.content}
                                 />

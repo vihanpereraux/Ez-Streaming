@@ -35,7 +35,7 @@ const LoadingPreview: React.FC = () => {
                     fontFamily: 'Rubik',
                     color: 'white',
                     textAlign: 'center',
-                    fontSize: 15,
+                    fontSize: 13,
                     letterSpacing: 1,
                     marginTop: 15,
                     fontWeight: 450,

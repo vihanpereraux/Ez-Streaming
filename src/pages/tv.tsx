@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import { Box } from "@mui/material";
 
 // components
-import Navbar from "../components/Navbar";
-import LoadingPreview from "../components/LoadingPreview";
+import Navbar from "../components/navbar";
+import LoadingPreview from "../components/loading-preview";
 
 const LiveTV: React.FC = () => {
     const [loading, setLoading] = useState(true);

@@ -1,16 +1,17 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { videoListConfig } from "../config/CarouselConfig";
+import { videoListConfig } from "../config/carousel-config";
 
 // MUI
 import { Typography, Box } from '@mui/material'
 
 // props
 interface props {
+    title: string,
     videokeys: string[]
 }
-const Videos: React.FC<props> = ({ videokeys }) => {
+const Videos: React.FC<props> = ({ videokeys, title }) => {
     return (
         <>
             <Typography
@@ -18,23 +19,24 @@ const Videos: React.FC<props> = ({ videokeys }) => {
                     fontWeight: 450,
                     fontFamily: 'Rubik',
                     color: 'white',
-                    fontSize: { xs: '15px', lg: '16px' },
+                    fontSize: { xs: '18px', lg: '18px' },
                 }}>Trailers & Clips</Typography>
 
             <Box sx={{ mt: 2 }}>
                 <Carousel responsive={videoListConfig}>
                     {videokeys.length > 0 ? videokeys.map((key, index) => (
                         <iframe
+                            loading="lazy"
                             style={{
                                 border: 'none',
                                 outline: 'none',
                                 borderRadius: 10,
-                                aspectRatio: 16/9
+                                aspectRatio: 16 / 9
                             }}
                             key={index}
                             width={window.innerWidth < 600 ? '100%' : '98%'}
                             src={`https://www.youtube.com/embed/${key}`}
-                            title="YouTube video player"
+                            title={`Clips from ${title}`}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen
                         ></iframe>

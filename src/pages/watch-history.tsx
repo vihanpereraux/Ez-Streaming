@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
 // components
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar'
 import WatchedCard from '../components/watched-card';
-import LoadingPreview from '../components/LoadingPreview';
+import LoadingPreview from '../components/loading-preview';
 
 // MUI
 import { Typography, Button } from '@mui/material';
@@ -58,11 +58,11 @@ const EmptyNote: React.FC<EmptyNoteProps> = ({ type }) => {
         <>
             <Box sx={{ width: '100%' }}>
                 <Typography sx={{
-                    fontSize: 15,
+                    fontSize: 13,
                     fontFamily: 'Rubik',
                     color: 'white',
                     opacity: 1,
-                    mt: 10,
+                    mt: 6,
                     textAlign: 'center',
                 }}>No previously watched {type === "movies" ? "Movies" : "Tv Shows"} found, Keep <span style={{ color: '#a2ff00' }}>streaming</span> !</Typography>
             </Box>

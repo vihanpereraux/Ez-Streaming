@@ -5,10 +5,10 @@ import Carousel from "react-multi-carousel";
 import { Box } from "@mui/material";
 
 // components
-import BannerCard from "./BannerCard";
+import BannerCard from "./banner-card";
 
 // carousel config 
-import { bannerCarouselConfig } from "../config/CarouselConfig";
+import { bannerCarouselConfig } from "../config/carousel-config";
 
 // props
 import { MoviesProps } from "../interfaces/props";

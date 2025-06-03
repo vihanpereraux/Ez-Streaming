@@ -7,16 +7,16 @@ import {
 import { Analytics } from '@vercel/analytics/react';
 
 // pages
-import Home from './pages/Home'
-import MovieScreen from './pages/MovieScreen'
-import LiveTV from './pages/TV'
-import TvScreen from './pages/TvScreen'
-import Search from './pages/Search'
-import Disclaimer from './pages/Disclaimer'
+import Home from './pages/home'
+import MovieScreen from './pages/movie-screen'
+import LiveTV from './pages/tv'
+import TvScreen from './pages/tv-screen'
+import Search from './pages/search'
+import Disclaimer from './pages/disclaimer'
 import WatchHistory from './pages/watch-history'
-import Games from './pages/Games'
-import Movies from './pages/Movies'
-import TvShows from './pages/TvShows'
+import Games from './pages/games'
+import Movies from './pages/movies'
+import TvShows from './pages/tv-shows'
 
 // components
 import FooterDisclaimer from './components/footer-disclaimer'
@@ -39,6 +39,7 @@ const App: React.FC = () => {
           <Route path='/games' Component={Games}></Route>
         </Routes>
       </BrowserRouter>
+
       <FooterDisclaimer />
 
       <Analytics />

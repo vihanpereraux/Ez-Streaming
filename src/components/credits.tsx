@@ -1,6 +1,6 @@
 import React from 'react'
 import Carousel from "react-multi-carousel";
-import { castCarouselConfig } from "../config/CarouselConfig";
+import { castCarouselConfig } from "../config/carousel-config";
 
 // MUI
 import { Typography, Box } from '@mui/material'
@@ -19,7 +19,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                     fontWeight: 450,
                     fontFamily: 'Rubik',
                     color: 'white',
-                    fontSize: { xs: '15px', lg: '16px' },
+                    fontSize: { xs: '18px', lg: '18px' },
                 }}>Cast of {contentTitle}</Typography>
 
             <Box sx={{ mt: 3 }}>

@@ -4,9 +4,9 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
 // components
-import Navbar from "../components/Navbar";
-import MovieCarousel from "../components/MovieCarousel";
-import LoadingPreview from "../components/LoadingPreview";
+import Navbar from "../components/navbar";
+import MovieCarousel from "../components/movie-carousel";
+import LoadingPreview from "../components/loading-preview";
 
 // services
 import { fetchMoviesInAllGenres } from "../services/movies/fetchMovies";

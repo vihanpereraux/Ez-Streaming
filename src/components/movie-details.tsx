@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 import { FaStar } from "react-icons/fa6";
 
 // props
-interface ContentDetailsProps {
+interface MovieDetailsProps {
     props: {
         original_title: string,
         release_date: string,
@@ -16,7 +16,6 @@ interface ContentDetailsProps {
     };
 }
 
-// Helper to convert runtime in minutes to "Xh Ym" format
 const formatRuntime = (runtime: number) => {
     if (!runtime || runtime <= 0) return null;
     const hours = Math.floor(runtime / 60);
@@ -24,17 +23,17 @@ const formatRuntime = (runtime: number) => {
     return `${hours > 0 ? `${hours}h ` : ''}${minutes}m`;
 };
 
-const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
+const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
     return (
         <>
             <Typography
                 sx={{
                     color: 'white',
                     textAlign: 'left',
-                    fontSize: { xs: 20, lg: 22 },
+                    fontSize: { xs: 18, lg: 22 },
                     fontFamily: 'Rubik',
                     fontWeight: 400,
-                    mb: .8
+                    mb: .25
                 }}>{props.original_title}</Typography>
 
             {/* other details */}
@@ -68,7 +67,7 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
                     fontSize: { xs: 13, lg: 14.5 },
                     lineHeight: 1.75,
                     fontWeight: 400,
-                    mt: 2.5,
+                    mt: 2,
                     color: 'white',
                     opacity: 0.9,
                 }}>{props.overview}</Typography>
@@ -76,4 +75,4 @@ const ContentDetails: React.FC<ContentDetailsProps> = ({ props }) => {
     )
 }
 
-export default ContentDetails
+export default MovieDetails

@@ -67,9 +67,9 @@ export interface ReviewDataProps {
 }
 
 export interface EpisodeDetailsProps {
-    stills: string [],
-    names: string [],
-    airDates: string []
+    stills: string[],
+    names: string[],
+    airDates: string[]
 }
 export interface SeasonProps {
     season: number,
@@ -82,3 +82,12 @@ export interface CollectionArrayProps {
     collection: MoviesProps[]
 }
 
+export interface StreamProviderProps {
+    displayName: string,
+    providerName: string,
+    note?: {
+        note: string,
+        device: string
+    },
+    premium: boolean
+}
