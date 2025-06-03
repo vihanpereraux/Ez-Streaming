@@ -1,7 +1,9 @@
 import React from "react";
+import Lottie from "lottie-react";
+import indexingIcon from "../../public/icons/indexing-icon.json";
 
 // MUI
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 // props
 interface PlayerProps {
@@ -73,22 +75,86 @@ const noteDisplayConfig = (device: string) => {
 }
 
 const MoviePlayer: React.FC<PlayerProps> = ({ id, serverGroup, note }) => {
+    const [isIframeLoaded, setIsIframeLoaded] = React.useState<boolean>(false);
+    const [error, setError] = React.useState<boolean>(false);
     const src = getRelevantProvider(serverGroup, id)
 
     return (
         <>
-            <iframe
-                key={id}
-                allowFullScreen
-                style={{
-                    width: '100%',
-                    aspectRatio: '16/9',
-                    border: 'none',
-                    borderRadius: 12,
-                    marginTop: -10
-                }}
-                src={src}
-            />
+            <Box sx={{
+                position: 'relative',
+                width: '100%',
+                aspectRatio: '16 / 9',
+            }}>
+                {/* iframe loading animation */}
+                {!isIframeLoaded && (
+                    <Box sx={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        width: '100%',
+                        height: '102%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'black',
+                        borderRadius: 4,
+                    }}>
+                        <Lottie style={{ width: 200, height: 150, marginTop: -100 }} animationData={indexingIcon} loop={true} />
+                        <Typography sx={{
+                            color: 'white',
+                            textAlign: 'center',
+                            fontFamily: 'Rubik',
+                            fontSize: 12,
+                            mt: -2
+                        }}>
+                            Preparing your stream... Please wait a moment !
+                        </Typography>
+                    </Box>
+                )}
+                {error && (
+                    <Box sx={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        width: '100%',
+                        height: '102%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'black',
+                        borderRadius: 4,
+                    }}>
+                        <Lottie style={{ width: 200, height: 150, marginTop: -100 }} animationData={indexingIcon} loop={true} />
+                        <Typography sx={{
+                            color: 'white',
+                            textAlign: 'center',
+                            fontFamily: 'Rubik',
+                            fontSize: 12,
+                            mt: -2
+                        }}>
+                            Something went wrong... Please switch to another stream !
+                        </Typography>
+                    </Box>
+                )}
+                <iframe
+                    key={id}
+                    allowFullScreen
+                    style={{
+                        width: '100%',
+                        aspectRatio: '16/9',
+                        border: 'none',
+                        borderRadius: 12,
+                        marginTop: -10,
+                        opacity: isIframeLoaded ? 1 : 0
+                    }}
+                    src={src}
+                    onLoad={() => { setIsIframeLoaded(true) }}
+                    onError={() => { setError(true) }}
+                />
+            </Box>
             {note && (
                 <Typography sx={{
                     color: 'white',

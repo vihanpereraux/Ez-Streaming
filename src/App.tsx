@@ -39,6 +39,7 @@ const App: React.FC = () => {
           <Route path='/games' Component={Games}></Route>
         </Routes>
       </BrowserRouter>
+
       <FooterDisclaimer />
 
       <Analytics />

@@ -83,7 +83,7 @@ export const getAllMovieProviders = () => {
             providerName: "player.vidsrc.co",
             premium: true,
             note: {
-                note: '* Play / pause button is in the middle of the screen for this provider',
+                note: '* Play / pause button is in the middle of the screen for this stream',
                 device: 'mobile'
             }
         }].map((item) => {

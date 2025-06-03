@@ -73,7 +73,7 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                             lineHeight: 1.65,
                             color: 'white'
                         }}>
-                            Hence We strongly advise you to use <a style={{ textDecoration: 'none', color: '#a2ff00' }} href="https://ublockorigin.com/" target="_blank">uBlock</a> origin
+                            Hence We strongly advise you to use <a style={{ textDecoration: 'none', color: '#a2ff00' }} href="https://ublockorigin.com/" target="_blank">uBlock Origin </a>
                             browser extension before streaming your content. Happy streaming !
                         </Typography>
 
