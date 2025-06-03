@@ -51,7 +51,7 @@ const tabStyles = {
     textTransform: 'capitalize',
     fontWeight: 420,
     textDecoration: 'none',
-    mr: 2
+    mr: { xs: .75, md: 0, lg: 1.5 },
 }
 
 function CustomTabPanel(props: TabPanelProps) {

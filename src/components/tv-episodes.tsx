@@ -111,11 +111,12 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                         top: 0,
                                                         left: 0,
                                                         width: '100%',
-                                                        height: '100%',
-                                                        background: 'red',
+                                                        aspectRatio: '16/9',
+                                                        background: '#1a1a1a',
                                                         display: 'flex',
                                                         alignItems: 'center',
-                                                        justifyContent: 'center'
+                                                        justifyContent: 'center',
+                                                        borderRadius: 8,
                                                     }}><Box className="loading-spinner card-loading-spinner"></Box>
                                                     </Box>
                                                 )}

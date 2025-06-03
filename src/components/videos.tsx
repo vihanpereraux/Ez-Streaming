@@ -8,9 +8,10 @@ import { Typography, Box } from '@mui/material'
 
 // props
 interface props {
+    title: string,
     videokeys: string[]
 }
-const Videos: React.FC<props> = ({ videokeys }) => {
+const Videos: React.FC<props> = ({ videokeys, title }) => {
     return (
         <>
             <Typography
@@ -25,16 +26,17 @@ const Videos: React.FC<props> = ({ videokeys }) => {
                 <Carousel responsive={videoListConfig}>
                     {videokeys.length > 0 ? videokeys.map((key, index) => (
                         <iframe
+                            loading="lazy"
                             style={{
                                 border: 'none',
                                 outline: 'none',
                                 borderRadius: 10,
-                                aspectRatio: 16/9
+                                aspectRatio: 16 / 9
                             }}
                             key={index}
                             width={window.innerWidth < 600 ? '100%' : '98%'}
                             src={`https://www.youtube.com/embed/${key}`}
-                            title="YouTube video player"
+                            title={`Clips from ${title}`}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen
                         ></iframe>

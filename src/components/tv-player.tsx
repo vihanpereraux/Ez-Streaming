@@ -11,7 +11,7 @@ interface PlayerProps {
 const getRelevantProvider = (id: string, source: string, season: string, episode: string) => {
     switch (source) {
         case "vidora.su":
-            return `https://vidora.su/tv/${id}/${season}/${episode}?colour=a2ff00`
+            return `https://vidora.su/tv/${id}/${season}/${episode}?colour=a2ff00&&pausescreen=true`
             break;
 
         case "vidsrc.su":

@@ -137,7 +137,7 @@ body {
 
 .MuiTabs-indicator {
   background-color: #a2ff00 !important;
-  height: 1px !important;
+  height: .9px !important;
 }
 
 .tv_screen .Mui-selected {

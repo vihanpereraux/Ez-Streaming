@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "react-multi-carousel/lib/styles.css";
+import Lottie, { LottiePlayer } from "lottie-react";
+import serverIcon from "../../public/icons/server-icon.json";
+import premiumIcon from "../../public/icons/premium-icon.json";
 
 // MUI
 import { Box, Typography, Button } from "@mui/material";
@@ -240,7 +243,7 @@ const MovieScreen: React.FC = () => {
                             <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
                                 {/* tabs */}
                                 <Box sx={{
-                                    borderBottom: 1,
+                                    border: 'none',
                                     borderColor: 'divider',
                                     display: 'flex',
                                     justifyContent: 'space-between'
@@ -254,7 +257,21 @@ const MovieScreen: React.FC = () => {
                                         onChange={handleChange}
                                         aria-label="basic tabs example">
                                         {movieProviders.map((provider, index) => (
-                                            <Tab sx={tabStyles} label={provider.displayName} {...a11yProps(index)} />
+                                            <Tab sx={tabStyles} label={
+                                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                    {provider.premium ? (
+                                                        <Lottie style={{ width: 18 }} animationData={premiumIcon} loop={true} />
+                                                    ) : (
+                                                        <Lottie style={{ width: 20 }} animationData={serverIcon} loop={true} />
+                                                    )}
+                                                    <Typography sx={{
+                                                        fontFamily: 'Rubik',
+                                                        fontWeight: { xs: 400, md: 420, lg: 420 },
+                                                        fontSize: { xs: 14, md: 15, lg: 15 },
+                                                        ml: 1.5
+                                                    }}>{provider.displayName}</Typography>
+                                                </Box>
+                                            } {...a11yProps(index)} />
                                         ))}
                                     </Tabs>
 
@@ -274,7 +291,7 @@ const MovieScreen: React.FC = () => {
                                 </Box>
 
                                 {/* note for the player switch */}
-                                {!lightsOffClicked && (
+                                {/* {!lightsOffClicked && (
                                     <Typography sx={{
                                         color: ' white',
                                         opacity: .7,
@@ -283,9 +300,8 @@ const MovieScreen: React.FC = () => {
                                         fontWeight: 400,
                                         fontSize: 12,
                                         mb: '-10px'
-                                    }}>Change the player above if you are not satisfied with the current player 😃</Typography>
-
-                                )}
+                                    }}>Change the player above if you are not satisfied with the current player</Typography>
+                                )} */}
 
                                 {/* players */}
                                 {movieProviders.map((provider, index) => (
@@ -320,9 +336,9 @@ const MovieScreen: React.FC = () => {
                         {/* trailers */}
                         <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
                             {videoKeys.length > 3 ? (
-                                <Videos videokeys={videoKeys.slice(0, 3)} />
+                                <Videos videokeys={videoKeys.slice(0, 3)} title={movieDetails.original_title} />
                             ) : (
-                                <Videos videokeys={videoKeys} />
+                                <Videos videokeys={videoKeys} title={movieDetails.original_title} />
                             )}
                         </Box>
 
