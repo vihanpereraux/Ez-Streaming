@@ -50,7 +50,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                         fontWeight: 450,
                         fontFamily: 'Rubik',
                         color: 'white',
-                        fontSize: { xs: '15px', lg: '16px' },
+                        fontSize: { xs: '18px', lg: '18px' },
                     }} component="span">Seasons & Episodes &nbsp; <span style={{ opacity: .7, fontSize: 15 }}>({seasonDetails.length.toString()} Seasons)</span></Typography>
                 </AccordionSummary>
 
@@ -111,11 +111,12 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                         top: 0,
                                                         left: 0,
                                                         width: '100%',
-                                                        height: '100%',
-                                                        background: 'red',
+                                                        aspectRatio: '16/9',
+                                                        background: '#1a1a1a',
                                                         display: 'flex',
                                                         alignItems: 'center',
-                                                        justifyContent: 'center'
+                                                        justifyContent: 'center',
+                                                        borderRadius: 8,
                                                     }}><Box className="loading-spinner card-loading-spinner"></Box>
                                                     </Box>
                                                 )}

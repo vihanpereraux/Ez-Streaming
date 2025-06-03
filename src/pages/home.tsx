@@ -98,6 +98,7 @@ const Home: React.FC = () => {
         fetchData();
     }, []);
 
+    // local storage configs
     useEffect(() => {
         const watchedMovies = localStorage.getItem('watchedMovies');
         const watchedTvShows = localStorage.getItem('watchedTvShows');
@@ -105,6 +106,10 @@ const Home: React.FC = () => {
         if (!watchedMovies && !watchedTvShows) {
             localStorage.setItem('watchedTvShows', JSON.stringify([] as MoviesProps[]));
             localStorage.setItem('watchedMovies', JSON.stringify([] as MoviesProps[]));
+        }
+
+        if (!(JSON.parse(localStorage.getItem('adDisclaimerDisabled')  || 'false'))) {
+            localStorage.setItem('adDisclaimerDisabled', JSON.stringify(false));   
         }
     }, []);
 

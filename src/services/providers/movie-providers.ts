@@ -6,67 +6,92 @@ export const getAllMovieProviders = () => {
     // desktop and tablet providers 
     if (window.innerWidth > 700) {
         [{
-            displayName: "🜲\u00A0 KingStar",
-            providerName: "vidora.su"
+            displayName: "KingStar",
+            providerName: "vidora.su",
+            premium: true,
         },
         {
-            displayName: "🜲\u00A0 Enigma",
-            providerName: "vidsrc.su"
+            displayName: "Premify",
+            providerName: "player.vidsrc.co",
+            note: {
+                note: 'Play / pause button is in the middle of the screen',
+                device: 'mobile'
+            },
+            premium: true,
         },
         {
-            displayName: "🜲\u00A0 Jolliby",
-            providerName: "spencerdevs.xyz"
+            displayName: "Jolliby",
+            providerName: "spencerdevs.xyz",
+            premium: true,
         },
         {
-            displayName: "🜲\u00A0 Premify",
-            providerName: "player.vidsrc.co"
+            displayName: "Enigma",
+            providerName: "vidsrc.su",
+            premium: true,
         },
         {
             displayName: "Chad Player",
-            providerName: "videsrc.xyz"
+            providerName: "videsrc.xyz",
+            premium: false,
         },
         {
             displayName: "VimStar",
-            providerName: "videsrc.cc"
+            providerName: "videsrc.cc",
+            premium: false,
         },
         {
             displayName: "Popcorn Bunjie",
-            providerName: "videasy.net"
+            providerName: "videasy.net",
+            premium: false,
         },
         {
             displayName: "Star Cinema",
-            providerName: "vidjoy.pro"
+            providerName: "vidjoy.pro",
+            premium: false,
         },
         {
             displayName: "Reel Magic",
-            providerName: "vidfast.pro"
+            providerName: "vidfast.pro",
+            premium: false,
         }].map((item) => {
             providerDetails.push({
                 displayName: item.displayName,
-                providerName: item.providerName
+                providerName: item.providerName,
+                note: item.note && { note: item.note.note, device: item.note.device },
+                premium: item.premium
             })
         })
     } else {
         // mobile friendly providers
         [{
-            displayName: "🜲\u00A0 Enigma",
-            providerName: "vidsrc.su"
+            displayName: "Enigma",
+            providerName: "vidsrc.su",
+            premium: true,
         },
         {
-            displayName: "🜲\u00A0 Jolliby",
-            providerName: "spencerdevs.xyz"
+            displayName: "Jolliby",
+            providerName: "spencerdevs.xyz",
+            premium: true,
         },
         {
-            displayName: "🜲\u00A0 KingStar",
-            providerName: "vidora.su"
+            displayName: "KingStar",
+            providerName: "vidora.su",
+            premium: true,
         },
         {
-            displayName: "🜲\u00A0 Premify",
-            providerName: "player.vidsrc.co"
+            displayName: "Premify",
+            providerName: "player.vidsrc.co",
+            premium: true,
+            note: {
+                note: '* Play / pause button is in the middle of the screen for this stream',
+                device: 'mobile'
+            }
         }].map((item) => {
             providerDetails.push({
                 displayName: item.displayName,
-                providerName: item.providerName
+                providerName: item.providerName,
+                note: item.note && { note: item.note.note, device: item.note.device },
+                premium: item.premium
             })
         })
     }
