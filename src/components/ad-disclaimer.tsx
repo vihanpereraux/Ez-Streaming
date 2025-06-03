@@ -33,7 +33,7 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                         transform: 'translate(-50%, -50%)',
                         width: 400,
                         bgcolor: 'black',
-                        border: '1px solid rgba(162, 255, 0, .45)',
+                        border: '1px solid rgba(162, 255, 0, .35)',
                         outline: 'none',
                         boxShadow: 24,
                         p: 4,
@@ -90,7 +90,7 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                                 color: 'white',
                                 fontFamily: 'Rubik',
                                 fontSize: 15
-                            }}>Don't show this message again</Typography>
+                            }}>Don't show this disclaimer again</Typography>
                         </Box>
 
                         <Button
