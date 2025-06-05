@@ -9,7 +9,6 @@ import { Box, Typography } from "@mui/material";
 import { CarosuelCardProps } from "../interfaces/props";
 
 const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, first_air_date, release_date, vote_average, type, original_name }) => {
-    console.log(`${title} ${type}`)
     const navigate = useNavigate();
     const [imageLoaded, setImageLoaded] = useState(false);
 

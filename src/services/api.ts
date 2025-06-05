@@ -22,8 +22,6 @@ export const getTrendingMovies = async (arr: MoviesProps[]) => {
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr);
-        console.log(data.results);
-        console.log(cleanedArr);
         return cleanedArr;
     } catch (error) {
         console.log(`Error (Trending Movies) - ${error}`);
