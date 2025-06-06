@@ -80,7 +80,7 @@ body {
 }
 
 /* carousel stylings */
-._movie_poster_portrait {
+.poster {
   transition: all .3s ease-in-out;
 }
 
@@ -88,7 +88,7 @@ body {
   aspect-ratio: 3 / 4.5;
 }
 
-._movie_poster_container:hover ._movie_poster_portrait {
+._movie_poster_container:hover .poster {
   transform: scale(1.1) !important;
   transform-origin: 50% 50%;
 }
@@ -97,7 +97,7 @@ body {
   aspect-ratio: 16 / 10;
 }
 
-._tv_poster_container:hover ._movie_poster_portrait {
+._tv_poster_container:hover .poster {
   transform: scale(1.1) !important;
   transform-origin: 50% 50%;
 }
@@ -107,7 +107,9 @@ body {
 }
 
 ._carousel_card:hover ._movie_title {
-  padding-left: 6px;
+  color: #a2ff00 !important;
+  font-weight: 420 !important;
+  padding-left: 3px;
 }
 
 .MuiSvgIcon-root {

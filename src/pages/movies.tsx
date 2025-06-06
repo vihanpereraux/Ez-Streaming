@@ -119,7 +119,11 @@ const Movies: React.FC = () => {
             {isLoading ? (
                 <LoadingPreview />
             ) : (
-                <Box sx={{ pl: { xs: 2, lg: 3 }, pr: { xs: 2, lg: 3 }, pt: 0 }}>
+                <Box sx={{
+                    pl: { xs: 1, lg: 2 },
+                    pr: { xs: 1, lg: 2 },
+                    pt: 0
+                }}>
                     {allMovies.map((content, index) => (
                         <Box sx={{ mt: carouselSpacing }} key={index}>
                             <MovieCarousel

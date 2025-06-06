@@ -55,13 +55,13 @@ const BannerCard: React.FC<BannerCardProps> = ({ poster_path, original_name, fir
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: { xs: '13px', lg: '14px' },
+                            fontSize: { xs: '12px', lg: '14px' },
                             fontFamily: 'Rubik',
-                            mt: 1.25,
+                            mt: { xs: .85, lg: 1.25 },
                             textAlign: 'center',
                             fontWeight: 400
                         }}>
-                        TV Series &nbsp;⋅
+                        TV Show &nbsp;⋅
                         &nbsp;{first_air_date.slice(0, 4)} &nbsp;⋅
                         &nbsp;<FaStar style={{ color: '#a2ff00' }} />
                         &nbsp;&nbsp;{Math.round(vote_average * 10) / 10}</Typography>

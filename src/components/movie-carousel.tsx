@@ -30,11 +30,11 @@ const MovieCarousel: React.FC<props> = ({ content, title, type }) => {
                     fontWeight: 420,
                     fontFamily: 'Rubik',
                     color: 'white',
-                    fontSize: { xs: 15, lg: 15 },
+                    fontSize: { xs: 16, lg: 16 },
                 }}>
                 {title}</Typography>
 
-            <Box sx={{ mt: 2.5 }}>
+            <Box sx={{ mt: 1.5 }}>
                 <Carousel responsive={movieCarouselConfig} infinite={false} slidesToSlide={2}>
                     {content.map((item, index) => (
                         <div key={index}>

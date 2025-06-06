@@ -121,7 +121,7 @@ export const getSearchResults = async (query: string, type: string, arr: MoviesP
 // get movies by provider
 export const getMoviesByProvider = async (arr: MoviesProps[], providerId: string) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc&page=${Math.floor(Math.random() * 20) + 1}`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc&vote_count.gte=7.5&page=${Math.floor(Math.random() * 10) + 1}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr, 'movie');
@@ -134,7 +134,7 @@ export const getMoviesByProvider = async (arr: MoviesProps[], providerId: string
 // get tv shows by provider
 export const getTvShowsByProvider = async (arr: MoviesProps[], providerId: string) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc&page=${Math.floor(Math.random() * 15) + 1}`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc&vote_count.gte=8.5&page=${Math.floor(Math.random() * 10) + 1}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr, 'tv');

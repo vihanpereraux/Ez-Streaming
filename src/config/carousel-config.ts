@@ -69,7 +69,7 @@ export const tvCarouselConfig = {
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
-        items: 2.1
+        items: 1.25
     }
 };
 
