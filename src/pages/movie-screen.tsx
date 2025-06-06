@@ -215,7 +215,7 @@ const MovieScreen: React.FC = () => {
                     poster_path: movieDetails.poster_path,
                     id: parseInt(movieId),
                     title: movieDetails.title,
-                    overview: movieDetails.overview,
+                    // overview: movieDetails.overview,
                     release_date: movieDetails.release_date,
                     vote_average: movieDetails.vote_average,
                     first_air_date: movieDetails.first_air_date,

@@ -139,8 +139,7 @@ const MoviePlayer: React.FC<PlayerProps> = ({ id, serverGroup, note }) => {
                         </Typography>
                     </Box>
                 )}
-                <iframe
-                    key={id}
+                <iframe key={id}
                     allowFullScreen
                     style={{
                         width: '100%',
@@ -150,6 +149,8 @@ const MoviePlayer: React.FC<PlayerProps> = ({ id, serverGroup, note }) => {
                         marginTop: -10,
                         opacity: isIframeLoaded ? 1 : 0
                     }}
+                    allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-presentation allow-top-navigation allow-top-navigation-by-user-activation"
                     src={src}
                     onLoad={() => { setIsIframeLoaded(true) }}
                     onError={() => { setError(true) }}

@@ -16,50 +16,55 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
         <>
             <Typography
                 sx={{
-                    fontWeight: 450,
+                    fontWeight: 420,
                     fontFamily: 'Rubik',
                     color: 'white',
-                    fontSize: { xs: '18px', lg: '18px' },
+                    fontSize: { xs: '17px', lg: '17px' },
                 }}>Cast of {contentTitle}</Typography>
 
-            <Box sx={{ mt: 3 }}>
-                <Carousel responsive={castCarouselConfig} infinite={true}>
+            <Box sx={{ mt: { xs: 2, lg: 2.5 } }}>
+                <Carousel responsive={castCarouselConfig} infinite={false}>
                     {castDetails.length > 0 ? (
                         [...castDetails].map((cast, index) => (
                             <Box key={index}
                                 sx={{
-                                    width: '95%',
-                                    textAlign: 'center'
+                                    border: '1px solid rgb(40, 40, 40)',
+                                    bgcolor: 'rgb(15, 15, 15)',
+                                    height: 100,
+                                    borderRadius: 3,
+                                    p: 1.2,
+                                    width: '98%',
+                                    display: 'flex',
+                                    alignItems: 'center'
                                 }}>
-                                <img
-                                    style={{
-                                        width: 90,
-                                        height: 90,
-                                        objectFit: 'cover',
-                                        aspectRatio: 1,
-                                        borderRadius: '50%'
-                                    }}
-                                    src={`https://image.tmdb.org/t/p/w300/${cast.profile_path}.jpg`}
-                                    alt={cast.name}
-                                    loading="lazy"
-                                    onError={(e) => {
-                                        (e.currentTarget as HTMLImageElement).src = 'https://media.istockphoto.com/id/1130424979/vector/person-gray-photo-placeholder-man.jpg?s=612x612&w=0&k=20&c=Oc5r-nuA8FxnBBFSa6azLq5bWDyPZlKNu-8qFrUDy5I=';
-                                    }}
-                                />
-                                <Box sx={{ color: 'white' }}>
+                                {/* cast image */}
+                                <img style={{
+                                    width: '30%',
+                                    height: '100%',
+                                    objectFit: 'cover',
+                                    borderRadius: 8,
+                                    opacity: 1
+                                }}
+                                    src={`https://image.tmdb.org/t/p/w300/${cast.profile_path}.jpg`} alt="" />
+
+                                <Box sx={{ ml: 1.75 }}>
+                                    <Typography sx={{
+                                        fontSize: 13,
+                                        fontFamily: 'Rubik',
+                                        mt: .55,
+                                        opacity: 1,
+                                        color: 'white',
+                                        fontWeight: 400
+                                    }}>{cast.name && cast.name.length > 25 ? cast.name.slice(0, 13) + ' ..' : cast.name} as</Typography>
+
+
                                     <Typography sx={{
                                         fontSize: 13.5,
                                         fontFamily: 'Rubik',
                                         fontWeight: 450,
-                                        mt: 1
-                                    }}>{cast.character && cast.character.length > 20 ? cast.character.slice(0, 13) + ' ..' : cast.character}</Typography>
-                                    <Typography sx={{
-                                        fontSize: 12.5,
-                                        fontFamily: 'Rubik',
-                                        mt: .55,
-                                        opacity: .75,
+                                        mt: 0,
                                         color: '#a2ff00'
-                                    }}>{cast.name && cast.name.length > 20 ? cast.name.slice(0, 13) + ' ..' : cast.name}</Typography>
+                                    }}>{cast.character && cast.character.length > 25 ? cast.character.slice(0, 13) + ' ..' : cast.character}</Typography>
                                 </Box>
                             </Box>
                         ))
@@ -70,8 +75,8 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                         opacity: .75
                     }}>No cast available</Typography>)}
 
-                </Carousel>
-            </Box>
+                </Carousel >
+            </Box >
         </>
     )
 }
