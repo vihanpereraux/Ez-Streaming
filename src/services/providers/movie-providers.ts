@@ -64,11 +64,14 @@ export const getAllMovieProviders = () => {
     } else {
         // mobile friendly providers
         [{
-            displayName: "Enigma",
-            providerName: "vidsrc.su",
+            displayName: "Premify",
+            providerName: "player.vidsrc.co",
             premium: true,
-        },
-        {
+            note: {
+                note: '* Play / pause button is in the middle of the screen for this stream',
+                device: 'mobile'
+            }
+        }, {
             displayName: "Jolliby",
             providerName: "spencerdevs.xyz",
             premium: true,
@@ -79,13 +82,9 @@ export const getAllMovieProviders = () => {
             premium: true,
         },
         {
-            displayName: "Premify",
-            providerName: "player.vidsrc.co",
+            displayName: "Enigma",
+            providerName: "vidsrc.su",
             premium: true,
-            note: {
-                note: '* Play / pause button is in the middle of the screen for this stream',
-                device: 'mobile'
-            }
         }].map((item) => {
             providerDetails.push({
                 displayName: item.displayName,
