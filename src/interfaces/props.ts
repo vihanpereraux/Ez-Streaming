@@ -23,7 +23,7 @@ export interface CarosuelCardProps {
     release_date: string,
     vote_average: number,
     type: string,
-    overview: string,
+    // overview: string,
     id: number,
     first_air_date: string
     original_name: string

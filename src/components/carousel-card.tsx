@@ -27,14 +27,14 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
         <>
             <Box sx={{
                 background: 'none',
-                pl: .6,
-                pr: .6,
+                pl: .4,
+                pr: .4,
             }}>
-                <Box className="_movie_poster_container"
+                <Box className={type == "movie" ? "_movie_poster_container" : "_tv_poster_container"}
                     style={{
                         overflow: 'hidden',
                         borderRadius: 12,
-                        position: 'relative'
+                        position: 'relative',
                     }}>
                     {!imageLoaded && (
                         <Box style={{
@@ -57,9 +57,9 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                         onLoad={() => setImageLoaded(true)}
                         style={{
                             width: '100%',
-                            borderRadius: 12,
+                            borderRadius: 8,
                             objectFit: 'cover',
-                            aspectRatio: 3 / 4.5,
+                            aspectRatio: type == "movie" ? (3 / 4.5) : (16 / 10),
                             cursor: 'pointer',
                             opacity: imageLoaded ? 1 : 0,
                         }}
@@ -68,8 +68,11 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                     />
                 </Box>
 
-                {/* movie title */}
-                <Box sx={{ mt: 1.5 }}>
+                {/* title */}
+                <Box sx={{
+                    mt: 1.75,
+                    alignItems: 'flex-end',
+                }}>
                     <Typography
                         className="_movie_title"
                         sx={{
@@ -80,38 +83,39 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                             whiteSpace: 'nowrap',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
-                            mb: .25,
-                            maxWidth: '90%'
+                            maxWidth: '90%',
+                            mb: -.15
                         }}>{type === "movie" ? title : original_name}</Typography>
 
                     <Box sx={{
+                        // mt: .1,
                         display: "inline-flex",
                         alignItems: "center",
                     }}>
-                        <span style={{
+                        <Typography sx={{
                             color: 'white',
-                            fontSize: 11,
+                            fontSize: 11.5,
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8
                         }}>{type === "movie" ? String(release_date).length > 0 ? String(release_date).slice(0, 4) : "--"
                             :
-                            String(first_air_date).length > 0 ? String(first_air_date).slice(0, 4) : "--"}</span>
+                            String(first_air_date).length > 0 ? String(first_air_date).slice(0, 4) : "--"}
+                            &nbsp; ·
+                        </Typography>
 
-                        <span
-                            style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                color: "white",
-                                fontSize: 11,
-                                fontWeight: 400,
-                                fontFamily: "Rubik",
-                                opacity: 0.8,
-                                marginLeft: 15,
-                            }}>
-                            <FaStar style={{ color: "#a2ff00", marginRight: 5, fontSize: 11 }} />
-                            {vote_average ? (Math.round(vote_average * 10) / 10) : "--"}
-                        </span>
+                        <Typography sx={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            color: "white",
+                            fontSize: 11.5,
+                            fontWeight: 400,
+                            fontFamily: "Rubik",
+                            opacity: 0.8,
+                        }}>
+                            &nbsp;&nbsp; <FaStar style={{ color: "#a2ff00", marginRight: 5, fontSize: 11 }} />
+                            <span style={{ letterSpacing: 2 }}>{vote_average ? (Math.round(vote_average * 10) / 10) : "--"}</span>
+                        </Typography>
                     </Box>
                 </Box>
             </Box>

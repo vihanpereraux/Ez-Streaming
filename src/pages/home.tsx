@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 // components
 import BannerCarosuel from "../components/banner-carousel";
 import MovieCarousel from "../components/movie-carousel";
+import TVCarousel from "../components/tv-carousel";
 import LoadingPreview from "../components/loading-preview";
 import Navbar from "../components/navbar";
 
@@ -23,7 +24,7 @@ import {
 // props
 import { MoviesProps } from "../interfaces/props";
 
-const carouselSpacing = 4;
+const carouselSpacing = 3;
 
 const Home: React.FC = () => {
     const [bannerContent, setBannerContent] = useState<MoviesProps[]>();
@@ -108,8 +109,8 @@ const Home: React.FC = () => {
             localStorage.setItem('watchedMovies', JSON.stringify([] as MoviesProps[]));
         }
 
-        if (!(JSON.parse(localStorage.getItem('adDisclaimerDisabled')  || 'false'))) {
-            localStorage.setItem('adDisclaimerDisabled', JSON.stringify(false));   
+        if (!(JSON.parse(localStorage.getItem('adDisclaimerDisabled') || 'false'))) {
+            localStorage.setItem('adDisclaimerDisabled', JSON.stringify(false));
         }
     }, []);
 
@@ -145,26 +146,41 @@ const Home: React.FC = () => {
                         </Box>
                         {[
                             { type: "movie", title: "Trending Movies", content: trendingMovies! },
-                            { type: "tv", title: "TV Shows From Apple TV", content: appleTvShows! },
                             { type: "movie", title: "Now Streaming Movies", content: upcommingMovies! },
-                            { type: "movie", title: "Netflix Movies", content: netflixMovies! },
-                            { type: "movie", title: "Family Movies", content: familyMovies! },
-                            { type: "tv", title: "TV Shows From Netflix", content: netflixShows! },
+
+                            { type: "tv", title: "TV Shows From Apple TV", content: appleTvShows! },
                             { type: "movie", title: "Apple TV Movies", content: appleTvMovies! },
-                            { type: "movie", title: "Horror Movies", content: horrorMovies! },
+
+                            { type: "tv", title: "TV Shows From Netflix", content: netflixShows! },
+                            { type: "movie", title: "Netflix Movies", content: netflixMovies! },
+
                             { type: "tv", title: "TV Shows From Amazon Prime", content: amazonPrimeShows! },
+                            { type: "movie", title: "Family Movies", content: familyMovies! },
+
+                            { type: "movie", title: "Horror Movies", content: horrorMovies! },
+
                             { type: "movie", title: "Amazon Prime Movies", content: amazonPrimeMovies! },
+
                             { type: "movie", title: "Romance Movies", content: romanceMovies! },
+
+                            { type: "tv", title: "TV Shows from Hulu", content: huluShows! },
                             { type: "movie", title: "Hulu Movies", content: huluMovies! },
-                            { type: "movie", title: "Top Rated Movies", content: topRatedMovies! },
-                            { type: "tv", title: "TV Shows from Hulu", content: huluShows! }
+
+                            { type: "movie", title: "Top Rated Movies", content: topRatedMovies! }
                         ].map((carousel, index) => (
                             <Box sx={{ mt: carouselSpacing }} key={index}>
-                                <MovieCarousel
-                                    type={carousel.type}
-                                    title={carousel.title}
-                                    content={carousel.content}
-                                />
+                                {carousel.type == "movie" ? (
+                                    <MovieCarousel
+                                        type={carousel.type}
+                                        title={carousel.title}
+                                        content={carousel.content} />
+                                ) : (
+                                    <TVCarousel
+                                        type={carousel.type}
+                                        title={carousel.title}
+                                        content={carousel.content} />
+                                )}
+
                             </Box>
                         ))}
                     </>

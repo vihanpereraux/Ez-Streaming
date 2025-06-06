@@ -17,8 +17,8 @@ export const bannerCarouselConfig = {
     }
 };
 
-// content carousel config
-export const multiCarouselConfig = {
+// content carousel config - movies
+export const movieCarouselConfig = {
     superLargeDesktop: {
         breakpoint: { max: 4000, min: 3000 },
         items: 9.5
@@ -45,6 +45,33 @@ export const multiCarouselConfig = {
     }
 };
 
+// content carousel config - tv
+export const tvCarouselConfig = {
+    superLargeDesktop: {
+        breakpoint: { max: 4000, min: 3000 },
+        items: 9.5
+    },
+    desktop: {
+        breakpoint: { max: 3000, min: 1200 },
+        items: 4.25
+    },
+    mini_desktop: {
+        breakpoint: { max: 1200, min: 1024 },
+        items: 4.1
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 860 },
+        items: 4.1
+    },
+    ipad: {
+        breakpoint: { max: 860, min: 600 },
+        items: 3.1
+    },
+    mobile: {
+        breakpoint: { max: 600, min: 0 },
+        items: 2.1
+    }
+};
 
 // credits carousel config
 export const castCarouselConfig = {
