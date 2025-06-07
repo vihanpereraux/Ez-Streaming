@@ -1,7 +1,7 @@
 import React from "react";
 
 // MUI
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { FaStar } from "react-icons/fa6";
 
 // props
@@ -26,51 +26,57 @@ const formatRuntime = (runtime: number) => {
 const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
     return (
         <>
-            <Typography
-                sx={{
+            <Box sx={{
+                bgcolor: 'rgb(16, 16, 16)',
+                p: 1.55,
+                borderRadius: 3,
+            }}>
+                <Typography sx={{
                     color: 'white',
                     textAlign: 'left',
-                    fontSize: { xs: 18, lg: 22 },
+                    fontSize: { xs: 17, lg: 17.5 },
                     fontFamily: 'Rubik',
-                    fontWeight: 400,
-                    mb: .25
+                    fontWeight: 420,
+                    mb: .25,
                 }}>{props.original_title}</Typography>
 
-            {/* other details */}
-            <span style={{
-                color: 'white',
-                fontSize: 12,
-                display: "inline-flex",
-                alignItems: "center",
-                fontFamily: 'Rubik',
-            }}>
-                {/* release date */}
-                {props.release_date ? props.release_date.slice(0, 4) : '...'} &nbsp;⋅
-
-                {/* ratings */}
-                &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp; {Math.round(props.vote_average * 10) / 10} &nbsp;⋅
-            </span>
-
-            {/* genre */}
-            &nbsp;&nbsp;{props.genres.map((genre, index) => (
-                <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 12, marginRight: 6 }}>{genre.name}</span>
-            ))}
-
-            &nbsp;<span style={{ color: 'white', fontFamily: 'Rubik', fontSize: 12 }}>
-                ⋅&nbsp; {props.runtime ? formatRuntime(props.runtime) : 'Duration not available'}
-            </span>
-
-            {/* overview */}
-            <Typography
-                sx={{
-                    fontFamily: 'Rubik',
-                    fontSize: { xs: 13, lg: 14.5 },
-                    lineHeight: 1.75,
-                    fontWeight: 400,
-                    mt: 2,
+                {/* other details */}
+                <span style={{
                     color: 'white',
-                    opacity: 0.9,
-                }}>{props.overview}</Typography>
+                    fontSize: window.innerWidth > 600 ? 12 : 11,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    fontFamily: 'Rubik',
+                    opacity: .75
+                }}>
+                    {/* release date */}
+                    {props.release_date ? props.release_date.slice(0, 4) : '...'} &nbsp;⋅
+
+                    {/* ratings */}
+                    &nbsp; <FaStar style={{ color: '#a2ff00' }} /> &nbsp; {Math.round(props.vote_average * 10) / 10} &nbsp;⋅
+
+                    {/* genre */}
+                    &nbsp;&nbsp;{props.genres.map((genre, index) => (
+                        <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 12, marginRight: 6 }}>{genre.name}</span>
+                    ))}
+
+                    &nbsp;<span style={{ color: 'white', fontFamily: 'Rubik', fontSize: 12 }}>
+                        ⋅&nbsp; {props.runtime ? formatRuntime(props.runtime) : 'Duration not available'}
+                    </span>
+                </span>
+
+                {/* overview */}
+                <Typography
+                    sx={{
+                        fontFamily: 'Rubik',
+                        fontSize: { xs: 13.5, lg: 15 },
+                        lineHeight: 1.75,
+                        fontWeight: 400,
+                        mt: 2,
+                        color: 'white',
+                        opacity: 0.9,
+                    }}>{props.overview}</Typography>
+            </Box>
         </>
     )
 }

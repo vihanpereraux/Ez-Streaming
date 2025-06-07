@@ -141,8 +141,7 @@ const TvPlayer: React.FC<PlayerProps> = ({ id, serverGroup, season, episode, not
                         </Typography>
                     </Box>
                 )}
-                <iframe
-                    key={id}
+                <iframe key={id}
                     allowFullScreen
                     style={{
                         width: '100%',
@@ -154,8 +153,7 @@ const TvPlayer: React.FC<PlayerProps> = ({ id, serverGroup, season, episode, not
                     }}
                     src={src}
                     onLoad={() => { setIsIframeLoaded(true) }}
-                    onError={() => { setError(true) }}
-                />
+                    onError={() => { setError(true) }} />
             </Box>
 
             {note && (

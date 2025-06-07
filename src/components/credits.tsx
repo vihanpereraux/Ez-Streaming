@@ -14,13 +14,12 @@ interface props {
 const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
     return (
         <>
-            <Typography
-                sx={{
-                    fontWeight: 420,
-                    fontFamily: 'Rubik',
-                    color: 'white',
-                    fontSize: { xs: '17px', lg: '17px' },
-                }}>Cast of {contentTitle}</Typography>
+            <Typography sx={{
+                fontWeight: 420,
+                fontFamily: 'Rubik',
+                color: 'white',
+                fontSize: { xs: 17, lg: 17.5 },
+            }}>Cast of {contentTitle}</Typography>
 
             <Box sx={{ mt: { xs: 2, lg: 2.5 } }}>
                 <Carousel responsive={castCarouselConfig} infinite={false}>
@@ -28,43 +27,55 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                         [...castDetails].map((cast, index) => (
                             <Box key={index}
                                 sx={{
-                                    border: '1px solid rgb(40, 40, 40)',
-                                    bgcolor: 'rgb(15, 15, 15)',
+                                    bgcolor: 'rgb(16, 16, 16)',
                                     height: 100,
                                     borderRadius: 3,
                                     p: 1.2,
                                     width: '98%',
                                     display: 'flex',
-                                    alignItems: 'center'
+                                    alignItems: 'center',
                                 }}>
                                 {/* cast image */}
                                 <img style={{
-                                    width: '30%',
+                                    width: '28%',
                                     height: '100%',
                                     objectFit: 'cover',
                                     borderRadius: 8,
-                                    opacity: 1
-                                }}
-                                    src={`https://image.tmdb.org/t/p/w300/${cast.profile_path}.jpg`} alt="" />
+                                    opacity: 1,
+                                    aspectRatio: 1
+                                }} src={`https://image.tmdb.org/t/p/w300/${cast.profile_path}.jpg`} alt="" />
 
                                 <Box sx={{ ml: 1.75 }}>
                                     <Typography sx={{
-                                        fontSize: 13,
+                                        fontSize: 12,
                                         fontFamily: 'Rubik',
                                         mt: .55,
-                                        opacity: 1,
+                                        opacity: .8,
                                         color: 'white',
                                         fontWeight: 400
-                                    }}>{cast.name && cast.name.length > 25 ? cast.name.slice(0, 13) + ' ..' : cast.name} as</Typography>
-
+                                    }}>{cast.name && cast.name.length > 25 ? cast.name.slice(0, 13) + ' ..' : cast.name} &nbsp;as</Typography>
 
                                     <Typography sx={{
                                         fontSize: 13.5,
                                         fontFamily: 'Rubik',
-                                        fontWeight: 450,
-                                        mt: 0,
-                                        color: '#a2ff00'
+                                        fontWeight: 420,
+                                        mt: .25,
+                                        color: 'white'
                                     }}>{cast.character && cast.character.length > 25 ? cast.character.slice(0, 13) + ' ..' : cast.character}</Typography>
+
+                                    <Typography
+                                        onClick={() => {
+                                            window.open(`https://www.google.com/search?q=${encodeURIComponent(cast.name + ' ' + ' reddit')}`, '_blank');
+                                        }}
+                                        sx={{
+                                            fontSize: 12.5,
+                                            fontFamily: 'Rubik',
+                                            fontWeight: 420,
+                                            mt: 1,
+                                            color: 'white',
+                                            cursor: 'pointer'
+                                        }}>Explore more on <span style={{ color: 'orangered' }}>&nbsp; r/Reddit</span></Typography>
+
                                 </Box>
                             </Box>
                         ))

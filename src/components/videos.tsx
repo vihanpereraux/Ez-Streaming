@@ -14,13 +14,12 @@ interface props {
 const Videos: React.FC<props> = ({ videokeys, title }) => {
     return (
         <>
-            <Typography
-                sx={{
-                    fontWeight: 450,
-                    fontFamily: 'Rubik',
-                    color: 'white',
-                    fontSize: { xs: '18px', lg: '18px' },
-                }}>Trailers & Clips</Typography>
+            <Typography sx={{
+                fontWeight: 420,
+                fontFamily: 'Rubik',
+                color: 'white',
+                fontSize: { xs: 17, lg: 17.5 },
+            }}>Trailers & Clips</Typography>
 
             <Box sx={{ mt: 2 }}>
                 <Carousel responsive={videoListConfig}>

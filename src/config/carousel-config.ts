@@ -85,11 +85,11 @@ export const castCarouselConfig = {
     },
     tablet: {
         breakpoint: { max: 1200, min: 600 },
-        items: 4.3
+        items: 2.5
     },
     mobile: {
         breakpoint: { max: 600, min: 0 },
-        items: 1.3
+        items: 1.35
     }
 };
 

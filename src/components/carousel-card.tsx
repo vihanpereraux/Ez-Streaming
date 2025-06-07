@@ -95,7 +95,7 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                             fontWeight: 420,
                             fontFamily: 'Rubik',
                             opacity: .9,
-                            mr: 1.35,
+                            mr: 1.5,
                             textTransform: 'capitalize'
                         }}>{type == "movie" ? "movie" : "TV Show"}</Typography>
                     </Box>

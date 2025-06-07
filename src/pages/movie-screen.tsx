@@ -251,11 +251,10 @@ const MovieScreen: React.FC = () => {
                                         display: 'flex',
                                         justifyContent: 'space-between'
                                     }}>
-                                        <Tabs
-                                            sx={{
-                                                opacity: !lightsOffClicked ? 1 : 0,
-                                                pointerEvents: !lightsOffClicked ? "auto" : "none"
-                                            }}
+                                        <Tabs sx={{
+                                            opacity: !lightsOffClicked ? 1 : 0,
+                                            pointerEvents: !lightsOffClicked ? "auto" : "none"
+                                        }}
                                             value={value}
                                             onChange={handleChange}
                                             aria-label="basic tabs example">
@@ -320,24 +319,19 @@ const MovieScreen: React.FC = () => {
                                 {!lightsOffClicked && <Box sx={{
                                     width: { xs: "100%", lg: "100%" },
                                     pl: { xs: .5, lg: 0 },
-                                    mt: { xs: .5, md: 1, lg: 3 },
+                                    mt: { xs: 2.5, md: 1, lg: 3 },
                                 }}>
                                     <MovieDetails props={movieDetails} />
                                 </Box>}
                             </Box>
 
                             {/* cast info / credits */}
-                            {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
+                            {!lightsOffClicked && (<Box sx={{ mt: 5 }}>
                                 <Credits contentTitle={movieDetails.original_title} castDetails={castDetails} />
                             </Box>)}
 
-                            {/* reviews */}
-                            {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                                <Reviews reviews={reviews} defaultExpanded={true} />
-                            </Box>)}
-
                             {/* trailers */}
-                            <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
+                            <Box sx={{ mt: 5, display: !lightsOffClicked ? "block" : "none" }}>
                                 {videoKeys.length > 3 ? (
                                     <Videos videokeys={videoKeys.slice(0, 3)} title={movieDetails.original_title} />
                                 ) : (
@@ -345,8 +339,13 @@ const MovieScreen: React.FC = () => {
                                 )}
                             </Box>
 
+                            {/* reviews */}
+                            {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
+                                <Reviews reviews={reviews} defaultExpanded={true} />
+                            </Box>)}
+
                             {/* related content */}
-                            {!lightsOffClicked ? (<Box sx={{ mt: 10, mb: 15 }}>
+                            {!lightsOffClicked ? (<Box sx={{ mt: reviews.length > 0 ? 1 : 5, mb: 12 }}>
                                 {relatedContent.length > 0 ? (
                                     <MovieCarousel
                                         type="movie"

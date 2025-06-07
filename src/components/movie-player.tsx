@@ -85,23 +85,27 @@ const MoviePlayer: React.FC<PlayerProps> = ({ id, serverGroup, note }) => {
                 position: 'relative',
                 width: '100%',
                 aspectRatio: '16 / 9',
+                // border: '1px solid red',
+                mt: 2
             }}>
                 {/* iframe loading animation */}
+                {/* !isIframeLoaded */}
                 {!isIframeLoaded && (
                     <Box sx={{
                         position: 'absolute',
-                        top: 0,
+                        top: -40,
                         right: 0,
                         width: '100%',
-                        height: '102%',
+                        height: '100%',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
                         background: 'black',
                         borderRadius: 4,
+                        // border: '1px solid yellow'
                     }}>
-                        <Lottie style={{ width: 200, height: 150, marginTop: -100 }} animationData={indexingIcon} loop={true} />
+                        <Lottie style={{ width: 200, height: 150, marginTop: -75 }} animationData={indexingIcon} loop={true} />
                         <Typography sx={{
                             color: 'white',
                             textAlign: 'center',
@@ -142,19 +146,18 @@ const MoviePlayer: React.FC<PlayerProps> = ({ id, serverGroup, note }) => {
                 <iframe key={id}
                     allowFullScreen
                     style={{
+                        position: 'absolute',
                         width: '100%',
+                        height: '100%',
                         aspectRatio: '16/9',
                         border: 'none',
                         borderRadius: 12,
                         marginTop: -10,
-                        opacity: isIframeLoaded ? 1 : 0
+                        opacity: isIframeLoaded ? 1 : 0,
                     }}
-                    allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-presentation allow-top-navigation allow-top-navigation-by-user-activation"
                     src={src}
                     onLoad={() => { setIsIframeLoaded(true) }}
-                    onError={() => { setError(true) }}
-                />
+                    onError={() => { setError(true) }} />
             </Box>
             {note && (
                 <Typography sx={{

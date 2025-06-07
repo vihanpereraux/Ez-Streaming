@@ -18,9 +18,8 @@ interface props {
 const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
     return (
         <>
-            <div>
-                <Accordion
-                    defaultExpanded={defaultExpanded}
+            <Box>
+                <Accordion defaultExpanded={defaultExpanded}
                     sx={{
                         background: 'rgba(0, 0, 0, 0)',
                         color: 'white',
@@ -31,54 +30,59 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                         id="panel1-header">
                         <Typography sx={{
                             ml: -2,
-                            fontWeight: 450,
+                            fontWeight: 420,
                             fontFamily: 'Rubik',
                             color: 'white',
-                            fontSize: { xs: '18px', lg: '18px' },
-                        }} component="span">Reviews & Discussions &nbsp; <span style={{ opacity: .7, fontSize: 15 }}>({reviews.length.toString()} Reviews)</span></Typography>
+                            fontSize: { xs: 17, lg: 17.5 },
+                        }} component="span">Reviews & Critiques &nbsp; ·  &nbsp; <span style={{ opacity: .7, fontSize: 15 }}>
+                                {reviews.length.toString()} {reviews.length > 1 ? "Reviews" : "Review"}</span></Typography>
                     </AccordionSummary>
 
                     <AccordionDetails sx={{
                         background: 'rgba(0, 0, 0, 0.25)',
                         borderRadius: 3,
-                        pt: 2
+                        pt: 2,
+                        pl: 0, pr: 0
                     }}>
                         {reviews.length > 0 ? reviews.map((review, index) => (
                             <Box key={index}
                                 sx={{
                                     color: 'white',
-                                    mt: 0,
-                                    mb: 4
+                                    mt: { xs: -2, lg: -2 },
+                                    mb: 4,
+                                    bgcolor: 'rgb(16, 16, 16)',
+                                    p: 2,
+                                    borderRadius: 3,
                                 }}>
                                 {/* user */}
                                 <Typography
                                     variant="body1"
                                     sx={{
                                         fontFamily: 'Rubik',
-                                        fontSize: 15,
-                                        fontWeight: 500
+                                        fontSize: 14.5,
+                                        fontWeight: 450
                                     }}>{review.authorUsername}</Typography>
 
-                                {/* last edited data */}
+                                {/* last edited date */}
                                 <Typography
                                     variant="body2"
                                     sx={{
                                         fontFamily: 'Rubik',
                                         fontSize: 12,
                                         fontWeight: 400,
-                                        mt: 1,
-                                        mb: 1.5,
+                                        mt: .55,
+                                        mb: 1.25,
                                         opacity: .7
                                     }}>{new Date(review.date).toLocaleDateString()}</Typography>
 
                                 {/* review */}
-                                <Typography
-                                    sx={{
-                                        fontSize: 15,
-                                        fontFamily: 'Rubik',
-                                        fontWeight: 350,
-                                        lineHeight: 1.7,
-                                    }}
+                                <Typography sx={{
+                                    fontSize: { xs: 13.5, lg: 14 },
+                                    fontFamily: 'Rubik',
+                                    fontWeight: 400,
+                                    lineHeight: 1.7,
+                                    opacity: .9
+                                }}
                                     component="span"
                                     dangerouslySetInnerHTML={{
                                         __html: review.review.replace(
@@ -98,7 +102,7 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                         )}
                     </AccordionDetails>
                 </Accordion>
-            </div >
+            </Box>
         </>
     )
 }
