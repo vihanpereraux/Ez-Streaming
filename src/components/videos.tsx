@@ -18,7 +18,7 @@ const Videos: React.FC<props> = ({ videokeys, title }) => {
                 fontWeight: 420,
                 fontFamily: 'Rubik',
                 color: 'white',
-                fontSize: { xs: 17, lg: 16 },
+                fontSize: { xs: 16, lg: 16 },
             }}>Trailers & Clips</Typography>
 
             <Box sx={{ mt: 2 }}>

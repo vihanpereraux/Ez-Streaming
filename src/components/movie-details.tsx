@@ -68,16 +68,15 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
                 </span>
 
                 {/* overview */}
-                <Typography
-                    sx={{
-                        fontFamily: 'Rubik',
-                        fontSize: { xs: 13.5, lg: 13.5 },
-                        lineHeight: 1.75,
-                        fontWeight: 380,
-                        mt: 1.75,
-                        color: 'white',
-                        opacity: 0.9,
-                    }}>{props.overview}</Typography>
+                <Typography sx={{
+                    fontFamily: 'Rubik',
+                    fontSize: { xs: 13, lg: 13 },
+                    lineHeight: 1.75,
+                    fontWeight: 380,
+                    mt: 1.75,
+                    color: 'white',
+                    opacity: 0.9,
+                }}>{props.overview}</Typography>
             </Box>
         </>
     )

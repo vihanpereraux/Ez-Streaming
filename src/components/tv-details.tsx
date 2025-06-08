@@ -19,24 +19,28 @@ const TvDetails: React.FC<TvDetailsProps> = ({ props }) => {
     return (
         <>
             <Box sx={{
-                width: { xs: "100%", lg: "100%" },
-                pl: { xs: .5, lg: 0 },
-                mt: { xs: 1.5, lg: 3 }
+                bgcolor: 'rgb(16, 15, 15)',
+                p: 2,
+                borderRadius: 3,
             }}>
                 <Typography
                     sx={{
                         color: 'white',
                         textAlign: 'left',
-                        fontSize: 22,
+                        fontSize: { xs: 17, lg: 17.5 },
                         fontFamily: 'Rubik',
-                        fontWeight: 450,
-                        mb: .8
+                        fontWeight: 420,
+                        mb: .25,
                     }}>{props.original_name}</Typography>
 
                 {/* other details */}
                 <span style={{
                     color: 'white',
-                    fontSize: 12,
+                    fontSize: window.innerWidth > 600 ? 11 : 11,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    fontFamily: 'Rubik',
+                    opacity: .75,
                 }}>
                     {/* first air data */}
                     {props.first_air_date ? props.first_air_date.slice(0, 4) : '...'} &nbsp; ⋅
@@ -47,18 +51,17 @@ const TvDetails: React.FC<TvDetailsProps> = ({ props }) => {
 
                 {/* genre */}
                 &nbsp;&nbsp;{props.genres.map((genre: any, index: any) => (
-                    <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 12, marginRight: 6 }}>{genre.name}</span>
+                    <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 11, marginRight: 6 }}>{genre.name}</span>
                 ))}
-                <Typography
-                    sx={{
-                        fontFamily: 'Rubik',
-                        fontSize: { xs: 14, lg: 14.5 },
-                        lineHeight: 1.75,
-                        fontWeight: 400,
-                        mt: 2.5,
-                        color: 'white',
-                        opacity: 0.9,
-                    }}>{props.overview}</Typography>
+                <Typography sx={{
+                    fontFamily: 'Rubik',
+                    fontSize: { xs: 13.5, lg: 13.5 },
+                    lineHeight: 1.75,
+                    fontWeight: 380,
+                    mt: 1.75,
+                    color: 'white',
+                    opacity: 0.9,
+                }}>{props.overview}</Typography>
             </Box>
         </>
     )

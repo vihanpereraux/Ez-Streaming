@@ -33,7 +33,7 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                             fontWeight: 420,
                             fontFamily: 'Rubik',
                             color: 'white',
-                            fontSize: { xs: 17, lg: 16 },
+                            fontSize: { xs: 16, lg: 16 },
                         }} component="span">Reviews & Critiques &nbsp; ·  &nbsp; <span style={{ opacity: .7, fontSize: 15 }}>
                                 {reviews.length.toString()} {reviews.length > 1 ? "Reviews" : "Review"}</span></Typography>
                     </AccordionSummary>

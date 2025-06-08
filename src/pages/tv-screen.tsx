@@ -14,7 +14,7 @@ import Tab from '@mui/material/Tab';
 // components
 import LoadingPreview from "../components/loading-preview";
 import AdDisclaimer from "../components/ad-disclaimer";
-import MovieCarousel from "../components/movie-carousel";
+import TVCarousel from "../components/tv-carousel";
 import Navbar from "../components/navbar";
 import TvPlayer from "../components/tv-player";
 import TvDetails from "../components/tv-details";
@@ -88,7 +88,7 @@ const TvScreen: React.FC = () => {
     const [tvDetails, setTvDetails] = useState<any>({});
     const [relatedContent, setRelatedContent] = useState<MoviesProps[]>([])
     const [castDetails, setCastDetails] = useState<any[]>([]);
-    const [reviews, setReviews] = useState<ReviewDataProps[]>();
+    const [reviews, setReviews] = useState<ReviewDataProps[]>([]);
     const [seasonDetails, setSeasonDeatils] = useState<SeasonProps[]>([])
     const [userSelection, setUserSelection] = useState<UserSelectionProps>({
         season: 1,
@@ -288,8 +288,8 @@ const TvScreen: React.FC = () => {
                             key={tvId}
                             sx={{
                                 pt: 6,
-                                pl: { xs: 2, lg: 3 },
-                                pr: { xs: 2, lg: 3 }
+                                pl: { xs: 1, lg: 2 },
+                                pr: { xs: 1, lg: 2 },
                             }}>
 
                             {/* tabs and players */}
@@ -319,8 +319,8 @@ const TvScreen: React.FC = () => {
                                                     )}
                                                     <Typography sx={{
                                                         fontFamily: 'Rubik',
-                                                        fontWeight: { xs: 400, md: 420, lg: 420 },
-                                                        fontSize: { xs: 14, md: 15, lg: 15 },
+                                                        fontWeight: { xs: 400, md: 400, lg: 400 },
+                                                        fontSize: { xs: 13, md: 13, lg: 13 },
                                                         ml: 1.5
                                                     }}>{provider.displayName}</Typography>
                                                 </Box>
@@ -374,15 +374,15 @@ const TvScreen: React.FC = () => {
                             {/* details */}
                             {!lightsOffClicked && <Box sx={{
                                 width: { xs: "100%", lg: "100%" },
-                                pl: { xs: .5, lg: 0 },
-                                mt: { xs: 1.5, lg: 3 },
+                                pl: { xs: 0, lg: 0 },
+                                mt: { xs: 2.5, md: 1, lg: 3 },
                             }}>
                                 <TvDetails props={tvDetails} />
                             </Box>}
 
                             {/* seasons and episodes */}
                             {!lightsOffClicked && (
-                                <Box sx={{ mt: 6 }}>
+                                <Box sx={{ mt: 5 }}>
                                     <TvEpisodes
                                         seasonDetails={seasonDetails}
                                         userSelection={userSelection}
@@ -391,19 +391,12 @@ const TvScreen: React.FC = () => {
                             )}
 
                             {/* cast info */}
-                            {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
+                            {!lightsOffClicked && (<Box sx={{ mt: 5 }}>
                                 <Credits contentTitle={tvDetails.original_name} castDetails={castDetails} />
                             </Box>)}
 
-                            {/* reviews */}
-                            {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                                {reviews && (
-                                    <Reviews reviews={reviews} defaultExpanded={true} />
-                                )}
-                            </Box>)}
-
                             {/* trailers */}
-                            <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
+                            <Box sx={{ mt: 5, display: !lightsOffClicked ? "block" : "none" }}>
                                 {videoKeys.length > 3 ? (
                                     <Videos videokeys={videoKeys.slice(0, 3)} title={tvDetails.original_name} />
                                 ) : (
@@ -411,11 +404,18 @@ const TvScreen: React.FC = () => {
                                 )}
                             </Box>
 
+                            {/* reviews */}
+                            {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
+                                {reviews && (
+                                    <Reviews reviews={reviews} defaultExpanded={true} />
+                                )}
+                            </Box>)}
+
                             {/* related content */}
                             {!lightsOffClicked ? (
-                                <Box sx={{ mt: 10, mb: 15 }}>
+                                <Box sx={{ mt: reviews.length > 0 ? 4 : 5, mb: 12 }}>
                                     {relatedContent.length > 0 ? (
-                                        <MovieCarousel
+                                        <TVCarousel
                                             type="tv"
                                             title="TV Shows You May Love : )"
                                             content={relatedContent} />

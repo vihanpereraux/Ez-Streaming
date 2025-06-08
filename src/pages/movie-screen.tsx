@@ -7,7 +7,7 @@ import serverIcon from "../../public/icons/server-icon.json";
 import premiumIcon from "../../public/icons/premium-icon.json";
 
 // MUI
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
@@ -48,7 +48,7 @@ const tabStyles = {
     textTransform: 'capitalize',
     fontWeight: 420,
     textDecoration: 'none',
-    mr: { xs: .8, md: 1, lg: 1.75 },
+    mr: { xs: .8, md: 1, lg: 2 },
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -238,8 +238,8 @@ const MovieScreen: React.FC = () => {
                             key={movieId}
                             sx={{
                                 pt: 6,
-                                pl: { xs: 1, lg: 3 },
-                                pr: { xs: 1, lg: 3 }
+                                pl: { xs: 1, lg: 2 },
+                                pr: { xs: 1, lg: 2 },
                             }}>
                             {/* tabs, players and information */}
                             <Box sx={{ display: { xs: "block", lg: "block" } }}>
@@ -249,11 +249,12 @@ const MovieScreen: React.FC = () => {
                                         border: 'none',
                                         borderColor: 'divider',
                                         display: 'flex',
-                                        justifyContent: 'space-between'
+                                        justifyContent: {xs: 'left', lg: 'center'}
                                     }}>
                                         <Tabs sx={{
                                             opacity: !lightsOffClicked ? 1 : 0,
-                                            pointerEvents: !lightsOffClicked ? "auto" : "none"
+                                            pointerEvents: !lightsOffClicked ? "auto" : "none",
+                                            // border: '1px solid red'
                                         }}
                                             value={value}
                                             onChange={handleChange}
@@ -278,7 +279,7 @@ const MovieScreen: React.FC = () => {
                                         </Tabs>
 
                                         {/* toggle */}
-                                        <Button sx={{
+                                        {/* <Button sx={{
                                             display: { xs: 'none', md: 'block' },
                                             color: '#a2ff00',
                                             fontFamily: 'Rubik',
@@ -289,7 +290,7 @@ const MovieScreen: React.FC = () => {
                                             fontWeight: 380
                                         }} onClick={manageLights}>
                                             {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
-                                        </Button>
+                                        </Button> */}
                                     </Box>
 
                                     {/* note for the player switch */}
@@ -318,7 +319,7 @@ const MovieScreen: React.FC = () => {
                                 {/* details */}
                                 {!lightsOffClicked && <Box sx={{
                                     width: { xs: "100%", lg: "100%" },
-                                    pl: { xs: .5, lg: 0 },
+                                    pl: { xs: 0, lg: 0 },
                                     mt: { xs: 2.5, md: 1, lg: 3 },
                                 }}>
                                     <MovieDetails props={movieDetails} />

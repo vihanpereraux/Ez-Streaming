@@ -18,7 +18,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                 fontWeight: 420,
                 fontFamily: 'Rubik',
                 color: 'white',
-                fontSize: { xs: 17, lg: 16 },
+                fontSize: { xs: 16, lg: 16 },
             }}>Cast of {contentTitle}</Typography>
 
             <Box sx={{ mt: { xs: 2, lg: 2 } }}>

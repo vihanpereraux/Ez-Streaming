@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { tvEpisodeCarouselConfig } from "../config/carousel-config";
+import Lottie from "lottie-react";
+import nowStreamingIcon from "../../public/icons/now-playing-icon.json";
 
 // MUI
 import { Box, Typography } from "@mui/material";
@@ -47,17 +49,19 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                     id="panel1-header">
                     <Typography sx={{
                         ml: -2,
-                        fontWeight: 450,
+                        fontWeight: 420,
                         fontFamily: 'Rubik',
                         color: 'white',
-                        fontSize: { xs: '18px', lg: '18px' },
+                        fontSize: { xs: 16, lg: 16 },
                     }} component="span">Seasons & Episodes &nbsp; <span style={{ opacity: .7, fontSize: 15 }}>({seasonDetails.length.toString()} Seasons)</span></Typography>
                 </AccordionSummary>
 
                 <AccordionDetails sx={{
                     background: 'rgba(0, 0, 0, 0.25)',
                     borderRadius: 3,
-                    pt: 2
+                    pt: 0,
+                    pl: 0,
+                    pr: 0
                 }}>
                     {/* selection */}
                     {seasonDetails.map((detail, index) => (
@@ -65,7 +69,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                             {/* title */}
                             <Typography sx={{
                                 color: 'white',
-                                fontSize: 15,
+                                fontSize: 13,
                                 fontFamily: 'Rubik',
                                 mb: 2,
                             }}>Season {detail.season} &nbsp; ⋅ &nbsp;<span style={{ opacity: .65 }}>{detail.numOfEpisodes} Episodes</span></Typography>
@@ -83,28 +87,14 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                     }}>No episodes yet</Typography>
                                 ) : (
                                     Array.from({ length: detail.numOfEpisodes }, (_, index) => (
-                                        <Box key={index}
-                                            sx={{
-                                                cursor: 'pointer',
-                                                textAlign: 'center',
-                                                textTransform: 'capitalize',
-                                                backgroundColor: 'rgba(0, 0, 0, .5)',
-                                                pt: 0,
-                                                pb: 1.5,
-                                                fontSize: 14,
-                                                fontFamily: 'Rubik',
-                                                fontWeight: 400,
-                                                width: '90%',
-                                                borderRadius: 2,
-                                                border: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ?
-                                                    "2px solid rgba(162, 255, 0, .35)"
-                                                    :
-                                                    "1px solid rgba(162, 255, 0, 0)",
-                                            }}
-                                            onClick={() => { manageUserSelection(detail.season, (index + 1)) }}>
-
+                                        <Box key={index} onClick={() => { manageUserSelection(detail.season, (index + 1)) }}>
                                             {/* still image */}
-                                            <Box sx={{ position: 'relative' }}>
+                                            <Box sx={{
+                                                width: '98%',
+                                                position: 'relative',
+                                                aspectRatio: 16 / 9,
+                                                cursor: 'pointer'
+                                            }}>
                                                 {!isThumbnailLoaded && (
                                                     <Box style={{
                                                         position: 'absolute',
@@ -120,48 +110,88 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                     }}><Box className="loading-spinner card-loading-spinner"></Box>
                                                     </Box>
                                                 )}
+                                                {/* shader */}
+                                                <Box sx={{
+                                                    position: 'absolute',
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    background: 'linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,0.45) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,.60) 100%)',
+                                                    zIndex: 1,
+                                                }}></Box>
                                                 <img
                                                     style={{
+                                                        position: 'absolute',
+                                                        left: 0,
+                                                        top: 0,
                                                         width: '100%',
-                                                        aspectRatio: '16/9',
+                                                        height: '100%',
                                                         objectFit: 'cover',
-                                                        borderRadius: 8,
-                                                        opacity: isThumbnailLoaded ? 1 : 0
+                                                        borderRadius: 6,
+                                                        opacity: isThumbnailLoaded ? 1 : 0,
+                                                        zIndex: 0
                                                     }}
                                                     onLoad={() => { setIsThumbnailLoaded(true); }}
                                                     src={detail.episodeDetails.stills[index] ? `https://image.tmdb.org/t/p/w300/${detail.episodeDetails.stills[index]}` : `https://i.ibb.co/1YCDW7pR/tv-not-availabe-yet.jpg`}
                                                     alt={`Preview for episode ${index + 1} in season ${detail.season}`} />
 
-                                                {/* episode number */}
-                                                <Typography sx={{
-                                                    fontSize: 13,
-                                                    mt: 1,
-                                                    fontWeight: 400,
-                                                    fontFamily: 'Rubik',
-                                                    color: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ?
-                                                        "#a2ff00"
-                                                        :
-                                                        "white",
-                                                }}>Episode {index + 1}</Typography>
+                                                {/* current epiosde indicator */}
+                                                {userSelection.season == detail.season && userSelection.episodeNumber == index + 1 && (
+                                                    <Box sx={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        position: 'absolute',
+                                                        left: 5,
+                                                        top: 0,
+                                                        zIndex: 2
+                                                    }}>
+                                                        <Lottie style={{ width: 25, paddingTop: 5 }} animationData={nowStreamingIcon} loop={true} />
+                                                        <Typography
+                                                            sx={{
+                                                                color: 'white',
+                                                                textTransform: 'capitalize',
+                                                                fontSize: { xs: 10, lg: 10 },
+                                                                fontWeight: { xs: 450, lg: 450 },
+                                                                fontFamily: 'Rubik',
+                                                                ml: .75,
+                                                                opacity: .9
+                                                            }}>Now watching
+                                                        </Typography>
+                                                    </Box>
+                                                )}
 
-                                                {/* episode name */}
-                                                <Typography sx={{
-                                                    fontSize: 12,
-                                                    mt: .5,
-                                                    fontFamily: 'Rubik',
-                                                    opacity: .6,
-                                                    color: "white"
-                                                }}>{detail.episodeDetails.names[index] === `Episode ${index + 1}` ? `Not availabe` : detail.episodeDetails.names[index]}</Typography>
+                                                {/* meta details */}
+                                                <Box sx={{
+                                                    position: 'absolute',
+                                                    width: '100%',
+                                                    bottom: 0,
+                                                    left: 0,
+                                                    zIndex: 2,
+                                                    pl: 1.25,
+                                                    pb: 1.55
+                                                }}>
+                                                    {/* episode number */}
+                                                    <Typography sx={{
+                                                        fontSize: 9,
+                                                        fontFamily: 'Rubik',
+                                                        opacity: .85,
+                                                        color: "white",
+                                                        fontWeight: 400,
+                                                    }}>EP {detail.episodeDetails.names[index] === `Episode ${index + 1}` ?
+                                                        `Not availabe` :
+                                                        index + 1 < 10 ? `0${index + 1}` : (index + 1)}
+                                                        &nbsp; ⋅&nbsp; {detail.episodeDetails.airDates[index] ? detail.episodeDetails.airDates[index] : "--"} &nbsp;
+                                                    </Typography>
 
-                                                {/* episode name */}
-                                                <Typography sx={{
-                                                    fontSize: 10,
-                                                    mt: .85,
-                                                    fontFamily: 'Rubik',
-                                                    opacity: .45,
-                                                    color: "white"
-                                                }}>{detail.episodeDetails.airDates[index] ? detail.episodeDetails.airDates[index] : "--"}</Typography>
-
+                                                    {/* episode name */}
+                                                    <Typography sx={{
+                                                        fontSize: { xs: 12, lg: 11 },
+                                                        fontFamily: 'Rubik',
+                                                        opacity: 1,
+                                                        fontWeight: 420,
+                                                        color: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ? "#a2ff00" : "white",
+                                                        mt: .25
+                                                    }}>{detail.episodeDetails.names[index] === `Episode ${index + 1}` ? `Not availabe` : detail.episodeDetails.names[index]}</Typography>
+                                                </Box>
                                             </Box>
                                         </Box>
                                     ))

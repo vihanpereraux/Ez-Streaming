@@ -134,7 +134,7 @@ export const getMoviesByProvider = async (arr: MoviesProps[], providerId: string
 // get tv shows by provider
 export const getTvShowsByProvider = async (arr: MoviesProps[], providerId: string) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&vote_count.gte=8.5&page=${Math.floor(Math.random() * 8) + 1}`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&vote_count.gte=8&page=${Math.floor(Math.random() * 4) + 1}&first_air_date_year=2024&include_adult=true`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr, 'tv');

@@ -63,7 +63,7 @@ const Games: React.FC = () => {
                                 fontFamily: "Rubik",
                                 textAlign: "center",
                                 fontWeight: 450,
-                                fontSize: 22
+                                fontSize: 20
                             }}>
                             Enjoy Free Online Games
                         </Typography>
@@ -76,7 +76,7 @@ const Games: React.FC = () => {
                                 mt: 2,
                                 textAlign: "center",
                                 fontWeight: 400,
-                                fontSize: 14,
+                                fontSize: 13,
                                 opacity: .75,
                                 pl: { sx: 5, lg: 30 },
                                 pr: { sx: 5, lg: 30 },
@@ -88,7 +88,7 @@ const Games: React.FC = () => {
                         </Typography>
 
                         {/* grid */}
-                        <Grid container spacing={2} justifyContent="center" sx={{ mt: 5 }}>
+                        <Grid container spacing={.75} justifyContent="center" sx={{ mt: 5 }}>
                             {[...games]
                                 .sort(() => Math.random() - 0.5)
                                 .map((game, index) => (
