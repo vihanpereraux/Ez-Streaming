@@ -41,6 +41,7 @@ const TVCarousel: React.FC<props> = ({ content, title, type }) => {
                                     original_name={item.original_name}
                                     id={item.id}
                                     poster_path={item.poster_path}
+                                    overview={item.overview}
                                     title={item.title}
                                     release_date={item.release_date}
                                     vote_average={item.vote_average}
