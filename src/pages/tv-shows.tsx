@@ -7,6 +7,7 @@ import { Box } from "@mui/material";
 import Navbar from "../components/navbar";
 import MovieCarousel from "../components/movie-carousel";
 import LoadingPreview from "../components/loading-preview";
+import TVCarousel from "../components/tv-carousel";
 
 // services
 import { fetchTvShowsInAllGenres } from "../services/tv-shows/fetchTvShows";
@@ -110,7 +111,7 @@ const TvShows: React.FC = () => {
                 <Box sx={{ pl: { xs: 2, lg: 3 }, pr: { xs: 2, lg: 3 }, pt: 0 }}>
                     {allTvShows.map((content, index) => (
                         <Box sx={{ mt: carouselSpacing }} key={index}>
-                            <MovieCarousel
+                            <TVCarousel
                                 type="tv"
                                 title={genreTitles[index]}
                                 content={content as MoviesProps[]}

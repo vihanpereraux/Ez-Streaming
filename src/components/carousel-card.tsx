@@ -158,7 +158,7 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                     zIndex: 2,
                     background: 'linear-gradient(to bottom, rgba(0,0,0,.9) 0%, rgba(0,0,0,0.50) 60%, rgba(0,0,0,0) 100%)',
                 }}>
-                    <Box sx={{ display: 'flex', pl: 1.75, pt: 1.75, pb: 6, alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', pl: 1.75, pt: 1.75, pb: 5.75, alignItems: 'center' }}>
                         <Box sx={{
                             height: 20,
                             width: 2.35,

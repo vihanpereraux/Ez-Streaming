@@ -6,7 +6,7 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export const getTvShowsByGenre = async (arr: MoviesProps[], id: string) => {
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=${id}&sort_by=popularity.desc&page=${Math.floor(Math.random() * 2) + 1}`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=${id}&sort_by=popularity.desc&vote_average.gte=7.5&page=${Math.floor(Math.random() * 8) + 1}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanTvDetails((data.results), arr);
@@ -24,7 +24,7 @@ const cleanTvDetails = (data: any[], arr: MoviesProps[],) => {
             id: item.id,
             original_language: item.original_language,
             popularity: item.popularity,
-            poster_path: item.poster_path ? `https://image.tmdb.org/t/p/w300${item.poster_path}` : `https://i.ibb.co/YTdfZHjX/no-preview.jpg`,
+            poster_path: item.poster_path ? `https://image.tmdb.org/t/p/original/${item.backdrop_path}` : `https://i.ibb.co/YTdfZHjX/no-preview.jpg`,
             overview: item.overview,
             release_date: item.release_date,
             vote_average: item.vote_average,
