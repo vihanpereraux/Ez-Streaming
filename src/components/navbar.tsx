@@ -20,10 +20,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavItemProps } from '../interfaces/props';
 const navButtonStylings = {
     textTransform: 'capitalize',
-    fontSize: 13,
+    fontSize: 11.5,
     fontFamily: 'Rubik',
-    fontWeight: 400,
-    ml: 0.45,
+    fontWeight: 380,
+    ml: .25,
     background: 'none'
 }
 interface Props { window?: () => Window; }
@@ -160,13 +160,13 @@ const Navbar: React.FC = (props: Props) => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                     >
-                        <img style={{ width: 125, cursor: 'pointer' }}
+                        <img style={{ width: 110, cursor: 'pointer' }}
                             src="/logo.png"
                             alt="Ez-Streaming-Logo"
                             onClick={() => { navigate('/') }} />
                     </Typography>
 
-                    {/* base nav -nav items */}
+                    {/* base nav - nav items */}
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item, index) => (
                             <Button key={index}

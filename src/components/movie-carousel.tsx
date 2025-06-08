@@ -44,7 +44,7 @@ const MovieCarousel: React.FC<props> = ({ content, title, type }) => {
                                     id={item.id}
                                     poster_path={item.poster_path}
                                     title={item.title}
-                                    // overview={item.overview}
+                                    overview={item.overview}
                                     release_date={item.release_date}
                                     vote_average={item.vote_average}
                                     first_air_date={item.first_air_date}
