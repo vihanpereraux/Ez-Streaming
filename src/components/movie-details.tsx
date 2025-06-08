@@ -27,10 +27,11 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
     return (
         <>
             <Box sx={{
-                bgcolor: 'rgb(16, 16, 16)',
-                p: 1.55,
+                bgcolor: 'rgb(16, 15, 15)',
+                p: 2,
                 borderRadius: 3,
             }}>
+                {/* title */}
                 <Typography sx={{
                     color: 'white',
                     textAlign: 'left',
@@ -43,7 +44,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
                 {/* other details */}
                 <span style={{
                     color: 'white',
-                    fontSize: window.innerWidth > 600 ? 12 : 11,
+                    fontSize: window.innerWidth > 600 ? 11 : 11,
                     display: "inline-flex",
                     alignItems: "center",
                     fontFamily: 'Rubik',
@@ -57,10 +58,11 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
 
                     {/* genre */}
                     &nbsp;&nbsp;{props.genres.map((genre, index) => (
-                        <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 12, marginRight: 6 }}>{genre.name}</span>
+                        <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 11, marginRight: 6 }}>{genre.name}</span>
                     ))}
 
-                    &nbsp;<span style={{ color: 'white', fontFamily: 'Rubik', fontSize: 12 }}>
+                    {/* run time */}
+                    &nbsp;<span style={{ color: 'white', fontFamily: 'Rubik', fontSize: 11 }}>
                         ⋅&nbsp; {props.runtime ? formatRuntime(props.runtime) : 'Duration not available'}
                     </span>
                 </span>
@@ -69,10 +71,10 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
                 <Typography
                     sx={{
                         fontFamily: 'Rubik',
-                        fontSize: { xs: 13.5, lg: 15 },
+                        fontSize: { xs: 13.5, lg: 13.5 },
                         lineHeight: 1.75,
-                        fontWeight: 400,
-                        mt: 2,
+                        fontWeight: 380,
+                        mt: 1.75,
                         color: 'white',
                         opacity: 0.9,
                     }}>{props.overview}</Typography>

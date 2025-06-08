@@ -3,6 +3,7 @@
 
 
 body {
+  padding-top: 50px;
   padding-bottom: 20px;
   font-family: 'Rubik';
   margin: 0;
@@ -81,7 +82,7 @@ body {
 
 /* carousel stylings */
 .poster {
-  transition: all .3s ease-in-out;
+  transition: all .25s ease-in-out;
 }
 
 ._movie_poster_container {

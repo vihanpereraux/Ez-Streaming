@@ -33,7 +33,7 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                             fontWeight: 420,
                             fontFamily: 'Rubik',
                             color: 'white',
-                            fontSize: { xs: 17, lg: 17.5 },
+                            fontSize: { xs: 17, lg: 16 },
                         }} component="span">Reviews & Critiques &nbsp; ·  &nbsp; <span style={{ opacity: .7, fontSize: 15 }}>
                                 {reviews.length.toString()} {reviews.length > 1 ? "Reviews" : "Review"}</span></Typography>
                     </AccordionSummary>
@@ -48,7 +48,7 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                             <Box key={index}
                                 sx={{
                                     color: 'white',
-                                    mt: { xs: -2, lg: -2 },
+                                    mt: { xs: -2, lg: -2.5 },
                                     mb: 4,
                                     bgcolor: 'rgb(16, 16, 16)',
                                     p: 2,
@@ -68,7 +68,7 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                                     variant="body2"
                                     sx={{
                                         fontFamily: 'Rubik',
-                                        fontSize: 12,
+                                        fontSize: 11,
                                         fontWeight: 400,
                                         mt: .55,
                                         mb: 1.25,
@@ -77,11 +77,12 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
 
                                 {/* review */}
                                 <Typography sx={{
-                                    fontSize: { xs: 13.5, lg: 14 },
                                     fontFamily: 'Rubik',
-                                    fontWeight: 400,
-                                    lineHeight: 1.7,
-                                    opacity: .9
+                                    fontSize: { xs: 13, lg: 13 },
+                                    lineHeight: 1.65,
+                                    fontWeight: 360,
+                                    color: 'white',
+                                    opacity: 0.85,
                                 }}
                                     component="span"
                                     dangerouslySetInnerHTML={{
@@ -94,10 +95,11 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                             </Box>
                         )) : (
                             <Typography sx={{
-                                fontSize: 14,
+                                fontSize: 13,
                                 fontFamily: 'Rubik',
                                 color: 'white',
-                                opacity: .75
+                                opacity: .75,
+                                textAlign: 'center'
                             }}>No reviews available</Typography>
                         )}
                     </AccordionDetails>

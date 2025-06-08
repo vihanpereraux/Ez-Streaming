@@ -18,10 +18,10 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                 fontWeight: 420,
                 fontFamily: 'Rubik',
                 color: 'white',
-                fontSize: { xs: 17, lg: 17.5 },
+                fontSize: { xs: 17, lg: 16 },
             }}>Cast of {contentTitle}</Typography>
 
-            <Box sx={{ mt: { xs: 2, lg: 2.5 } }}>
+            <Box sx={{ mt: { xs: 2, lg: 2 } }}>
                 <Carousel responsive={castCarouselConfig} infinite={false}>
                     {castDetails.length > 0 ? (
                         [...castDetails].map((cast, index) => (
@@ -29,34 +29,45 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                                 sx={{
                                     bgcolor: 'rgb(16, 16, 16)',
                                     height: 100,
-                                    borderRadius: 3,
+                                    borderRadius: 2,
                                     p: 1.2,
                                     width: '98%',
                                     display: 'flex',
                                     alignItems: 'center',
                                 }}>
                                 {/* cast image */}
-                                <img style={{
-                                    width: '28%',
-                                    height: '100%',
-                                    objectFit: 'cover',
-                                    borderRadius: 8,
-                                    opacity: 1,
-                                    aspectRatio: 1
-                                }} src={`https://image.tmdb.org/t/p/w300/${cast.profile_path}.jpg`} alt="" />
-
+                                <Box sx={{
+                                    width: 75,
+                                    aspectRatio: 1,
+                                    position: 'relative'
+                                }}>
+                                    <img style={{
+                                        position: 'absolute',
+                                        left: 0,
+                                        top: 0,
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover',
+                                        borderRadius: 8
+                                    }}
+                                        src={`https://image.tmdb.org/t/p/w300/${cast.profile_path}.jpg`}
+                                        alt={`${cast.name} as ${cast.character}}`}
+                                        onError={(e) => {
+                                            (e.currentTarget as HTMLImageElement).src = 'https://media.istockphoto.com/id/1130424979/vector/person-gray-photo-placeholder-man.jpg?s=612x612&w=0&k=20&c=Oc5r-nuA8FxnBBFSa6azLq5bWDyPZlKNu-8qFrUDy5I=';
+                                        }} />
+                                </Box>
                                 <Box sx={{ ml: 1.75 }}>
                                     <Typography sx={{
-                                        fontSize: 12,
+                                        fontSize: 11,
                                         fontFamily: 'Rubik',
                                         mt: .55,
-                                        opacity: .8,
+                                        opacity: .85,
                                         color: 'white',
-                                        fontWeight: 400
+                                        fontWeight: 380
                                     }}>{cast.name && cast.name.length > 25 ? cast.name.slice(0, 13) + ' ..' : cast.name} &nbsp;as</Typography>
 
                                     <Typography sx={{
-                                        fontSize: 13.5,
+                                        fontSize: 12,
                                         fontFamily: 'Rubik',
                                         fontWeight: 420,
                                         mt: .25,
@@ -68,7 +79,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                                             window.open(`https://www.google.com/search?q=${encodeURIComponent(cast.name + ' ' + ' reddit')}`, '_blank');
                                         }}
                                         sx={{
-                                            fontSize: 12.5,
+                                            fontSize: 11,
                                             fontFamily: 'Rubik',
                                             fontWeight: 420,
                                             mt: 1,

@@ -268,8 +268,8 @@ const MovieScreen: React.FC = () => {
                                                         )}
                                                         <Typography sx={{
                                                             fontFamily: 'Rubik',
-                                                            fontWeight: { xs: 400, md: 420, lg: 420 },
-                                                            fontSize: { xs: 14, md: 14, lg: 13 },
+                                                            fontWeight: { xs: 400, md: 400, lg: 400 },
+                                                            fontSize: { xs: 13, md: 13, lg: 13 },
                                                             ml: 1.5
                                                         }}>{provider.displayName}</Typography>
                                                     </Box>
@@ -282,11 +282,11 @@ const MovieScreen: React.FC = () => {
                                             display: { xs: 'none', md: 'block' },
                                             color: '#a2ff00',
                                             fontFamily: 'Rubik',
-                                            fontSize: 13,
+                                            fontSize: 12,
                                             textTransform: 'capitalize',
                                             backgroundColor: 'balck',
                                             borderRadius: 2,
-                                            fontWeight: 420
+                                            fontWeight: 380
                                         }} onClick={manageLights}>
                                             {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
                                         </Button>
@@ -345,7 +345,7 @@ const MovieScreen: React.FC = () => {
                             </Box>)}
 
                             {/* related content */}
-                            {!lightsOffClicked ? (<Box sx={{ mt: reviews.length > 0 ? 1 : 5, mb: 12 }}>
+                            {!lightsOffClicked ? (<Box sx={{ mt: reviews.length > 0 ? 4 : 5, mb: 12 }}>
                                 {relatedContent.length > 0 ? (
                                     <MovieCarousel
                                         type="movie"

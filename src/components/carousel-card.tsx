@@ -49,18 +49,20 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                         </Box>
                     )}
 
-                    <Lottie className="play-icon"
-                        onClick={navigateToScreen}
-                        style={{
-                            opacity: 0,
-                            width: 85,
-                            position: 'absolute',
-                            left: '50%',
-                            top: '55%',
-                            transform: 'translate(-50%, -50%)',
-                            zIndex: 1,
-                            cursor: 'pointer'
-                        }} animationData={playIcon} loop={true} />
+                    {window.innerWidth > 1200 && (
+                        <Lottie className="play-icon"
+                            onClick={navigateToScreen}
+                            style={{
+                                opacity: 0,
+                                width: 85,
+                                position: 'absolute',
+                                left: '50%',
+                                top: '55%',
+                                transform: 'translate(-50%, -50%)',
+                                zIndex: 1,
+                                cursor: 'pointer'
+                            }} animationData={playIcon} loop={true} />
+                    )}
 
                     <img
                         loading="lazy"

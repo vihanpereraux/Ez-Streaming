@@ -123,7 +123,7 @@ const Navbar: React.FC = (props: Props) => {
             <AppBar component="nav"
                 sx={{
                     backgroundColor: 'rgba(10, 10, 10, 0.65)',
-                    position: 'relative',
+                    // position: 'relative',
                     backdropFilter: 'blur(10px)',
                     WebkitBackdropFilter: 'blur(10px)',
                     boxShadow: 'none'

@@ -34,7 +34,7 @@ const MovieCarousel: React.FC<props> = ({ content, title, type }) => {
                 }}>
                 {title}</Typography>
 
-            <Box sx={{ mt: 1.5 }}>
+            <Box sx={{ mt: 1.25 }}>
                 <Carousel responsive={movieCarouselConfig} infinite={false} slidesToSlide={2}>
                     {content.map((item, index) => (
                         <div key={index}>

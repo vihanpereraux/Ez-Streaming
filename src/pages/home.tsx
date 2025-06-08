@@ -24,7 +24,7 @@ import {
 // props
 import { MoviesProps } from "../interfaces/props";
 
-const carouselSpacing = 3.25;
+const carouselSpacing = 3.5;
 
 const Home: React.FC = () => {
     const [bannerContent, setBannerContent] = useState<MoviesProps[]>();
@@ -149,24 +149,24 @@ const Home: React.FC = () => {
                             { type: "movie", title: "Now Streaming Movies", content: upcommingMovies! },
 
                             { type: "tv", title: "TV Shows From Apple TV", content: appleTvShows! },
-                            { type: "movie", title: "Apple TV Movies", content: appleTvMovies! },
+                            { type: "movie", title: "Movies From Apple TV", content: appleTvMovies! },
 
                             { type: "tv", title: "TV Shows From Netflix", content: netflixShows! },
-                            { type: "movie", title: "Netflix Movies", content: netflixMovies! },
+                            { type: "movie", title: "Movies From Netflix", content: netflixMovies! },
 
                             { type: "tv", title: "TV Shows From Amazon Prime", content: amazonPrimeShows! },
-                            { type: "movie", title: "Family Movies", content: familyMovies! },
+                            { type: "movie", title: "Movies From Amazon Prime", content: amazonPrimeMovies! },
 
                             { type: "tv", title: "TV Shows from Hulu", content: huluShows! },
                             { type: "movie", title: "Hulu Movies", content: huluMovies! },
 
+                            { type: "movie", title: "Family Movies", content: familyMovies! },
+
                             { type: "movie", title: "Horror Movies", content: horrorMovies! },
-
-                            { type: "movie", title: "Amazon Prime Movies", content: amazonPrimeMovies! },
-
+                            
                             { type: "movie", title: "Romance Movies", content: romanceMovies! },
 
-                            { type: "movie", title: "Top Rated Movies", content: topRatedMovies! }
+                            { type: "movie", title: "All Time Favourites", content: topRatedMovies! }
                         ].map((carousel, index) => (
                             <Box sx={{ mt: carouselSpacing }} key={index}>
                                 {carousel.type == "movie" ? (
