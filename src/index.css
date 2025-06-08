@@ -89,12 +89,25 @@ body {
 }
 
 ._movie_poster_container:hover .poster {
+  opacity: .65 !important;
   transform: scale(1.1) !important;
   transform-origin: 50% 50%;
 }
 
 ._tv_poster_container {
   aspect-ratio: 16 / 10;
+}
+
+.play-icon {
+  transition: all .3s ease-in-out;
+}
+
+._movie_poster_container:hover .play-icon {
+  opacity: 1 !important;
+}
+
+._tv_poster_container:hover .play-icon {
+  opacity: 1 !important;
 }
 
 ._tv_poster_container:hover .poster {

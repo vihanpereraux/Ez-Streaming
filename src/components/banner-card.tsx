@@ -45,19 +45,19 @@ const BannerCard: React.FC<BannerCardProps> = ({ poster_path, original_name, fir
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: { xs: '18px', lg: '28px' },
+                            fontSize: { xs: '18px', lg: '22px' },
                             fontFamily: 'Rubik',
                             textTransform: 'capitalize',
-                            fontWeight: { xs: '400', lg: '450' },
+                            fontWeight: { xs: '400', lg: '420' },
                             textAlign: 'center'
                         }}>{original_name}</Typography>
 
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: { xs: '12px', lg: '14px' },
+                            fontSize: { xs: 12, lg: 12 },
                             fontFamily: 'Rubik',
-                            mt: { xs: .85, lg: 1.25 },
+                            mt: { xs: .85, lg: 1.2 },
                             textAlign: 'center',
                             fontWeight: 400
                         }}>
@@ -79,7 +79,8 @@ const BannerCard: React.FC<BannerCardProps> = ({ poster_path, original_name, fir
                             background: '#1a1a1a',
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
+                            borderRadius: 12,    
                         }}><div className="loading-spinner banner-loading-spinner"></div>
                     </div>
                 )}
@@ -87,7 +88,7 @@ const BannerCard: React.FC<BannerCardProps> = ({ poster_path, original_name, fir
                     loading="lazy"
                     style={{
                         width: '100%',
-                        borderRadius: 16,
+                        borderRadius: 12,
                         objectFit: 'cover',
                         height: '100%',
                         opacity: imageLoaded ? 1 : 0,

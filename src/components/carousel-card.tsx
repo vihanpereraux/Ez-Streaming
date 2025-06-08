@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
+import Lottie from "lottie-react";
+import playIcon from "../../public/icons/play-icon.json";
 
 // MUI
 import { Box, Typography } from "@mui/material";
@@ -47,6 +49,19 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                         </Box>
                     )}
 
+                    <Lottie className="play-icon"
+                        onClick={navigateToScreen}
+                        style={{
+                            opacity: 0,
+                            width: 85,
+                            position: 'absolute',
+                            left: '50%',
+                            top: '55%',
+                            transform: 'translate(-50%, -50%)',
+                            zIndex: 1,
+                            cursor: 'pointer'
+                        }} animationData={playIcon} loop={true} />
+
                     <img
                         loading="lazy"
                         className="poster"
@@ -79,8 +94,8 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                             className="_movie_title"
                             sx={{
                                 color: 'white',
-                                fontSize: { xs: 13, md: 14, lg: 14 },
-                                fontWeight: 400,
+                                fontSize: { xs: 13, md: 13, lg: 13 },
+                                fontWeight: 380,
                                 fontFamily: 'Rubik',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
@@ -91,11 +106,11 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
 
                         <Typography sx={{
                             color: '#a2ff00',
-                            fontSize: { xs: 11, lg: 11 },
+                            fontSize: { xs: 11, lg: 10 },
                             fontWeight: 420,
                             fontFamily: 'Rubik',
                             opacity: .9,
-                            mr: 1.5,
+                            mr: 1.25,
                             textTransform: 'capitalize'
                         }}>{type == "movie" ? "movie" : "TV Show"}</Typography>
                     </Box>
@@ -106,26 +121,26 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                     }}>
                         <Typography sx={{
                             color: 'white',
-                            fontSize: { xs: 10, lg: 11.5 },
+                            fontSize: { xs: 10, lg: 10 },
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8
                         }}>{type === "movie" ? String(release_date).length > 0 ? String(release_date).slice(0, 4) : "--"
                             :
                             String(first_air_date).length > 0 ? String(first_air_date).slice(0, 4) : "--"}
-                            &nbsp; ·
+                            &nbsp;&nbsp; ·
                         </Typography>
 
                         <Typography sx={{
                             display: "inline-flex",
                             alignItems: "center",
                             color: "white",
-                            fontSize: {xs: 10, lg: 11},
+                            fontSize: { xs: 10, lg: 10 },
                             fontWeight: 400,
                             fontFamily: "Rubik",
                             opacity: 0.8,
                         }}>
-                            &nbsp;&nbsp; <FaStar style={{ color: "#a2ff00", marginRight: 5, fontSize: 11 }} />
+                            &nbsp;&nbsp;&nbsp; <FaStar style={{ color: "#a2ff00", marginRight: 5, fontSize: 10 }} />
                             <span style={{ letterSpacing: 2 }}>{vote_average ? (Math.round(vote_average * 10) / 10) : "--"}</span>
                         </Typography>
                     </Box>
@@ -139,12 +154,12 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                     width: '100%',
                     pointerEvents: 'none',
                     zIndex: 2,
-                    background: 'linear-gradient(to bottom, rgba(0,0,0,.85) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0) 100%)',
+                    background: 'linear-gradient(to bottom, rgba(0,0,0,.9) 0%, rgba(0,0,0,0.50) 60%, rgba(0,0,0,0) 100%)',
                 }}>
-                    <Box sx={{ display: 'flex', pl: 1.65, pt: 1.75, pb: 5, alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', pl: 1.75, pt: 1.75, pb: 6, alignItems: 'center' }}>
                         <Box sx={{
                             height: 20,
-                            width: 2.25,
+                            width: 2.35,
                             bgcolor: '#a2ff00',
                             mr: .75,
                             borderRadius: 10,
