@@ -205,6 +205,10 @@ body {
   transition: all .15s linear;
 }
 
+.game-wrapper:hover .play-icon {
+  opacity: 1 !important;
+}
+
 /* previously watched - watch history page  */
 .watch_history_wrapper .Mui-selected {
   text-decoration: none !important;
