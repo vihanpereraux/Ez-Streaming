@@ -249,12 +249,11 @@ const MovieScreen: React.FC = () => {
                                         border: 'none',
                                         borderColor: 'divider',
                                         display: 'flex',
-                                        justifyContent: {xs: 'left', lg: 'center'}
+                                        justifyContent: {xs: 'center', lg: 'center'}
                                     }}>
                                         <Tabs sx={{
                                             opacity: !lightsOffClicked ? 1 : 0,
                                             pointerEvents: !lightsOffClicked ? "auto" : "none",
-                                            // border: '1px solid red'
                                         }}
                                             value={value}
                                             onChange={handleChange}
@@ -263,15 +262,15 @@ const MovieScreen: React.FC = () => {
                                                 <Tab sx={tabStyles} label={
                                                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                                         {provider.premium ? (
-                                                            <Lottie style={{ width: 16 }} animationData={premiumIcon} loop={true} />
+                                                            <Lottie style={{ width: 15 }} animationData={premiumIcon} loop={true} />
                                                         ) : (
-                                                            <Lottie style={{ width: 18 }} animationData={serverIcon} loop={true} />
+                                                            <Lottie style={{ width: 15 }} animationData={serverIcon} loop={true} />
                                                         )}
                                                         <Typography sx={{
                                                             fontFamily: 'Rubik',
-                                                            fontWeight: { xs: 400, md: 400, lg: 400 },
-                                                            fontSize: { xs: 13, md: 13, lg: 13 },
-                                                            ml: 1.5
+                                                            fontWeight: { xs: 400, md: 380, lg: 380 },
+                                                            fontSize: { xs: 13, md: 12, lg: 12 },
+                                                            ml: 1.15
                                                         }}>{provider.displayName}</Typography>
                                                     </Box>
                                                 } {...a11yProps(index)} />

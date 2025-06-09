@@ -90,9 +90,9 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                         <Box key={index} onClick={() => { manageUserSelection(detail.season, (index + 1)) }}>
                                             {/* still image */}
                                             <Box sx={{
-                                                width: '98%',
+                                                width: '98.25%',
                                                 position: 'relative',
-                                                aspectRatio: 16 / 9,
+                                                aspectRatio: 16 / 10,
                                                 cursor: 'pointer'
                                             }}>
                                                 {!isThumbnailLoaded && (
@@ -101,7 +101,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                         top: 0,
                                                         left: 0,
                                                         width: '100%',
-                                                        aspectRatio: '16/9',
+                                                        aspectRatio: 16 / 10,
                                                         background: '#1a1a1a',
                                                         display: 'flex',
                                                         alignItems: 'center',
@@ -115,7 +115,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                     position: 'absolute',
                                                     width: '100%',
                                                     height: '100%',
-                                                    background: 'linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,0.45) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,.60) 100%)',
+                                                    background: 'linear-gradient(to top, rgba(0,0,0,.95) 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0) 70%, rgba(0,0,0,.60) 100%)',
                                                     zIndex: 1,
                                                 }}></Box>
                                                 <img
@@ -152,7 +152,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                                 fontSize: { xs: 10, lg: 10 },
                                                                 fontWeight: { xs: 450, lg: 450 },
                                                                 fontFamily: 'Rubik',
-                                                                ml: .75,
+                                                                ml: .35,
                                                                 opacity: .9
                                                             }}>Now watching
                                                         </Typography>
@@ -176,7 +176,8 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                         opacity: .85,
                                                         color: "white",
                                                         fontWeight: 400,
-                                                    }}>EP {detail.episodeDetails.names[index] === `Episode ${index + 1}` ?
+                                                    }}> SS {detail.season < 10 ? `0${detail.season}` : detail.season} &nbsp;⋅&nbsp; 
+                                                        EP {detail.episodeDetails.names[index] === `Episode ${index + 1}` ?
                                                         `Not availabe` :
                                                         index + 1 < 10 ? `0${index + 1}` : (index + 1)}
                                                         &nbsp; ⋅&nbsp; {detail.episodeDetails.airDates[index] ? detail.episodeDetails.airDates[index] : "--"} &nbsp;

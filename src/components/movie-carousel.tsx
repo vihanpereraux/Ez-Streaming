@@ -30,9 +30,8 @@ const MovieCarousel: React.FC<props> = ({ content, title, type }) => {
                     fontWeight: 420,
                     fontFamily: 'Rubik',
                     color: 'white',
-                    fontSize: { xs: 16, lg: 16 },
-                }}>
-                {title}</Typography>
+                    fontSize: { xs: 15, lg: 14.5 },
+                }}>{title}</Typography>
 
             <Box sx={{ mt: 1.25 }}>
                 <Carousel infinite={false} slidesToSlide={2} responsive={movieCarouselConfig}>
@@ -40,7 +39,7 @@ const MovieCarousel: React.FC<props> = ({ content, title, type }) => {
                         <div key={index}>
                             <div className="_carousel_card">
                                 <CarosuelCard
-                                    original_name={item.original_name}
+                                    original_name={item.title}
                                     id={item.id}
                                     poster_path={item.poster_path}
                                     title={item.title}

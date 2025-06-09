@@ -63,7 +63,6 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                                 cursor: 'pointer'
                             }} animationData={playIcon} loop={true} />
                     )}
-
                     <img
                         loading="lazy"
                         className="poster"
@@ -81,7 +80,6 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                         alt={title} />
                 </Box>
 
-                {/* metadata */}
                 <Box sx={{
                     mt: 1.75,
                     alignItems: 'flex-end',
@@ -175,7 +173,7 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                                 fontFamily: 'Rubik',
                                 lineHeight: 1.25,
                                 opacity: .9
-                            }}>Steam now <br /> on Ez Streaming
+                            }}>Stream now <br /> on Ez Streaming
                         </Typography>
                     </Box>
                 </Box>

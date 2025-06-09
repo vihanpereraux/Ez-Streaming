@@ -120,8 +120,9 @@ export const getSearchResults = async (query: string, type: string, arr: MoviesP
 
 // get movies by provider
 export const getMoviesByProvider = async (arr: MoviesProps[], providerId: string) => {
+    const releaseYearArray: string[] = ["2020", "2021", "2022", "2023", "2024"];
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc&vote_count.gte=7.5&page=${Math.floor(Math.random() * 8) + 1}`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&include_adult=true&with_watch_providers=${providerId}&watch_region=US&sort_by=popularity.desc&vote_count.gte=7.5&page=${Math.floor(Math.random() * 6) + 1}&primary_release_year=${releaseYearArray[Math.floor(Math.random() * releaseYearArray.length) + 1]}`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr, 'movie');
@@ -133,8 +134,9 @@ export const getMoviesByProvider = async (arr: MoviesProps[], providerId: string
 
 // get tv shows by provider
 export const getTvShowsByProvider = async (arr: MoviesProps[], providerId: string) => {
+    const airYearArray: string[] = ["2020", "2021", "2022", "2023", "2024"];
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&vote_count.gte=8&page=${Math.floor(Math.random() * 4) + 1}&first_air_date_year=2024&include_adult=true`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&vote_count.gte=8&page=${Math.floor(Math.random() * 4) + 1}&first_air_date_year=${airYearArray[Math.floor(Math.random() * airYearArray.length) + 1]}&include_adult=true`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr, 'tv');
@@ -147,7 +149,7 @@ export const getTvShowsByProvider = async (arr: MoviesProps[], providerId: strin
 const cleanMovieDetails = (data: any[], arr: MoviesProps[], type: string) => {
     data.map((item: any) => {
         arr.push({
-            title: item.original_title,
+            title: type == 'movie' ? item.title	 : item.name,
             backdrop_path: 'https://image.tmdb.org/t/p/original' + item.backdrop_path,
             id: item.id,
             original_language: item.original_language,

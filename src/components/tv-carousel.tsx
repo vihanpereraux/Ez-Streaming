@@ -29,7 +29,7 @@ const TVCarousel: React.FC<props> = ({ content, title, type }) => {
                 fontWeight: 420,
                 fontFamily: 'Rubik',
                 color: 'white',
-                fontSize: { xs: 16, lg: 16 },
+                fontSize: { xs: 15, lg: 14.5 },
             }}>{title}</Typography>
 
             <Box sx={{ mt: 1.5 }}>

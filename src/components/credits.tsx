@@ -67,7 +67,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                                     }}>{cast.name && cast.name.length > 25 ? cast.name.slice(0, 13) + ' ..' : cast.name} &nbsp;as</Typography>
 
                                     <Typography sx={{
-                                        fontSize: 12,
+                                        fontSize: 11,
                                         fontFamily: 'Rubik',
                                         fontWeight: 420,
                                         mt: .25,
@@ -79,7 +79,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                                             window.open(`https://www.google.com/search?q=${encodeURIComponent(cast.name + ' ' + ' reddit')}`, '_blank');
                                         }}
                                         sx={{
-                                            fontSize: 11,
+                                            fontSize: 10.5,
                                             fontFamily: 'Rubik',
                                             fontWeight: 420,
                                             mt: 1,

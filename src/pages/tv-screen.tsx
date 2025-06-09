@@ -7,7 +7,7 @@ import serverIcon from "../../public/icons/server-icon.json";
 import premiumIcon from "../../public/icons/premium-icon.json";
 
 // MUI
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
@@ -262,7 +262,7 @@ const TvScreen: React.FC = () => {
             watchedTvShowsSnaphot.push(
                 {
                     original_name: details.original_name,
-                    poster_path: details.poster_path,
+                    poster_path: details.backdrop_path,
                     id: parseInt(tvId),
                     title: details.title,
                     overview: details.overview,
@@ -298,7 +298,7 @@ const TvScreen: React.FC = () => {
                                     borderBottom: 1,
                                     borderColor: 'divider',
                                     display: 'flex',
-                                    justifyContent: 'space-between'
+                                    justifyContent: { xs: 'center', lg: 'center' }
                                 }}>
                                     <Tabs
                                         sx={{
@@ -320,7 +320,7 @@ const TvScreen: React.FC = () => {
                                                     <Typography sx={{
                                                         fontFamily: 'Rubik',
                                                         fontWeight: { xs: 400, md: 400, lg: 400 },
-                                                        fontSize: { xs: 13, md: 13, lg: 13 },
+                                                        fontSize: { xs: 13, md: 12, lg: 12 },
                                                         ml: 1.5
                                                     }}>{provider.displayName}</Typography>
                                                 </Box>
@@ -329,7 +329,7 @@ const TvScreen: React.FC = () => {
                                     </Tabs>
 
                                     {/* toggle */}
-                                    <Button sx={{
+                                    {/* <Button sx={{
                                         display: { xs: 'none', md: 'block' },
                                         color: '#a2ff00',
                                         fontFamily: 'Rubik',
@@ -340,7 +340,7 @@ const TvScreen: React.FC = () => {
                                         fontWeight: 420
                                     }} onClick={manageLights}>
                                         {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
-                                    </Button>
+                                    </Button> */}
                                 </Box>
 
                                 {/* note for the player switch */}

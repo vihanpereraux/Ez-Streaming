@@ -62,8 +62,8 @@ const Search: React.FC = () => {
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: 18,
-                            fontWeight: 420,
+                            fontSize: 16,
+                            fontWeight: 400,
                             fontFamily: 'Rubik',
                             textAlign: 'center'
                         }}> Search your favourite Movies & TV Shows
@@ -121,8 +121,8 @@ const Search: React.FC = () => {
                                 borderRadius: 1.8,
                                 fontFamily: 'Rubik',
                                 textTransform: 'capitalize',
-                                fontWeight: 450,
-                                fontSize: 15,
+                                fontWeight: 420,
+                                fontSize: 14,
                                 pl: 3,
                                 pr: 3,
                                 ml: { xs: 0, sm: 1 },

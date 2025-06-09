@@ -10,6 +10,7 @@ import { Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 // props
 interface TabPanelProps {
@@ -20,6 +21,18 @@ interface TabPanelProps {
 import { CarosuelCardProps } from '../interfaces/props';
 interface EmptyNoteProps {
     type: "movies" | "tv shows"
+}
+
+const getSearchBarWidth = (screenWidth: number) => {
+    if (0 < screenWidth && screenWidth < 600) {
+        return '100%'
+    }
+    else if (600 < screenWidth && screenWidth < 1200) {
+        return '60%'
+    }
+    else {
+        return '30%'
+    }
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -49,7 +62,8 @@ const tabStyles = {
     color: 'white',
     fontFamily: 'Rubik',
     textTransform: 'capitalize',
-    fontWeight: 450,
+    fontWeight: 400,
+    fontSize: 13,
     textDecoration: 'none'
 }
 
@@ -169,68 +183,60 @@ const WatchHistory: React.FC = () => {
                                 onChange={handleMoviesQuickSearch}
                                 style={{
                                     display: JSON.parse(localStorage.getItem('watchedMovies') || '[]').length > 0 ? "block" : "none",
-                                    width: window.innerWidth < 1024 ? "100%" : "30%",
+                                    width: getSearchBarWidth(window.innerWidth),
                                     height: 50,
                                     fontFamily: 'Rubik',
                                     borderRadius: 8,
                                     border: 'none',
                                     backgroundColor: 'rgb(30, 30, 30)',
                                     color: 'white',
-                                    fontSize: 14,
+                                    fontSize: 13.5,
                                     marginTop: 30,
-                                    marginBottom: 20
+                                    marginBottom: 25
                                 }} placeholder="Search already watched movies" type="text" />
                         </Box>
 
-                        <Box sx={{
-                            position: 'relative',
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            width: { xs: 'auto', lg: '100%' },
-                            gap: '0px',
-                            pl: { xs: 2, lg: 0 },
-                            pr: { xs: 2, lg: 0 }
-                        }}>
-                            {watchedMovies.length > 0 ? (watchedMovies.map((movie, index) => (
-                                <Box className="watched_movies_wrapper"
-                                    sx={{
-                                        width: { xs: 'calc(50% - 10px)', sm: 'calc(33.3% - 10px)', md: 'calc(20% - 10px)', lg: 'calc(16.66% - 10px)', xl: 'calc(16.6% - 10px)' },
-                                    }} key={index}>
-                                    <Box sx={{ mb: 4 }}>
-                                        <WatchedCard
-                                            id={movie.id}
-                                            overview={movie.overview}
-                                            vote_average={movie.vote_average}
-                                            release_date={movie.release_date}
-                                            poster_path={movie.poster_path ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}` : `https://i.ibb.co/YTdfZHjX/no-preview.jpg`}
-                                            title={movie.type === 'movie' ? movie.title : movie.original_name}
-                                            original_name={movie.original_name}
-                                            first_air_date={movie.first_air_date}
-                                            type={movie.type} />
+                        {/* grid */}
+                        <Box sx={{ flexGrow: 1 }}>
+                            <Grid container spacing={0}>
+                                {watchedMovies.length > 0 ? watchedMovies.map((movie, index) => (
+                                    <Grid xs={6} sm={4} md={3} lg={2} key={index}>
+                                        <Box sx={{
+                                            mb: 2.75,
+                                            position: 'relative',
+                                        }}>
+                                            <WatchedCard
+                                                id={movie.id}
+                                                overview={movie.overview}
+                                                vote_average={movie.vote_average}
+                                                release_date={movie.release_date}
+                                                poster_path={movie.poster_path ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}` : `https://i.ibb.co/YTdfZHjX/no-preview.jpg`}
+                                                title={movie.type === 'movie' ? movie.title : movie.original_name}
+                                                original_name={movie.original_name}
+                                                first_air_date={movie.first_air_date}
+                                                type={movie.type} />
 
-                                        <Button
-                                            className='watched_items_remove_button'
-                                            sx={{
-                                                color: 'black',
-                                                fontFamily: 'Rubik',
-                                                fontSize: 30,
-                                                textTransform: 'capitalize',
-                                                backgroundColor: '#a2ff00',
-                                                borderRadius: '50%',
-                                                aspectRatio: 1,
-                                                scale: .5,
-                                                fontWeight: 600,
-                                                position: 'absolute',
-                                                top: 15,
-                                                right: 0
-                                            }} onClick={() => { removeItemsFromWatchHistory("movie", index) }}>✘</Button>
-                                    </Box>
-                                </Box>
-
-                            ))
-                            ) : (
-                                <EmptyNote type="movies" />
-                            )}
+                                            <Button
+                                                className='watched_items_remove_button'
+                                                sx={{
+                                                    color: 'black',
+                                                    fontFamily: 'Rubik',
+                                                    fontSize: 30,
+                                                    textTransform: 'capitalize',
+                                                    backgroundColor: '#a2ff00',
+                                                    borderRadius: '50%',
+                                                    aspectRatio: 1,
+                                                    scale: .4,
+                                                    fontWeight: 600,
+                                                    position: 'absolute',
+                                                    top: -8,
+                                                    right: -8,
+                                                    zIndex: 2
+                                                }} onClick={() => { removeItemsFromWatchHistory("movie", index) }}>✘</Button>
+                                        </Box>
+                                    </Grid>
+                                )) : (<EmptyNote type="movies" />)}
+                            </Grid>
                         </Box>
                     </CustomTabPanel>
 
@@ -246,70 +252,60 @@ const WatchHistory: React.FC = () => {
                                 onChange={handleTvShowsQuickSearch}
                                 style={{
                                     display: JSON.parse(localStorage.getItem('watchedTvShows') || '[]').length > 0 ? "block" : "none",
-                                    width: window.innerWidth < 1024 ? "100%" : "30%",
+                                    width: getSearchBarWidth(window.innerWidth),
                                     height: 50,
                                     fontFamily: 'Rubik',
                                     borderRadius: 8,
                                     border: 'none',
                                     backgroundColor: 'rgb(30, 30, 30)',
                                     color: 'white',
-                                    fontSize: 14,
+                                    fontSize: 13.5,
                                     marginTop: 30,
                                     marginBottom: 20
                                 }} placeholder="Search already watched tv shows" type="text" />
                         </Box>
 
-                        <Box sx={{
-                            position: 'relative',
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            width: { xs: 'auto', lg: '100%' },
-                            gap: '0px',
-                            pl: { xs: 2, lg: 0 },
-                            pr: { xs: 2, lg: 0 }
-                        }}>
-                            {watchedTvShows.length > 0 ? (
-                                watchedTvShows.map((movie, index) => (
-                                    <Box className="watched_movies_wrapper"
-                                        sx={{
-                                            width: { xs: 'calc(50% - 10px)', sm: 'calc(33.3% - 10px)', md: 'calc(20% - 10px)', lg: 'calc(16.66% - 10px)', xl: 'calc(16.6% - 10px)' },
-                                        }}
-                                        key={index}>
-                                        <Box sx={{ mb: 2 }}></Box>
+                        {/* grid */}
+                        <Box sx={{ flexGrow: 1 }}>
+                            <Grid container spacing={0}>
+                                {watchedTvShows.length > 0 ? watchedTvShows.map((movie, index) => (
+                                    <Grid xs={12} sm={4} md={3} lg={3} key={index}>
+                                        <Box sx={{
+                                            mb: 2.75,
+                                            position: 'relative',
+                                        }}>
+                                            <WatchedCard
+                                                id={movie.id}
+                                                overview={movie.overview}
+                                                vote_average={movie.vote_average}
+                                                release_date={movie.release_date}
+                                                poster_path={movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}` : `https://i.ibb.co/YTdfZHjX/no-preview.jpg`}
+                                                title={movie.type === 'movie' ? movie.title : movie.original_name}
+                                                original_name={movie.original_name}
+                                                first_air_date={movie.first_air_date}
+                                                type={movie.type} />
 
-                                        <WatchedCard
-                                            id={movie.id}
-                                            overview={movie.overview}
-                                            vote_average={movie.vote_average}
-                                            release_date={movie.release_date}
-                                            poster_path={movie.poster_path ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}` : `https://i.ibb.co/YTdfZHjX/no-preview.jpg`}
-                                            title={movie.type === 'movie' ? movie.title : movie.original_name}
-                                            original_name={movie.original_name}
-                                            first_air_date={movie.first_air_date}
-                                            type={movie.type} />
-
-                                        <Button
-                                            className='watched_items_remove_button'
-                                            sx={{
-                                                color: 'black',
-                                                fontFamily: 'Rubik',
-                                                fontSize: 30,
-                                                textTransform: 'capitalize',
-                                                backgroundColor: '#a2ff00',
-                                                borderRadius: '50%',
-                                                aspectRatio: 1,
-                                                scale: .5,
-                                                fontWeight: 600,
-                                                position: 'absolute',
-                                                top: 15,
-                                                right: 0
-                                            }} onClick={() => { removeItemsFromWatchHistory("tv", index) }}>✘</Button>
-                                    </Box>
-
-                                ))
-                            ) : (
-                                <EmptyNote type="tv shows" />
-                            )}
+                                            <Button
+                                                className='watched_items_remove_button'
+                                                sx={{
+                                                    color: 'black',
+                                                    fontFamily: 'Rubik',
+                                                    fontSize: 30,
+                                                    textTransform: 'capitalize',
+                                                    backgroundColor: '#a2ff00',
+                                                    borderRadius: '50%',
+                                                    aspectRatio: 1,
+                                                    scale: .4,
+                                                    fontWeight: 600,
+                                                    position: 'absolute',
+                                                    top: -8,
+                                                    right: -8,
+                                                    zIndex: 2
+                                                }} onClick={() => { removeItemsFromWatchHistory("tv", index) }}>✘</Button>
+                                        </Box>
+                                    </Grid>
+                                )) : (<EmptyNote type="tv shows" />)}
+                            </Grid>
                         </Box>
                     </CustomTabPanel>
                 </Box>
