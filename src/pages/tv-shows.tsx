@@ -5,7 +5,6 @@ import { Box } from "@mui/material";
 
 // components
 import Navbar from "../components/navbar";
-import MovieCarousel from "../components/movie-carousel";
 import LoadingPreview from "../components/loading-preview";
 import TVCarousel from "../components/tv-carousel";
 

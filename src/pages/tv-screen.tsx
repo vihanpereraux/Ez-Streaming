@@ -7,7 +7,7 @@ import serverIcon from "../../public/icons/server-icon.json";
 import premiumIcon from "../../public/icons/premium-icon.json";
 
 // MUI
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
@@ -329,8 +329,9 @@ const TvScreen: React.FC = () => {
                                     </Tabs>
 
                                     {/* toggle */}
-                                    {/* <Button sx={{
-                                        display: { xs: 'none', md: 'block' },
+                                    <Button sx={{
+                                        display: 'none',
+                                        // display: { xs: 'none', md: 'block' },
                                         color: '#a2ff00',
                                         fontFamily: 'Rubik',
                                         fontSize: 13,
@@ -340,7 +341,7 @@ const TvScreen: React.FC = () => {
                                         fontWeight: 420
                                     }} onClick={manageLights}>
                                         {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
-                                    </Button> */}
+                                    </Button>
                                 </Box>
 
                                 {/* note for the player switch */}
