@@ -43,10 +43,6 @@ const navItems: NavItemProps[] = [
         path: "/tv-shows"
     },
     {
-        navItem: "Previously Watched",
-        path: "/watch-history"
-    },
-    {
         navItem: "Watch List",
         path: "/watch-list"
     },
@@ -61,6 +57,10 @@ const navItems: NavItemProps[] = [
     {
         navItem: "Search",
         path: "/search"
+    },
+    {
+        navItem: "Previously Watched",
+        path: "/watch-history"
     },
     {
         navItem: "Disclaimer",
@@ -127,7 +127,6 @@ const Navbar: React.FC = (props: Props) => {
             <AppBar component="nav"
                 sx={{
                     backgroundColor: 'rgba(10, 10, 10, 0.65)',
-                    // position: 'relative',
                     backdropFilter: 'blur(10px)',
                     WebkitBackdropFilter: 'blur(10px)',
                     boxShadow: 'none'
