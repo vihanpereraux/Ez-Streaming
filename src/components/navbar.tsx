@@ -20,7 +20,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavItemProps } from '../interfaces/props';
 const navButtonStylings = {
     textTransform: 'capitalize',
-    fontSize: 11.5,
+    fontSize: 12.25,
     fontFamily: 'Rubik',
     fontWeight: 380,
     ml: .25,
@@ -127,8 +127,8 @@ const Navbar: React.FC = (props: Props) => {
             <AppBar component="nav"
                 sx={{
                     backgroundColor: 'rgba(10, 10, 10, 0.65)',
-                    backdropFilter: 'blur(10px)',
-                    WebkitBackdropFilter: 'blur(10px)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
                     boxShadow: 'none'
                 }}>
                 <Toolbar>
