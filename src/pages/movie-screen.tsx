@@ -21,6 +21,7 @@ import Navbar from "../components/navbar";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
 import Videos from "../components/videos";
+import WatchListSelection from "../components/watch-list-selection";
 
 // services
 import { getGeneralDetails } from "../services/screens/general-details";
@@ -249,7 +250,7 @@ const MovieScreen: React.FC = () => {
                                         border: 'none',
                                         borderColor: 'divider',
                                         display: 'flex',
-                                        justifyContent: {xs: 'center', lg: 'center'}
+                                        justifyContent: { xs: 'center', lg: 'space-between' }
                                     }}>
                                         <Tabs sx={{
                                             opacity: !lightsOffClicked ? 1 : 0,
@@ -291,6 +292,10 @@ const MovieScreen: React.FC = () => {
                                         }} onClick={manageLights}>
                                             {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
                                         </Button>
+
+                                        <Box>
+                                            <WatchListSelection type="movie" props={movieDetails} />
+                                        </Box>
                                     </Box>
 
                                     {/* note for the player switch */}
@@ -315,6 +320,7 @@ const MovieScreen: React.FC = () => {
                                         </CustomTabPanel>
                                     ))}
                                 </Box>
+
 
                                 {/* details */}
                                 {!lightsOffClicked && <Box sx={{

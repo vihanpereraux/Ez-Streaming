@@ -94,14 +94,14 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                             className="_movie_title"
                             sx={{
                                 color: 'white',
-                                fontSize: { xs: 13, md: 13, lg: 13 },
+                                fontSize: { xs: 13, md: 12.5, lg: 12.5 },
                                 fontWeight: 380,
                                 fontFamily: 'Rubik',
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
                                 maxWidth: '70%',
-                                mb: -.25
+                                mb: -.4
                             }}>{type === "movie" ? title : original_name}</Typography>
 
                         <Typography sx={{
@@ -121,7 +121,7 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                     }}>
                         <Typography sx={{
                             color: 'white',
-                            fontSize: { xs: 10, lg: 10 },
+                            fontSize: { xs: 10, lg: 9.55 },
                             fontWeight: 400,
                             fontFamily: 'Rubik',
                             opacity: .8
@@ -135,7 +135,7 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                             display: "inline-flex",
                             alignItems: "center",
                             color: "white",
-                            fontSize: { xs: 10, lg: 10 },
+                            fontSize: { xs: 10, lg: 9.55 },
                             fontWeight: 400,
                             fontFamily: "Rubik",
                             opacity: 0.8,
@@ -168,7 +168,7 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                             sx={{
                                 color: 'white',
                                 textTransform: 'capitalize',
-                                fontSize: { xs: 9, lg: 9.5 },
+                                fontSize: { xs: 9, lg: 9 },
                                 fontWeight: { xs: 450, lg: 420 },
                                 fontFamily: 'Rubik',
                                 lineHeight: 1.25,

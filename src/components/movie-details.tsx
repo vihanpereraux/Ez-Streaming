@@ -27,7 +27,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
     return (
         <>
             <Box sx={{
-                bgcolor: 'rgb(16, 15, 15)',
+                bgcolor: { xs: 'rgb(16, 15, 15)', md: 'rgb(16, 15, 15)', lg: 'rgb(12, 12, 12)' },
                 p: 2,
                 borderRadius: 3,
             }}>
@@ -38,7 +38,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
                     fontSize: { xs: 17, lg: 17.5 },
                     fontFamily: 'Rubik',
                     fontWeight: 420,
-                    mb: .25,
+                    mb: .05,
                 }}>{props.original_title}</Typography>
 
                 {/* other details */}
@@ -73,7 +73,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
                     fontSize: { xs: 13, lg: 13 },
                     lineHeight: 1.75,
                     fontWeight: 380,
-                    mt: 1.75,
+                    mt: 1.55,
                     color: 'white',
                     opacity: 0.9,
                 }}>{props.overview}</Typography>

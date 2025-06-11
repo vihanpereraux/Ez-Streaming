@@ -47,6 +47,10 @@ const navItems: NavItemProps[] = [
         path: "/watch-history"
     },
     {
+        navItem: "Watch List",
+        path: "/watch-list"
+    },
+    {
         navItem: "Games",
         path: "/games"
     },

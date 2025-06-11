@@ -27,7 +27,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                         [...castDetails].map((cast, index) => (
                             <Box key={index}
                                 sx={{
-                                    bgcolor: 'rgb(16, 16, 16)',
+                                    bgcolor: { xs: 'rgb(16, 15, 15)', md: 'rgb(16, 15, 15)', lg: 'rgb(15, 15, 15)' },
                                     height: 100,
                                     borderRadius: 2,
                                     p: 1.2,
@@ -37,7 +37,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                                 }}>
                                 {/* cast image */}
                                 <Box sx={{
-                                    width: 75,
+                                    width: 80,
                                     aspectRatio: 1,
                                     position: 'relative'
                                 }}>
