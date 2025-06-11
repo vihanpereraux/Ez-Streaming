@@ -64,6 +64,11 @@ export const getAllMovieProviders = () => {
     } else {
         // mobile friendly providers
         [{
+            displayName: "Enigma",
+            providerName: "vidsrc.su",
+            premium: true,
+        },
+        {
             displayName: "Premify",
             providerName: "player.vidsrc.co",
             premium: true,
@@ -79,11 +84,6 @@ export const getAllMovieProviders = () => {
         {
             displayName: "KingStar",
             providerName: "vidora.su",
-            premium: true,
-        },
-        {
-            displayName: "Enigma",
-            providerName: "vidsrc.su",
             premium: true,
         }].map((item) => {
             providerDetails.push({

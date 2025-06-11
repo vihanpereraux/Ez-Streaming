@@ -136,7 +136,7 @@ export const getMoviesByProvider = async (arr: MoviesProps[], providerId: string
 export const getTvShowsByProvider = async (arr: MoviesProps[], providerId: string) => {
     const airYearArray: string[] = ["2020", "2021", "2022", "2023", "2024"];
     try {
-        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&vote_count.gte=8&page=${Math.floor(Math.random() * 4) + 1}&first_air_date_year=${airYearArray[Math.floor(Math.random() * airYearArray.length) + 1]}&include_adult=true`);
+        const resposne = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_watch_providers=${providerId}&watch_region=US&vote_count.gte=8&page=${Math.floor(Math.random() * 3) + 1}&first_air_date_year=${airYearArray[Math.floor(Math.random() * airYearArray.length) + 1]}&include_adult=true`);
         const data = await resposne.json();
 
         const cleanedArr: MoviesProps[] = cleanMovieDetails((data.results), arr, 'tv');
