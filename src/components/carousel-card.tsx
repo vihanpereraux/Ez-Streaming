@@ -105,7 +105,8 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                                 maxWidth: '70%',
                                 mb: -.4
                             }}
-                            onClick={() => { setOpen(true); }}>{type === "movie" ? title : original_name}</Typography>
+                            // onClick={() => { setOpen(true); }}
+                        >{type === "movie" ? title : original_name}</Typography>
 
                         <Typography sx={{
                             color: '#a2ff00',
