@@ -19,7 +19,7 @@ const TvDetails: React.FC<TvDetailsProps> = ({ props }) => {
     return (
         <>
             <Box sx={{
-                bgcolor: 'rgb(16, 15, 15)',
+                bgcolor: { xs: 'rgb(18, 18, 18)', md: 'rgb(16, 15, 15)', lg: 'rgb(10, 10, 10)' },
                 p: 2,
                 borderRadius: 3,
             }}>

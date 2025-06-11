@@ -27,7 +27,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
     return (
         <>
             <Box sx={{
-                bgcolor: { xs: 'rgb(16, 15, 15)', md: 'rgb(16, 15, 15)', lg: 'rgb(12, 12, 12)' },
+                bgcolor: { xs: 'rgb(18, 18, 18)', md: 'rgb(16, 15, 15)', lg: 'rgb(10, 10, 10)' },
                 p: 2,
                 borderRadius: 3,
             }}>

@@ -22,6 +22,7 @@ import TvEpisodes from "../components/tv-episodes";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
 import Videos from "../components/videos";
+import WatchListSelection from "../components/watch-list-selection";
 
 // services
 import { getGeneralDetails } from "../services/screens/general-details";
@@ -296,9 +297,8 @@ const TvScreen: React.FC = () => {
                             <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
                                 <Box sx={{
                                     borderBottom: 1,
-                                    borderColor: 'divider',
-                                    display: 'flex',
-                                    justifyContent: { xs: 'center', lg: 'center' }
+                                    display: { xs: 'block', md: 'flex', lg: 'flex' },
+                                    justifyContent: { xs: 'center', lg: 'space-between' }
                                 }}>
                                     <Tabs
                                         sx={{
@@ -342,6 +342,14 @@ const TvScreen: React.FC = () => {
                                     }} onClick={manageLights}>
                                         {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
                                     </Button>
+
+                                    <Box sx={{
+                                        mt: { xs: 3, md: 0 },
+                                        mb: { xs: .05, md: 0 },
+                                        textAlign: { xs: 'right', md: 'right', lg: 'right' }
+                                    }}>
+                                        <WatchListSelection type="tv" props={tvDetails} />
+                                    </Box>
                                 </Box>
 
                                 {/* note for the player switch */}
@@ -383,7 +391,7 @@ const TvScreen: React.FC = () => {
 
                             {/* seasons and episodes */}
                             {!lightsOffClicked && (
-                                <Box sx={{ mt: 5 }}>
+                                <Box sx={{ mt: 4 }}>
                                     <TvEpisodes
                                         seasonDetails={seasonDetails}
                                         userSelection={userSelection}
@@ -392,7 +400,7 @@ const TvScreen: React.FC = () => {
                             )}
 
                             {/* cast info */}
-                            {!lightsOffClicked && (<Box sx={{ mt: 5 }}>
+                            {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
                                 <Credits contentTitle={tvDetails.original_name} castDetails={castDetails} />
                             </Box>)}
 

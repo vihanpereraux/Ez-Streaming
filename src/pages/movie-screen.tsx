@@ -49,7 +49,7 @@ const tabStyles = {
     textTransform: 'capitalize',
     fontWeight: 420,
     textDecoration: 'none',
-    mr: { xs: .8, md: 1, lg: 2 },
+    mr: { xs: .8, md: 1, lg: 1.55 },
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -248,8 +248,7 @@ const MovieScreen: React.FC = () => {
                                     {/* tabs */}
                                     <Box sx={{
                                         border: 'none',
-                                        borderColor: 'divider',
-                                        display: 'flex',
+                                        display: { xs: 'block', md: 'flex', lg: 'flex' },
                                         justifyContent: { xs: 'center', lg: 'space-between' }
                                     }}>
                                         <Tabs sx={{
@@ -293,8 +292,12 @@ const MovieScreen: React.FC = () => {
                                             {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
                                         </Button>
 
-                                        <Box>
-                                            <WatchListSelection type="movie" props={movieDetails} />
+                                        <Box sx={{
+                                            mt: { xs: 3, md: 0 },
+                                            mb: { xs: .05, md: 0 },
+                                            textAlign: { xs: 'right', md: 'right', lg: 'right' }
+                                        }}>
+                                            <WatchListSelection type="tv" props={movieDetails} />
                                         </Box>
                                     </Box>
 
@@ -333,7 +336,7 @@ const MovieScreen: React.FC = () => {
                             </Box>
 
                             {/* cast info / credits */}
-                            {!lightsOffClicked && (<Box sx={{ mt: 5 }}>
+                            {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
                                 <Credits contentTitle={movieDetails.original_title} castDetails={castDetails} />
                             </Box>)}
 

@@ -27,18 +27,18 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                         [...castDetails].map((cast, index) => (
                             <Box key={index}
                                 sx={{
-                                    bgcolor: { xs: 'rgb(16, 15, 15)', md: 'rgb(16, 15, 15)', lg: 'rgb(15, 15, 15)' },
+                                    bgcolor: { xs: 'rgb(16, 15, 15)', md: 'rgb(16, 15, 15)', lg: 'rgb(12, 12, 12)' },
                                     height: 100,
                                     borderRadius: 2,
-                                    p: 1.2,
+                                    p: 1.25,
                                     width: '98%',
                                     display: 'flex',
                                     alignItems: 'center',
                                 }}>
                                 {/* cast image */}
                                 <Box sx={{
-                                    width: 80,
-                                    aspectRatio: 1,
+                                    width: 70,
+                                    height: '100%',
                                     position: 'relative'
                                 }}>
                                     <img style={{
@@ -58,7 +58,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                                 </Box>
                                 <Box sx={{ ml: 1.75 }}>
                                     <Typography sx={{
-                                        fontSize: 11,
+                                        fontSize: {xs: 11, md: 11, lg: 10.55},
                                         fontFamily: 'Rubik',
                                         mt: .55,
                                         opacity: .85,
@@ -67,7 +67,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                                     }}>{cast.name && cast.name.length > 25 ? cast.name.slice(0, 13) + ' ..' : cast.name} &nbsp;as</Typography>
 
                                     <Typography sx={{
-                                        fontSize: 11,
+                                        fontSize: {xs: 11, md: 11, lg: 10.55},
                                         fontFamily: 'Rubik',
                                         fontWeight: 420,
                                         mt: .25,
@@ -79,14 +79,13 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                                             window.open(`https://www.google.com/search?q=${encodeURIComponent(cast.name + ' ' + ' reddit')}`, '_blank');
                                         }}
                                         sx={{
-                                            fontSize: 10.5,
+                                            fontSize: {xs: 11, md: 11, lg: 10.55},
                                             fontFamily: 'Rubik',
                                             fontWeight: 420,
                                             mt: 1,
                                             color: 'white',
                                             cursor: 'pointer'
                                         }}>Explore more on <span style={{ color: 'orangered' }}>&nbsp; r/Reddit</span></Typography>
-
                                 </Box>
                             </Box>
                         ))
