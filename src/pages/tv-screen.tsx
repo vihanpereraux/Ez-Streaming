@@ -435,7 +435,7 @@ const TvScreen: React.FC = () => {
                                                     fontWeight: 450,
                                                     fontFamily: 'Rubik',
                                                     color: 'white',
-                                                    fontSize: { xs: '18px', lg: '20px' },
+                                                    fontSize: { xs: 15, lg: 15 },
                                                     mt: 8
                                                 }}>
                                                 No related tv shows found &nbsp; : (</Typography>

@@ -71,7 +71,7 @@ const WatchListSelection: React.FC<WatchListSelectionProps> = ({ type, props }) 
             <Button variant="contained"
                 sx={{
                     textTransform: 'capitalize',
-                    bgcolor: { xs: 'rgb(16, 15, 15)', md: 'rgb(16, 15, 15)', lg: 'rgba(162, 255, 0, .06)' },
+                    bgcolor: { xs: 'rgb(16, 15, 15)', md: 'rgb(16, 15, 15)', lg: 'rgba(162, 255, 0, .05)' },
                     fontFamily: 'Rubik',
                     fontSize: 12,
                     fontWeight: '400',
@@ -83,14 +83,14 @@ const WatchListSelection: React.FC<WatchListSelectionProps> = ({ type, props }) 
                 onClick={() => { manageWatchList(type, props) }}>
                 {type == "movie" ? (
                     watchListMovies.find(item => item.id === props.id) ?
-                        <> <BookmarkIcon sx={{ mr: .75, scale: .75, fill: '#a2ff00' }} /> Remove from watch list </>
+                        <> <BookmarkIcon sx={{ mr: .75, scale: .7, fill: '#a2ff00' }} /> Remove from watch list </>
                         :
-                        <> <BookmarkBorderOutlinedIcon sx={{ mr: .75, scale: .75, fill: '#a2ff00' }} /> Add to watch list </>
+                        <> <BookmarkBorderOutlinedIcon sx={{ mr: .75, scale: .7, fill: '#a2ff00' }} /> Add to watch list </>
                 ) : (
                     watchListTvshows.find(item => item.id === props.id) ?
-                        <> <BookmarkIcon sx={{ mr: .75, scale: .75, fill: '#a2ff00' }} /> Remove from watch list </>
+                        <> <BookmarkIcon sx={{ mr: .75, scale: .7, fill: '#a2ff00' }} /> Remove from watch list </>
                         :
-                        <> <BookmarkBorderOutlinedIcon sx={{ mr: .75, scale: .75, fill: '#a2ff00' }} /> Add to watch list </>
+                        <> <BookmarkBorderOutlinedIcon sx={{ mr: .75, scale: .7, fill: '#a2ff00' }} /> Add to watch list </>
                 )}
 
             </Button>

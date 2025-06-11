@@ -185,11 +185,9 @@ const WatchedCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, firs
                                 lineHeight: 1.25,
                                 opacity: .9,
                                 width: 'fit-content',
-                            }}>Stream now <br /> on Ez Streaming
+                            }}>Watch again <br /> on Ez Streaming
                         </Typography>
-
                     </Box>
-
                 </Box>
 
                 {/* shader */}

@@ -80,6 +80,17 @@ body {
   }
 }
 
+/* trailer preview */
+.MuiBackdrop-root {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/* Remove MUI Modal focus outline and border */
+.MuiModal-root:focus,
+.MuiModal-root *:focus {
+  outline: none !important;
+}
+
+
 /* carousel stylings */
 .poster {
   transition: all .25s ease-in-out;

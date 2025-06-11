@@ -297,7 +297,7 @@ const MovieScreen: React.FC = () => {
                                             mb: { xs: .05, md: 0 },
                                             textAlign: { xs: 'right', md: 'right', lg: 'right' }
                                         }}>
-                                            <WatchListSelection type="tv" props={movieDetails} />
+                                            <WatchListSelection type="movie" props={movieDetails} />
                                         </Box>
                                     </Box>
 
@@ -368,7 +368,7 @@ const MovieScreen: React.FC = () => {
                                                 fontWeight: 450,
                                                 fontFamily: 'Rubik',
                                                 color: 'white',
-                                                fontSize: { xs: '18px', lg: '20px' },
+                                                fontSize: { xs: 15, lg: 15 },
                                                 mt: 8
                                             }}>
                                             No related movies found &nbsp; : (</Typography>

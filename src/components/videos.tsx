@@ -41,13 +41,12 @@ const Videos: React.FC<props> = ({ videokeys, title }) => {
                         ></iframe>
                     )) : (
                         <Typography sx={{
-                            fontSize: 14,
+                            fontSize: 13,
                             fontFamily: 'Rubik',
                             color: 'white',
                             opacity: .75,
-                            pl: 2
-                        }}>No trailers and clips available</Typography>
-                    )}
+                            textAlign: 'center'
+                        }}>No reviews available</Typography>)}
                 </Carousel>
             </Box>
         </>

@@ -4,24 +4,26 @@ import { FaStar } from "react-icons/fa6";
 import Lottie from "lottie-react";
 import playIcon from "../../public/icons/play-icon.json";
 
+// components
+import ContentDetailsModal from "./content-details-modal";
+
 // MUI
 import { Box, Typography } from "@mui/material";
 
 // props
 import { CarosuelCardProps } from "../interfaces/props";
 
-const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, first_air_date, release_date, vote_average, type, original_name }) => {
+const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, first_air_date, release_date, vote_average, type, original_name, overview }) => {
     const navigate = useNavigate();
     const [imageLoaded, setImageLoaded] = useState(false);
+    const [open, setOpen] = React.useState<boolean>(false);
 
     const navigateToScreen = () => {
         if (type === 'movie') {
             navigate(`/screen/movie?id=${id}`);
         }
         else {
-            const data = { id: id.toString() };
-            const queryString = new URLSearchParams(data).toString();
-            navigate(`/screen/tv?${queryString}`);
+            navigate(`/screen/tv?id=${id}`);
         }
     }
 
@@ -102,7 +104,8 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                                 textOverflow: 'ellipsis',
                                 maxWidth: '70%',
                                 mb: -.4
-                            }}>{type === "movie" ? title : original_name}</Typography>
+                            }}
+                            onClick={() => { setOpen(true); }}>{type === "movie" ? title : original_name}</Typography>
 
                         <Typography sx={{
                             color: '#a2ff00',
@@ -178,6 +181,19 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                     </Box>
                 </Box>
             </Box>
+
+            <ContentDetailsModal
+                open={open}
+                setOPen={setOpen}
+                poster_path={poster_path}
+                title={title}
+                release_date={release_date}
+                vote_average={vote_average}
+                type={type}
+                overview={overview}
+                id={id}
+                first_air_date={first_air_date}
+                original_name={original_name} />
         </>
     )
 }

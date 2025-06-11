@@ -268,7 +268,7 @@ const WatchHistory: React.FC = () => {
                         {/* grid */}
                         <Box sx={{ flexGrow: 1 }}>
                             <Grid container spacing={0}>
-                                {watchedTvShows.length > 0 ? watchedTvShows.map((movie, index) => (
+                                {[watchedTvShows].length > 0 ? watchedTvShows.map((movie, index) => (
                                     <Grid xs={12} sm={4} md={3} lg={3} key={index}>
                                         <Box sx={{
                                             mb: 2.75,

@@ -37,7 +37,7 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                         border: '1px solid rgba(162, 255, 0, .35)',
                         outline: 'none',
                         boxShadow: 24,
-                        p: 4,
+                        p: 3,
                         pb: 6,
                         color: 'white',
                         borderRadius: 4
