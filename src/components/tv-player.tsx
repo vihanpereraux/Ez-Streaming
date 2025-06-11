@@ -95,7 +95,7 @@ const TvPlayer: React.FC<PlayerProps> = ({ id, serverGroup, season, episode, not
                         top: 0,
                         right: 0,
                         width: '100%',
-                        height: '102%',
+                        height: '100%',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',

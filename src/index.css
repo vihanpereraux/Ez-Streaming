@@ -3,6 +3,7 @@
 
 
 body {
+  padding-top: 50px;
   padding-bottom: 20px;
   font-family: 'Rubik';
   margin: 0;
@@ -20,11 +21,11 @@ body {
   height: 100%;
   z-index: -1;
   background: radial-gradient(circle, rgba(162, 255, 0, 0.8) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0.6) 70%),
-    linear-gradient(120deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+    linear-gradient(120deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5));
   background-size: 200% 200%;
   animation: randomMovement 20s ease-in-out infinite;
   filter: blur(30px);
-  opacity: .15;
+  opacity: .05;
 }
 
 @keyframes randomMovement {
@@ -79,12 +80,49 @@ body {
   }
 }
 
+/* trailer preview */
+.MuiBackdrop-root {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+/* Remove MUI Modal focus outline and border */
+.MuiModal-root:focus,
+.MuiModal-root *:focus {
+  outline: none !important;
+}
+
+
 /* carousel stylings */
-._movie_poster_portrait {
+.poster {
+  transition: all .25s ease-in-out;
+}
+
+._movie_poster_container {
+  aspect-ratio: 3 / 4.5;
+}
+
+._movie_poster_container:hover .poster {
+  opacity: .65 !important;
+  transform: scale(1.1) !important;
+  transform-origin: 50% 50%;
+}
+
+._tv_poster_container {
+  aspect-ratio: 16 / 10;
+}
+
+.play-icon {
   transition: all .3s ease-in-out;
 }
 
-._movie_poster_container:hover ._movie_poster_portrait {
+._movie_poster_container:hover .play-icon {
+  opacity: 1 !important;
+}
+
+._tv_poster_container:hover .play-icon {
+  opacity: 1 !important;
+}
+
+._tv_poster_container:hover .poster {
   transform: scale(1.1) !important;
   transform-origin: 50% 50%;
 }
@@ -94,7 +132,9 @@ body {
 }
 
 ._carousel_card:hover ._movie_title {
-  padding-left: 6px;
+  color: #a2ff00 !important;
+  font-weight: 420 !important;
+  padding-left: 3px;
 }
 
 .MuiSvgIcon-root {
@@ -174,6 +214,10 @@ body {
 .game:hover {
   border: 2px solid #a2ff00 !important;
   transition: all .15s linear;
+}
+
+.game-wrapper:hover .play-icon {
+  opacity: 1 !important;
 }
 
 /* previously watched - watch history page  */

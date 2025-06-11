@@ -11,7 +11,7 @@ import CarosuelCard from "./carousel-card";
 import "react-multi-carousel/lib/styles.css";
 
 // carousel config
-import { movieCarouselConfig } from "../config/carousel-config";
+import { tvCarouselConfig } from "../config/carousel-config";
 
 // props
 import { MoviesProps } from "../interfaces/props";
@@ -21,29 +21,28 @@ interface props {
     type: string
 }
 
-const MovieCarousel: React.FC<props> = ({ content, title, type }) => {
+const TVCarousel: React.FC<props> = ({ content, title, type }) => {
     return (
         <>
             {/* main title */}
-            <Typography
-                sx={{
-                    fontWeight: 420,
-                    fontFamily: 'Rubik',
-                    color: 'white',
-                    fontSize: { xs: 15, lg: 14.5 },
-                }}>{title}</Typography>
+            <Typography sx={{
+                fontWeight: 420,
+                fontFamily: 'Rubik',
+                color: 'white',
+                fontSize: { xs: 15, lg: 14.5 },
+            }}>{title}</Typography>
 
-            <Box sx={{ mt: 1.25 }}>
-                <Carousel infinite={false} slidesToSlide={2} responsive={movieCarouselConfig}>
+            <Box sx={{ mt: 1.5 }}>
+                <Carousel responsive={tvCarouselConfig} infinite={false} slidesToSlide={1}>
                     {content.map((item, index) => (
                         <div key={index}>
                             <div className="_carousel_card">
                                 <CarosuelCard
-                                    original_name={item.title}
+                                    original_name={item.original_name}
                                     id={item.id}
                                     poster_path={item.poster_path}
-                                    title={item.title}
                                     overview={item.overview}
+                                    title={item.title}
                                     release_date={item.release_date}
                                     vote_average={item.vote_average}
                                     first_air_date={item.first_air_date}
@@ -57,4 +56,4 @@ const MovieCarousel: React.FC<props> = ({ content, title, type }) => {
     )
 }
 
-export default MovieCarousel;
+export default TVCarousel;

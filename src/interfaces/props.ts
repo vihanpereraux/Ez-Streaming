@@ -17,6 +17,21 @@ export interface MoviesProps {
     first_air_date: string
 }
 
+// alter
+export interface ContentProps {
+    title: string,
+    backdrop_path: string,
+    id: number,
+    original_language: string,
+    popularity: number,
+    poster_path: string,
+    overview: string,
+    release_date: string,
+    vote_average: number
+    original_name: string,
+    first_air_date: string
+}
+
 export interface CarosuelCardProps {
     poster_path: string,
     title: string,
@@ -90,4 +105,9 @@ export interface StreamProviderProps {
         device: string
     },
     premium: boolean
+}
+
+export interface WatchListSelectionProps {
+    type: "movie" | "tv",
+    props: ContentProps
 }

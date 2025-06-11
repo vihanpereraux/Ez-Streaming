@@ -17,7 +17,7 @@ import WatchHistory from './pages/watch-history'
 import Games from './pages/games'
 import Movies from './pages/movies'
 import TvShows from './pages/tv-shows'
-
+import WatchList from './pages/watch-list';
 // components
 import FooterDisclaimer from './components/footer-disclaimer'
 
@@ -37,6 +37,7 @@ const App: React.FC = () => {
           <Route path='/search' Component={Search}></Route>
           <Route path='/disclaimer' Component={Disclaimer}></Route>
           <Route path='/games' Component={Games}></Route>
+          <Route path='/watch-list' Component={WatchList}></Route>
         </Routes>
       </BrowserRouter>
 

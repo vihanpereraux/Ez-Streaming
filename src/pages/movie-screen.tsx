@@ -21,6 +21,7 @@ import Navbar from "../components/navbar";
 import Credits from "../components/credits";
 import Reviews from "../components/reviews";
 import Videos from "../components/videos";
+import WatchListSelection from "../components/watch-list-selection";
 
 // services
 import { getGeneralDetails } from "../services/screens/general-details";
@@ -48,7 +49,7 @@ const tabStyles = {
     textTransform: 'capitalize',
     fontWeight: 420,
     textDecoration: 'none',
-    mr: { xs: .8, md: 1, lg: 1.75 },
+    mr: { xs: .8, md: 1, lg: 1.55 },
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -238,8 +239,8 @@ const MovieScreen: React.FC = () => {
                             key={movieId}
                             sx={{
                                 pt: 6,
-                                pl: { xs: 1, lg: 3 },
-                                pr: { xs: 1, lg: 3 }
+                                pl: { xs: 1, lg: 2 },
+                                pr: { xs: 1, lg: 2 },
                             }}>
                             {/* tabs, players and information */}
                             <Box sx={{ display: { xs: "block", lg: "block" } }}>
@@ -247,15 +248,13 @@ const MovieScreen: React.FC = () => {
                                     {/* tabs */}
                                     <Box sx={{
                                         border: 'none',
-                                        borderColor: 'divider',
-                                        display: 'flex',
-                                        justifyContent: 'space-between'
+                                        display: { xs: 'block', md: 'flex', lg: 'flex' },
+                                        justifyContent: { xs: 'center', lg: 'space-between' }
                                     }}>
-                                        <Tabs
-                                            sx={{
-                                                opacity: !lightsOffClicked ? 1 : 0,
-                                                pointerEvents: !lightsOffClicked ? "auto" : "none"
-                                            }}
+                                        <Tabs sx={{
+                                            opacity: !lightsOffClicked ? 1 : 0,
+                                            pointerEvents: !lightsOffClicked ? "auto" : "none",
+                                        }}
                                             value={value}
                                             onChange={handleChange}
                                             aria-label="basic tabs example">
@@ -263,15 +262,15 @@ const MovieScreen: React.FC = () => {
                                                 <Tab sx={tabStyles} label={
                                                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                                         {provider.premium ? (
-                                                            <Lottie style={{ width: 16 }} animationData={premiumIcon} loop={true} />
+                                                            <Lottie style={{ width: 15 }} animationData={premiumIcon} loop={true} />
                                                         ) : (
-                                                            <Lottie style={{ width: 18 }} animationData={serverIcon} loop={true} />
+                                                            <Lottie style={{ width: 15 }} animationData={serverIcon} loop={true} />
                                                         )}
                                                         <Typography sx={{
                                                             fontFamily: 'Rubik',
-                                                            fontWeight: { xs: 400, md: 420, lg: 420 },
-                                                            fontSize: { xs: 14, md: 14, lg: 13 },
-                                                            ml: 1.5
+                                                            fontWeight: { xs: 400, md: 380, lg: 380 },
+                                                            fontSize: { xs: 13, md: 12, lg: 12 },
+                                                            ml: 1.15
                                                         }}>{provider.displayName}</Typography>
                                                     </Box>
                                                 } {...a11yProps(index)} />
@@ -280,17 +279,26 @@ const MovieScreen: React.FC = () => {
 
                                         {/* toggle */}
                                         <Button sx={{
-                                            display: { xs: 'none', md: 'block' },
+                                            display: 'none',
+                                            // display: { xs: 'none', md: 'block' },
                                             color: '#a2ff00',
                                             fontFamily: 'Rubik',
-                                            fontSize: 13,
+                                            fontSize: 12,
                                             textTransform: 'capitalize',
                                             backgroundColor: 'balck',
                                             borderRadius: 2,
-                                            fontWeight: 420
+                                            fontWeight: 380
                                         }} onClick={manageLights}>
                                             {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
                                         </Button>
+
+                                        <Box sx={{
+                                            mt: { xs: 3, md: 0 },
+                                            mb: { xs: .05, md: 0 },
+                                            textAlign: { xs: 'right', md: 'right', lg: 'right' }
+                                        }}>
+                                            <WatchListSelection type="movie" props={movieDetails} />
+                                        </Box>
                                     </Box>
 
                                     {/* note for the player switch */}
@@ -316,28 +324,24 @@ const MovieScreen: React.FC = () => {
                                     ))}
                                 </Box>
 
+
                                 {/* details */}
                                 {!lightsOffClicked && <Box sx={{
                                     width: { xs: "100%", lg: "100%" },
-                                    pl: { xs: .5, lg: 0 },
-                                    mt: { xs: .5, md: 1, lg: 3 },
+                                    pl: { xs: 0, lg: 0 },
+                                    mt: { xs: 2.5, md: 1, lg: 3 },
                                 }}>
                                     <MovieDetails props={movieDetails} />
                                 </Box>}
                             </Box>
 
                             {/* cast info / credits */}
-                            {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
+                            {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
                                 <Credits contentTitle={movieDetails.original_title} castDetails={castDetails} />
                             </Box>)}
 
-                            {/* reviews */}
-                            {!lightsOffClicked && (<Box sx={{ mt: 6 }}>
-                                <Reviews reviews={reviews} defaultExpanded={true} />
-                            </Box>)}
-
                             {/* trailers */}
-                            <Box sx={{ mt: 6, display: !lightsOffClicked ? "block" : "none" }}>
+                            <Box sx={{ mt: 5, display: !lightsOffClicked ? "block" : "none" }}>
                                 {videoKeys.length > 3 ? (
                                     <Videos videokeys={videoKeys.slice(0, 3)} title={movieDetails.original_title} />
                                 ) : (
@@ -345,8 +349,13 @@ const MovieScreen: React.FC = () => {
                                 )}
                             </Box>
 
+                            {/* reviews */}
+                            {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
+                                <Reviews reviews={reviews} defaultExpanded={true} />
+                            </Box>)}
+
                             {/* related content */}
-                            {!lightsOffClicked ? (<Box sx={{ mt: 10, mb: 15 }}>
+                            {!lightsOffClicked ? (<Box sx={{ mt: reviews.length > 0 ? 4 : 5, mb: 12 }}>
                                 {relatedContent.length > 0 ? (
                                     <MovieCarousel
                                         type="movie"
@@ -359,7 +368,7 @@ const MovieScreen: React.FC = () => {
                                                 fontWeight: 450,
                                                 fontFamily: 'Rubik',
                                                 color: 'white',
-                                                fontSize: { xs: '18px', lg: '20px' },
+                                                fontSize: { xs: 15, lg: 15 },
                                                 mt: 8
                                             }}>
                                             No related movies found &nbsp; : (</Typography>

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Lottie from "lottie-react";
+import playIcon from "../../public/icons/play-icon.json";
 
 // components
 import Navbar from "../components/navbar";
@@ -25,7 +27,6 @@ const Games: React.FC = () => {
     const [games, setGames] = useState<GameProps[]>([]);
     const [open, setOpen] = React.useState(false);
     const [embedLink, setEmbedLink] = useState<string>("");
-    const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const getGames = async () => {
@@ -55,15 +56,15 @@ const Games: React.FC = () => {
                 <LoadingPreview />
             ) : (
                 <>
-                    <Box sx={{ p: 3 }}>
+                    <Box sx={{ mt: 6, pl: 5, pr: 5 }}>
                         {/* title */}
                         <Typography
                             sx={{
                                 color: "white",
                                 fontFamily: "Rubik",
                                 textAlign: "center",
-                                fontWeight: 450,
-                                fontSize: 22
+                                fontWeight: 420,
+                                fontSize: 18
                             }}>
                             Enjoy Free Online Games
                         </Typography>
@@ -73,49 +74,120 @@ const Games: React.FC = () => {
                             sx={{
                                 color: "white",
                                 fontFamily: "Rubik",
-                                mt: 2,
+                                mt: 1.75,
                                 textAlign: "center",
                                 fontWeight: 400,
-                                fontSize: 14,
+                                fontSize: 11,
                                 opacity: .75,
-                                pl: { sx: 5, lg: 30 },
-                                pr: { sx: 5, lg: 30 },
+                                pl: { sx: 0, lg: 30 },
+                                pr: { sx: 0, lg: 30 },
                                 lineHeight: 1.65
                             }}>
                             Dive into a curated collection of free online games! Click on any game below to
-                            start playing instantly in your browser—no downloads or sign-ups required.
-                            Enjoy a variety of genres and discover new favorites every day.
+                            start playing instantly in your browser. Enjoy a variety of genres and discover new favorites every day..
                         </Typography>
+                    </Box>
 
-                        {/* grid */}
-                        <Grid container spacing={2} justifyContent="center" sx={{ mt: 5 }}>
+                    {/* grid */}
+                    <Box sx={{ pl: { xs: 0, lg: 7 }, pr: { xs: 0, lg: 7 }, mt: 5 }}>
+                        <Grid container spacing={.35} justifyContent="center">
                             {[...games]
                                 .sort(() => Math.random() - 0.5)
                                 .map((game, index) => (
-                                    <Grid item xs={4} sm={3} md={2} key={index}>
-                                        <Box sx={{
-                                            width: "100%",
-                                            aspectRatio: "1",
-                                            borderRadius: 2,
-                                            boxShadow: 2,
-                                        }} onClick={() => { handleUserSelection(game.embed) }}>
-                                            <img
-                                                className="game"
-                                                style={{
-                                                    aspectRatio: 1,
-                                                    width: '100%',
-                                                    height: '100%',
-                                                    objectFit: 'cover',
-                                                    borderRadius: 12,
-                                                    border: ' 2px solid black'
-                                                }} onClick={handleOpen} src={game.image} alt="" loading="lazy" />
-                                        </Box>
+                                    <Grid item xs={6} sm={3} md={2} key={index}>
+                                        <div style={{ position: 'relative' }}
+                                            className="game-wrapper"
+                                            onClick={() => {
+                                                handleUserSelection(game.embed)
+                                                setOpen(true);
+                                            }}>
+                                            <Box sx={{
+                                                width: "100%",
+                                                aspectRatio: "1",
+                                                borderRadius: 2,
+                                                boxShadow: 2,
+                                            }}>
+                                                <img
+                                                    className="game"
+                                                    style={{
+                                                        aspectRatio: 1,
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        objectFit: 'cover',
+                                                        borderRadius: 12,
+                                                        border: ' 2px solid black'
+                                                    }} src={game.image} alt="" loading="lazy" />
+                                            </Box>
+
+                                            {/* icon */}
+                                            {window.innerWidth > 1200 && (
+                                                <Lottie className="play-icon"
+                                                    style={{
+                                                        opacity: 0,
+                                                        width: 85,
+                                                        position: 'absolute',
+                                                        left: '50%',
+                                                        top: '55%',
+                                                        transform: 'translate(-50%, -50%)',
+                                                        zIndex: 3,
+                                                        cursor: 'pointer',
+                                                    }} animationData={playIcon} loop={true} />
+                                            )}
+
+                                            {/* tag */}
+                                            <Box sx={{
+                                                position: 'absolute',
+                                                left: 12,
+                                                top: 12,
+                                                width: '100%',
+                                                zIndex: 2
+                                            }}>
+                                                <Box sx={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                }}>
+                                                    <Box sx={{
+                                                        height: 20,
+                                                        width: 2.35,
+                                                        bgcolor: '#a2ff00',
+                                                        mr: .75,
+                                                        borderRadius: 10,
+                                                    }}></Box>
+                                                    <Typography
+                                                        sx={{
+                                                            color: 'white',
+                                                            textTransform: 'capitalize',
+                                                            fontSize: { xs: 9, lg: 9.5 },
+                                                            fontWeight: { xs: 450, lg: 420 },
+                                                            fontFamily: 'Rubik',
+                                                            lineHeight: 1.25,
+                                                            opacity: .9,
+                                                            width: 'fit-content',
+                                                        }}>Play now <br /> on Ez Streaming
+                                                    </Typography>
+
+                                                </Box>
+
+                                            </Box>
+
+                                            {/* shader */}
+                                            <Box sx={{
+                                                position: 'absolute',
+                                                left: 0,
+                                                top: 0,
+                                                width: '100%',
+                                                height: '100%',
+                                                background: 'linear-gradient(to bottom, rgba(0,0,0,.8) 0%, rgba(0,0,0,0.65) 20%, rgba(0,0,0,0) 60%)',
+                                                zIndex: 0,
+                                            }}>
+                                            </Box>
+                                        </div>
                                     </Grid>
                                 ))}
                         </Grid>
-
-                        <Box sx={{ mb: { xs: 12, lg: 12 } }}></Box>
                     </Box>
+
+                    <Box sx={{ mb: { xs: 12, lg: 12 } }}></Box>
                 </>
             )}
 

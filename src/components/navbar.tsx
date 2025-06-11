@@ -20,10 +20,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavItemProps } from '../interfaces/props';
 const navButtonStylings = {
     textTransform: 'capitalize',
-    fontSize: 13,
+    fontSize: 11.5,
     fontFamily: 'Rubik',
-    fontWeight: 400,
-    ml: 0.45,
+    fontWeight: 380,
+    ml: .25,
     background: 'none'
 }
 interface Props { window?: () => Window; }
@@ -45,6 +45,10 @@ const navItems: NavItemProps[] = [
     {
         navItem: "Previously Watched",
         path: "/watch-history"
+    },
+    {
+        navItem: "Watch List",
+        path: "/watch-list"
     },
     {
         navItem: "Games",
@@ -123,7 +127,7 @@ const Navbar: React.FC = (props: Props) => {
             <AppBar component="nav"
                 sx={{
                     backgroundColor: 'rgba(10, 10, 10, 0.65)',
-                    position: 'relative',
+                    // position: 'relative',
                     backdropFilter: 'blur(10px)',
                     WebkitBackdropFilter: 'blur(10px)',
                     boxShadow: 'none'
@@ -160,13 +164,13 @@ const Navbar: React.FC = (props: Props) => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                     >
-                        <img style={{ width: 125, cursor: 'pointer' }}
+                        <img style={{ width: 110, cursor: 'pointer' }}
                             src="/logo.png"
                             alt="Ez-Streaming-Logo"
                             onClick={() => { navigate('/') }} />
                     </Typography>
 
-                    {/* base nav -nav items */}
+                    {/* base nav - nav items */}
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item, index) => (
                             <Button key={index}

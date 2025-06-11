@@ -14,13 +14,12 @@ interface props {
 const Videos: React.FC<props> = ({ videokeys, title }) => {
     return (
         <>
-            <Typography
-                sx={{
-                    fontWeight: 450,
-                    fontFamily: 'Rubik',
-                    color: 'white',
-                    fontSize: { xs: '18px', lg: '18px' },
-                }}>Trailers & Clips</Typography>
+            <Typography sx={{
+                fontWeight: 420,
+                fontFamily: 'Rubik',
+                color: 'white',
+                fontSize: { xs: 16, lg: 16 },
+            }}>Trailers & Clips</Typography>
 
             <Box sx={{ mt: 2 }}>
                 <Carousel responsive={videoListConfig}>
@@ -42,13 +41,12 @@ const Videos: React.FC<props> = ({ videokeys, title }) => {
                         ></iframe>
                     )) : (
                         <Typography sx={{
-                            fontSize: 14,
+                            fontSize: 13,
                             fontFamily: 'Rubik',
                             color: 'white',
                             opacity: .75,
-                            pl: 2
-                        }}>No trailers and clips available</Typography>
-                    )}
+                            textAlign: 'center'
+                        }}>No reviews available</Typography>)}
                 </Carousel>
             </Box>
         </>

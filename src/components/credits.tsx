@@ -14,52 +14,78 @@ interface props {
 const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
     return (
         <>
-            <Typography
-                sx={{
-                    fontWeight: 450,
-                    fontFamily: 'Rubik',
-                    color: 'white',
-                    fontSize: { xs: '18px', lg: '18px' },
-                }}>Cast of {contentTitle}</Typography>
+            <Typography sx={{
+                fontWeight: 420,
+                fontFamily: 'Rubik',
+                color: 'white',
+                fontSize: { xs: 16, lg: 16 },
+            }}>Cast of {contentTitle}</Typography>
 
-            <Box sx={{ mt: 3 }}>
-                <Carousel responsive={castCarouselConfig} infinite={true}>
+            <Box sx={{ mt: { xs: 2, lg: 2 } }}>
+                <Carousel responsive={castCarouselConfig} infinite={false}>
                     {castDetails.length > 0 ? (
                         [...castDetails].map((cast, index) => (
                             <Box key={index}
                                 sx={{
-                                    width: '95%',
-                                    textAlign: 'center'
+                                    bgcolor: { xs: 'rgb(16, 15, 15)', md: 'rgb(16, 15, 15)', lg: 'rgb(12, 12, 12)' },
+                                    height: 100,
+                                    borderRadius: 2,
+                                    p: 1.25,
+                                    width: '98%',
+                                    display: 'flex',
+                                    alignItems: 'center',
                                 }}>
-                                <img
-                                    style={{
-                                        width: 90,
-                                        height: 90,
+                                {/* cast image */}
+                                <Box sx={{
+                                    width: 70,
+                                    height: '100%',
+                                    position: 'relative'
+                                }}>
+                                    <img style={{
+                                        position: 'absolute',
+                                        left: 0,
+                                        top: 0,
+                                        width: '100%',
+                                        height: '100%',
                                         objectFit: 'cover',
-                                        aspectRatio: 1,
-                                        borderRadius: '50%'
+                                        borderRadius: 8
                                     }}
-                                    src={`https://image.tmdb.org/t/p/w300/${cast.profile_path}.jpg`}
-                                    alt={cast.name}
-                                    loading="lazy"
-                                    onError={(e) => {
-                                        (e.currentTarget as HTMLImageElement).src = 'https://media.istockphoto.com/id/1130424979/vector/person-gray-photo-placeholder-man.jpg?s=612x612&w=0&k=20&c=Oc5r-nuA8FxnBBFSa6azLq5bWDyPZlKNu-8qFrUDy5I=';
-                                    }}
-                                />
-                                <Box sx={{ color: 'white' }}>
+                                        src={`https://image.tmdb.org/t/p/w300/${cast.profile_path}.jpg`}
+                                        alt={`${cast.name} as ${cast.character}}`}
+                                        onError={(e) => {
+                                            (e.currentTarget as HTMLImageElement).src = 'https://media.istockphoto.com/id/1130424979/vector/person-gray-photo-placeholder-man.jpg?s=612x612&w=0&k=20&c=Oc5r-nuA8FxnBBFSa6azLq5bWDyPZlKNu-8qFrUDy5I=';
+                                        }} />
+                                </Box>
+                                <Box sx={{ ml: 1.75 }}>
                                     <Typography sx={{
-                                        fontSize: 13.5,
-                                        fontFamily: 'Rubik',
-                                        fontWeight: 450,
-                                        mt: 1
-                                    }}>{cast.character && cast.character.length > 20 ? cast.character.slice(0, 13) + ' ..' : cast.character}</Typography>
-                                    <Typography sx={{
-                                        fontSize: 12.5,
+                                        fontSize: {xs: 11, md: 11, lg: 10.55},
                                         fontFamily: 'Rubik',
                                         mt: .55,
-                                        opacity: .75,
-                                        color: '#a2ff00'
-                                    }}>{cast.name && cast.name.length > 20 ? cast.name.slice(0, 13) + ' ..' : cast.name}</Typography>
+                                        opacity: .85,
+                                        color: 'white',
+                                        fontWeight: 380
+                                    }}>{cast.name && cast.name.length > 25 ? cast.name.slice(0, 13) + ' ..' : cast.name} &nbsp;as</Typography>
+
+                                    <Typography sx={{
+                                        fontSize: {xs: 11, md: 11, lg: 10.55},
+                                        fontFamily: 'Rubik',
+                                        fontWeight: 420,
+                                        mt: .25,
+                                        color: 'white'
+                                    }}>{cast.character && cast.character.length > 25 ? cast.character.slice(0, 13) + ' ..' : cast.character}</Typography>
+
+                                    <Typography
+                                        onClick={() => {
+                                            window.open(`https://www.google.com/search?q=${encodeURIComponent(cast.name + ' ' + ' reddit')}`, '_blank');
+                                        }}
+                                        sx={{
+                                            fontSize: {xs: 11, md: 11, lg: 10.55},
+                                            fontFamily: 'Rubik',
+                                            fontWeight: 420,
+                                            mt: 1,
+                                            color: 'white',
+                                            cursor: 'pointer'
+                                        }}>Explore more on <span style={{ color: 'orangered' }}>&nbsp; r/Reddit</span></Typography>
                                 </Box>
                             </Box>
                         ))
@@ -70,8 +96,8 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
                         opacity: .75
                     }}>No cast available</Typography>)}
 
-                </Carousel>
-            </Box>
+                </Carousel >
+            </Box >
         </>
     )
 }

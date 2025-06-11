@@ -9,6 +9,7 @@ import {
     MenuItem,
     SelectChangeEvent
 } from "@mui/material";
+import Grid from '@mui/material/Grid';
 
 // components
 import SearchCard from "../components/search-card";
@@ -53,8 +54,11 @@ const Search: React.FC = () => {
     return (
         <>
             <Navbar />
-
-            <Box sx={{ pt: 8, pl: { xs: 0, lg: 6 } }}>
+            <Box sx={{
+                pl: { xs: 1, lg: 2 },
+                pr: { xs: 1, lg: 2 },
+                pt: 8
+            }}>
                 <Box sx={{
                     background: 'none',
                     mt: 0
@@ -62,8 +66,8 @@ const Search: React.FC = () => {
                     <Typography
                         sx={{
                             color: 'white',
-                            fontSize: 18,
-                            fontWeight: 420,
+                            fontSize: 16,
+                            fontWeight: 400,
                             fontFamily: 'Rubik',
                             textAlign: 'center'
                         }}> Search your favourite Movies & TV Shows
@@ -121,8 +125,8 @@ const Search: React.FC = () => {
                                 borderRadius: 1.8,
                                 fontFamily: 'Rubik',
                                 textTransform: 'capitalize',
-                                fontWeight: 450,
-                                fontSize: 15,
+                                fontWeight: 420,
+                                fontSize: 14,
                                 pl: 3,
                                 pr: 3,
                                 ml: { xs: 0, sm: 1 },
@@ -137,35 +141,37 @@ const Search: React.FC = () => {
                 </Box>
 
                 {/* search results */}
-                <Box sx={{
-                    position: 'relative',
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    width: { xs: 'auto', lg: '100%' },
-                    gap: 0,
-                    pl: { xs: .5, md: 1.5, lg: 0 },
-                    pr: { xs: .5, md: 1.5, lg: 0 },
-                }}>
-                    {results.length > 0 ? results.map((item, index) => (
-                        <Box sx={{
-                            width: { xs: 'calc(50%)', sm: 'calc(33.3%)', md: 'calc(25%)', lg: 'calc(20% - 8px)', xl: 'calc(16.6% - 6px)' },
-                            marginTop: '40px',
-                        }} key={index}>
-                            <SearchCard
-                                id={item.id}
-                                overview={item.overview}
-                                type={searchType}
-                                vote_average={item.vote_average}
-                                release_date={item.release_date}
-                                poster_path={item.poster_path}
-                                title={searchType === 'movie' ? item.title : item.original_name}
-                                original_name={item.original_name}
-                                first_air_date={item.first_air_date} />
-                        </Box>))
-                        :
-                        (<div>
-                            {searched ? <ValidationMessage /> : null}
-                        </div>)}
+                <Box sx={{ flexGrow: 1, mt: 3 }}>
+                    <Grid container spacing={0}>
+                        {results.length > 0 ? results.map((item, index) => (
+                            <Grid
+                                xs={searchType == "movie" ? 6 : 12}
+                                sm={searchType == "movie" ? 4 : 4}
+                                md={searchType == "movie" ? 2 : 3}
+                                lg={searchType == "movie" ? 2 : 3}
+                                key={index}>
+                                <Box sx={{
+                                    mt: 2.75,
+                                    position: 'relative',
+                                }}>
+                                    <SearchCard
+                                        id={item.id}
+                                        overview={item.overview}
+                                        type={searchType}
+                                        vote_average={item.vote_average}
+                                        release_date={item.release_date}
+                                        poster_path={searchType == "movie" ? item.poster_path : item.backdrop_path}
+                                        title={searchType === 'movie' ? item.title : item.original_name}
+                                        original_name={item.original_name}
+                                        first_air_date={item.first_air_date} />
+                                </Box>
+                            </Grid>
+                        ))
+                            :
+                            (<div>
+                                {searched && <ValidationMessage />}
+                            </div>)}
+                    </Grid>
                 </Box>
             </Box>
 

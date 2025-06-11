@@ -5,8 +5,8 @@ import { Box } from "@mui/material";
 
 // components
 import Navbar from "../components/navbar";
-import MovieCarousel from "../components/movie-carousel";
 import LoadingPreview from "../components/loading-preview";
+import TVCarousel from "../components/tv-carousel";
 
 // services
 import { fetchTvShowsInAllGenres } from "../services/tv-shows/fetchTvShows";
@@ -32,7 +32,7 @@ const genreTitles = [
     "Soap Shows",
     "Talk Shows",
     "War & Politics Shows",
-    "Western Shows"
+    // "Western Shows"
 ];
 
 const TvShows: React.FC = () => {
@@ -51,7 +51,7 @@ const TvShows: React.FC = () => {
     const [soapShows, setSoapShows] = useState<MoviesProps[]>();
     const [talkShows, setTalkShows] = useState<MoviesProps[]>();
     const [warAndPoliticsShows, setWarAndPoliticsShows] = useState<MoviesProps[]>();
-    const [westernShows, setWesternShows] = useState<MoviesProps[]>();
+    // const [westernShows, setWesternShows] = useState<MoviesProps[]>();
 
     const fetchMovies = async () => {
         const data = await fetchTvShowsInAllGenres();
@@ -71,7 +71,7 @@ const TvShows: React.FC = () => {
             setSoapShows([...(data.find(item => item.genre == "soap")?.collection) as MoviesProps[]]);
             setTalkShows([...(data.find(item => item.genre == "talk")?.collection) as MoviesProps[]]);
             setWarAndPoliticsShows([...(data.find(item => item.genre == "warAndPolitics")?.collection) as MoviesProps[]]);
-            setWesternShows([...(data.find(item => item.genre == "western")?.collection) as MoviesProps[]]);
+            // setWesternShows([...(data.find(item => item.genre == "western")?.collection) as MoviesProps[]]);
         }
     }
 
@@ -95,7 +95,7 @@ const TvShows: React.FC = () => {
         soapShows,
         talkShows,
         warAndPoliticsShows,
-        westernShows
+        // westernShows
     ];
 
     const isLoading = allTvShows.some(tvShows => tvShows === undefined);
@@ -110,7 +110,7 @@ const TvShows: React.FC = () => {
                 <Box sx={{ pl: { xs: 2, lg: 3 }, pr: { xs: 2, lg: 3 }, pt: 0 }}>
                     {allTvShows.map((content, index) => (
                         <Box sx={{ mt: carouselSpacing }} key={index}>
-                            <MovieCarousel
+                            <TVCarousel
                                 type="tv"
                                 title={genreTitles[index]}
                                 content={content as MoviesProps[]}

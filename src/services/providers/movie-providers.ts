@@ -6,17 +6,17 @@ export const getAllMovieProviders = () => {
     // desktop and tablet providers 
     if (window.innerWidth > 1200) {
         [{
-            displayName: "KingStar",
-            providerName: "vidora.su",
-            premium: true,
-        },
-        {
             displayName: "Premify",
             providerName: "player.vidsrc.co",
             note: {
                 note: 'Play / pause button is in the middle of the screen',
                 device: 'mobile'
             },
+            premium: true,
+        },
+        {
+            displayName: "KingStar",
+            providerName: "vidora.su",
             premium: true,
         },
         {

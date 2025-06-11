@@ -93,7 +93,7 @@ const MoviePlayer: React.FC<PlayerProps> = ({ id, serverGroup, note }) => {
                         top: 0,
                         right: 0,
                         width: '100%',
-                        height: '102%',
+                        height: '100%',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',

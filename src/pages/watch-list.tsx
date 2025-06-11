@@ -78,26 +78,26 @@ const EmptyNote: React.FC<EmptyNoteProps> = ({ type }) => {
                     opacity: 1,
                     mt: 6,
                     textAlign: 'center',
-                }}>No previously watched {type === "movies" ? "Movies" : "Tv Shows"} found, Keep <span style={{ color: '#a2ff00' }}>streaming</span> !</Typography>
+                }}>No previously saved {type === "movies" ? "Movies" : "Tv Shows"} found, Keep <span style={{ color: '#a2ff00' }}>streaming</span> !</Typography>
             </Box>
         </>
     )
 }
 
-const WatchHistory: React.FC = () => {
+const WatchList: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [value, setValue] = React.useState(0);
-    const [watchedMovies, setWatchedMovies] = useState<CarosuelCardProps[]>(
-        JSON.parse(localStorage.getItem('watchedMovies') || '[]')
+    const [watchListMovies, setWatchListMovies] = useState<CarosuelCardProps[]>(
+        JSON.parse(localStorage.getItem('watchListMovies') || '[]')
     );
     const [originalMovieList, setOriginalMovieList] = useState<CarosuelCardProps[]>(
-        JSON.parse(localStorage.getItem('watchedMovies') || '[]')
+        JSON.parse(localStorage.getItem('watchListMovies') || '[]')
     );
-    const [watchedTvShows, setWatchedTvShows] = useState<CarosuelCardProps[]>(
-        JSON.parse(localStorage.getItem('watchedTvShows') || '[]')
+    const [watchListTvShows, setWatchListTvShows] = useState<CarosuelCardProps[]>(
+        JSON.parse(localStorage.getItem('watchListTvShows') || '[]')
     );
     const [originalTvShowList, setOriginalTvShowList] = useState<CarosuelCardProps[]>(
-        JSON.parse(localStorage.getItem('watchedTvShows') || '[]')
+        JSON.parse(localStorage.getItem('watchListTvShows') || '[]')
     );
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -109,30 +109,30 @@ const WatchHistory: React.FC = () => {
     const handleMoviesQuickSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const keyword = e.target.value;
         const sortedList = originalMovieList.filter(item => item.title.toLowerCase().includes(keyword.toLowerCase()));
-        setWatchedMovies([...sortedList]);
+        setWatchListMovies([...sortedList]);
     }
 
     // fzf for tv shows
     const handleTvShowsQuickSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const keyword = e.target.value;
         const sortedList = originalTvShowList.filter(item => item.original_name.toLowerCase().includes(keyword.toLowerCase()));
-        setWatchedTvShows([...sortedList]);
+        setWatchListTvShows([...sortedList]);
     }
 
     // remove items form the watch history
-    const removeItemsFromWatchHistory = (contentType: string, index: number) => {
+    const removeItemsFromWatchList = (contentType: string, index: number) => {
         if (contentType === "movie") {
-            const tempMovieCollector: CarosuelCardProps[] = [...watchedMovies];
+            const tempMovieCollector: CarosuelCardProps[] = [...watchListMovies];
             tempMovieCollector.splice(index, 1);
-            localStorage.setItem('watchedMovies', JSON.stringify(tempMovieCollector));
-            setWatchedMovies([...tempMovieCollector]);
+            localStorage.setItem('watchListMovies', JSON.stringify(tempMovieCollector));
+            setWatchListMovies([...tempMovieCollector]);
             setOriginalMovieList([...tempMovieCollector]);
         }
         else {
-            const tempTvCollector: CarosuelCardProps[] = [...watchedTvShows];
+            const tempTvCollector: CarosuelCardProps[] = [...watchListTvShows];
             tempTvCollector.splice(index, 1);
-            localStorage.setItem('watchedTvShows', JSON.stringify(tempTvCollector));
-            setWatchedTvShows([...tempTvCollector]);
+            localStorage.setItem('watchListTvShows', JSON.stringify(tempTvCollector));
+            setWatchListTvShows([...tempTvCollector]);
             setOriginalTvShowList([...tempTvCollector]);
         }
     }
@@ -193,13 +193,13 @@ const WatchHistory: React.FC = () => {
                                     fontSize: 13.5,
                                     marginTop: 30,
                                     marginBottom: 25
-                                }} placeholder="Search already watched movies" type="text" />
+                                }} placeholder="Search saved movies" type="text" />
                         </Box>
 
                         {/* grid */}
                         <Box sx={{ flexGrow: 1 }}>
                             <Grid container spacing={0}>
-                                {watchedMovies.length > 0 ? watchedMovies.map((movie, index) => (
+                                {watchListMovies.length > 0 ? watchListMovies.map((movie, index) => (
                                     <Grid xs={6} sm={4} md={3} lg={2} key={index}>
                                         <Box sx={{
                                             mb: 2.75,
@@ -232,7 +232,7 @@ const WatchHistory: React.FC = () => {
                                                     top: -8,
                                                     right: -8,
                                                     zIndex: 2
-                                                }} onClick={() => { removeItemsFromWatchHistory("movie", index) }}>✘</Button>
+                                                }} onClick={() => { removeItemsFromWatchList("movie", index) }}>✘</Button>
                                         </Box>
                                     </Grid>
                                 )) : (<EmptyNote type="movies" />)}
@@ -262,13 +262,13 @@ const WatchHistory: React.FC = () => {
                                     fontSize: 13.5,
                                     marginTop: 30,
                                     marginBottom: 20
-                                }} placeholder="Search already watched tv shows" type="text" />
+                                }} placeholder="Search saved tv shows" type="text" />
                         </Box>
 
                         {/* grid */}
                         <Box sx={{ flexGrow: 1 }}>
                             <Grid container spacing={0}>
-                                {[watchedTvShows].length > 0 ? watchedTvShows.map((movie, index) => (
+                                {watchListTvShows.length > 0 ? watchListTvShows.map((movie, index) => (
                                     <Grid xs={12} sm={4} md={3} lg={3} key={index}>
                                         <Box sx={{
                                             mb: 2.75,
@@ -301,7 +301,7 @@ const WatchHistory: React.FC = () => {
                                                     top: -8,
                                                     right: -8,
                                                     zIndex: 2
-                                                }} onClick={() => { removeItemsFromWatchHistory("tv", index) }}>✘</Button>
+                                                }} onClick={() => { removeItemsFromWatchList("tv", index) }}>✘</Button>
                                         </Box>
                                     </Grid>
                                 )) : (<EmptyNote type="tv shows" />)}
@@ -316,4 +316,4 @@ const WatchHistory: React.FC = () => {
     )
 }
 
-export default WatchHistory
+export default WatchList
