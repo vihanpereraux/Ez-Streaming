@@ -51,7 +51,7 @@ const TvDetails: React.FC<TvDetailsProps> = ({ props }) => {
 
                 {/* genre */}
                 &nbsp;&nbsp;{props.genres.map((genre: any, index: any) => (
-                    <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 11, marginRight: 6 }}>{genre.name}</span>
+                    <span key={index} style={{ color: 'white', fontFamily: 'Rubik', fontSize: 11, marginRight: 6, opacity: .75, }}>{genre.name}</span>
                 ))}
                 <Typography sx={{
                     fontFamily: 'Rubik',

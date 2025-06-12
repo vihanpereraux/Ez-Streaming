@@ -392,7 +392,7 @@ const TvScreen: React.FC = () => {
 
                                 {/* seasons and episodes */}
                                 {!lightsOffClicked && (
-                                    <Box sx={{ mt: 4 }}>
+                                    <Box sx={{ mt: { xs: 4, md: 4, lg: 3.75 } }}>
                                         <TvEpisodes
                                             seasonDetails={seasonDetails}
                                             userSelection={userSelection}
@@ -401,12 +401,12 @@ const TvScreen: React.FC = () => {
                                 )}
 
                                 {/* cast info */}
-                                {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
+                                {!lightsOffClicked && (<Box sx={{ mt: { xs: 4, md: 4, lg: 6 } }}>
                                     <Credits contentTitle={tvDetails.original_name} castDetails={castDetails} />
                                 </Box>)}
 
                                 {/* trailers */}
-                                <Box sx={{ mt: 5, display: !lightsOffClicked ? "block" : "none" }}>
+                                <Box sx={{ mt: { xs: 4, md: 4, lg: 6 }, display: !lightsOffClicked ? "block" : "none" }}>
                                     {videoKeys.length > 3 ? (
                                         <Videos videokeys={videoKeys.slice(0, 3)} title={tvDetails.original_name} />
                                     ) : (
@@ -415,7 +415,7 @@ const TvScreen: React.FC = () => {
                                 </Box>
 
                                 {/* reviews */}
-                                {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
+                                {!lightsOffClicked && (<Box sx={{ mt: { xs: 4, md: 4, lg: 6 } }}>
                                     {reviews && (
                                         <Reviews reviews={reviews} defaultExpanded={true} />
                                     )}

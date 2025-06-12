@@ -30,7 +30,7 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                         id="panel1-header">
                         <Typography sx={{
                             ml: -2,
-                            fontWeight: 400,
+                            fontWeight: 420,
                             fontFamily: 'Rubik',
                             color: 'white',
                             fontSize: { xs: 16, md: 15, lg: 15 },

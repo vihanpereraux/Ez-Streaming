@@ -15,7 +15,7 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
     return (
         <>
             <Typography sx={{
-                fontWeight: 400,
+                fontWeight: 420,
                 fontFamily: 'Rubik',
                 color: 'white',
                 fontSize: { xs: 16, md: 15, lg: 15 },

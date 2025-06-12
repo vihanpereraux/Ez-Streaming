@@ -15,7 +15,7 @@ const Videos: React.FC<props> = ({ videokeys, title }) => {
     return (
         <>
             <Typography sx={{
-                fontWeight: 400,
+                fontWeight: 420,
                 fontFamily: 'Rubik',
                 color: 'white',
                 fontSize: { xs: 16, md: 15, lg: 15 },

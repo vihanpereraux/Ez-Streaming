@@ -172,7 +172,7 @@ const CarosuelCard: React.FC<CarosuelCardProps> = ({ id, poster_path, title, fir
                             sx={{
                                 color: 'white',
                                 textTransform: 'capitalize',
-                                fontSize: { xs: 7.5, lg: 8.5 },
+                                fontSize: { xs: 7.5, lg: 9 },
                                 fontWeight: { xs: 450, lg: 420 },
                                 fontFamily: 'Rubik',
                                 lineHeight: 1.25,
