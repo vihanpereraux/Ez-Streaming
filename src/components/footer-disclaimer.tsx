@@ -19,7 +19,7 @@ const FooterDisclaimer: React.FC = () => {
             }}>
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={2}>
-                        <Grid lg={4}>
+                        <Grid sm={12} md={4} lg={4}>
                             <img style={{
                                 width: 130
                             }} src="/logo.png" alt="" />
@@ -36,7 +36,7 @@ const FooterDisclaimer: React.FC = () => {
                             }}>Seamless Movie & TV Show streaming  in the browser.</Typography>
                         </Grid>
 
-                        <Grid lg={4}>
+                        <Grid sm={12} md={4} lg={4}>
                             <Typography sx={{
                                 color: 'white',
                                 textAlign: 'left',
@@ -77,7 +77,7 @@ const FooterDisclaimer: React.FC = () => {
                             </Box>
                         </Grid>
 
-                        <Grid lg={4}>
+                        <Grid sm={13} md={4} lg={4}>
                             <Typography sx={{
                                 color: 'white',
                                 textAlign: 'left',
