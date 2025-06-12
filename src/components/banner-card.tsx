@@ -104,7 +104,7 @@ const BannerCard: React.FC<BannerCardProps> = ({ poster_path, original_name, fir
                     width: '100%',
                     height: '100%',
                     zIndex: 1,
-                    borderRadius: 4
+                    borderRadius: 3
                 }}></Box>
             </Box>
         </>

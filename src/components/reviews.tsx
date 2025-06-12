@@ -30,10 +30,10 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                         id="panel1-header">
                         <Typography sx={{
                             ml: -2,
-                            fontWeight: 420,
+                            fontWeight: 400,
                             fontFamily: 'Rubik',
                             color: 'white',
-                            fontSize: { xs: 16, lg: 16 },
+                            fontSize: { xs: 16, md: 15, lg: 15 },
                     }} component="span">Reviews & Critiques &nbsp; ·  &nbsp; <span style={{ opacity: .7, fontSize: 15 }}>
                                 {reviews.length.toString()} {reviews.length > 1 ? "Reviews" : "Review"}</span></Typography>
                     </AccordionSummary>

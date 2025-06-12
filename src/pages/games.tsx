@@ -48,6 +48,10 @@ const Games: React.FC = () => {
         getGames();
     }, [])
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
         <>
             <Navbar />
@@ -186,8 +190,6 @@ const Games: React.FC = () => {
                                 ))}
                         </Grid>
                     </Box>
-
-                    <Box sx={{ mb: { xs: 12, lg: 12 } }}></Box>
                 </>
             )}
 

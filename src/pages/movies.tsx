@@ -112,6 +112,10 @@ const Movies: React.FC = () => {
 
     const isLoading = allMovies.some(movies => movies === undefined);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+    
     return (
         <>
             <Navbar />
@@ -133,8 +137,6 @@ const Movies: React.FC = () => {
                             />
                         </Box>
                     ))}
-
-                    <Box sx={{ mb: { xs: 12, lg: 12 } }} />
                 </Box>
             )}
         </>

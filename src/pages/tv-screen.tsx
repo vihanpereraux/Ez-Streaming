@@ -56,7 +56,7 @@ const tabStyles = {
     textTransform: 'capitalize',
     fontWeight: 420,
     textDecoration: 'none',
-    mr: { xs: .75, md: 0, lg: 1.5 },
+    mr: { xs: .8, md: 1, lg: 1.25 },
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -315,13 +315,13 @@ const TvScreen: React.FC = () => {
                                                     {provider.premium ? (
                                                         <Lottie style={{ width: 18 }} animationData={premiumIcon} loop={true} />
                                                     ) : (
-                                                        <Lottie style={{ width: 20 }} animationData={serverIcon} loop={true} />
+                                                        <Lottie style={{ width: 18 }} animationData={serverIcon} loop={true} />
                                                     )}
                                                     <Typography sx={{
                                                         fontFamily: 'Rubik',
                                                         fontWeight: { xs: 400, md: 400, lg: 400 },
                                                         fontSize: { xs: 13, md: 12, lg: 12 },
-                                                        ml: 1.5
+                                                        ml: 1.25
                                                     }}>{provider.displayName}</Typography>
                                                 </Box>
                                             } {...a11yProps(index)} />

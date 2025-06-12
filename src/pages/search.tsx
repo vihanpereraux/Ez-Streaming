@@ -50,14 +50,19 @@ const Search: React.FC = () => {
         setResults([]);
     }
 
-
+    React.useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+    
     return (
         <>
             <Navbar />
             <Box sx={{
                 pl: { xs: 1, lg: 2 },
                 pr: { xs: 1, lg: 2 },
-                pt: 8
+                pt: 8,
+
+                minHeight: '100vh'
             }}>
                 <Box sx={{
                     background: 'none',
@@ -73,8 +78,7 @@ const Search: React.FC = () => {
                         }}> Search your favourite Movies & TV Shows
                     </Typography>
 
-                    <Box
-                        sx={{
+                    <Box sx={{
                             display: { xs: 'block', sm: 'flex' },
                             justifyContent: 'center',
                             marginTop: 5,
@@ -91,7 +95,7 @@ const Search: React.FC = () => {
                                 fontFamily: 'Rubik',
                                 borderRadius: 8,
                                 border: 'none',
-                                backgroundColor: 'rgb(20, 20, 20)',
+                                backgroundColor: 'rgb(18, 18, 18)',
                                 color: 'white',
                                 fontSize: 14
                             }} placeholder="Type to search" type="text" />
@@ -102,7 +106,7 @@ const Search: React.FC = () => {
                                 color: 'white',
                                 backgroundColor: 'rgb(20, 20, 20)',
                                 width: { xs: '100%', sm: '25%' },
-                                fontSize: 14,
+                                fontSize: 13.5,
                                 fontFamily: 'Rubik',
                                 ml: { xs: 0, sm: 1 },
                                 mt: { xs: 1.5, sm: 0 },
@@ -125,7 +129,7 @@ const Search: React.FC = () => {
                                 borderRadius: 1.8,
                                 fontFamily: 'Rubik',
                                 textTransform: 'capitalize',
-                                fontWeight: 420,
+                                fontWeight: value.length > 0 ? 520 : 420,
                                 fontSize: 14,
                                 pl: 3,
                                 pr: 3,
@@ -174,8 +178,6 @@ const Search: React.FC = () => {
                     </Grid>
                 </Box>
             </Box>
-
-            <Box sx={{ mb: 15 }}></Box>
         </>
     )
 }

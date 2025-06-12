@@ -141,13 +141,18 @@ const Home: React.FC = () => {
         amazonPrimeShows &&
         huluShows;
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
         <>
             <Navbar />
             <Box sx={{
                 pl: { xs: 1, lg: 2 },
                 pr: { xs: 1, lg: 2 },
-                pt: 0
+                pt: 0,
+                minHeight: '100vh'
             }}>
                 {isLoaded ? (
                     <>
@@ -198,7 +203,7 @@ const Home: React.FC = () => {
                     <LoadingPreview />
                 )}
             </Box>
-            <Box sx={{ mb: { xs: 12, lg: 12 } }} />
+            {/* <Box sx={{ mb: { xs: 12, lg: 12 } }} /> */}
         </>
     );
 };

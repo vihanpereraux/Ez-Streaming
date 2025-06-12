@@ -28,6 +28,10 @@ const Disclaimer: React.FC = () => {
 
     useEffect(() => { fetchDisclaimerData() }, [])
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
         <>
             <Navbar />
@@ -38,6 +42,7 @@ const Disclaimer: React.FC = () => {
                     mt: 10,
                     position: 'relative',
                     zIndex: 1,
+                    minHeight: '100vh'
                 }}>
                     {content && content.map((point, index) => (
                         <Box key={index}
@@ -107,8 +112,6 @@ const Disclaimer: React.FC = () => {
                         </Box>
                     ))}
                 </Box>
-
-                <Box sx={{ mb: { xs: 16, lg: 15 } }} />
             </Box>
         </>
     )
