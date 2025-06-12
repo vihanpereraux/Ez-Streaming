@@ -24,7 +24,10 @@ import FooterDisclaimer from './components/footer-disclaimer'
 const App: React.FC = () => {
   return (
     <>
-      <div className="gradient-background"></div>
+      <div style={{
+        opacity: location.pathname == '/disclaimer' ?  .105 : .05
+      }}
+        className="gradient-background"></div>
       <BrowserRouter>
         <Routes>
           <Route path='/' Component={Home}></Route>
