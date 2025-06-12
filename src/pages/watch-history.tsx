@@ -78,7 +78,7 @@ const EmptyNote: React.FC<EmptyNoteProps> = ({ type }) => {
                     opacity: 1,
                     mt: 6,
                     textAlign: 'center',
-                }}>No previously watched {type === "movies" ? "Movies" : "Tv Shows"} found, Keep <span style={{ color: '#a2ff00' }}>streaming</span> !</Typography>
+                }}>No previously watched {type === "movies" ? "Movies" : "TV Shows"} found, Keep <span style={{ color: '#a2ff00' }}>streaming</span> !</Typography>
             </Box>
         </>
     )
@@ -141,6 +141,10 @@ const WatchHistory: React.FC = () => {
         setIsLoading(false);
     }, [originalTvShowList])
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
         <>
             <Navbar />
@@ -154,8 +158,9 @@ const WatchHistory: React.FC = () => {
                         width: '100%',
                         pl: { xs: 2, lg: 3 },
                         pr: { xs: 2, lg: 3 },
-                        pt: 0,
-                        mt: 2.5
+                        pt: 5,
+                        mt: 2.5,
+                        minHeight: '100vh'
                     }}>
                     {/* tabs */}
                     <Box sx={{
@@ -178,22 +183,26 @@ const WatchHistory: React.FC = () => {
                             justifyContent: 'center',
                             mb: 3
                         }}>
-                            <input
-                                className="search_input"
-                                onChange={handleMoviesQuickSearch}
-                                style={{
-                                    display: JSON.parse(localStorage.getItem('watchedMovies') || '[]').length > 0 ? "block" : "none",
-                                    width: getSearchBarWidth(window.innerWidth),
-                                    height: 50,
-                                    fontFamily: 'Rubik',
-                                    borderRadius: 8,
-                                    border: 'none',
-                                    backgroundColor: 'rgb(30, 30, 30)',
-                                    color: 'white',
-                                    fontSize: 13.5,
-                                    marginTop: 30,
-                                    marginBottom: 25
-                                }} placeholder="Search already watched movies" type="text" />
+                            {originalMovieList.length > 0 && (
+                                <input
+                                    className="search_input"
+                                    onChange={handleMoviesQuickSearch}
+                                    style={{
+                                        width: getSearchBarWidth(window.innerWidth),
+                                        height: 50,
+                                        fontFamily: 'Rubik',
+                                        borderRadius: 8,
+                                        border: 'none',
+                                        backgroundColor: 'rgb(18, 18, 18)',
+                                        color: 'white',
+                                        fontSize: 13.5,
+                                        marginTop: 30,
+                                        marginBottom: 25
+                                    }}
+                                    placeholder="Search already watched movies"
+                                    type="text"
+                                />
+                            )}
                         </Box>
 
                         {/* grid */}
@@ -247,28 +256,31 @@ const WatchHistory: React.FC = () => {
                             justifyContent: 'center',
                             mb: 3
                         }}>
-                            <input
-                                className="search_input"
-                                onChange={handleTvShowsQuickSearch}
-                                style={{
-                                    display: JSON.parse(localStorage.getItem('watchedTvShows') || '[]').length > 0 ? "block" : "none",
-                                    width: getSearchBarWidth(window.innerWidth),
-                                    height: 50,
-                                    fontFamily: 'Rubik',
-                                    borderRadius: 8,
-                                    border: 'none',
-                                    backgroundColor: 'rgb(30, 30, 30)',
-                                    color: 'white',
-                                    fontSize: 13.5,
-                                    marginTop: 30,
-                                    marginBottom: 20
-                                }} placeholder="Search already watched tv shows" type="text" />
+                            {originalTvShowList.length > 0 && (
+                                <input
+                                    className="search_input"
+                                    onChange={handleTvShowsQuickSearch}
+                                    style={{
+                                        width: getSearchBarWidth(window.innerWidth),
+                                        height: 50,
+                                        fontFamily: 'Rubik',
+                                        borderRadius: 8,
+                                        border: 'none',
+                                        backgroundColor: 'rgb(18, 18, 18)',
+                                        color: 'white',
+                                        fontSize: 13.5,
+                                        marginTop: 30,
+                                        marginBottom: 20
+                                    }}
+                                    placeholder="Search already watched tv shows" type="text"
+                                />
+                            )}
                         </Box>
 
                         {/* grid */}
                         <Box sx={{ flexGrow: 1 }}>
                             <Grid container spacing={0}>
-                                {[watchedTvShows].length > 0 ? watchedTvShows.map((movie, index) => (
+                                {watchedTvShows.length > 0 ? watchedTvShows.map((movie, index) => (
                                     <Grid xs={12} sm={4} md={3} lg={3} key={index}>
                                         <Box sx={{
                                             mb: 2.75,
@@ -310,8 +322,6 @@ const WatchHistory: React.FC = () => {
                     </CustomTabPanel>
                 </Box>
             )}
-
-            <Box sx={{ mb: 15 }}></Box>
         </>
     )
 }

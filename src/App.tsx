@@ -25,7 +25,7 @@ const App: React.FC = () => {
   return (
     <>
       <div style={{
-        opacity: location.pathname == '/disclaimer' ?  .105 : .05
+        opacity: location.pathname == '/disclaimer' ? .105 : .05
       }}
         className="gradient-background"></div>
       <BrowserRouter>
@@ -42,10 +42,8 @@ const App: React.FC = () => {
           <Route path='/games' Component={Games}></Route>
           <Route path='/watch-list' Component={WatchList}></Route>
         </Routes>
+        <FooterDisclaimer />
       </BrowserRouter>
-
-      <FooterDisclaimer />
-
       <Analytics />
     </>
   )

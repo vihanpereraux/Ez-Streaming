@@ -15,10 +15,10 @@ const Videos: React.FC<props> = ({ videokeys, title }) => {
     return (
         <>
             <Typography sx={{
-                fontWeight: 420,
+                fontWeight: 400,
                 fontFamily: 'Rubik',
                 color: 'white',
-                fontSize: { xs: 16, lg: 16 },
+                fontSize: { xs: 16, md: 15, lg: 15 },
             }}>Trailers & Clips</Typography>
 
             <Box sx={{ mt: 2 }}>

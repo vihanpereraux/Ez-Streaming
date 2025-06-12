@@ -141,6 +141,10 @@ const WatchList: React.FC = () => {
         setIsLoading(false);
     }, [originalTvShowList])
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
         <>
             <Navbar />
@@ -154,8 +158,9 @@ const WatchList: React.FC = () => {
                         width: '100%',
                         pl: { xs: 2, lg: 3 },
                         pr: { xs: 2, lg: 3 },
-                        pt: 0,
-                        mt: 2.5
+                        pt: 5,
+                        mt: 2.5,
+                        minHeight: '100vh'
                     }}>
                     {/* tabs */}
                     <Box sx={{
@@ -178,22 +183,24 @@ const WatchList: React.FC = () => {
                             justifyContent: 'center',
                             mb: 3
                         }}>
-                            <input
-                                className="search_input"
-                                onChange={handleMoviesQuickSearch}
-                                style={{
-                                    display: JSON.parse(localStorage.getItem('watchedMovies') || '[]').length > 0 ? "block" : "none",
-                                    width: getSearchBarWidth(window.innerWidth),
-                                    height: 50,
-                                    fontFamily: 'Rubik',
-                                    borderRadius: 8,
-                                    border: 'none',
-                                    backgroundColor: 'rgb(30, 30, 30)',
-                                    color: 'white',
-                                    fontSize: 13.5,
-                                    marginTop: 30,
-                                    marginBottom: 25
-                                }} placeholder="Search saved movies" type="text" />
+                            {originalMovieList.length > 0 && (
+                                <input
+                                    className="search_input"
+                                    onChange={handleMoviesQuickSearch}
+                                    style={{
+                                        width: getSearchBarWidth(window.innerWidth),
+                                        height: 50,
+                                        fontFamily: 'Rubik',
+                                        borderRadius: 8,
+                                        border: 'none',
+                                        backgroundColor: 'rgb(18, 18, 18)',
+                                        color: 'white',
+                                        fontSize: 13.5,
+                                        marginTop: 30,
+                                        marginBottom: 25
+                                    }} placeholder="Search already saved movies" type="text" />
+
+                            )}
                         </Box>
 
                         {/* grid */}
@@ -247,22 +254,24 @@ const WatchList: React.FC = () => {
                             justifyContent: 'center',
                             mb: 3
                         }}>
-                            <input
-                                className="search_input"
-                                onChange={handleTvShowsQuickSearch}
-                                style={{
-                                    display: JSON.parse(localStorage.getItem('watchedTvShows') || '[]').length > 0 ? "block" : "none",
-                                    width: getSearchBarWidth(window.innerWidth),
-                                    height: 50,
-                                    fontFamily: 'Rubik',
-                                    borderRadius: 8,
-                                    border: 'none',
-                                    backgroundColor: 'rgb(30, 30, 30)',
-                                    color: 'white',
-                                    fontSize: 13.5,
-                                    marginTop: 30,
-                                    marginBottom: 20
-                                }} placeholder="Search saved tv shows" type="text" />
+                            {originalTvShowList.length > 0 && (
+                                <input
+                                    className="search_input"
+                                    onChange={handleTvShowsQuickSearch}
+                                    style={{
+                                        width: getSearchBarWidth(window.innerWidth),
+                                        height: 50,
+                                        fontFamily: 'Rubik',
+                                        borderRadius: 8,
+                                        border: 'none',
+                                        backgroundColor: 'rgb(18, 18, 18)',
+                                        color: 'white',
+                                        fontSize: 13.5,
+                                        marginTop: 30,
+                                        marginBottom: 20
+                                    }} placeholder="Search already saved tv shows" type="text" />
+
+                            )}
                         </Box>
 
                         {/* grid */}
@@ -310,8 +319,6 @@ const WatchList: React.FC = () => {
                     </CustomTabPanel>
                 </Box>
             )}
-
-            <Box sx={{ mb: 15 }}></Box>
         </>
     )
 }

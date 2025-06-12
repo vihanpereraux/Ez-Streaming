@@ -15,10 +15,10 @@ const Credits: React.FC<props> = ({ contentTitle, castDetails }) => {
     return (
         <>
             <Typography sx={{
-                fontWeight: 420,
+                fontWeight: 400,
                 fontFamily: 'Rubik',
                 color: 'white',
-                fontSize: { xs: 16, lg: 16 },
+                fontSize: { xs: 16, md: 15, lg: 15 },
             }}>Cast of {contentTitle}</Typography>
 
             <Box sx={{ mt: { xs: 2, lg: 2 } }}>

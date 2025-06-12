@@ -100,6 +100,10 @@ const TvShows: React.FC = () => {
 
     const isLoading = allTvShows.some(tvShows => tvShows === undefined);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+    
     return (
         <>
             <Navbar />
@@ -117,8 +121,6 @@ const TvShows: React.FC = () => {
                             />
                         </Box>
                     ))}
-
-                    <Box sx={{ mb: { xs: 12, lg: 12 } }} />
                 </Box>
             )}
         </>
