@@ -231,78 +231,79 @@ const MovieScreen: React.FC = () => {
         <>
             {!lightsOffClicked && <Navbar />}
 
-            {isLoading ? (<LoadingPreview />) : (
-                <>
-                    {isContinuePressed && (
-                        <Box
-                            className="movie_screen"
-                            key={movieId}
-                            sx={{
-                                pt: 6,
-                                pl: { xs: 1, lg: 2 },
-                                pr: { xs: 1, lg: 2 },
-                            }}>
-                            {/* tabs, players and information */}
-                            <Box sx={{ display: { xs: "block", lg: "block" } }}>
-                                <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
-                                    {/* tabs */}
-                                    <Box sx={{
-                                        border: 'none',
-                                        display: { xs: 'block', md: 'flex', lg: 'flex' },
-                                        justifyContent: { xs: 'center', lg: 'space-between' }
-                                    }}>
-                                        <Tabs sx={{
-                                            opacity: !lightsOffClicked ? 1 : 0,
-                                            pointerEvents: !lightsOffClicked ? "auto" : "none",
-                                        }}
-                                            value={value}
-                                            onChange={handleChange}
-                                            aria-label="basic tabs example">
-                                            {movieProviders.map((provider, index) => (
-                                                <Tab sx={tabStyles} label={
-                                                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                                        {provider.premium ? (
-                                                            <Lottie style={{ width: 18 }} animationData={premiumIcon} loop={true} />
-                                                        ) : (
-                                                            <Lottie style={{ width: 18 }} animationData={serverIcon} loop={true} />
-                                                        )}
-                                                        <Typography sx={{
-                                                            fontFamily: 'Rubik',
-                                                            fontWeight: { xs: 400, md: 400, lg: 400 },
-                                                            fontSize: { xs: 13, md: 12, lg: 12 },
-                                                            ml: 1.25
-                                                        }}>{provider.displayName}</Typography>
-                                                    </Box>
-                                                } {...a11yProps(index)} />
-                                            ))}
-                                        </Tabs>
-
-                                        {/* toggle */}
-                                        <Button sx={{
-                                            display: 'none',
-                                            // display: { xs: 'none', md: 'block' },
-                                            color: '#a2ff00',
-                                            fontFamily: 'Rubik',
-                                            fontSize: 12,
-                                            textTransform: 'capitalize',
-                                            backgroundColor: 'balck',
-                                            borderRadius: 2,
-                                            fontWeight: 380
-                                        }} onClick={manageLights}>
-                                            {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
-                                        </Button>
-
+            <Box sx={{ minHeight: '100vh' }}>
+                {isLoading ? (<LoadingPreview />) : (
+                    <>
+                        {isContinuePressed && (
+                            <Box
+                                className="movie_screen"
+                                key={movieId}
+                                sx={{
+                                    pt: 6,
+                                    pl: { xs: 1, lg: 2 },
+                                    pr: { xs: 1, lg: 2 },
+                                }}>
+                                {/* tabs, players and information */}
+                                <Box sx={{ display: { xs: "block", lg: "block" } }}>
+                                    <Box sx={{ width: { xs: "100%", lg: "100%" } }}>
+                                        {/* tabs */}
                                         <Box sx={{
-                                            mt: { xs: 3, md: 0 },
-                                            mb: { xs: .05, md: 0 },
-                                            textAlign: { xs: 'right', md: 'right', lg: 'right' }
+                                            border: 'none',
+                                            display: { xs: 'block', md: 'flex', lg: 'flex' },
+                                            justifyContent: { xs: 'center', lg: 'space-between' }
                                         }}>
-                                            <WatchListSelection type="movie" props={movieDetails} />
-                                        </Box>
-                                    </Box>
+                                            <Tabs sx={{
+                                                opacity: !lightsOffClicked ? 1 : 0,
+                                                pointerEvents: !lightsOffClicked ? "auto" : "none",
+                                            }}
+                                                value={value}
+                                                onChange={handleChange}
+                                                aria-label="basic tabs example">
+                                                {movieProviders.map((provider, index) => (
+                                                    <Tab sx={tabStyles} label={
+                                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                            {provider.premium ? (
+                                                                <Lottie style={{ width: 18 }} animationData={premiumIcon} loop={true} />
+                                                            ) : (
+                                                                <Lottie style={{ width: 18 }} animationData={serverIcon} loop={true} />
+                                                            )}
+                                                            <Typography sx={{
+                                                                fontFamily: 'Rubik',
+                                                                fontWeight: { xs: 400, md: 400, lg: 400 },
+                                                                fontSize: { xs: 13, md: 12, lg: 12 },
+                                                                ml: 1.25
+                                                            }}>{provider.displayName}</Typography>
+                                                        </Box>
+                                                    } {...a11yProps(index)} />
+                                                ))}
+                                            </Tabs>
 
-                                    {/* note for the player switch */}
-                                    {/* {!lightsOffClicked && (
+                                            {/* toggle */}
+                                            <Button sx={{
+                                                display: 'none',
+                                                // display: { xs: 'none', md: 'block' },
+                                                color: '#a2ff00',
+                                                fontFamily: 'Rubik',
+                                                fontSize: 12,
+                                                textTransform: 'capitalize',
+                                                backgroundColor: 'balck',
+                                                borderRadius: 2,
+                                                fontWeight: 380
+                                            }} onClick={manageLights}>
+                                                {lightsOffClicked ? "Turn Lights On" : "Turn Lights Off"}
+                                            </Button>
+
+                                            <Box sx={{
+                                                mt: { xs: 3, md: 0 },
+                                                mb: { xs: .05, md: 0 },
+                                                textAlign: { xs: 'right', md: 'right', lg: 'right' }
+                                            }}>
+                                                <WatchListSelection type="movie" props={movieDetails} />
+                                            </Box>
+                                        </Box>
+
+                                        {/* note for the player switch */}
+                                        {/* {!lightsOffClicked && (
                                             <Typography sx={{
                                                 color: ' white',
                                                 opacity: .7,
@@ -314,74 +315,75 @@ const MovieScreen: React.FC = () => {
                                             }}>Change the player above if you are not satisfied with the current player</Typography>
                                         )} */}
 
-                                    {/* players */}
-                                    {movieProviders.map((provider, index) => (
-                                        <CustomTabPanel value={value} index={index} key={index}>
-                                            {movieId && (
-                                                <MoviePlayer id={movieId} serverGroup={provider.providerName} note={provider.note} />
-                                            )}
-                                        </CustomTabPanel>
-                                    ))}
+                                        {/* players */}
+                                        {movieProviders.map((provider, index) => (
+                                            <CustomTabPanel value={value} index={index} key={index}>
+                                                {movieId && (
+                                                    <MoviePlayer id={movieId} serverGroup={provider.providerName} note={provider.note} />
+                                                )}
+                                            </CustomTabPanel>
+                                        ))}
+                                    </Box>
+
+
+                                    {/* details */}
+                                    {!lightsOffClicked && <Box sx={{
+                                        width: { xs: "100%", lg: "100%" },
+                                        pl: { xs: 0, lg: 0 },
+                                        mt: { xs: 2.5, md: 1, lg: 3 },
+                                    }}>
+                                        <MovieDetails props={movieDetails} />
+                                    </Box>}
                                 </Box>
 
+                                {/* cast info / credits */}
+                                {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
+                                    <Credits contentTitle={movieDetails.original_title} castDetails={castDetails} />
+                                </Box>)}
 
-                                {/* details */}
-                                {!lightsOffClicked && <Box sx={{
-                                    width: { xs: "100%", lg: "100%" },
-                                    pl: { xs: 0, lg: 0 },
-                                    mt: { xs: 2.5, md: 1, lg: 3 },
-                                }}>
-                                    <MovieDetails props={movieDetails} />
-                                </Box>}
-                            </Box>
+                                {/* trailers */}
+                                <Box sx={{ mt: 5, display: !lightsOffClicked ? "block" : "none" }}>
+                                    {videoKeys.length > 3 ? (
+                                        <Videos videokeys={videoKeys.slice(0, 3)} title={movieDetails.original_title} />
+                                    ) : (
+                                        <Videos videokeys={videoKeys} title={movieDetails.original_title} />
+                                    )}
+                                </Box>
 
-                            {/* cast info / credits */}
-                            {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
-                                <Credits contentTitle={movieDetails.original_title} castDetails={castDetails} />
-                            </Box>)}
+                                {/* reviews */}
+                                {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
+                                    <Reviews reviews={reviews} defaultExpanded={true} />
+                                </Box>)}
 
-                            {/* trailers */}
-                            <Box sx={{ mt: 5, display: !lightsOffClicked ? "block" : "none" }}>
-                                {videoKeys.length > 3 ? (
-                                    <Videos videokeys={videoKeys.slice(0, 3)} title={movieDetails.original_title} />
-                                ) : (
-                                    <Videos videokeys={videoKeys} title={movieDetails.original_title} />
+                                {/* related content */}
+                                {!lightsOffClicked ? (<Box sx={{ mt: reviews.length > 0 ? 4 : 5, mb: 12 }}>
+                                    {relatedContent.length > 0 ? (
+                                        <MovieCarousel
+                                            type="movie"
+                                            title="Movies You May Love : )"
+                                            content={relatedContent} />
+                                    ) : (
+                                        <>
+                                            <Typography
+                                                sx={{
+                                                    fontWeight: 450,
+                                                    fontFamily: 'Rubik',
+                                                    color: 'white',
+                                                    fontSize: { xs: 15, lg: 15 },
+                                                    mt: 8
+                                                }}>
+                                                No related movies found &nbsp; : (</Typography>
+                                            <Box sx={{ mb: 15 }}></Box>
+                                        </>
+                                    )}
+                                </Box>) : (
+                                    <Box sx={{ mb: { xs: 12, lg: 12 } }} />
                                 )}
                             </Box>
-
-                            {/* reviews */}
-                            {!lightsOffClicked && (<Box sx={{ mt: 4 }}>
-                                <Reviews reviews={reviews} defaultExpanded={true} />
-                            </Box>)}
-
-                            {/* related content */}
-                            {!lightsOffClicked ? (<Box sx={{ mt: reviews.length > 0 ? 4 : 5, mb: 12 }}>
-                                {relatedContent.length > 0 ? (
-                                    <MovieCarousel
-                                        type="movie"
-                                        title="Movies You May Love : )"
-                                        content={relatedContent} />
-                                ) : (
-                                    <>
-                                        <Typography
-                                            sx={{
-                                                fontWeight: 450,
-                                                fontFamily: 'Rubik',
-                                                color: 'white',
-                                                fontSize: { xs: 15, lg: 15 },
-                                                mt: 8
-                                            }}>
-                                            No related movies found &nbsp; : (</Typography>
-                                        <Box sx={{ mb: 15 }}></Box>
-                                    </>
-                                )}
-                            </Box>) : (
-                                <Box sx={{ mb: { xs: 12, lg: 12 } }} />
-                            )}
-                        </Box>
-                    )}
-                </>
-            )}
+                        )}
+                    </>
+                )}
+            </Box>
 
             {!isLoading && (
                 <AdDisclaimer setIsContinuePressed={setIsContinuePressed} />
