@@ -35,7 +35,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ props }) => {
                 <Typography sx={{
                     color: 'white',
                     textAlign: 'left',
-                    fontSize: { xs: 17, lg: 17.5 },
+                    fontSize: { xs: 16, lg: 17.5 },
                     fontFamily: 'Rubik',
                     fontWeight: 420,
                     mb: .05,

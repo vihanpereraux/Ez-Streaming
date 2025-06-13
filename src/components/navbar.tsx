@@ -24,8 +24,10 @@ const navButtonStylings = {
     fontFamily: 'Rubik',
     fontWeight: 380,
     ml: .25,
-    background: 'none'
+    background: 'none',
+    width: { xs: '100%', sm: 'auto', md: 'auto', lg: 'auto' },
 }
+
 interface Props { window?: () => Window; }
 
 // nav items
@@ -98,7 +100,7 @@ const Navbar: React.FC = (props: Props) => {
             <List>
                 {navItems.map((item, index) => (
                     <ListItem key={index} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
+                        <ListItemButton>
                             <Button key={index}
                                 sx={navButtonStylings}
                                 onClick={() => { navigateToPages(item.path) }} color="inherit">

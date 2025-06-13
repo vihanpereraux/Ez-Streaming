@@ -32,7 +32,7 @@ const AdDisclaimer: React.FC<props> = ({ setIsContinuePressed }) => {
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: 380,
+                        width: { xs: '95%', md: 380, lg: 380 },
                         bgcolor: 'black',
                         border: '1px solid rgba(162, 255, 0, .35)',
                         outline: 'none',

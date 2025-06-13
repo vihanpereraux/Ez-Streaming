@@ -158,10 +158,10 @@ const MoviePlayer: React.FC<PlayerProps> = ({ id, serverGroup, note }) => {
             {note && (
                 <Typography sx={{
                     color: 'white',
-                    fontSize: 8,
+                    fontSize: 6,
                     textAlign: 'center',
-                    mt: .75,
-                    mb: .75,
+                    mt: -.25,
+                    mb: 1.25,
                     display: noteDisplayConfig(note.device),
                     fontFamily: 'Rubik'
                 }}>{note.note}</Typography>

@@ -250,7 +250,9 @@ const MovieScreen: React.FC = () => {
                                         <Box sx={{
                                             border: 'none',
                                             display: { xs: 'block', md: 'flex', lg: 'flex' },
-                                            justifyContent: { xs: 'center', lg: 'space-between' }
+                                            justifyContent: { xs: 'center', lg: 'space-between' },
+                                            width: {xs: '100%', md: '100%', lg: '100%'},
+                                            overflowX: 'scroll',
                                         }}>
                                             <Tabs sx={{
                                                 opacity: !lightsOffClicked ? 1 : 0,
