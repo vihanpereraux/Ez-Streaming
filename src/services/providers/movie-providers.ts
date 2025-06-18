@@ -6,6 +6,21 @@ export const getAllMovieProviders = () => {
     // desktop and tablet providers 
     if (window.innerWidth > 1200) {
         [{
+            displayName: "VimStar",
+            providerName: "videsrc.cc",
+            premium: true,
+        },
+        {
+            displayName: "Popcorn Bunjie",
+            providerName: "videasy.net",
+            premium: true,
+        },
+        {
+            displayName: "Jolliby",
+            providerName: "spencerdevs.xyz",
+            premium: true,
+        },
+        {
             displayName: "Premify",
             providerName: "player.vidsrc.co",
             note: {
@@ -15,33 +30,18 @@ export const getAllMovieProviders = () => {
             premium: true,
         },
         {
-            displayName: "KingStar",
-            providerName: "vidora.su",
-            premium: true,
-        },
-        {
-            displayName: "Jolliby",
-            providerName: "spencerdevs.xyz",
-            premium: true,
-        },
-        {
             displayName: "Enigma",
             providerName: "vidsrc.su",
             premium: true,
         },
         {
+            displayName: "KingStar",
+            providerName: "vidora.su",
+            premium: false,
+        },
+        {
             displayName: "Chad Player",
             providerName: "videsrc.xyz",
-            premium: false,
-        },
-        {
-            displayName: "VimStar",
-            providerName: "videsrc.cc",
-            premium: false,
-        },
-        {
-            displayName: "Popcorn Bunjie",
-            providerName: "videasy.net",
             premium: false,
         },
         {
@@ -64,8 +64,8 @@ export const getAllMovieProviders = () => {
     } else {
         // mobile friendly providers
         [{
-            displayName: "Enigma",
-            providerName: "vidsrc.su",
+            displayName: "VimStar",
+            providerName: "videsrc.cc",
             premium: true,
         },
         {
@@ -76,9 +76,15 @@ export const getAllMovieProviders = () => {
                 note: '* Play / pause button is in the middle of the screen for this stream',
                 device: 'mobile'
             }
-        }, {
+        },
+        {
             displayName: "Jolliby",
             providerName: "spencerdevs.xyz",
+            premium: true,
+        },
+        {
+            displayName: "Enigma",
+            providerName: "vidsrc.su",
             premium: true,
         },
         {

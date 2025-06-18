@@ -48,7 +48,7 @@ const getRelevantProvider = (id: string, source: string, season: string, episode
             break;
 
         case "videasy.net":
-            return `https://player.videasy.net/tv/${id}/${season}/${episode}`
+            return `https://player.videasy.net/tv/${id}/${season}/${episode}?color=a2ff00&colour=a2ff00`
             break;
 
         default:
@@ -141,21 +141,40 @@ const TvPlayer: React.FC<PlayerProps> = ({ id, serverGroup, season, episode, not
                         </Typography>
                     </Box>
                 )}
-                <iframe
-                    key={id}
-                    allowFullScreen
-                    style={{
-                        width: '100%',
-                        aspectRatio: '16/9',
-                        border: 'none',
-                        borderRadius: 12,
-                        marginTop: -10,
-                        opacity: isIframeLoaded ? 1 : 0
-                    }}
-                    src={src}
-                    onLoad={() => { setIsIframeLoaded(true) }}
-                    onError={() => { setError(true) }}
-                />
+                {serverGroup == "vidora.su" || serverGroup == "vidfast.pro" ? (
+                    <iframe
+                        key={id}
+                        allowFullScreen
+                        style={{
+                            width: '100%',
+                            aspectRatio: '16/9',
+                            border: 'none',
+                            borderRadius: 12,
+                            marginTop: -10,
+                            opacity: isIframeLoaded ? 1 : 0
+                        }}
+                        src={src}
+                        allow="accelerometer; autoplay; encrypted-media; fullscreen; picture-in-picture; gyroscope; web-share"
+                        onLoad={() => { setIsIframeLoaded(true) }}
+                        onError={() => { setError(true) }} />
+                ) : (
+                    <iframe
+                        key={id}
+                        allowFullScreen
+                        style={{
+                            width: '100%',
+                            aspectRatio: '16/9',
+                            border: 'none',
+                            borderRadius: 12,
+                            marginTop: -10,
+                            opacity: isIframeLoaded ? 1 : 0
+                        }}
+                        src={src}
+                        sandbox="allow-scripts allow-same-origin allow-presentation allow-fullscreen allow-forms"
+                        allow="accelerometer; autoplay; encrypted-media; fullscreen; picture-in-picture; gyroscope; web-share"
+                        onLoad={() => { setIsIframeLoaded(true) }}
+                        onError={() => { setError(true) }} />
+                )}
             </Box>
 
             {note && (

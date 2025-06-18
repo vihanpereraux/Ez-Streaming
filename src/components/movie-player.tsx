@@ -46,11 +46,11 @@ const getRelevantProvider = (source: string, id: string) => {
             break;
 
         case "videasy.net":
-            return `https://player.videasy.net/movie/${id}`
+            return `https://player.videasy.net/movie/${id}?color=a2ff00&colour=a2ff00`
             break;
 
         default:
-            return `https://vidfast.pro/movie/${id}?theme=a2ff00`
+            return `https://vidfast.pro/movie/${id}?theme=a2ff00&`
             break;
     }
 }
@@ -139,21 +139,40 @@ const MoviePlayer: React.FC<PlayerProps> = ({ id, serverGroup, note }) => {
                         </Typography>
                     </Box>
                 )}
-                <iframe
-                    key={id}
-                    allowFullScreen
-                    style={{
-                        width: '100%',
-                        aspectRatio: '16/9',
-                        border: 'none',
-                        borderRadius: 12,
-                        marginTop: -10,
-                        opacity: isIframeLoaded ? 1 : 0
-                    }}
-                    src={src}
-                    onLoad={() => { setIsIframeLoaded(true) }}
-                    onError={() => { setError(true) }}
-                />
+                {serverGroup == "vidora.su" || serverGroup == "vidfast.pro" ? (
+                    <iframe
+                        key={id}
+                        allowFullScreen
+                        style={{
+                            width: '100%',
+                            aspectRatio: '16/9',
+                            border: 'none',
+                            borderRadius: 12,
+                            marginTop: -10,
+                            opacity: isIframeLoaded ? 1 : 0
+                        }}
+                        src={src}
+                        allow="accelerometer; autoplay; encrypted-media; fullscreen; picture-in-picture; gyroscope; web-share"
+                        onLoad={() => { setIsIframeLoaded(true) }}
+                        onError={() => { setError(true) }} />
+                ) : (
+                    <iframe
+                        key={id}
+                        allowFullScreen
+                        style={{
+                            width: '100%',
+                            aspectRatio: '16/9',
+                            border: 'none',
+                            borderRadius: 12,
+                            marginTop: -10,
+                            opacity: isIframeLoaded ? 1 : 0
+                        }}
+                        src={src}
+                        sandbox="allow-scripts allow-same-origin allow-presentation allow-fullscreen allow-forms"
+                        allow="accelerometer; autoplay; encrypted-media; fullscreen; picture-in-picture; gyroscope; web-share"
+                        onLoad={() => { setIsIframeLoaded(true) }}
+                        onError={() => { setError(true) }} />
+                )}
             </Box>
             {note && (
                 <Typography sx={{

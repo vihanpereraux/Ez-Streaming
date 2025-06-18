@@ -4,8 +4,23 @@ import { StreamProviderProps } from "../../interfaces/props"
 export const getAllTvProviders = () => {
     let providerDetails: StreamProviderProps[] = [];
     // desktop and tablet providers 
-    if (window.innerWidth > 700) {
+    if (window.innerWidth > 1200) {
         [{
+            displayName: "VimStar",
+            providerName: "videsrc.cc",
+            premium: true,
+        },
+        {
+            displayName: "Popcorn Bunjie",
+            providerName: "videasy.net",
+            premium: true,
+        },
+        {
+            displayName: "Jolliby",
+            providerName: "spencerdevs.xyz",
+            premium: true,
+        },
+        {
             displayName: "Premify",
             providerName: "player.vidsrc.co",
             note: {
@@ -15,33 +30,18 @@ export const getAllTvProviders = () => {
             premium: true,
         },
         {
-            displayName: "KingStar",
-            providerName: "vidora.su",
-            premium: true,
-        },
-        {
             displayName: "Enigma",
             providerName: "vidsrc.su",
             premium: true,
         },
         {
-            displayName: "Jolliby",
-            providerName: "spencerdevs.xyz",
-            premium: true,
+            displayName: "KingStar",
+            providerName: "vidora.su",
+            premium: false,
         },
         {
             displayName: "Chad Player",
             providerName: "videsrc.xyz",
-            premium: false,
-        },
-        {
-            displayName: "VimStar",
-            providerName: "videsrc.cc",
-            premium: false,
-        },
-        {
-            displayName: "Popcorn Bunjie",
-            providerName: "videasy.net",
             premium: false,
         },
         {
@@ -78,13 +78,13 @@ export const getAllTvProviders = () => {
             premium: true,
         },
         {
-            displayName: "KingStar",
-            providerName: "vidora.su",
+            displayName: "Enigma",
+            providerName: "vidsrc.su",
             premium: true,
         },
         {
-            displayName: "Enigma",
-            providerName: "vidsrc.su",
+            displayName: "KingStar",
+            providerName: "vidora.su",
             premium: true,
         }].map((item) => {
             providerDetails.push({

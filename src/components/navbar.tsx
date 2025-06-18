@@ -20,7 +20,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavItemProps } from '../interfaces/props';
 const navButtonStylings = {
     textTransform: 'capitalize',
-    fontSize: 12.25,
+    fontSize: {xs: 12.25, lg: 11.85},
     fontFamily: 'Rubik',
     fontWeight: 380,
     ml: .25,

@@ -63,10 +63,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                     pl: 0,
                     pr: 0,
                 }}>
-                    <Box sx={{
-                        // border: '1px solid red',
-                        mt: -2
-                    }}>
+                    <Box sx={{ mt: -2 }}>
                         {/* selection */}
                         {seasonDetails.map((detail, index) => (
                             <Box key={index} sx={{ mt: 2.55 }}>
@@ -181,8 +178,8 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                             color: "white",
                                                             fontWeight: 400,
                                                         }}> SS {detail.season < 10 ? `0${detail.season}` : detail.season} &nbsp;⋅&nbsp;
-                                                            EP {detail.episodeDetails.names[index] === `Episode ${index + 1}` ?
-                                                                `Not availabe` :
+                                                            EP {detail.episodeDetails.names[index] === `${index + 1}` ?
+                                                                `${index + 1}` :
                                                                 index + 1 < 10 ? `0${index + 1}` : (index + 1)}
                                                             &nbsp; ⋅&nbsp; {detail.episodeDetails.airDates[index] ? detail.episodeDetails.airDates[index] : "--"} &nbsp;
                                                         </Typography>
@@ -195,7 +192,7 @@ const TvEpisodes: React.FC<props> = ({ seasonDetails, userSelection, setUserSele
                                                             fontWeight: 420,
                                                             color: userSelection.season == detail.season && userSelection.episodeNumber == index + 1 ? "#a2ff00" : "white",
                                                             mt: .25
-                                                        }}>{detail.episodeDetails.names[index] === `Episode ${index + 1}` ? `Not availabe` : detail.episodeDetails.names[index]}</Typography>
+                                                        }}>{detail.episodeDetails.names[index] === `Episode ${index + 1}` ? `Episode ${index + 1}` : detail.episodeDetails.names[index]}</Typography>
                                                     </Box>
                                                 </Box>
                                             </Box>
