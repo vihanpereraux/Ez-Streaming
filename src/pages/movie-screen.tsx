@@ -204,6 +204,15 @@ const MovieScreen: React.FC = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        return () => {
+            if (JSON.parse(localStorage.getItem('adDisclaimerDisabled') || 'false')) {
+                setIsContinuePressed(true);   
+            }
+            else {
+                setIsContinuePressed(false);
+            }
+        }
     }, [movieId]);
 
     const updateUserWatchState = (movieDetails: any, movieId: string) => {

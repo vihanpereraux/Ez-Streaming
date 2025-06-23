@@ -68,7 +68,7 @@ const Disclaimer: React.FC = () => {
                                     borderRadius: 2
                                 }}>
                                     <Lottie style={{
-                                        width: 45,
+                                        width: 40,
                                         marginBottom: -6,
                                         opacity: .8
                                     }}

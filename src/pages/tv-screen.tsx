@@ -254,6 +254,15 @@ const TvScreen: React.FC = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        return () => {
+            if (JSON.parse(localStorage.getItem('adDisclaimerDisabled') || 'false')) {
+                setIsContinuePressed(true);
+            }
+            else {
+                setIsContinuePressed(false);
+            }
+        }
     }, [tvId]);
 
     const updateUserWatchState = (details: any, tvId: string) => {

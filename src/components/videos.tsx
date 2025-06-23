@@ -40,7 +40,8 @@ const Videos: React.FC<props> = ({ videokeys, title }) => {
                         fontFamily: 'Rubik',
                         color: 'white',
                         opacity: .75,
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        mt: 5
                     }}>No trailers and clips available at the moment</Typography>
                 )}
             </Box>
