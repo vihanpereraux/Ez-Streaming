@@ -25,21 +25,24 @@ const Videos: React.FC<props> = ({ videokeys, title }) => {
             }}>Trailers & Clips</Typography>
 
             <Box sx={{ mt: 2 }}>
-                <Carousel responsive={videoListConfig}>
-                    {videokeys.length > 0 ? videokeys.map((key, index) => (
-                        <Box key={index}>
-                            <IframePreview title={title} videoId={key} />
+                {videokeys.length > 0 ? (
+                    <Carousel responsive={videoListConfig}>
+                        {videokeys.map((key, index) => (
+                            <Box key={index}>
+                                <IframePreview title={title} videoId={key} />
 
-                        </Box>
-                    )) : (
-                        <Typography sx={{
-                            fontSize: 13,
-                            fontFamily: 'Rubik',
-                            color: 'white',
-                            opacity: .75,
-                            textAlign: 'center'
-                        }}>No videos / clips available at the moment</Typography>)}
-                </Carousel>
+                            </Box>
+                        ))}
+                    </Carousel>
+                ) : (
+                    <Typography sx={{
+                        fontSize: 13,
+                        fontFamily: 'Rubik',
+                        color: 'white',
+                        opacity: .75,
+                        textAlign: 'center'
+                    }}>No trailers and clips available at the moment</Typography>
+                )}
             </Box>
         </>
     )
