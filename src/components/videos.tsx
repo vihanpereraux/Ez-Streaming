@@ -6,6 +6,9 @@ import { videoListConfig } from "../config/carousel-config";
 // MUI
 import { Typography, Box } from '@mui/material'
 
+// components
+import IframePreview from "./iframe-preview";
+
 // props
 interface props {
     title: string,
@@ -24,21 +27,10 @@ const Videos: React.FC<props> = ({ videokeys, title }) => {
             <Box sx={{ mt: 2 }}>
                 <Carousel responsive={videoListConfig}>
                     {videokeys.length > 0 ? videokeys.map((key, index) => (
-                        <iframe
-                            loading="lazy"
-                            style={{
-                                border: 'none',
-                                outline: 'none',
-                                borderRadius: 10,
-                                aspectRatio: 16 / 9
-                            }}
-                            key={index}
-                            width={window.innerWidth < 600 ? '100%' : '98%'}
-                            src={`https://www.youtube.com/embed/${key}`}
-                            title={`Clips from ${title}`}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                        ></iframe>
+                        <Box key={index}>
+                            <IframePreview title={title} videoId={key} />
+
+                        </Box>
                     )) : (
                         <Typography sx={{
                             fontSize: 13,
@@ -46,7 +38,7 @@ const Videos: React.FC<props> = ({ videokeys, title }) => {
                             color: 'white',
                             opacity: .75,
                             textAlign: 'center'
-                        }}>No reviews available</Typography>)}
+                        }}>No videos / clips available at the moment</Typography>)}
                 </Carousel>
             </Box>
         </>

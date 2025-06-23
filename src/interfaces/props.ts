@@ -111,3 +111,8 @@ export interface WatchListSelectionProps {
     type: "movie" | "tv",
     props: ContentProps
 }
+
+export interface IframePreviewProps {
+    title: string,
+    videoId: string,
+}

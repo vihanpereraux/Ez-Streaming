@@ -100,7 +100,7 @@ const Reviews: React.FC<props> = ({ reviews, defaultExpanded }) => {
                                 color: 'white',
                                 opacity: .75,
                                 textAlign: 'center'
-                            }}>No reviews available</Typography>
+                            }}>No reviews available at the moment</Typography>
                         )}
                     </AccordionDetails>
                 </Accordion>

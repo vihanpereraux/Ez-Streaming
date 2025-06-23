@@ -78,7 +78,7 @@ const EmptyNote: React.FC<EmptyNoteProps> = ({ type }) => {
                     opacity: 1,
                     mt: 6,
                     textAlign: 'center',
-                }}>No previously saved {type === "movies" ? "Movies" : "Tv Shows"} found, Keep <span style={{ color: '#a2ff00' }}>streaming</span> !</Typography>
+                }}>No previously saved {type === "movies" ? "Movies" : "TV Shows"} found, Keep <span style={{ color: '#a2ff00' }}>streaming</span> !</Typography>
             </Box>
         </>
     )
